@@ -12,31 +12,28 @@
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tv_today_gains"
-            android:textSize="@dimen/sp_game_square_header_today_gains_text_size"
+            android:textSize="@dimen/F3"
             android:textColor="@color/C2"
-            android:layout_marginStart="@dimen/dp_game_square_header_today_gains_margin_start"
+            android:layout_marginStart="@dimen/L1"
             android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.CardView
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_today_gains"
-            android:layout_marginStart="@dimen/dp_game_square_header_coin_margin_start"
+            android:layout_marginStart="@dimen/L1"
             app:layout_constraintEnd_toStartOf="@+id/cv_cash"
             android:id="@+id/cv_coin"
-            android:layout_marginTop="@dimen/dp_game_square_header_coin_margin_top"
-            app:cardCornerRadius="@dimen/dp_game_square_header_coin_corner_radius"
+            android:layout_marginTop="@dimen/L8"
+            app:cardCornerRadius="@dimen/L6"
             android:layout_marginEnd="@dimen/dp_game_square_header_coin_margin_end"
             android:layout_height="wrap_content">
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:padding="@dimen/dp_game_square_header_coin_content_padding"
+                android:padding="@dimen/L7"
                 android:layout_height="wrap_content">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:text="111"
-                    android:layout_height="wrap_content"/>
+
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
@@ -45,13 +42,20 @@
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/cv_coin"
-            android:layout_marginEnd="@dimen/dp_game_square_header_cash_margin_end"
+            android:layout_marginEnd="@dimen/L1"
             android:layout_marginStart="@dimen/dp_game_square_header_cash_margin_start"
             app:layout_constraintStart_toEndOf="@+id/cv_coin"
             android:id="@+id/cv_cash"
             app:layout_constraintBottom_toBottomOf="@id/cv_coin"
-            app:cardCornerRadius="@dimen/dp_game_square_header_cash_corner_radius"
-            android:layout_height="0dp">
+            app:cardCornerRadius="@dimen/L6"
+            android:layout_height="@dimen/match_constraint">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/L7"
+                android:layout_height="wrap_content">
 
+
+
+        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

@@ -24,7 +24,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>
         <item name="layout_constraintHorizontal_weight">1</item>
-        <item name="android:paddingTop">@dimen/dp_main_bottom_tab_padding_top</item>
+        <item name="android:paddingTop">@dimen/L6</item>
         <item name="android:paddingBottom">@dimen/dp_main_bottom_tab_padding_bottom</item>
     </style>
     
@@ -42,7 +42,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="android:textSize">@dimen/sp_main_bottom_tab_title_text_size</item>
+        <item name="android:textSize">@dimen/F6</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:layout_marginTop">@dimen/dp_main_bottom_tab_title_margin_top</item>
     </style>

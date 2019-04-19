@@ -12,8 +12,8 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/game_square"
             android:id="@+id/tv_title"
-            android:textSize="@dimen/sp_title_text_view_size"
+            android:textSize="@dimen/F2"
             android:gravity="center"
             android:textColor="@color/C2"
-            android:layout_height="@dimen/dp_title_bar_height"/>
+            android:layout_height="@dimen/L2"/>
 </android.support.constraint.ConstraintLayout>
