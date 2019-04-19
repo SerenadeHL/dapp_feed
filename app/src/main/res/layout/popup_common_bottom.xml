@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/C2"
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/L7"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/F3"
+            android:paddingStart="@dimen/L1"
+            android:paddingEnd="@dimen/L1"
+            android:gravity="center_vertical"
+            android:textColor="@color/C6"
+            tools:text="您的提现已到账！"
+            android:id="@+id/tv_title"
+            android:layout_height="@dimen/L2"/>
+
+    <include layout="@layout/divider"
+             android:layout_width="@dimen/match_constraint"
+             android:layout_height="@dimen/divider_size"
+             android:id="@+id/v_divider"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+    <TextView
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_marginEnd="@dimen/L1"
+            android:textColor="@color/C7"
+            android:layout_marginTop="@dimen/L1"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_content"
+            android:lineSpacingMultiplier="1.2"
+            tools:text="可提现金币估值需要达到20元以上，才可以发起提现。邀请好友玩游戏必得现金奖励。"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/L1"
+            android:id="@+id/ll_btn_container"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_marginEnd="@dimen/L1"
+            app:layout_goneMarginTop="@dimen/dp_button_container_gone_margin_top"
+            app:layout_constraintTop_toBottomOf="@id/tv_content"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"/>
+</android.support.constraint.ConstraintLayout>

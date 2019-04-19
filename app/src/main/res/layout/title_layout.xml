@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:id="@+id/cl_title"
+        android:layout_height="wrap_content">
+    <TextView
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/game_square"
+            android:id="@+id/tv_title"
+            android:textSize="@dimen/sp_title_text_view_size"
+            android:gravity="center"
+            android:textColor="@color/C2"
+            android:layout_height="@dimen/dp_title_bar_height"/>
+</android.support.constraint.ConstraintLayout>

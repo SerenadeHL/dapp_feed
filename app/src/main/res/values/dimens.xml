@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--常用字号-->
+    <dimen name="F1">20sp</dimen>
+    <dimen name="F2">18sp</dimen>
+    <dimen name="F3">16sp</dimen>
+    <dimen name="F4">14sp</dimen>
+    <dimen name="F5">12sp</dimen>
+    <dimen name="F6">10sp</dimen>
+
+    <!--常用尺寸-->
+    <dimen name="L1">15dp</dimen>
+    <dimen name="L2">44dp</dimen>
+    <dimen name="L3">50dp</dimen>
+    <dimen name="L4">53dp</dimen>
+    <dimen name="L5">60dp</dimen>
+    <dimen name="L6">5dp</dimen>
+    <dimen name="L7">10dp</dimen>
+    <dimen name="L8">20dp</dimen>
+
+
+
+    <!--ConstraintLayout的match_constraint-->
+    <dimen name="match_constraint">0dp</dimen>
+
+
+    <!--分割线粗细-->
+    <dimen name="divider_size">0.5dp</dimen>
+
+    <!--Activity标题-->
+    <dimen name="dp_title_bar_height">44dp</dimen>
+    <dimen name="sp_title_text_view_size">18sp</dimen>
+
+    <!--MainActivity-->
+    <dimen name="dp_main_bottom_tab_padding_top">5dp</dimen>
+    <dimen name="dp_main_bottom_tab_padding_bottom">7dp</dimen>
+    <dimen name="dp_main_bottom_tab_icon_width">25dp</dimen>
+    <dimen name="dp_main_bottom_tab_icon_height">25dp</dimen>
+    <dimen name="dp_main_bottom_tab_title_margin_top">4dp</dimen>
+    <dimen name="sp_main_bottom_tab_title_text_size">10sp</dimen>
+
+
+    <!--GameSquareFragment-->
+    <dimen name="sp_game_square_header_today_gains_text_size">16sp</dimen>
+    <dimen name="dp_game_square_header_today_gains_margin_start">15dp</dimen>
+
+    <dimen name="dp_game_square_header_coin_margin_start">15dp</dimen>
+    <dimen name="dp_game_square_header_coin_margin_end">6dp</dimen>
+    <dimen name="dp_game_square_header_coin_margin_top">20dp</dimen>
+    <dimen name="dp_game_square_header_coin_corner_radius">6dp</dimen>
+    <dimen name="dp_game_square_header_coin_content_padding">10dp</dimen>
+
+    <dimen name="dp_game_square_header_cash_margin_start">15dp</dimen>
+    <dimen name="dp_game_square_header_cash_margin_end">15dp</dimen>
+    <dimen name="dp_game_square_header_cash_corner_radius">6dp</dimen>
+
+    <dimen name="dp_game_square_item_padding_bottom">10dp</dimen>
+    <dimen name="dp_game_square_item_icon_width">75dp</dimen>
+    <dimen name="dp_game_square_item_icon_height">75dp</dimen>
+    <dimen name="dp_game_square_item_icon_margin_top">10dp</dimen>
+    <dimen name="dp_game_square_item_icon_margin_start">15dp</dimen>
+    <dimen name="dp_game_square_item_name_margin_start">10dp</dimen>
+    <dimen name="dp_game_square_item_name_margin_end">10dp</dimen>
+    <dimen name="sp_game_square_item_name_text_size">18sp</dimen>
+    <dimen name="sp_game_square_item_description_text_size">13sp</dimen>
+    <dimen name="sp_game_square_item_gains_text_size">13sp</dimen>
+
+
+    <!--PopupWindowUtils-->
+    <dimen name="dp_button_container_gone_margin_top">30dp</dimen>
+
+</resources>

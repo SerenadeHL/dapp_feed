@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DAppFeed</string>
+
+    <!--底部Tab-->
+    <string name="tab_game">游戏</string>
+    <string name="tab_me">我</string>
+
+    <!--顶部标题-->
+    <string name="title_game_square">游戏广场</string>
+    <string name="title_me">我</string>
+
+    <string name="game_square">游戏广场</string>
+    <string name="today_gains">今日收益</string>
+</resources>

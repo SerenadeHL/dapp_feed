@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    
+    <!--主题色-->
+    <color name="C1">#1B6EDB</color>
+
+    <!--背景色-->
+    <color name="C2">#FFFFFF</color>
+    <color name="C3">#F9F9F9</color>
+
+    <!--点缀色-->
+    <color name="C4">#DBC28A</color>
+    <color name="C5">#DD4F4F</color>
+
+    <!--文字颜色-->
+    <color name="C6">#333333</color>
+    <color name="C7">#666666</color>
+    <color name="C8">#999999</color>
+
+    <!--辅助颜色-->
+    <color name="C9">#E0E0E0</color>
+    <color name="C10">#BAD3F4</color>
+
+
+    <!--自定义颜色-->
+    <color name="color_B9BCCE">#B9BCCE</color>
+    <color name="color_1B6EDB">#1B6EDB</color>
+    <color name="color_3AA7EF">#3AA7EF</color>
+    <color name="color_DBC28A">#DBC28A</color>
+    <color name="color_FF9F59">#FF9F59</color>
+</resources>

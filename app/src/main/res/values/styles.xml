@@ -1,0 +1,49 @@
+<resources>
+
+    <!--App主题-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/C2</item>
+    </style>
+
+    <!--==========================================通用样式==========================================-->
+
+    <!--分割线样式-->
+    <style name="DividerStyle">
+        <item name="android:background">@color/C9</item>
+        <item name="android:layout_height">@dimen/divider_size</item>
+    </style>
+
+    <!--==========================================自定义样式==========================================-->
+
+    <!--MainActivity-->
+    <style name="MainBottomTabConstraintLayout">
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintHorizontal_weight">1</item>
+        <item name="android:paddingTop">@dimen/dp_main_bottom_tab_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dp_main_bottom_tab_padding_bottom</item>
+    </style>
+    
+    <style name="MainBottomTabImageView">
+        <item name="android:layout_width">@dimen/dp_main_bottom_tab_icon_width</item>
+        <item name="android:layout_height">@dimen/dp_main_bottom_tab_icon_height</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintVertical_chainStyle">packed</item>
+    </style>
+
+    <style name="MainBottomTabTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:textSize">@dimen/sp_main_bottom_tab_title_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginTop">@dimen/dp_main_bottom_tab_title_margin_top</item>
+    </style>
+</resources>
