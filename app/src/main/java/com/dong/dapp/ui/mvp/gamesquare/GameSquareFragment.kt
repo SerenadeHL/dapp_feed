@@ -2,7 +2,9 @@ package com.dong.dapp.ui.mvp.gamesquare
 
 import android.os.Bundle
 import com.dong.dapp.R
-import com.dong.dapp.adapter.recyclerview.ApplicationListAdapter
+import com.dong.dapp.adapter.recyclerview.DAppsListAdapter
+import com.dong.dapp.bean.wallet.ProjectListBean
+import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.DAppRequest
 import kotlinx.android.synthetic.main.fragment_game_square.view.*
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
@@ -15,7 +17,7 @@ import me.serenadehl.base.base.mvpbase.MVPBaseFragment
  */
 class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareView {
     private val mAdapter by lazy {
-        ApplicationListAdapter(requireActivity()).apply {
+        DAppsListAdapter(requireActivity()).apply {
             val headerView = layoutInflater.inflate(R.layout.app_recycle_header_game_square, null, false)
             addHeaderView(headerView)
         }
@@ -30,10 +32,12 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
             adapter = mAdapter
         }
 
-        DAppRequest.getProjectList(0, 3)
-            .subscribe {
-                mAdapter.setNewData(it.data!!.items)
-            }
+//        DAppRequest.getDApps(0, 3)
+//            .subscribe(object :BaseObserver<ProjectListBean?>(){
+//                override fun next(data: ProjectListBean?) {
+//                    mAdapter.setNewData(data?.items)
+//                }
+//            })
     }
 
 }

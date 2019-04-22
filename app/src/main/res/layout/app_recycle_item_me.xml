@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:background="@color/C2"
+        android:layout_height="@dimen/L4">
+
+    <!--图标-->
+    <ImageView
+            android:layout_width="@dimen/L8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:id="@+id/iv_icon"
+            tools:src="@mipmap/me_user"
+            android:layout_height="@dimen/L8"/>
+
+    <!--标题-->
+    <TextView
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_icon"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_title"
+            android:layout_marginStart="@dimen/L1"
+            android:includeFontPadding="false"
+            android:textColor="@color/C6"
+            tools:text="23824734790000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"/>
+
+    <!--右箭头-->
+    <ImageView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/iv_right_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/dp_me_item_right_arrow_margin_end"
+            android:src="@mipmap/right_arrow"
+            android:layout_width="@dimen/dp_me_item_right_arrow_width"
+            android:layout_height="@dimen/dp_me_item_right_arrow_height"/>
+
+    <!--右箭头左侧文字-->
+    <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_right_arrow"
+            android:layout_marginEnd="4dp"
+            app:layout_goneMarginEnd="@dimen/L1"
+            android:id="@+id/tv_text"
+            android:textSize="@dimen/F4"
+            android:includeFontPadding="false"
+            android:layout_width="wrap_content"
+            tools:text="未实名"
+            android:layout_height="wrap_content"/>
+
+    <!--分割线-->
+    <include layout="@layout/divider"
+             android:id="@+id/v_divider"
+             android:layout_width="@dimen/match_constraint"
+             android:layout_height="@dimen/divider_size"
+             app:layout_constraintStart_toStartOf="@id/iv_icon"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>

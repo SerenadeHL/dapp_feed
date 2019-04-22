@@ -11,4 +11,7 @@
 
     <string name="game_square">游戏广场</string>
     <string name="today_gains">今日收益</string>
+
+    <!--DApp列表-->
+    <string name="play_count">%s人正在玩</string>
 </resources>

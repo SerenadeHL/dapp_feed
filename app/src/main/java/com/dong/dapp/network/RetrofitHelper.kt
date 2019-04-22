@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object RetrofitHelper {
     private const val DEFAULT_TIMEOUT = 10L
-    private const val BASE_URL_RELEASE = "https://wx.aceport.com/"
+    private const val BASE_URL_RELEASE = "me"
     private const val BASE_URL_DEBUG = "https://wx.aceport.com/"
 
     private val mRetrofit: Retrofit by lazy {

@@ -20,9 +20,8 @@ interface CommonApi {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    @POST("public/wallet/projectlist")
-    @FormUrlEncoded
-    fun getProjectList(@Field("page") page: Int, @Field("page_size") pageSize: Int): Observable<BaseResponse<ProjectListBean?>>
+    @GET("/dapps")
+    fun getDApps(@Field("page") page: Int, @Field("page_size") pageSize: Int): Observable<BaseResponse<ProjectListBean?>>
 
     /**
      * 上传文件

@@ -11,9 +11,6 @@ import me.serenadehl.base.extensions.async
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * 作者：Serenade
@@ -28,9 +25,9 @@ object DAppRequest {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    fun getProjectList(page: Int, pageSize: Int): Observable<BaseResponse<ProjectListBean?>> {
+    fun getDApps(page: Int, pageSize: Int): Observable<BaseResponse<ProjectListBean?>> {
         return RetrofitHelper.create(CommonApi::class.java)
-            .getProjectList(page, pageSize)
+            .getDApps(page, pageSize)
             .async()
     }
 

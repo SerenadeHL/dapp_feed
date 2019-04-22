@@ -23,7 +23,7 @@
     <!--ConstraintLayout的match_constraint-->
     <dimen name="match_constraint">0dp</dimen>
 
-    
+
     <!--分割线粗细-->
     <dimen name="divider_size">0.5dp</dimen>
 
@@ -42,6 +42,10 @@
     <dimen name="dp_game_square_item_icon_width">75dp</dimen>
     <dimen name="dp_game_square_item_icon_height">75dp</dimen>
 
+    <!--MeFragment-->
+    <dimen name="dp_me_item_right_arrow_width">12dp</dimen>
+    <dimen name="dp_me_item_right_arrow_height">12dp</dimen>
+    <dimen name="dp_me_item_right_arrow_margin_end">13dp</dimen>
 
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>
