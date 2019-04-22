@@ -5,13 +5,13 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
-import com.dong.dapp.R
 import com.dong.dapp.adapter.viewpager.MainAdapter
 import com.dong.dapp.utils.LoginUtils
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
+
 
 /**
  * 主页
@@ -25,14 +25,14 @@ class MainActivity : BaseActivity() {
         const val ME = 1
     }
 
-    override fun layout() = R.layout.activity_main
+    override fun layout() = com.dong.dapp.R.layout.activity_main
 
     @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         setupStatusBar()
 
-        setStatusBarBackgroundResource(R.drawable.g1_horizontal, false)
-        cl_title.setBackgroundResource(R.drawable.g1_horizontal)
+        setStatusBarBackgroundResource(com.dong.dapp.R.drawable.g1_horizontal, false)
+        cl_title.setBackgroundResource(com.dong.dapp.R.drawable.g1_horizontal)
 
         vp_viewpager.apply {
             offscreenPageLimit = 3
@@ -78,18 +78,18 @@ class MainActivity : BaseActivity() {
     fun switchTab(index: Int, click: Boolean) {
         when (index) {
             GAME -> {
-                tv_title.setText(R.string.title_game_square)
-                tv_game_icon.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.C6))
-                tv_me_icon.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.color_B9BCCE))
-                iv_game_icon.setImageResource(R.mipmap.game_active)
-                iv_me_icon.setImageResource(R.mipmap.me_unactive)
+                tv_title.setText(com.dong.dapp.R.string.title_game_square)
+                tv_game_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.C6))
+                tv_me_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.color_B9BCCE))
+                iv_game_icon.setImageResource(com.dong.dapp.R.mipmap.game_active)
+                iv_me_icon.setImageResource(com.dong.dapp.R.mipmap.me_unactive)
             }
             ME -> {
-                tv_title.setText(R.string.title_me)
-                tv_game_icon.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.color_B9BCCE))
-                tv_me_icon.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.C6))
-                iv_game_icon.setImageResource(R.mipmap.game_unactive)
-                iv_me_icon.setImageResource(R.mipmap.me_active)
+                tv_title.setText(com.dong.dapp.R.string.title_me)
+                tv_game_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.color_B9BCCE))
+                tv_me_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.C6))
+                iv_game_icon.setImageResource(com.dong.dapp.R.mipmap.game_unactive)
+                iv_me_icon.setImageResource(com.dong.dapp.R.mipmap.me_active)
             }
         }
 

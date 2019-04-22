@@ -5,7 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/C2</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <!--启动页主题-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 
     <!--==========================================通用样式==========================================-->
@@ -25,9 +31,10 @@
         <item name="layout_constraintBottom_toBottomOf">parent</item>
         <item name="layout_constraintHorizontal_weight">1</item>
         <item name="android:paddingTop">@dimen/L6</item>
+        <item name="android:background">@color/C2</item>
         <item name="android:paddingBottom">@dimen/dp_main_bottom_tab_padding_bottom</item>
     </style>
-    
+
     <style name="MainBottomTabImageView">
         <item name="android:layout_width">@dimen/dp_main_bottom_tab_icon_width</item>
         <item name="android:layout_height">@dimen/dp_main_bottom_tab_icon_height</item>

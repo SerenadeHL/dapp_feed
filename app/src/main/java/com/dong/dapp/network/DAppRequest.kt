@@ -2,15 +2,13 @@ package com.dong.dapp.network
 
 import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.bean.wallet.*
-import com.dong.dapp.network.api.KYCApi
-import com.dong.dapp.network.api.CommonApi
-import com.dong.dapp.network.api.LoginApi
-import com.dong.dapp.network.api.TronApi
+import com.dong.dapp.network.api.*
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.GET
 
 /**
  * 作者：Serenade
@@ -18,6 +16,12 @@ import okhttp3.RequestBody
  * 创建时间：2019-04-10 19:46:44
  */
 object DAppRequest {
+    fun test(test: String): Observable<BaseResponse<String?>> {
+        return RetrofitHelper.create(TestApi::class.java)
+            .test(test)
+            .async()
+    }
+
     //=============================================通用接口=============================================
 
     /**

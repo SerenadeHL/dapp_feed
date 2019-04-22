@@ -15,17 +15,18 @@
             android:name=".DAppApplication"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name="com.dong.dapp.ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <activity android:name="com.dong.dapp.ui.activity.MainActivity"/>
         <activity android:name="com.dong.dapp.ui.mvp.web.WebActivity"/>
         <activity android:name=".ui.mvp.login.LoginActivity"/>
         <activity android:name=".ui.activity.KYCActivity"/>
+        <activity android:name=".ui.activity.SplashActivity"
+                  android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data android:name="CHANNEL"
                    android:value="${CHANNEL_VALUE}"/>

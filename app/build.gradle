@@ -110,6 +110,9 @@ dependencies {
     //BasePopup
     implementation 'com.github.razerdp:BasePopup:2.1.9'
 
+    //Java不支持PKCS7Padding，需要引入bouncycastle来实现
+    implementation 'org.bouncycastle:bcprov-jdk16:1.46'
+
     //DSBridge
     implementation project(':dsbridge')
 

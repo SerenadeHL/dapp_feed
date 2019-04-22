@@ -22,6 +22,10 @@ inline fun List<*>.toJson(): String {
     return Gson().toJson(this)
 }
 
+inline fun Map<*,*>.toJson(): String {
+    return Gson().toJson(this)
+}
+
 inline fun String.isJson(): Boolean {
     return (startsWith("{") && endsWith("}")) or (startsWith("[") && endsWith("]"))
 }
