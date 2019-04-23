@@ -16,16 +16,25 @@ import javax.crypto.spec.SecretKeySpec
  */
 object AESUtils {
 
+    /**
+     * 生成密钥
+     */
     fun generateKey(): String {
 //        return "0102030405060708"
         return "17fee9978ff9563b"
     }
 
+    /**
+     * 生成偏移量
+     */
     fun generateIv(): String {
 //        return "0102030405060708"
         return "7a9351a1945c1a75"
     }
 
+    /**
+     * 初始化
+     */
     private fun init(keyBytes: ByteArray): Holder {
         var keyBytesCopy = keyBytes
         // 如果密钥不足16位，那么就补足.  这个if 中的内容很重要
@@ -83,11 +92,11 @@ object AESUtils {
      * @param iv        偏移量
      * @return
      */
-    fun decrypt(content: ByteArray, key: String, iv: String): ByteArray? {
+    fun decrypt(content: ByteArray, key: String, iv: String): String? {
         val holder = init(key.toByteArray())
         try {
             holder.cipher.init(Cipher.DECRYPT_MODE, holder.key, IvParameterSpec(iv.toByteArray()))
-            return holder.cipher.doFinal(content)
+            return String(holder.cipher.doFinal(content))
         } catch (e: Exception) {
             e.printStackTrace()
         }

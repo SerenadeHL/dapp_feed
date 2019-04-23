@@ -28,9 +28,10 @@
 
     <!--自定义颜色-->
     <color name="color_B9BCCE">#B9BCCE</color>
-    <color name="color_1B6EDB">#1B6EDB</color>
     <color name="color_3AA7EF">#3AA7EF</color>
     <color name="color_DBC28A">#DBC28A</color>
     <color name="color_FF9F59">#FF9F59</color>
     <color name="color_FF6B00">#FF6B00</color>
+    <color name="color_FFF0E5">#FFF0E5</color>
+    <color name="color_E8F2FF">#E8F2FF</color>
 </resources>

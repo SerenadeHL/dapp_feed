@@ -1,6 +1,6 @@
 package com.dong.dapp.extensions
 
-import com.dong.dapp.bean.wallet.BaseBean
+import com.dong.dapp.bean.BaseBean
 import com.google.gson.Gson
 
 /**
@@ -22,7 +22,7 @@ inline fun List<*>.toJson(): String {
     return Gson().toJson(this)
 }
 
-inline fun Map<*,*>.toJson(): String {
+inline fun Map<*, *>.toJson(): String {
     return Gson().toJson(this)
 }
 

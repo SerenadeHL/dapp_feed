@@ -41,7 +41,7 @@ class MeAdapter : BaseQuickAdapter<MeBean, BaseViewHolder>(R.layout.app_recycle_
             setText(R.id.tv_text, option.text)//设置箭头左侧文字
             setTextColor(R.id.tv_text, option.textColor)//设置箭头左侧文字颜色
             setVisible(R.id.iv_right_arrow, option.showRightArrow)//是否显示右箭头
-            setVisible(R.id.v_divider, option.showDivider)//是否显示分割线
+            setVisible(R.id.v_bottom_divider, option.showDivider)//是否显示分割线
         }
     }
 }

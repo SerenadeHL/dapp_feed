@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
 import com.dong.dapp.R
-import com.dong.dapp.utils.KYCUtils
 import com.tbruyelle.rxpermissions2.RxPermissions
 import me.serenadehl.base.base.BaseActivity
 
@@ -29,7 +28,7 @@ class KYCActivity : BaseActivity() {
             )
             .subscribe { granted ->
                 if (granted) {
-                    KYCUtils.start()
+//                    KYCUtils.start()
                 } else {
                     //TODO 用户拒绝了权限给与提醒
                 }

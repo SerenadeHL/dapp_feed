@@ -14,6 +14,11 @@
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 
+    <!--WebView页主题-->
+    <style name="WebTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!--==========================================通用样式==========================================-->
 
     <!--分割线样式-->

@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:id="@+id/cl_title"
         android:layout_height="wrap_content">
+
     <TextView
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintStart_toStartOf="parent"
@@ -14,6 +15,25 @@
             android:id="@+id/tv_title"
             android:textSize="@dimen/F2"
             android:gravity="center"
-            android:textColor="@color/C2"
+            android:textColor="@color/C6"
             android:layout_height="@dimen/L2"/>
+
+    <ImageView
+            android:layout_width="@dimen/L8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@mipmap/black_left_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/iv_back"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_height="@dimen/L8"/>
+
+    <include layout="@layout/divider"
+             android:id="@+id/v_divider"
+             android:layout_width="@dimen/match_constraint"
+             android:layout_height="@dimen/divider_size"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_title"
+             app:layout_constraintStart_toStartOf="parent"/>
 </android.support.constraint.ConstraintLayout>

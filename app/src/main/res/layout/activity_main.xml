@@ -9,17 +9,17 @@
 
     <include layout="@layout/title_layout"/>
 
-    <android.support.v4.view.ViewPager
+    <FrameLayout
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_title"
-            android:id="@+id/vp_viewpager"
-            app:layout_constraintBottom_toTopOf="@+id/v_divider"
+            android:id="@+id/fl_fragment"
+            app:layout_constraintBottom_toTopOf="@+id/v_bottom_divider"
             android:layout_height="@dimen/match_constraint"/>
 
     <include layout="@layout/divider"
-             android:id="@+id/v_divider"
+             android:id="@+id/v_bottom_divider"
              android:layout_width="@dimen/match_constraint"
              android:layout_height="@dimen/divider_size"
              app:layout_constraintEnd_toEndOf="parent"

@@ -7,7 +7,7 @@
         android:layout_height="wrap_content">
 
     <include layout="@layout/divider"
-             android:id="@+id/v_divider"
+             android:id="@+id/v_top_divider"
              android:layout_width="@dimen/match_constraint"
              android:layout_height="@dimen/divider_size"
              app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -17,7 +17,7 @@
     <ImageView
             android:layout_width="@dimen/dp_game_square_item_icon_width"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintTop_toBottomOf="@id/v_top_divider"
             tools:src="@mipmap/ic_launcher"
             android:id="@+id/iv_logo"
             android:layout_marginTop="@dimen/L7"
@@ -46,7 +46,7 @@
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintEnd_toEndOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
-            app:layout_constraintBottom_toTopOf="@+id/tv_gains"
+            app:layout_constraintBottom_toTopOf="@+id/tv_playing_count"
             android:id="@+id/tv_description"
             tools:text="这是一个描述"
             android:maxLines="1"
@@ -59,14 +59,14 @@
 
     <TextView
             android:layout_width="@dimen/match_constraint"
-            android:id="@+id/tv_gains"
+            android:id="@+id/tv_playing_count"
             android:maxLines="1"
             android:ellipsize="end"
             android:textSize="@dimen/F4"
             app:layout_constraintBottom_toBottomOf="@id/iv_logo"
             android:textColor="@color/C6"
             app:layout_constraintStart_toStartOf="@id/tv_description"
-            tools:text="累计收益100元"
+            tools:text="2192人正在玩"
             app:layout_constraintTop_toBottomOf="@id/tv_description"
             app:layout_constraintEnd_toEndOf="@id/tv_name"
             android:layout_height="wrap_content"/>

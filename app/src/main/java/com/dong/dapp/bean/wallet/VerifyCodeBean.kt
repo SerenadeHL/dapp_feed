@@ -1,5 +1,6 @@
 package com.dong.dapp.bean.wallet
 
+import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -10,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 data class VerifyCodeBean(
     @SerializedName("fp") var fp: String?,
     @SerializedName("registered") var registered: String?
-)
+): BaseBean()

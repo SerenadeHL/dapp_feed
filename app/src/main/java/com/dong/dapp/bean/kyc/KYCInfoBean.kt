@@ -1,7 +1,7 @@
 package com.dong.dapp.bean.kyc
 
 import android.graphics.PointF
-import com.dong.dapp.bean.wallet.BaseBean
+import com.dong.dapp.bean.BaseBean
 import com.megvii.faceidiol.sdk.manager.LegalityStruct
 
 /**

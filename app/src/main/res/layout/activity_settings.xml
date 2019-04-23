@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+        android:background="@color/C3"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/title_layout"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/C2"
+            android:text="@string/certification"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/L7"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_certification"
+            android:paddingStart="@dimen/L1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/L4"/>
+
+    <ImageView
+            android:layout_width="@dimen/right_arrow_width"
+            app:layout_constraintTop_toTopOf="@id/tv_certification"
+            app:layout_constraintBottom_toBottomOf="@id/tv_certification"
+            app:layout_constraintEnd_toEndOf="@id/tv_certification"
+            android:layout_marginEnd="@dimen/right_arrow_margin_end"
+            android:src="@mipmap/right_arrow"
+            android:layout_height="@dimen/right_arrow_height"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/C2"
+            android:text="@string/version_update"
+            android:gravity="center_vertical"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_version_update"
+            android:paddingStart="@dimen/L1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_certification"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/L4"/>
+
+    <ImageView
+            android:layout_width="@dimen/right_arrow_width"
+            app:layout_constraintTop_toTopOf="@id/tv_version_update"
+            app:layout_constraintBottom_toBottomOf="@id/tv_version_update"
+            app:layout_constraintEnd_toEndOf="@id/tv_version_update"
+            android:layout_marginEnd="@dimen/right_arrow_margin_end"
+            android:src="@mipmap/right_arrow"
+            android:layout_height="@dimen/right_arrow_height"/>
+
+    <include layout="@layout/divider"
+             android:layout_width="@dimen/match_constraint"
+             android:layout_height="@dimen/divider_size"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             android:layout_marginStart="@dimen/L1"
+             app:layout_constraintBottom_toTopOf="@id/tv_version_update"
+             app:layout_constraintTop_toBottomOf="@id/tv_certification"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/C2"
+            android:text="@string/logout"
+            android:gravity="center"
+            android:textColor="@color/C6"
+            android:layout_marginTop="@dimen/L7"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_version_update"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/L4"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,6 +1,6 @@
 package com.dong.dapp.bean.wallet
 
-import android.content.ClipData
+import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import java.util.*
 

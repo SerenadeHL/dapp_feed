@@ -17,7 +17,7 @@ class LoginModel : MVPBaseModel(), ILoginModel {
      * @param phone 手机号
      * @param areaCode 区号
      */
-    override fun getVerifyCode(phone: String, areaCode: String): Observable<BaseResponse<VerifyCodeBean?>> {
+    override fun getVerifyCode(phone: String, areaCode: String): Observable<VerifyCodeBean?> {
         return DAppRequest.getVerifyCode(phone, areaCode)
     }
 

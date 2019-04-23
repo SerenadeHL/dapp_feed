@@ -12,5 +12,5 @@ import retrofit2.http.*
  */
 interface TestApi {
     @GET("https://dappapi.axonomy.pro/public/common/test")
-    fun test(@Query("test") test: String): Observable<BaseResponse<String?>>
+    fun test(@Query("test") test: String): Observable<BaseResponse>
 }

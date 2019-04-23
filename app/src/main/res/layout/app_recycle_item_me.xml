@@ -37,10 +37,10 @@
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/iv_right_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="@dimen/dp_me_item_right_arrow_margin_end"
+            android:layout_marginEnd="@dimen/right_arrow_margin_end"
             android:src="@mipmap/right_arrow"
-            android:layout_width="@dimen/dp_me_item_right_arrow_width"
-            android:layout_height="@dimen/dp_me_item_right_arrow_height"/>
+            android:layout_width="@dimen/right_arrow_width"
+            android:layout_height="@dimen/right_arrow_height"/>
 
     <!--右箭头左侧文字-->
     <TextView
@@ -58,7 +58,7 @@
 
     <!--分割线-->
     <include layout="@layout/divider"
-             android:id="@+id/v_divider"
+             android:id="@+id/v_bottom_divider"
              android:layout_width="@dimen/match_constraint"
              android:layout_height="@dimen/divider_size"
              app:layout_constraintStart_toStartOf="@id/iv_icon"

@@ -1,5 +1,7 @@
 package com.dong.dapp.bean.wallet
 
+import com.dong.dapp.bean.BaseBean
+
 data class SystemInfoBean(
     var os: String,
     var os_ver: String,

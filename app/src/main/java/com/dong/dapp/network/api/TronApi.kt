@@ -20,7 +20,7 @@ interface TronApi {
      */
     @POST("public/wallet/tron_userinfo")
     @FormUrlEncoded
-    fun getTronUserInfo(@Field("env") env: String): Observable<BaseResponse<UserInfoBean?>>
+    fun getTronUserInfo(@Field("env") env: String): Observable<BaseResponse>
 
     /**
      * 获取Tron签名
@@ -36,6 +36,6 @@ interface TronApi {
         @Field("message") message: String,
         @Field("type") type: String,
         @Field("env") env: String
-    ): Observable<BaseResponse<TronSignBean?>>
+    ): Observable<BaseResponse>
 
 }

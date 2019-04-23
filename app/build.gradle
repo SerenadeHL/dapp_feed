@@ -82,7 +82,7 @@ dependencies {
     //V7
     implementation 'com.android.support:appcompat-v7:28.0.0'
     //基本库
-    implementation 'com.github.SerenadeHL:Base:1.1.1'
+    implementation 'com.github.SerenadeHL:Base:1.1.3'
     //Design
     implementation 'com.android.support:design:28.0.0'
     //Gson

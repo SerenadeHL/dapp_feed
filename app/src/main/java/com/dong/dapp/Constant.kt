@@ -23,6 +23,6 @@ object Constant {
     const val API_TYPE_NAME = "type"
     const val API_VERSION_NAME = "version"
     const val API_DATA_NAME = "data"
-    const val API_TYPE = 0
-    const val API_VERSION = 1
+    const val API_TYPE = "0"
+    const val API_VERSION = "1"
 }

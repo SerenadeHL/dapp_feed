@@ -19,13 +19,19 @@
     <dimen name="L8">20dp</dimen>
 
 
-
     <!--ConstraintLayout的match_constraint-->
     <dimen name="match_constraint">0dp</dimen>
 
 
     <!--分割线粗细-->
     <dimen name="divider_size">0.5dp</dimen>
+
+
+    <!--右箭头尺寸-->
+    <dimen name="right_arrow_width">12dp</dimen>
+    <dimen name="right_arrow_height">12dp</dimen>
+    <!--右箭头MarginEnd-->
+    <dimen name="right_arrow_margin_end">13dp</dimen>
 
 
     <!--MainActivity-->
@@ -36,16 +42,29 @@
 
 
     <!--GameSquareFragment-->
-    <dimen name="dp_game_square_header_coin_margin_end">6dp</dimen>
-    <dimen name="dp_game_square_header_cash_margin_start">6dp</dimen>
+    <dimen name="dp_game_square_announcement_image_margin_start">13dp</dimen>
+    <dimen name="dp_game_square_announcement_margin_top">6dp</dimen>
+    <dimen name="dp_game_square_announcement_margin_start">7dp</dimen>
+    <dimen name="sp_game_square_announcement_text_size">13sp</dimen>
+
+    <dimen name="dp_game_square_today_gains_margin_top">18dp</dimen>
+
+    <dimen name="dp_game_square_coin_margin_end">6dp</dimen>
+    <dimen name="dp_game_square_cash_margin_start">6dp</dimen>
+    <dimen name="dp_game_square_sign_margin_top">13dp</dimen>
+    <dimen name="dp_game_square_sign_width">71dp</dimen>
+    <dimen name="dp_game_square_sign_height">27dp</dimen>
+    <dimen name="dp_game_square_invite_width">111dp</dimen>
+    <dimen name="dp_game_square_invite_height">27dp</dimen>
+
+    <dimen name="sp_game_square_coin_text_size">25sp</dimen>
+    <dimen name="sp_game_square_cash_text_size">25sp</dimen>
+    <dimen name="sp_game_square_sign_text_size">13sp</dimen>
+    <dimen name="sp_game_square_invite_text_size">13sp</dimen>
+
 
     <dimen name="dp_game_square_item_icon_width">75dp</dimen>
     <dimen name="dp_game_square_item_icon_height">75dp</dimen>
-
-    <!--MeFragment-->
-    <dimen name="dp_me_item_right_arrow_width">12dp</dimen>
-    <dimen name="dp_me_item_right_arrow_height">12dp</dimen>
-    <dimen name="dp_me_item_right_arrow_margin_end">13dp</dimen>
 
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>

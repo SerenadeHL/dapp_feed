@@ -35,5 +35,5 @@ interface ILoginModel : IBaseModel {
      * @param phone 手机号
      * @param areaCode 区号
      */
-    fun getVerifyCode(phone: String, areaCode: String): Observable<BaseResponse<VerifyCodeBean?>>
+    fun getVerifyCode(phone: String, areaCode: String): Observable<VerifyCodeBean?>
 }

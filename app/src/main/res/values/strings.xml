@@ -12,6 +12,18 @@
     <string name="game_square">游戏广场</string>
     <string name="today_gains">今日收益</string>
 
-    <!--DApp列表-->
+    <!--游戏广场-->
     <string name="play_count">%s人正在玩</string>
+    <string name="coin">金币</string>
+    <string name="cash">现金</string>
+    <string name="details">明细</string>
+    <string name="click_to_sign">点我签到</string>
+    <string name="invite_friend_to_get_cash">邀请好友赚现金</string>
+    <string name="popular_games">热门游戏</string>
+
+    <!--设置-->
+    <string name="settings">设置</string>
+    <string name="certification">实名认证</string>
+    <string name="version_update">版本更新</string>
+    <string name="logout">退出登录</string>
 </resources>

@@ -10,13 +10,13 @@ import com.dong.dapp.utils.AESUtils
 import com.dong.dapp.utils.NetworkUtils
 import com.dong.dapp.utils.RSAUtils
 import com.dong.dapp.utils.SystemUtils
-import com.google.gson.Gson
 import me.serenadehl.base.extensions.TAG
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.utils.sharedpre.SPUtil
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.lang.Exception
 import java.util.*
@@ -37,25 +37,28 @@ object InterceptorUtil {
         return Interceptor { chain ->
             //旧的请求
             val oldRequest = chain.request()
-            val method = oldRequest.method()
 
+            val method = oldRequest.method()
             var requestBody = oldRequest.body()
             var url = oldRequest.url()
-            if (method == "POST" && requestBody is FormBody) {
-                val bodyBuilder = FormBody.Builder()
-                for (i in 0 until requestBody.size()) {
-                    bodyBuilder.addEncoded(requestBody.encodedName(i), requestBody.encodedValue(i))
+
+            if (method == "POST") {
+                if (requestBody != null && requestBody is FormBody) {
+                    val params = dealPostParams(requestBody)
+                    val encryptedParams = encryptParams(params)
+                    requestBody = FormBody.Builder()
+                        .add(Constant.API_TYPE_NAME, Constant.API_TYPE)
+                        .add(Constant.API_VERSION_NAME, Constant.API_VERSION)
+                        .add(Constant.API_DATA_NAME, encryptedParams)
+                        .build()
                 }
-                requestBody = bodyBuilder
-                    .addEncoded(Constant.REQUEST_ID, UUID.randomUUID().toString().trim().replace("-".toRegex(), ""))
-                    .build();
             } else if (method == "GET") {
                 val params = dealGetParams(url)
-                "params---->$params".log()
+                "params---> $params".log()
                 val encryptedParams = encryptParams(params)
-                "encryptedParams---->$encryptedParams".log()
                 val query = generateNewParams(encryptedParams, method)
-                url = url.newBuilder().scheme(url.scheme())
+                url = url.newBuilder()
+                    .scheme(url.scheme())
                     .host(url.host())
                     .query(query)
                     .build()
@@ -110,10 +113,24 @@ object InterceptorUtil {
         val map = mutableMapOf(Constant.REQUEST_ID to uuid)
         url.queryParameterNames().forEach {
             try {
+                //TODO 寻找更好的解决办法
                 map[it] = url.queryParameterValues(it)[0]
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        }
+        return map.toJson()
+    }
+
+    /**
+     * POST请求参数拼接RequestId
+     */
+    private fun dealPostParams(requestBody: FormBody): String {
+        val uuid = UUID.randomUUID().toString().trim().replace("-".toRegex(), "")
+        val map = mutableMapOf(Constant.REQUEST_ID to uuid)
+        val size = requestBody.size()
+        for (i in 0 until size) {
+            map[requestBody.name(i)] = requestBody.value(i)
         }
         return map.toJson()
     }

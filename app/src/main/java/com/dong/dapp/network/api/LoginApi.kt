@@ -26,7 +26,7 @@ interface LoginApi {
         @Field("target") target: String,
         @Field("type") type: Int,
         @Field("area_code") areaCode: String
-    ): Observable<BaseResponse<VerifyCodeBean?>>
+    ): Observable<BaseResponse>
 
 
     /**
@@ -43,5 +43,5 @@ interface LoginApi {
         @Field("fp") fp: String,
         @Field("registered") registered: String,
         @Field("from") from: Int
-    ): Observable<BaseResponse<LoginBean?>>
+    ): Observable<BaseResponse>
 }

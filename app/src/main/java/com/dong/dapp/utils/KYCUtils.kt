@@ -40,10 +40,10 @@ object KYCUtils {
         var backImage: String? = null
         var sign: String? = null
         DAppRequest
-            .getKYCSign()//获取签名信息
-            .flatMap { baseResponse ->
+            .getKYCSign()//获取签名信息/
+            .flatMap { data ->
                 //初始化身份证识别
-                sign = baseResponse.data?.sign
+                sign = data.sign
                 return@flatMap initIdCardDetect(sign)
             }
             .flatMap { token ->
@@ -55,9 +55,9 @@ object KYCUtils {
                 //验证身份证是否可用
                 return@flatMap DAppRequest.isIdCardNumberAvailable(result.idCardInfo.idcardNumber.text)
             }
-            .flatMap { baseResponse ->
+            .flatMap { data ->
                 //获取人脸识别token并且异步上传身份证图片
-                return@flatMap when (baseResponse.data?.isRight) {
+                return@flatMap when (data.isRight) {
                     1 -> {
                         //异步上传身份证图片
                         UploadFileUtils.upload(idCardResult!!.idCardInfo.imageFrontside) {

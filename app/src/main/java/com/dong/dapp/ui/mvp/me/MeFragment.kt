@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
+import com.dong.dapp.ui.activity.SettingsActivity
+import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
+import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
 import kotlinx.android.synthetic.main.fragment_me.view.*
 
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
+import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 
 /**
@@ -40,12 +44,10 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                     toast("签到领金币")
                 }
                 5 -> {//我的现金资产
-                    //TODO 跳转到我的现金资产页面
-                    toast("我的现金资产")
+                    startActivity<TotalCashCountActivity>()
                 }
                 6 -> {//我的金币资产
-                    //TODO 跳转到我的金币资产页面
-                    toast("我的金币资产")
+                    startActivity<TotalCoinCountActivity>()
                 }
                 8 -> {//联系客服
                     //TODO 跳转到联系客服页面
@@ -56,8 +58,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                     toast("关于我们")
                 }
                 10 -> {//设置
-                    //TODO 跳转到设置页面
-                    toast("设置")
+                    startActivity<SettingsActivity>()
                 }
             }
         }

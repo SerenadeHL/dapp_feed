@@ -1,21 +1,21 @@
 package com.dong.dapp.network
 
-import java.net.ConnectException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
 import io.reactivex.Observer
 import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.Disposable
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toast
 import me.serenadehl.base.utils.app.AppManager
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 /**
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2018-02-21 16:24:40
  */
-abstract class BaseObserver<T> : Observer<BaseResponse<T>> {
+abstract class BaseObserver<T> : Observer<T> {
 
     override fun onError(e: Throwable) {
         e.printStackTrace()
@@ -38,12 +38,12 @@ abstract class BaseObserver<T> : Observer<BaseResponse<T>> {
         subscribe(d)
     }
 
-    open fun subscribe(d: Disposable){
+    open fun subscribe(d: Disposable) {
 
     }
 
-    override fun onNext(t: BaseResponse<T>) {
-        next(t.data)
+    override fun onNext(t: T) {
+        next(t)
     }
 
     abstract fun next(@NonNull data: T?)

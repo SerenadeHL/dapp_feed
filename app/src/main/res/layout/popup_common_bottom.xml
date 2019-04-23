@@ -25,14 +25,14 @@
     <include layout="@layout/divider"
              android:layout_width="@dimen/match_constraint"
              android:layout_height="@dimen/divider_size"
-             android:id="@+id/v_divider"
+             android:id="@+id/v_bottom_divider"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintTop_toBottomOf="@id/tv_title"/>
 
     <TextView
             android:layout_width="@dimen/match_constraint"
-            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintTop_toBottomOf="@id/v_bottom_divider"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/L1"
             android:layout_marginEnd="@dimen/L1"

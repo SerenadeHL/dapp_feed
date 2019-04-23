@@ -2,12 +2,14 @@ package com.dong.dapp.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewPager
-import com.dong.dapp.adapter.viewpager.MainAdapter
-import com.dong.dapp.utils.LoginUtils
+import com.dong.dapp.R
+import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
+import com.dong.dapp.ui.mvp.me.MeFragment
 import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.internal.util.BackpressureHelper.add
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
@@ -25,35 +27,28 @@ class MainActivity : BaseActivity() {
         const val ME = 1
     }
 
-    override fun layout() = com.dong.dapp.R.layout.activity_main
+    private val mC2 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C2) }
+    private val mC6 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C6) }
+    private val mC9 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C9) }
+    private val mB9BCCE by lazy { ContextCompat.getColor(this@MainActivity, R.color.color_B9BCCE) }
+
+    private val mGameSquareFragment by lazy { GameSquareFragment() }
+    private val mMeFragment by lazy { MeFragment() }
+
+    override fun layout() = R.layout.activity_main
 
     @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         setupStatusBar()
 
-        setStatusBarBackgroundResource(com.dong.dapp.R.drawable.g1_horizontal, false)
-        cl_title.setBackgroundResource(com.dong.dapp.R.drawable.g1_horizontal)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fl_fragment, mMeFragment)
+            .hide(mMeFragment)
+            .add(R.id.fl_fragment, mGameSquareFragment)
+            .commitNow()
 
-        vp_viewpager.apply {
-            offscreenPageLimit = 3
-            adapter = MainAdapter(supportFragmentManager)
-            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrollStateChanged(p0: Int) {
-
-                }
-
-                override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
-
-                }
-
-                override fun onPageSelected(page: Int) {
-                    switchTab(page, false)
-                }
-            })
-        }
-
-        cl_game.setOnClickListener { switchTab(GAME, true) }
-        cl_me.setOnClickListener { switchTab(ME, true) }
+        cl_game.setOnClickListener { switchTab(GAME) }
+        cl_me.setOnClickListener { switchTab(ME) }
 
         //TODO 提前到闪屏页获取权限
         RxPermissions(this@MainActivity)
@@ -67,33 +62,45 @@ class MainActivity : BaseActivity() {
         cl_game.performClick()
 
         //TODO 模拟登录
-        LoginUtils.saveLoginTag("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjE2NDU4NywiaWF0IjoxNTU1NTU4MDMyLCJleHAiOjE1NjMzMzQwMzJ9.oeWtWfEazaRCqL0FSF8uKW_Ov1_qe6cXIh_uJW7ihwo")
+//        LoginUtils.saveLoginTag("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjE2NDU4NywiaWF0IjoxNTU1NTU4MDMyLCJleHAiOjE1NjMzMzQwMzJ9.oeWtWfEazaRCqL0FSF8uKW_Ov1_qe6cXIh_uJW7ihwo")
     }
 
     /**
      * 切换标签页
      * @param index 底部菜单栏坐标，从0开始由左到右计算
-     * @param click 是否为点击切换，true为点击，false为ViewPager滑动关联
      */
-    fun switchTab(index: Int, click: Boolean) {
+    private fun switchTab(index: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
         when (index) {
             GAME -> {
-                tv_title.setText(com.dong.dapp.R.string.title_game_square)
-                tv_game_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.C6))
-                tv_me_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.color_B9BCCE))
-                iv_game_icon.setImageResource(com.dong.dapp.R.mipmap.game_active)
-                iv_me_icon.setImageResource(com.dong.dapp.R.mipmap.me_unactive)
+                //改变状态栏和标题栏的颜色
+                setStatusBarBackgroundResource(R.drawable.g1_horizontal, false)
+                cl_title.setBackgroundResource(R.drawable.g1_horizontal)
+                tv_title.setTextColor(mC2)
+                v_divider.setBackgroundResource(R.drawable.g1_horizontal)
+
+                tv_title.setText(R.string.title_game_square)
+                tv_game_icon.setTextColor(mC6)
+                tv_me_icon.setTextColor(mB9BCCE)
+                iv_game_icon.setImageResource(R.mipmap.game_active)
+                iv_me_icon.setImageResource(R.mipmap.me_unactive)
+                transaction.hide(mMeFragment).show(mGameSquareFragment)
             }
             ME -> {
-                tv_title.setText(com.dong.dapp.R.string.title_me)
-                tv_game_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.color_B9BCCE))
-                tv_me_icon.setTextColor(ContextCompat.getColor(this@MainActivity, com.dong.dapp.R.color.C6))
-                iv_game_icon.setImageResource(com.dong.dapp.R.mipmap.game_unactive)
-                iv_me_icon.setImageResource(com.dong.dapp.R.mipmap.me_active)
+                //改变状态栏和标题栏的颜色
+                setStatusBarColor(mC2, true)
+                cl_title.setBackgroundColor(mC2)
+                tv_title.setTextColor(mC6)
+                v_divider.setBackgroundColor(mC9)
+
+                tv_title.setText(R.string.title_me)
+                tv_game_icon.setTextColor(mB9BCCE)
+                tv_me_icon.setTextColor(mC6)
+                iv_game_icon.setImageResource(R.mipmap.game_unactive)
+                iv_me_icon.setImageResource(R.mipmap.me_active)
+                transaction.hide(mGameSquareFragment).show(mMeFragment)
             }
         }
-
-        if (!click) return
-        vp_viewpager.currentItem = index
+        transaction.commitNow()
     }
 }

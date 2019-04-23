@@ -1,6 +1,6 @@
 package com.dong.dapp.bean.kyc
 
-import com.dong.dapp.bean.wallet.BaseBean
+import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
