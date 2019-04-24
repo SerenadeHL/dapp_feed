@@ -58,4 +58,15 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:layout_marginTop">@dimen/dp_main_bottom_tab_title_margin_top</item>
     </style>
+
+    <!--TransferActivity-->
+    <style name="TransferOptionsTextView">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">@dimen/L5</item>
+        <item name="android:background">@drawable/round_rect_no_solid_quota_bg</item>
+        <item name="android:textSize">@dimen/F3</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/C6</item>
+    </style>
 </resources>

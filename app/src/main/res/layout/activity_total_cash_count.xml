@@ -7,4 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.mvp.totalcashcount.TotalCashCountActivity">
 
+    <include layout="@layout/title_layout"/>
+
 </android.support.constraint.ConstraintLayout>

@@ -26,7 +26,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun onViewCreated(savedInstanceState: Bundle?) {
         mRootView.tv_announcement.text = "妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
         mRootView.cv_coin.setOnClickListener { startActivity<TotalCoinCountActivity>() }
-        mRootView.cv_coin.setOnClickListener { startActivity<TotalCashCountActivity>() }
+        mRootView.cv_cash.setOnClickListener { startActivity<TotalCashCountActivity>() }
         mRootView.tv_coin.text = "2.56"
         mRootView.tv_cash.text = "¥66.56"
         mRootView.tv_sign.setOnClickListener {
@@ -56,6 +56,8 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         mRootView.cl_dapp3.tv_description.text = "独立RUIUIY竞技类游戏"
         mRootView.cl_dapp3.tv_playing_count.text = "354人正在玩"
 
+
+        mRootView.iv_first_charge.setOnClickListener { toast("限时首充特惠") }
     }
 
 }

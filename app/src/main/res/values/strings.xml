@@ -26,4 +26,19 @@
     <string name="certification">实名认证</string>
     <string name="version_update">版本更新</string>
     <string name="logout">退出登录</string>
+
+    <!--金币资产-->
+    <string name="coin_assets">金币资产</string>
+
+    <!--现金资产-->
+    <string name="cash_assets">现金资产</string>
+
+    <!--划转-->
+    <string name="transfer_coin">划转金币</string>
+    <string name="transfer_cash">划转现金</string>
+    <string name="coin_balance">可划转金币</string>
+    <string name="cash_balance">现金账户余额</string>
+    <string name="coin_quota">提现额度</string>
+    <string name="cash_quota">选择划转额度</string>
+    <string name="confirm_extraction">确认提取</string>
 </resources>

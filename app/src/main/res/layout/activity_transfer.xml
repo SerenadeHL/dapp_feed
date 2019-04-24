@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/C2"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <include layout="@layout/title_layout"/>
+
+    <TextView
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            android:layout_marginTop="@dimen/L7"
+            android:layout_marginStart="@dimen/L1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/F4"
+            android:includeFontPadding="false"
+            tools:text="@string/coin_balance"
+            android:id="@+id/tv_balance_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            app:layout_constraintTop_toTopOf="@id/tv_balance_label"
+            app:layout_constraintBottom_toBottomOf="@id/tv_balance_label"
+            android:src="@mipmap/me_user"
+            android:id="@+id/iv_question_mark"
+            android:layout_marginStart="@dimen/dp_transfer_question_mark_margin_start"
+            app:layout_constraintStart_toEndOf="@id/tv_balance_label"
+            android:layout_width="@dimen/dp_transfer_question_mark_size"
+            android:layout_height="@dimen/dp_transfer_question_mark_size"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_marginEnd="@dimen/L1"
+            app:layout_constraintTop_toBottomOf="@id/tv_balance_label"
+            android:layout_marginTop="@dimen/L7"
+            android:id="@+id/tv_balance"
+            android:textSize="@dimen/F1"
+            android:textColor="@color/C6"
+            tools:text="1423.44"
+            android:includeFontPadding="false"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"/>
+
+    <include layout="@layout/divider"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_balance"
+             android:layout_width="@dimen/match_constraint"
+             android:layout_height="@dimen/divider_size"
+             android:layout_marginTop="@dimen/L7"
+             android:id="@+id/v_top_divider"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            app:layout_constraintTop_toBottomOf="@id/v_top_divider"
+            android:layout_marginTop="@dimen/L1"
+            android:id="@+id/tv_quota"
+            android:textColor="@color/C6"
+            android:textSize="@dimen/F3"
+            tools:text="@string/coin_quota"
+            android:includeFontPadding="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            style="@style/TransferOptionsTextView"
+            app:layout_constraintTop_toBottomOf="@id/tv_quota"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_marginTop="@dimen/dp_transfer_quota_margin_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_option0"
+            android:layout_marginEnd="@dimen/dp_transfer_quota_margin_horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_option1"/>
+
+    <TextView
+            style="@style/TransferOptionsTextView"
+            app:layout_constraintTop_toTopOf="@id/tv_option0"
+            app:layout_constraintBottom_toBottomOf="@id/tv_option0"
+            app:layout_constraintStart_toEndOf="@id/tv_option0"
+            android:id="@+id/tv_option1"
+            android:layout_marginStart="@dimen/dp_transfer_quota_margin_horizontal"
+            android:layout_marginEnd="@dimen/dp_transfer_quota_margin_horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_option2"/>
+
+    <TextView
+            style="@style/TransferOptionsTextView"
+            app:layout_constraintTop_toTopOf="@id/tv_option0"
+            app:layout_constraintBottom_toBottomOf="@id/tv_option0"
+            android:layout_marginStart="@dimen/dp_transfer_quota_margin_horizontal"
+            app:layout_constraintStart_toEndOf="@id/tv_option1"
+            android:id="@+id/tv_option2"
+            android:layout_marginEnd="@dimen/L1"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+            style="@style/TransferOptionsTextView"
+            android:layout_marginTop="@dimen/dp_transfer_quota_margin_vertical"
+            app:layout_constraintTop_toBottomOf="@id/tv_option1"
+            android:layout_marginStart="@dimen/L1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_option3"
+            android:layout_marginEnd="@dimen/dp_transfer_quota_margin_horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_option4"/>
+
+    <TextView
+            style="@style/TransferOptionsTextView"
+            app:layout_constraintTop_toTopOf="@id/tv_option3"
+            app:layout_constraintBottom_toBottomOf="@id/tv_option3"
+            app:layout_constraintStart_toEndOf="@id/tv_option3"
+            android:id="@+id/tv_option4"
+            android:layout_marginStart="@dimen/dp_transfer_quota_margin_horizontal"
+            android:layout_marginEnd="@dimen/dp_transfer_quota_margin_horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_option5"/>
+
+    <TextView
+            style="@style/TransferOptionsTextView"
+            app:layout_constraintTop_toTopOf="@id/tv_option3"
+            app:layout_constraintBottom_toBottomOf="@id/tv_option3"
+            android:layout_marginStart="@dimen/dp_transfer_quota_margin_horizontal"
+            app:layout_constraintStart_toEndOf="@id/tv_option4"
+            android:id="@+id/tv_option5"
+            android:layout_marginEnd="@dimen/L1"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <android.support.constraint.Barrier
+            app:barrierDirection="bottom"
+            app:barrierAllowsGoneWidgets="false"
+            app:constraint_referenced_ids="tv_option0,tv_option3"
+            android:id="@+id/b_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <View
+            android:layout_width="@dimen/match_constraint"
+            android:background="@color/C3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/L8"
+            android:id="@+id/v_bottom_divider"
+            app:layout_constraintTop_toBottomOf="@id/b_barrier"
+            android:layout_height="@dimen/L6"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_bottom_divider"
+            android:layout_marginTop="@dimen/L7"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_marginEnd="@dimen/L1"
+            android:id="@+id/tv_explanation"
+            android:textColor="@color/C8"
+            android:textSize="@dimen/F5"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="2.1"
+            tools:text="划转说明\n将金币实时划转到JetAxon.com，再前往该网站提取奖励。\n玩游戏和邀请好友，可赢取更多金币和现金奖励。\n被划转的金币，只会显示在JetAxon.com，暂时无法用于游戏。"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:textColor="@color/C2"
+            android:id="@+id/btn_confirm_extraction"
+            android:textSize="@dimen/F3"
+            android:text="@string/confirm_extraction"
+            android:layout_marginEnd="@dimen/L1"
+            android:layout_marginBottom="@dimen/L6"
+            android:background="@drawable/round_rect_solid_btn_bg"
+            android:layout_height="@dimen/L2"/>
+</android.support.constraint.ConstraintLayout>

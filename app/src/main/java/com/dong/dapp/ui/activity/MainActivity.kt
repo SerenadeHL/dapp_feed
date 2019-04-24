@@ -8,11 +8,14 @@ import android.support.v4.content.ContextCompat
 import com.dong.dapp.R
 import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
 import com.dong.dapp.ui.mvp.me.MeFragment
+import com.dong.dapp.ui.mvp.transfer.TransferActivity
+import com.dong.dapp.ui.mvp.transfer.TransferCashActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.internal.util.BackpressureHelper.add
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
+import me.serenadehl.base.extensions.startActivity
 
 
 /**
@@ -63,6 +66,7 @@ class MainActivity : BaseActivity() {
 
         //TODO 模拟登录
 //        LoginUtils.saveLoginTag("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjE2NDU4NywiaWF0IjoxNTU1NTU4MDMyLCJleHAiOjE1NjMzMzQwMzJ9.oeWtWfEazaRCqL0FSF8uKW_Ov1_qe6cXIh_uJW7ihwo")
+        startActivity<TransferCashActivity>()
     }
 
     /**

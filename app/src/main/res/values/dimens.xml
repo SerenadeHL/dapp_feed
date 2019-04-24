@@ -66,6 +66,17 @@
     <dimen name="dp_game_square_item_icon_width">75dp</dimen>
     <dimen name="dp_game_square_item_icon_height">75dp</dimen>
 
+    <dimen name="dp_game_square_first_charge_width">89dp</dimen>
+    <dimen name="dp_game_square_first_charge_height">95dp</dimen>
+    <dimen name="dp_game_square_first_charge_margin_bottom">17dp</dimen>
+
+    <!--TransferActivity-->
+    <dimen name="dp_transfer_question_mark_size">12dp</dimen>
+    <dimen name="dp_transfer_question_mark_margin_start">7dp</dimen>
+    <dimen name="dp_transfer_quota_margin_horizontal">4dp</dimen>
+    <dimen name="dp_transfer_quota_margin_vertical">8dp</dimen>
+
+
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>
 
