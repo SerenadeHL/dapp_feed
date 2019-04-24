@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "inner"]//添加一个默认渠道号
     }
     lintOptions {
@@ -109,6 +110,8 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
     //BasePopup
     implementation 'com.github.razerdp:BasePopup:2.1.9'
+    //MultiDex
+    implementation 'com.android.support:multidex:1.0.3'
 
     //Java不支持PKCS7Padding，需要引入bouncycastle来实现
     implementation 'org.bouncycastle:bcprov-jdk16:1.46'

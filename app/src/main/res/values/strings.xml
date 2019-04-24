@@ -12,6 +12,9 @@
     <string name="game_square">游戏广场</string>
     <string name="today_gains">今日收益</string>
 
+    <!--首页-->
+    <string name="press_again_to_exit">再按一次退出</string>
+
     <!--游戏广场-->
     <string name="play_count">%s人正在玩</string>
     <string name="coin">金币</string>
@@ -41,4 +44,17 @@
     <string name="coin_quota">提现额度</string>
     <string name="cash_quota">选择划转额度</string>
     <string name="confirm_extraction">确认提取</string>
+
+    <!--划转详情-->
+    <string name="transfer_detail">明细详情</string>
+    <string name="details_with_colon">明细：</string>
+    <string name="category_with_colon">类型：</string>
+    <string name="status_with_colon">状态：</string>
+    <string name="time_with_colon">时间：</string>
+    <string name="serial_number_with_colon">流水号：</string>
+
+    <!--现金资产明细-->
+    <string name="cumulative_gain">累计收益</string>
+    <string name="today_obtain">今日获得</string>
+    <string name="gains_detail">收益明细</string>
 </resources>

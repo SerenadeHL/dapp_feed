@@ -35,6 +35,7 @@
                   android:theme="@style/WebTheme"/>
         <activity android:name=".ui.mvp.transfer.TransferCoinActivity"/>
         <activity android:name=".ui.mvp.transfer.TransferCashActivity"/>
+        <activity android:name=".ui.activity.TransferDetailActivity"/>
 
         <meta-data
                 android:name="CHANNEL"

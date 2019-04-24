@@ -2,20 +2,19 @@ package com.dong.dapp.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.R
 import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
 import com.dong.dapp.ui.mvp.me.MeFragment
-import com.dong.dapp.ui.mvp.transfer.TransferActivity
-import com.dong.dapp.ui.mvp.transfer.TransferCashActivity
+import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
-import io.reactivex.internal.util.BackpressureHelper.add
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
+import me.serenadehl.base.extensions.invisible
 import me.serenadehl.base.extensions.startActivity
+import me.serenadehl.base.extensions.toast
 
 
 /**
@@ -26,23 +25,27 @@ import me.serenadehl.base.extensions.startActivity
  */
 class MainActivity : BaseActivity() {
     companion object {
-        const val GAME = 0
-        const val ME = 1
+        const val GAME = 0//游戏广场
+        const val ME = 1//我
+
+        const val EXIT_INTERVAL = 2000//双击返回键退出的间隔
     }
+
+    private var mLastBackPressed = 0L//上次按退出键的时间
 
     private val mC2 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C2) }
     private val mC6 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C6) }
-    private val mC9 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C9) }
     private val mB9BCCE by lazy { ContextCompat.getColor(this@MainActivity, R.color.color_B9BCCE) }
 
-    private val mGameSquareFragment by lazy { GameSquareFragment() }
-    private val mMeFragment by lazy { MeFragment() }
+    private val mGameSquareFragment by lazy { GameSquareFragment() }//游戏广场
+    private val mMeFragment by lazy { MeFragment() }//我
 
     override fun layout() = R.layout.activity_main
 
     @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         setupStatusBar()
+        iv_back.invisible()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fl_fragment, mMeFragment)
@@ -66,7 +69,20 @@ class MainActivity : BaseActivity() {
 
         //TODO 模拟登录
 //        LoginUtils.saveLoginTag("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjE2NDU4NywiaWF0IjoxNTU1NTU4MDMyLCJleHAiOjE1NjMzMzQwMzJ9.oeWtWfEazaRCqL0FSF8uKW_Ov1_qe6cXIh_uJW7ihwo")
-        startActivity<TransferCashActivity>()
+        startActivity<TotalCoinCountActivity>()
+    }
+
+    /**
+     * 双击返回键退出处理
+     */
+    override fun onBackPressed() {
+        val backPressed = System.currentTimeMillis()
+        if (backPressed - mLastBackPressed > EXIT_INTERVAL) {
+            toast(R.string.press_again_to_exit)
+            mLastBackPressed = backPressed
+        } else {
+            super.onBackPressed()
+        }
     }
 
     /**
@@ -81,7 +97,6 @@ class MainActivity : BaseActivity() {
                 setStatusBarBackgroundResource(R.drawable.g1_horizontal, false)
                 cl_title.setBackgroundResource(R.drawable.g1_horizontal)
                 tv_title.setTextColor(mC2)
-                v_divider.setBackgroundResource(R.drawable.g1_horizontal)
 
                 tv_title.setText(R.string.title_game_square)
                 tv_game_icon.setTextColor(mC6)
@@ -95,7 +110,6 @@ class MainActivity : BaseActivity() {
                 setStatusBarColor(mC2, true)
                 cl_title.setBackgroundColor(mC2)
                 tv_title.setTextColor(mC6)
-                v_divider.setBackgroundColor(mC9)
 
                 tv_title.setText(R.string.title_me)
                 tv_game_icon.setTextColor(mB9BCCE)

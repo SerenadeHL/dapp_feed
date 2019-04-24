@@ -1,5 +1,7 @@
 package com.dong.dapp
 
+import android.content.Context
+import android.support.multidex.MultiDex
 import android.view.ViewGroup
 import com.dong.dapp.jsapi.TronPayApi
 import com.dong.dapp.ui.mvp.web.WebActivity
@@ -28,6 +30,11 @@ class DAppApplication : BaseApplication() {
 
     companion object {
         fun isDebug() = DEBUG
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     override fun onCreate() {

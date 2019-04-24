@@ -9,7 +9,7 @@ import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.visible
 
 /**
- *
+ * 现金资产页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-23 16:26:19
@@ -27,7 +27,6 @@ class TotalCashCountActivity : MVPBaseActivity<ITotalCashCountPresenter>(), ITot
         hideStatusBar()
         setStatusBarTranslucent(false)
         //返回按钮
-        iv_back.visible()
         iv_back.setOnClickListener { finish() }
         //设置标题栏
         cl_title.setBackgroundColor(mC2)

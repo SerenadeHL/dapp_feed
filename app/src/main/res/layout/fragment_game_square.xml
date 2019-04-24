@@ -43,6 +43,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/C2"
             android:textSize="@dimen/sp_game_square_announcement_text_size"
+            android:focusableInTouchMode="true"
             app:layout_constraintStart_toEndOf="@id/iv_announcement"
             tools:text="妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +52,8 @@
             android:includeFontPadding="false"
             android:layout_width="0dp"
             android:layout_marginEnd="@dimen/L1"
-            android:maxLines="1"
-            android:ellipsize="end"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:layout_height="wrap_content"/>
 
     <TextView

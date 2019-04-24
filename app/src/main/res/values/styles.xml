@@ -69,4 +69,29 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:textColor">@color/C6</item>
     </style>
+
+    <!--TransferDetailActivity-->
+    <style name="TransferDetailLabelTextView">
+        <item name="android:background">@color/C2</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">@dimen/L1</item>
+        <item name="android:textColor">@color/C6</item>
+        <item name="android:textSize">@dimen/F4</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/L4</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+    </style>
+
+    <style name="TransferDetailTextView">
+        <item name="android:background">@color/C2</item>
+        <item name="android:gravity">center_vertical|end</item>
+        <item name="android:paddingEnd">@dimen/L1</item>
+        <item name="android:textColor">@color/C6</item>
+        <item name="android:textSize">@dimen/F4</item>
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">@dimen/L4</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
 </resources>

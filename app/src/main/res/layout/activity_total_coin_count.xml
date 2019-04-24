@@ -7,6 +7,30 @@
         android:layout_height="match_parent"
         tools:context=".ui.mvp.totalcoincount.TotalCoinCountActivity">
 
-    <include layout="@layout/title_layout"/>
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="@dimen/match_constraint"
+            android:id="@+id/rv_coin"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/match_constraint"/>
+
+    <View
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/v_status_bar"
+            android:layout_height="@dimen/dp_status_bar_height"/>
+
+    <include layout="@layout/title_layout"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/v_status_bar"
+             android:layout_height="wrap_content"
+             android:layout_width="@dimen/match_constraint"/>
+
 
 </android.support.constraint.ConstraintLayout>

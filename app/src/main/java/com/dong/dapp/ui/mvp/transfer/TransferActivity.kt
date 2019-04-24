@@ -35,7 +35,6 @@ abstract class TransferActivity : MVPBaseActivity<ITransferPresenter>() {
         setupStatusBar()
         setStatusBarColor(mC2, true)
         //返回按钮
-        iv_back.visible()
         iv_back.setOnClickListener { finish() }
         //设置标题栏
         cl_title.setBackgroundColor(mC2)
@@ -76,7 +75,7 @@ abstract class TransferActivity : MVPBaseActivity<ITransferPresenter>() {
         }
 
         //选中默认的选项
-        mOptions[mSelected].performClick()
+        selectOption(mSelected)
     }
 
     /**

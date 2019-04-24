@@ -24,7 +24,9 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun createPresenter() = GameSquarePresenter()
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
-        mRootView.tv_announcement.text = "妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
+        mRootView.tv_announcement.text =
+            "妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
+        mRootView.tv_announcement.requestFocus()
         mRootView.cv_coin.setOnClickListener { startActivity<TotalCoinCountActivity>() }
         mRootView.cv_cash.setOnClickListener { startActivity<TotalCashCountActivity>() }
         mRootView.tv_coin.text = "2.56"

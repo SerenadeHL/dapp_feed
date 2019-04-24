@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <View
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/g1_vertical"
+            app:layout_constraintBottom_toTopOf="@+id/tv_gains_detail"
+            android:layout_height="@dimen/match_constraint"/>
+
+    <TextView
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/L8"
+            android:textColor="@color/C2"
+            android:includeFontPadding="false"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/sp_total_coin_header_money_text_size"
+            tools:text="¥4223.44"
+            android:id="@+id/tv_money"
+            android:layout_marginStart="@dimen/L1"
+            android:layout_marginEnd="@dimen/L1"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:textSize="@dimen/F4"
+            android:textColor="@color/C2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:paddingStart="@dimen/match_constraint"
+            android:paddingEnd="@dimen/L1"
+            android:includeFontPadding="false"
+            app:layout_constraintEnd_toStartOf="@+id/tv_today_gains_label"
+            android:id="@+id/tv_cumulative_gain_label"
+            android:text="@string/cumulative_gain"
+            app:layout_constraintTop_toBottomOf="@id/tv_money"
+            android:layout_marginTop="@dimen/L8"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/tv_today_gains_label"
+            android:layout_width="@dimen/match_constraint"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/F4"
+            android:paddingStart="@dimen/match_constraint"
+            android:paddingEnd="@dimen/L1"
+            android:layout_marginEnd="@dimen/L1"
+            android:textColor="@color/C2"
+            app:layout_constraintTop_toTopOf="@id/tv_cumulative_gain_label"
+            app:layout_constraintBottom_toBottomOf="@id/tv_cumulative_gain_label"
+            android:text="@string/today_obtain"
+            app:layout_constraintStart_toEndOf="@id/tv_cumulative_gain_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_today_obtain"
+            android:layout_marginTop="@dimen/dp_total_coin_header_cumulative_gain_margin_top"
+            app:layout_constraintTop_toBottomOf="@id/tv_cumulative_gain_label"
+            android:layout_width="@dimen/match_constraint"
+            tools:text="¥4134.55"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/F4"
+            android:lines="1"
+            android:id="@+id/tv_cumulative_gain"
+            android:ellipsize="end"
+            android:layout_marginStart="@dimen/L1"
+            android:paddingStart="@dimen/match_constraint"
+            android:paddingEnd="@dimen/L1"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_marginTop="@dimen/dp_total_coin_header_cumulative_gain_margin_top"
+            app:layout_constraintTop_toTopOf="@id/tv_cumulative_gain"
+            app:layout_constraintBottom_toBottomOf="@id/tv_cumulative_gain"
+            android:layout_width="@dimen/match_constraint"
+            tools:text="¥41.00"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/F4"
+            android:lines="1"
+            android:id="@+id/tv_today_obtain"
+            app:layout_constraintStart_toEndOf="@id/tv_cumulative_gain"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:ellipsize="end"
+            android:layout_marginEnd="@dimen/L1"
+            android:paddingStart="@dimen/match_constraint"
+            android:paddingEnd="@dimen/L1"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/C2"
+            android:paddingStart="@dimen/L1"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/F3"
+            android:textColor="@color/C6"
+            android:text="@string/gains_detail"
+            android:id="@+id/tv_gains_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_cumulative_gain"
+            android:layout_marginTop="@dimen/dp_total_coin_header_padding_bottom"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/L2"/>
+</android.support.constraint.ConstraintLayout>

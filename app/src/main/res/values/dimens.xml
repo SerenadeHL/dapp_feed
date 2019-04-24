@@ -8,6 +8,7 @@
     <dimen name="F5">12sp</dimen>
     <dimen name="F6">10sp</dimen>
 
+
     <!--常用尺寸-->
     <dimen name="L1">15dp</dimen>
     <dimen name="L2">44dp</dimen>
@@ -25,6 +26,10 @@
 
     <!--分割线粗细-->
     <dimen name="divider_size">0.5dp</dimen>
+
+
+    <!--状态栏高度-->
+    <dimen name="dp_status_bar_height">25dp</dimen>
 
 
     <!--右箭头尺寸-->
@@ -70,11 +75,22 @@
     <dimen name="dp_game_square_first_charge_height">95dp</dimen>
     <dimen name="dp_game_square_first_charge_margin_bottom">17dp</dimen>
 
+
     <!--TransferActivity-->
     <dimen name="dp_transfer_question_mark_size">12dp</dimen>
     <dimen name="dp_transfer_question_mark_margin_start">7dp</dimen>
     <dimen name="dp_transfer_quota_margin_horizontal">4dp</dimen>
     <dimen name="dp_transfer_quota_margin_vertical">8dp</dimen>
+
+
+    <!--TransferDetailActivity-->
+    <dimen name="dp_transfer_detail_money_height">75dp</dimen>
+
+
+    <!--TotalCoinCountActivity-->
+    <dimen name="dp_total_coin_header_padding_bottom">29dp</dimen>
+    <dimen name="sp_total_coin_header_money_text_size">36sp</dimen>
+    <dimen name="dp_total_coin_header_cumulative_gain_margin_top">6dp</dimen>
 
 
     <!--PopupWindowUtils-->

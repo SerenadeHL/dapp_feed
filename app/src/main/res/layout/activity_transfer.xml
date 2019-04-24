@@ -5,7 +5,12 @@
         android:background="@color/C2"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <include layout="@layout/title_layout"/>
+    <include layout="@layout/title_layout"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             android:layout_height="wrap_content"
+             android:layout_width="@dimen/match_constraint"/>
 
     <TextView
             app:layout_constraintTop_toBottomOf="@id/cl_title"
