@@ -44,6 +44,11 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    androidExtensions {
+        experimental = true
+    }
+
     repositories {
         flatDir {
             dirs 'libs'

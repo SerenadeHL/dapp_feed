@@ -4,7 +4,7 @@ import android.util.Log
 import com.dong.dapp.BuildConfig
 import com.dong.dapp.Constant
 import com.dong.dapp.DAppApplication
-import com.dong.dapp.bean.wallet.SystemInfoBean
+import com.dong.dapp.bean.others.SystemInfoBean
 import com.dong.dapp.extensions.toJson
 import com.dong.dapp.utils.AESUtils
 import com.dong.dapp.utils.NetworkUtils
@@ -16,7 +16,6 @@ import me.serenadehl.base.utils.sharedpre.SPUtil
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
-import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.lang.Exception
 import java.util.*

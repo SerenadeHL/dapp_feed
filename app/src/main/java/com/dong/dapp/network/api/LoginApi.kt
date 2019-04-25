@@ -1,7 +1,5 @@
 package com.dong.dapp.network.api
 
-import com.dong.dapp.bean.wallet.LoginBean
-import com.dong.dapp.bean.wallet.VerifyCodeBean
 import com.dong.dapp.network.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.Field

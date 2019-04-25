@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="wrap_content">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/L1"
+        android:paddingBottom="@dimen/dp_total_coin_item_padding_bottom"
+        android:paddingEnd="@dimen/match_constraint"
+        android:layout_height="wrap_content">
 
+    <include layout="@layout/divider"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             android:id="@+id/v_divider"
+             app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_title"
+            android:layout_marginTop="@dimen/dp_total_coin_item_title_margin_top"
+            android:textColor="@color/C6"
+            tools:text="邀请好友激活奖励"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:layout_marginTop="@dimen/L7"
+            android:layout_width="wrap_content"
+            tools:text="2019.4.6 14:22"
+            android:id="@+id/tv_time"
+            android:includeFontPadding="false"
+            android:textColor="@color/C8"
+            android:textSize="@dimen/F5"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/tv_money"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"
+            android:layout_marginEnd="@dimen/L1"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/F4"
+            android:textColor="@color/C6"
+            tools:text="+ ¥23.44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:includeFontPadding="false"
+            app:layout_constraintEnd_toEndOf="@id/tv_money"
+            app:layout_constraintTop_toTopOf="@id/tv_time"
+            app:layout_constraintBottom_toBottomOf="@id/tv_time"
+            tools:text="进行中"
+            android:textSize="@dimen/F5"
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

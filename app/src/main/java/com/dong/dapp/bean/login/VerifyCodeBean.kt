@@ -1,4 +1,4 @@
-package com.dong.dapp.bean.wallet
+package com.dong.dapp.bean.login
 
 import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName

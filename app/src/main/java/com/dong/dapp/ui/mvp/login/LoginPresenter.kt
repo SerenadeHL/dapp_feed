@@ -1,6 +1,6 @@
 package com.dong.dapp.ui.mvp.login
 
-import com.dong.dapp.bean.wallet.VerifyCodeBean
+import com.dong.dapp.bean.login.VerifyCodeBean
 import com.dong.dapp.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
 import me.serenadehl.base.extensions.log

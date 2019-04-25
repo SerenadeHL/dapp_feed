@@ -92,6 +92,9 @@
     <dimen name="sp_total_coin_header_money_text_size">36sp</dimen>
     <dimen name="dp_total_coin_header_cumulative_gain_margin_top">6dp</dimen>
 
+    <dimen name="dp_total_coin_item_title_margin_top">11dp</dimen>
+    <dimen name="dp_total_coin_item_padding_bottom">12dp</dimen>
+
 
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>

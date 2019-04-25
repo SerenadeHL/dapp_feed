@@ -1,4 +1,4 @@
-package com.dong.dapp.bean.wallet
+package com.dong.dapp.bean.others
 
 import com.dong.dapp.bean.BaseBean
 
