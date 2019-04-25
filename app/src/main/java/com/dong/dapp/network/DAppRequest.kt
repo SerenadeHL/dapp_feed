@@ -18,12 +18,6 @@ import okhttp3.RequestBody
  * 创建时间：2019-04-10 19:46:44
  */
 object DAppRequest {
-    fun test(test: String): Observable<TestBean?> {
-        return RetrofitHelper.create(TestApi::class.java)
-            .test(test)
-            .decrypt<TestBean?>()
-            .async()
-    }
 
     //=============================================通用接口=============================================
 

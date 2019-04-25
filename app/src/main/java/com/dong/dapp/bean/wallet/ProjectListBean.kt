@@ -11,14 +11,14 @@ data class ProjectListBean(
     @SerializedName("total_count") var totalCount: Int
 ) : BaseBean() {
     data class Item(
-        @SerializedName("id") var id: String?,
-        @SerializedName("logo") var logo: String?,
+        @SerializedName("category") var category: String?,
+        @SerializedName("pid") var pid: String?,
+        @SerializedName("url") var url: String?,
         @SerializedName("title") var title: String?,
-        @SerializedName("summary") var summary: String?,
-        @SerializedName("users_cnt") var userCount: String?,
-        @SerializedName("revenue") var revenue: String?,
-
-
-        @SerializedName("url") var url: String?
+        @SerializedName("intro") var intro: String?,
+        @SerializedName("protocols") var protocols: String?,
+        @SerializedName("author") var author: String?,
+        @SerializedName("logo") var logo: String?,
+        @SerializedName("cnt") var count: Int?
     )
 }

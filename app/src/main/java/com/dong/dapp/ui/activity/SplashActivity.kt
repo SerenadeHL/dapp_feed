@@ -20,7 +20,7 @@ class SplashActivity : BaseActivity() {
 
     @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Observable.timer(1, TimeUnit.SECONDS)
+        Observable.timer(0, TimeUnit.SECONDS)
             .subscribe {
                 startActivity<MainActivity>()
                 finish()

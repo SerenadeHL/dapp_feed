@@ -11,9 +11,11 @@ import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.save
 import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.DAppRequest
+import kotlinx.android.synthetic.main.activity_web.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.startActivity
+import me.serenadehl.base.extensions.toast
 import wendu.dsbridge.DWebView
 
 /**
@@ -45,12 +47,16 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
 
         mWebView = (application as DAppApplication).getWebView()
         mRootView.addView(
-            mWebView, LinearLayout.LayoutParams(
+            mWebView, 0, LinearLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.MATCH_PARENT
             )
         )
         mWebView.loadUrl(mUrl)
+
+        sb_ball.setOnClickListener {
+            toast("点击了")
+        }
 
         DAppRequest.getTronUserInfo()
             .subscribe(object : BaseObserver<UserInfoBean?>() {

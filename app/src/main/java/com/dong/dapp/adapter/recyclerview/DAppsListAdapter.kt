@@ -27,9 +27,9 @@ class DAppsListAdapter(val activity: Activity) :
     override fun convert(helper: BaseViewHolder?, item: ProjectListBean.Item?) {
         helper?.apply {
             setText(R.id.tv_name, item?.title)
-            setText(R.id.tv_description, item?.summary)
-            setText(R.id.tv_playing_count, String.format(activity.getString(R.string.play_count),item?.userCount))
-            getView<ImageView>(R.id.iv_logo).showRound(item?.logo,4F)
+            setText(R.id.tv_description, item?.intro)
+            setText(R.id.tv_playing_count, String.format(activity.getString(R.string.play_count), item?.count))
+            getView<ImageView>(R.id.iv_logo).showRound(item?.logo, 4F)
             setVisible(R.id.v_top_divider, (layoutPosition - headerLayoutCount) > 0)//隐藏第一个Item的分割线
         }
     }

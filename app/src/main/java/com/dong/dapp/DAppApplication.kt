@@ -7,14 +7,12 @@ import com.dong.dapp.jsapi.TronPayApi
 import com.dong.dapp.ui.mvp.web.WebActivity
 import com.dong.dapp.utils.JsResUtils
 import com.dong.dapp.utils.NetworkUtils
-import com.megvii.meglive_sdk.sdk.manager.FaceIdManager
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
-import io.reactivex.functions.Consumer
 import io.reactivex.plugins.RxJavaPlugins
 import me.serenadehl.base.BaseApplication
 import me.serenadehl.base.utils.app.AppManager
@@ -39,6 +37,7 @@ class DAppApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
+//        LeakCanary.install(this)
         RxJavaPlugins.setErrorHandler { throwable ->
             //异常处理
             throwable.printStackTrace()

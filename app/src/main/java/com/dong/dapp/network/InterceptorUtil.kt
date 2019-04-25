@@ -4,6 +4,7 @@ import android.util.Log
 import com.dong.dapp.BuildConfig
 import com.dong.dapp.Constant
 import com.dong.dapp.DAppApplication
+import com.dong.dapp.bean.others.PostRequestBean
 import com.dong.dapp.bean.others.SystemInfoBean
 import com.dong.dapp.extensions.toJson
 import com.dong.dapp.utils.AESUtils
@@ -13,9 +14,7 @@ import com.dong.dapp.utils.SystemUtils
 import me.serenadehl.base.extensions.TAG
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.utils.sharedpre.SPUtil
-import okhttp3.FormBody
-import okhttp3.HttpUrl
-import okhttp3.Interceptor
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.lang.Exception
 import java.util.*
@@ -44,17 +43,20 @@ object InterceptorUtil {
             if (method == "POST") {
                 if (requestBody != null && requestBody is FormBody) {
                     val params = dealPostParams(requestBody)
+                    "params---> $params".log()
                     val encryptedParams = encryptParams(params)
-                    requestBody = FormBody.Builder()
-                        .add(Constant.API_TYPE_NAME, Constant.API_TYPE)
-                        .add(Constant.API_VERSION_NAME, Constant.API_VERSION)
-                        .add(Constant.API_DATA_NAME, encryptedParams)
-                        .build()
+                    "encryptedParams---> $encryptedParams".log()
+
+                    requestBody = RequestBody.create(
+                        MediaType.parse("application/json; charset=utf-8"),
+                        generateNewParams(encryptedParams, method)
+                    )
                 }
             } else if (method == "GET") {
                 val params = dealGetParams(url)
                 "params---> $params".log()
                 val encryptedParams = encryptParams(params)
+                "encryptedParams---> $encryptedParams".log()
                 val query = generateNewParams(encryptedParams, method)
                 url = url.newBuilder()
                     .scheme(url.scheme())
@@ -83,6 +85,7 @@ object InterceptorUtil {
                 .url(url)
                 .addHeader(Constant.AUTHORIZATION, SPUtil.getString(Constant.TOKEN, ""))
                 .addHeader(Constant.REQUEST_VERSION, "1")
+                .addHeader(Constant.LANGUAGE, Constant.CN)
                 .addHeader(Constant.TERMINAL, "android")
 //                    .addHeader(Constant.TMID,)
                 .addHeader(Constant.APP_INFO, systemInfoBean.toJson())
@@ -140,7 +143,7 @@ object InterceptorUtil {
     private fun encryptParams(params: String): String {
         val data = AESUtils.encrypt(params, AESUtils.generateKey(), AESUtils.generateIv())
         val encryptKey = RSAUtils.encrypt("${AESUtils.generateKey()}${AESUtils.generateIv()}")
-        return "$data.$encryptKey"
+        return "$data.$encryptKey".replace("\n", "")
     }
 
     /**
@@ -149,7 +152,6 @@ object InterceptorUtil {
     private fun generateNewParams(encryptedParams: String, method: String): String {
         return when (method) {
             "GET" -> "${Constant.API_DATA_NAME}=$encryptedParams&" +
-                    "${Constant.API_TYPE_NAME}=${Constant.API_TYPE}&" +
                     "${Constant.API_VERSION_NAME}=${Constant.API_VERSION}"
             "POST" -> mapOf(
                 Constant.API_VERSION_NAME to Constant.API_VERSION,

@@ -18,7 +18,7 @@ interface LoginApi {
      * @param type 手机号0 邮箱1
      * @param areaCode 手机区号
      */
-    @POST("public/sms/sendcode2")
+    @POST("public/sms/sendcode")
     @FormUrlEncoded
     fun getVerifyCode(
         @Field("target") target: String,
@@ -34,7 +34,7 @@ interface LoginApi {
      * @param registered getVerifyCode接口返回数据
      * @param from 固定为2
      */
-    @POST("/public/user/newregister")
+    @POST("/public/user/register")
     @FormUrlEncoded
     fun login(
         @Field("verification_code") verifyCode: String,

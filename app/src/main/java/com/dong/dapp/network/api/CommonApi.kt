@@ -20,7 +20,8 @@ interface CommonApi {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    @GET("/dapps")
+    @POST("/public/dapp/list")
+    @FormUrlEncoded
     fun getDApps(@Field("page") page: Int, @Field("page_size") pageSize: Int): Observable<BaseResponse>
 
     /**

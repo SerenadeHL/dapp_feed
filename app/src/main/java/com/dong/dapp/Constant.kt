@@ -13,6 +13,7 @@ object Constant {
     const val REQUEST_ID = "request_id"
     const val AUTHORIZATION = "Authorization"
     const val REQUEST_VERSION = "req_ver"
+    const val LANGUAGE = "lang"
     const val TERMINAL = "terminal"
     const val TMID = "tmid"
     const val APP_INFO = "app_info"
@@ -20,9 +21,13 @@ object Constant {
     const val TEXT = "text"
     const val HEX = "hex"
 
-    const val API_TYPE_NAME = "type"
     const val API_VERSION_NAME = "version"
+    const val API_TYPE_NAME = "type"
     const val API_DATA_NAME = "data"
-    const val API_TYPE = "0"
-    const val API_VERSION = "1"
+    const val API_VERSION = 1
+    const val API_TYPE = 0
+
+
+    const val CN = "cn"
+    const val EN = "en"
 }

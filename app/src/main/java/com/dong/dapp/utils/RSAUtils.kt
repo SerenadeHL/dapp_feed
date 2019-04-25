@@ -11,6 +11,8 @@ import javax.crypto.Cipher
  * 创建时间：2019-04-22 15:22:51
  */
 object RSAUtils {
+//    private external fun getPublicKey():String
+
     private const val PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" +
             "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCl0+yOleAMVbO0zW2WdC0TX6q7\n" +
             "g8kvCZxJRA4PuuqfqondTiUJTg6RUFSKc9vWbufdczprV+N8k2R4t8hq5oRfUKhJ\n" +
