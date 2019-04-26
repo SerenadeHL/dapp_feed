@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.login
 
-import com.dong.dapp.bean.login.VerifyCodeBean
+import com.dong.dapp.bean.login.ResultLoginBean
+import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.network.DAppRequest
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
@@ -16,8 +17,18 @@ class LoginModel : MVPBaseModel(), ILoginModel {
      * @param phone 手机号
      * @param areaCode 区号
      */
-    override fun getVerifyCode(phone: String, areaCode: String): Observable<VerifyCodeBean?> {
+    override fun getVerifyCode(phone: String, areaCode: String): Observable<ResultVerifyCodeBean?> {
         return DAppRequest.getVerifyCode(phone, areaCode)
+    }
+
+    /**
+     * 登录
+     * @param verifyCode 验证码
+     * @param fp getVerifyCode接口返回数据
+     * @param invitationCode 邀请码
+     */
+    override fun login(verifyCode: String, fp: String, invitationCode: String): Observable<ResultLoginBean?> {
+        return DAppRequest.login(verifyCode,fp, invitationCode)
     }
 
 }

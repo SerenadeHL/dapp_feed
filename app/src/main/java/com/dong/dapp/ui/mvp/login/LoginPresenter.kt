@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.login
 
-import com.dong.dapp.bean.login.VerifyCodeBean
+import com.dong.dapp.bean.login.ResultLoginBean
+import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
 import me.serenadehl.base.extensions.log
@@ -16,16 +17,30 @@ class LoginPresenter : MVPBasePresenter<ILoginView, ILoginModel>(), ILoginPresen
 
     override fun getVerifyCode(phone: String, areaCode: String) {
         mModel.getVerifyCode(phone, areaCode)
-            .subscribe(object : BaseObserver<VerifyCodeBean?>() {
-                override fun next(data: VerifyCodeBean?) {
+            .subscribe(object : BaseObserver<ResultVerifyCodeBean?>() {
+                override fun next(data: ResultVerifyCodeBean?) {
                     "获取验证码成功,data=$data".log()
-                    mView.get()?.getVerifyCodeFinished(true)
+                    mView.get()?.getVerifyCodeSuccess(data)
                 }
 
                 override fun error(error: Throwable) {
-                    super.error(error)
                     "获取验证码失败".log()
-                    mView.get()?.getVerifyCodeFinished(false)
+                    mView.get()?.getVerifyCodeFailed()
+                }
+            })
+    }
+
+    override fun login(verifyCode: String, fp: String, invitationCode: String) {
+        mModel.login(verifyCode, fp, invitationCode)
+            .subscribe(object : BaseObserver<ResultLoginBean?>() {
+                override fun next(data: ResultLoginBean?) {
+                    "登录成功,data=$data".log()
+                    mView.get()?.loginSuccess(data)
+                }
+
+                override fun error(error: Throwable) {
+                    "登录失败".log()
+                    mView.get()?.loginFailed()
                 }
             })
     }

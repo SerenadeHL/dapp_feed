@@ -1,5 +1,6 @@
 package com.dong.dapp.network.api
 
+import com.dong.dapp.bean.gamesquare.RequestDAppListBean
 import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.bean.wallet.*
 import com.dong.dapp.network.BaseResponse
@@ -21,8 +22,7 @@ interface CommonApi {
      * @param pageSize 每页条数
      */
     @POST("/public/dapp/list")
-    @FormUrlEncoded
-    fun getDApps(@Field("page") page: Int, @Field("page_size") pageSize: Int): Observable<BaseResponse>
+    fun getDAppList(@Body requestBean:RequestDAppListBean): Observable<BaseResponse>
 
     /**
      * 上传文件

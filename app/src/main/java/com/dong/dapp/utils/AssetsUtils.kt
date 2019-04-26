@@ -11,14 +11,12 @@ import java.io.IOException
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-16 11:30:12
  */
-object JsResUtils {
-    /**
-     * @return 获取 TronWeb_es6.js 脚本
-     */
-    fun getTronPayJs(): String {
+object AssetsUtils {
+
+    fun getAssets(fileName: String): String {
         var jsStr = ""
         try {
-            val inputStream = AppManager.instance.currentActivity.applicationContext.assets.open("TronWeb.js")
+            val inputStream = AppManager.instance.currentActivity.applicationContext.assets.open(fileName)
             val buff = ByteArray(1024)
             val fromFile = ByteArrayOutputStream()
             do {

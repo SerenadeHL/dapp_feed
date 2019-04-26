@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.login
 
-import com.dong.dapp.bean.login.VerifyCodeBean
+import com.dong.dapp.bean.login.ResultLoginBean
+import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.IBaseModel
 import me.serenadehl.base.base.mvpbase.IBasePresenter
@@ -13,10 +14,24 @@ import me.serenadehl.base.base.mvpbase.IBaseView
  */
 interface ILoginView : IBaseView {
     /**
-     * 获取验证码完成
-     * @param success 是否成功
+     * 获取验证码成功
      */
-    fun getVerifyCodeFinished(success: Boolean)
+    fun getVerifyCodeSuccess(verifyCodeBean: ResultVerifyCodeBean?)
+
+    /**
+     * 获取验证码失败
+     */
+    fun getVerifyCodeFailed()
+
+    /**
+     * 登录成功
+     */
+    fun loginSuccess(loginBean: ResultLoginBean?)
+
+    /**
+     * 登录失败
+     */
+    fun loginFailed()
 }
 
 interface ILoginPresenter : IBasePresenter {
@@ -26,6 +41,14 @@ interface ILoginPresenter : IBasePresenter {
      * @param areaCode 区号
      */
     fun getVerifyCode(phone: String, areaCode: String)
+
+    /**
+     * 登录
+     * @param verifyCode 验证码
+     * @param fp getVerifyCode接口返回数据
+     * @param invitationCode 邀请码
+     */
+    fun login(verifyCode: String, fp: String, invitationCode: String)
 }
 
 interface ILoginModel : IBaseModel {
@@ -34,5 +57,13 @@ interface ILoginModel : IBaseModel {
      * @param phone 手机号
      * @param areaCode 区号
      */
-    fun getVerifyCode(phone: String, areaCode: String): Observable<VerifyCodeBean?>
+    fun getVerifyCode(phone: String, areaCode: String): Observable<ResultVerifyCodeBean?>
+
+    /**
+     * 登录
+     * @param verifyCode 验证码
+     * @param fp getVerifyCode接口返回数据
+     * @param invitationCode 邀请码
+     */
+    fun login(verifyCode: String, fp: String, invitationCode: String): Observable<ResultLoginBean?>
 }

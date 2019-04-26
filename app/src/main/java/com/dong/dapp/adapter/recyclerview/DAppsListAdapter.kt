@@ -5,7 +5,7 @@ import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
-import com.dong.dapp.bean.wallet.ProjectListBean
+import com.dong.dapp.bean.gamesquare.ResultDAppListBean
 import com.dong.dapp.extensions.showRound
 import com.dong.dapp.ui.mvp.web.WebActivity
 
@@ -16,7 +16,7 @@ import com.dong.dapp.ui.mvp.web.WebActivity
  * 创建时间：2019-04-11 11:15:09
  */
 class DAppsListAdapter(val activity: Activity) :
-    BaseQuickAdapter<ProjectListBean.Item, BaseViewHolder>(R.layout.app_recycle_item_game_square) {
+    BaseQuickAdapter<ResultDAppListBean.Item, BaseViewHolder>(R.layout.app_recycle_item_game_square) {
 
     init {
         setOnItemClickListener { _, _, position ->
@@ -24,7 +24,7 @@ class DAppsListAdapter(val activity: Activity) :
         }
     }
 
-    override fun convert(helper: BaseViewHolder?, item: ProjectListBean.Item?) {
+    override fun convert(helper: BaseViewHolder?, item: ResultDAppListBean.Item?) {
         helper?.apply {
             setText(R.id.tv_name, item?.title)
             setText(R.id.tv_description, item?.intro)

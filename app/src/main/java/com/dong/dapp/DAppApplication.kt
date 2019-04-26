@@ -5,7 +5,7 @@ import android.support.multidex.MultiDex
 import android.view.ViewGroup
 import com.dong.dapp.jsapi.TronPayApi
 import com.dong.dapp.ui.mvp.web.WebActivity
-import com.dong.dapp.utils.JsResUtils
+import com.dong.dapp.utils.AssetsUtils
 import com.dong.dapp.utils.NetworkUtils
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
@@ -87,7 +87,7 @@ class DAppApplication : BaseApplication() {
 
                         override fun onPageFinished(p0: WebView?, p1: String?) {
                             super.onPageFinished(p0, p1)
-                            evaluateJavascript(JsResUtils.getTronPayJs())
+                            evaluateJavascript(AssetsUtils.getAssets("TronWeb.js"))
                         }
 
                         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {

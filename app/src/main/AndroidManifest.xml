@@ -15,7 +15,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-
+        <activity android:name=".ui.mvp.chooseareacode.ChooseAreaCodeActivity">
+        </activity>
         <activity
                 android:name=".ui.activity.SplashActivity"
                 android:theme="@style/SplashTheme">
@@ -31,8 +32,9 @@
         <activity android:name=".ui.mvp.totalcashcount.TotalCashCountActivity"/>
         <activity android:name=".ui.mvp.totalcoincount.TotalCoinCountActivity"/>
         <activity android:name=".ui.mvp.login.LoginActivity"/>
-        <activity android:name=".ui.mvp.web.WebActivity"
-                  android:theme="@style/WebTheme"/>
+        <activity
+                android:name=".ui.mvp.web.WebActivity"
+                android:theme="@style/WebTheme"/>
         <activity android:name=".ui.mvp.transfer.TransferCoinActivity"/>
         <activity android:name=".ui.mvp.transfer.TransferCashActivity"/>
         <activity android:name=".ui.activity.TransferDetailActivity"/>

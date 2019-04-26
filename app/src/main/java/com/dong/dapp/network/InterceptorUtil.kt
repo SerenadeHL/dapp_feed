@@ -4,7 +4,6 @@ import android.util.Log
 import com.dong.dapp.BuildConfig
 import com.dong.dapp.Constant
 import com.dong.dapp.DAppApplication
-import com.dong.dapp.bean.others.PostRequestBean
 import com.dong.dapp.bean.others.SystemInfoBean
 import com.dong.dapp.extensions.toJson
 import com.dong.dapp.utils.AESUtils
@@ -14,9 +13,14 @@ import com.dong.dapp.utils.SystemUtils
 import me.serenadehl.base.extensions.TAG
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.utils.sharedpre.SPUtil
-import okhttp3.*
+import okhttp3.HttpUrl
+import okhttp3.Interceptor
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
-import java.lang.Exception
+import okio.BufferedSink
+import okio.ByteString
+import java.nio.charset.Charset
 import java.util.*
 
 /**
@@ -41,23 +45,27 @@ object InterceptorUtil {
             var url = oldRequest.url()
 
             if (method == "POST") {
-                if (requestBody != null && requestBody is FormBody) {
-                    val params = dealPostParams(requestBody)
-                    "params---> $params".log()
-                    val encryptedParams = encryptParams(params)
-                    "encryptedParams---> $encryptedParams".log()
-
-                    requestBody = RequestBody.create(
-                        MediaType.parse("application/json; charset=utf-8"),
-                        generateNewParams(encryptedParams, method)
-                    )
-                }
+                requestBody?.writeTo(object : BaseSink() {
+                    override fun write(byteString: ByteString): BufferedSink {
+                        //获取原始json数据
+                        val params = byteString.string(Charset.forName("utf-8"))
+                        "原始数据---------> $params".log()
+                        val encryptedParams = encryptParams(params)
+                        "加密数据---------> $encryptedParams".log()
+                        val mediaType = MediaType.parse("application/json; charset=utf-8")
+                        val json = generateNewParams(encryptedParams, method)
+                        "提交参数---------> $json".log()
+                        requestBody = RequestBody.create(mediaType, json)
+                        return this
+                    }
+                })
             } else if (method == "GET") {
                 val params = dealGetParams(url)
-                "params---> $params".log()
+                "原始数据---------> $params".log()
                 val encryptedParams = encryptParams(params)
-                "encryptedParams---> $encryptedParams".log()
+                "加密数据---------> $encryptedParams".log()
                 val query = generateNewParams(encryptedParams, method)
+                "提交参数---------> $query".log()
                 url = url.newBuilder()
                     .scheme(url.scheme())
                     .host(url.host())
@@ -66,7 +74,7 @@ object InterceptorUtil {
             }
 
             val systemInfoBean = SystemInfoBean(
-                "android",
+                Constant.OS,
                 SystemUtils.getSystemVersion(),
                 SystemUtils.getAppVersionName(),
                 BuildConfig.FLAVOR,
@@ -84,10 +92,10 @@ object InterceptorUtil {
                 .method(oldRequest.method(), requestBody)
                 .url(url)
                 .addHeader(Constant.AUTHORIZATION, SPUtil.getString(Constant.TOKEN, ""))
+                .addHeader(Constant.REQUEST_ID, UUID.randomUUID().toString().trim().replace("-".toRegex(), ""))
                 .addHeader(Constant.REQUEST_VERSION, "1")
                 .addHeader(Constant.LANGUAGE, Constant.CN)
-                .addHeader(Constant.TERMINAL, "android")
-//                    .addHeader(Constant.TMID,)
+                .addHeader(Constant.TERMINAL, Constant.OS)
                 .addHeader(Constant.APP_INFO, systemInfoBean.toJson())
                 .build()
             chain.proceed(newRequest)
@@ -111,8 +119,7 @@ object InterceptorUtil {
      * GET请求参数拼接RequestId
      */
     private fun dealGetParams(url: HttpUrl): String {
-        val uuid = UUID.randomUUID().toString().trim().replace("-".toRegex(), "")
-        val map = mutableMapOf(Constant.REQUEST_ID to uuid)
+        val map = mutableMapOf<String, String>()
         url.queryParameterNames().forEach {
             try {
                 //TODO 寻找更好的解决办法
@@ -120,19 +127,6 @@ object InterceptorUtil {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }
-        return map.toJson()
-    }
-
-    /**
-     * POST请求参数拼接RequestId
-     */
-    private fun dealPostParams(requestBody: FormBody): String {
-        val uuid = UUID.randomUUID().toString().trim().replace("-".toRegex(), "")
-        val map = mutableMapOf(Constant.REQUEST_ID to uuid)
-        val size = requestBody.size()
-        for (i in 0 until size) {
-            map[requestBody.name(i)] = requestBody.value(i)
         }
         return map.toJson()
     }

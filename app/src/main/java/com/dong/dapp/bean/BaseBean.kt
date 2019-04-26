@@ -8,5 +8,4 @@ import kotlinx.android.parcel.Parcelize
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-10 17:44:29
  */
-@Parcelize
-open class BaseBean:Parcelable
+open class BaseBean

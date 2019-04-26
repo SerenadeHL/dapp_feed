@@ -1,10 +1,7 @@
 package com.dong.dapp.utils
 
 import android.annotation.SuppressLint
-import com.dong.dapp.bean.kyc.FinishKYCBean
-import com.dong.dapp.bean.kyc.KYCBizTokenBean
-import com.dong.dapp.bean.kyc.KYCInfoBean
-import com.dong.dapp.bean.kyc.UserDetectResultBean
+import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.exception.BaseException
 import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.DAppRequest
@@ -143,13 +140,13 @@ object KYCUtils {
             "${idCardInfo?.birthYear?.text}-${idCardInfo?.birthMonth?.text}-${idCardInfo?.birthDay?.text}"
         return KYCInfoBean(
             bizToken,
-            KYCInfoBean.KYCUserInfoBean(
+            KYCUserInfoBean(
                 idCardInfo?.name?.text,
                 idCardInfo?.idcardNumber?.text,
                 frontImage,
                 backImage,
                 birthday,
-                KYCInfoBean.InfoBean(
+                InfoBean(
                     idCardInfo?.name?.text,
                     idCardInfo?.gender?.text,
                     idCardInfo?.nationality?.text,

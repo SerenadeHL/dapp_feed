@@ -1,7 +1,10 @@
 package com.dong.dapp.network.api
 
+import com.dong.dapp.bean.login.RequestLoginBean
+import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.network.BaseResponse
 import io.reactivex.Observable
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -19,27 +22,15 @@ interface LoginApi {
      * @param areaCode 手机区号
      */
     @POST("public/sms/sendcode")
-    @FormUrlEncoded
-    fun getVerifyCode(
-        @Field("target") target: String,
-        @Field("type") type: Int,
-        @Field("area_code") areaCode: String
-    ): Observable<BaseResponse>
+    fun getVerifyCode(@Body requestBean: RequestVerifyCodeBean): Observable<BaseResponse>
 
 
     /**
      * 登录
      * @param verifyCode 验证码
      * @param fp getVerifyCode接口返回数据
-     * @param registered getVerifyCode接口返回数据
-     * @param from 固定为2
+     * @param invitation_code 邀请码
      */
     @POST("/public/user/register")
-    @FormUrlEncoded
-    fun login(
-        @Field("verification_code") verifyCode: String,
-        @Field("fp") fp: String,
-        @Field("registered") registered: String,
-        @Field("from") from: Int
-    ): Observable<BaseResponse>
+    fun login(@Body requestBean: RequestLoginBean): Observable<BaseResponse>
 }

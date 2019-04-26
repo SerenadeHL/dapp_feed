@@ -1,16 +1,26 @@
 package com.dong.dapp.network
 
+import android.content.res.Resources
+import android.util.DisplayMetrics
+import com.dong.dapp.bean.areacode.ResultAreaCodeBean
+import com.dong.dapp.bean.gamesquare.RequestDAppListBean
+import com.dong.dapp.bean.gamesquare.ResultDAppListBean
 import com.dong.dapp.bean.kyc.*
-import com.dong.dapp.bean.login.LoginBean
-import com.dong.dapp.bean.login.VerifyCodeBean
+import com.dong.dapp.bean.login.RequestLoginBean
+import com.dong.dapp.bean.login.ResultLoginBean
+import com.dong.dapp.bean.login.ResultVerifyCodeBean
+import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.bean.wallet.*
 import com.dong.dapp.extensions.decrypt
 import com.dong.dapp.network.api.*
+import com.dong.dapp.utils.AssetsUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
+import me.serenadehl.base.utils.app.AppManager
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.util.*
 
 /**
  * 作者：Serenade
@@ -26,10 +36,11 @@ object DAppRequest {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    fun getDApps(page: Int, pageSize: Int): Observable<ProjectListBean?> {
+    fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppListBean?> {
+        val requestBean = RequestDAppListBean(page, pageSize)
         return RetrofitHelper.create(CommonApi::class.java)
-            .getDApps(page, pageSize)
-            .decrypt<ProjectListBean?>()
+            .getDAppList(requestBean)
+            .decrypt<ResultDAppListBean?>()
             .async()
     }
 
@@ -53,10 +64,11 @@ object DAppRequest {
      * @param phone 手机号
      * @param areaCode 区号
      */
-    fun getVerifyCode(phone: String, areaCode: String): Observable<VerifyCodeBean?> {
+    fun getVerifyCode(phone: String, areaCode: String): Observable<ResultVerifyCodeBean?> {
+        val requestBean = RequestVerifyCodeBean(0, phone, areaCode)
         return RetrofitHelper.create(LoginApi::class.java)
-            .getVerifyCode(phone, 0, areaCode)
-            .decrypt<VerifyCodeBean?>()
+            .getVerifyCode(requestBean)
+            .decrypt<ResultVerifyCodeBean?>()
             .async()
     }
 
@@ -64,13 +76,25 @@ object DAppRequest {
      * 登录
      * @param verifyCode 验证码
      * @param fp getVerifyCode接口返回数据
-     * @param registered getVerifyCode接口返回数据
+     * @param invitationCode 邀请码
      */
-    fun login(verifyCode: String, fp: String, registered: String): Observable<LoginBean?> {
+    fun login(verifyCode: String, fp: String, invitationCode: String): Observable<ResultLoginBean?> {
+        val requestBean = RequestLoginBean(verifyCode, fp, invitationCode)
         return RetrofitHelper.create(LoginApi::class.java)
-            .login(verifyCode, fp, registered, 2)
-            .decrypt<LoginBean?>()
+            .login(requestBean)
+            .decrypt<ResultLoginBean?>()
             .async()
+    }
+
+    /**
+     * 获取
+     */
+    fun getAreaCode():Observable<ResultAreaCodeBean?>{
+        return Observable.create{
+
+            AppManager.instance.currentActivity.applicationContext.resources.configuration.locale
+            AssetsUtils.getAssets("")
+        }
     }
 
 

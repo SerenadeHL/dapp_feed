@@ -10,24 +10,32 @@ object Constant {
     const val USER_INFO = "user_info"
     const val TOKEN = "token"
 
-    const val REQUEST_ID = "request_id"
+    //======================请求头中固定参数======================
+    const val REQUEST_ID = "RequestId"
     const val AUTHORIZATION = "Authorization"
-    const val REQUEST_VERSION = "req_ver"
-    const val LANGUAGE = "lang"
-    const val TERMINAL = "terminal"
-    const val TMID = "tmid"
-    const val APP_INFO = "app_info"
+    const val REQUEST_VERSION = "ReqVer"
+    const val LANGUAGE = "Lang"
+    const val TERMINAL = "Terminal"
+    const val TMID = "Tmid"
+    const val APP_INFO = "AppInfo"
+    const val OS = "android"
 
-    const val TEXT = "text"
-    const val HEX = "hex"
 
+    const val CN = "cn"
+    const val EN = "en"
+
+    //======================加密请求参数======================
     const val API_VERSION_NAME = "version"
     const val API_TYPE_NAME = "type"
     const val API_DATA_NAME = "data"
     const val API_VERSION = 1
     const val API_TYPE = 0
 
+    //======================Tron参数======================
+    const val TEXT = "text"
+    const val HEX = "hex"
 
-    const val CN = "cn"
-    const val EN = "en"
+    //======================区号======================
+    const val AREA_CODE = "area_code"
+    const val AREA_CODE_CN = "0086"
 }

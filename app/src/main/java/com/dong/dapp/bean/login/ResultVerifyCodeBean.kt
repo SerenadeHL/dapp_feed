@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-12 18:07:27
  */
-data class VerifyCodeBean(
-    @SerializedName("fp") var fp: String?,
-    @SerializedName("registered") var registered: String?
-): BaseBean()
+data class ResultVerifyCodeBean(
+    @SerializedName("fp") val fp: String?,
+    @SerializedName("registered") val registered: String?
+) : BaseBean()

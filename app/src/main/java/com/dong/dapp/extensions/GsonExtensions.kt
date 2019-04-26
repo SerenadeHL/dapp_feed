@@ -2,6 +2,7 @@ package com.dong.dapp.extensions
 
 import com.dong.dapp.bean.BaseBean
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 /**
  * 作者：Serenade
@@ -9,21 +10,25 @@ import com.google.gson.Gson
  * 创建时间：2019-04-11 16:34:30
  */
 
+fun getGson():Gson{
+    return GsonBuilder().disableHtmlEscaping().create()
+}
+
 inline fun <reified T> String.fromJson(clazz: Class<T>): T? {
     if (!isJson()) return null
-    return Gson().fromJson(this, clazz)
+    return getGson().fromJson(this, clazz)
 }
 
 inline fun BaseBean.toJson(): String {
-    return Gson().toJson(this)
+    return getGson().toJson(this)
 }
 
 inline fun List<*>.toJson(): String {
-    return Gson().toJson(this)
+    return getGson().toJson(this)
 }
 
 inline fun Map<*, *>.toJson(): String {
-    return Gson().toJson(this)
+    return getGson().toJson(this)
 }
 
 inline fun String.isJson(): Boolean {

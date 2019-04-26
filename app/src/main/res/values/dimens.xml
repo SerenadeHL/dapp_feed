@@ -45,6 +45,14 @@
     <dimen name="dp_main_bottom_tab_icon_height">25dp</dimen>
     <dimen name="dp_main_bottom_tab_title_margin_top">4dp</dimen>
 
+    <!--LoginActivity-->
+    <dimen name="dp_down_arrow_margin_start">7dp</dimen>
+    <dimen name="dp_phone_number_margin_start">10dp</dimen>
+    <dimen name="dp_input_vertical_padding">13dp</dimen>
+    <dimen name="dp_input_margin_top">6dp</dimen>
+    <dimen name="dp_invitation_code_margin_start">13dp</dimen>
+    <dimen name="dp_login_margin_top">24dp</dimen>
+    <dimen name="dp_agreement_margin_bottom">24dp</dimen>
 
     <!--GameSquareFragment-->
     <dimen name="dp_game_square_announcement_image_margin_start">13dp</dimen>

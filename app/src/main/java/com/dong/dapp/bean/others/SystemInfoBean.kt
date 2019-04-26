@@ -1,17 +1,18 @@
 package com.dong.dapp.bean.others
 
 import com.dong.dapp.bean.BaseBean
+import com.google.gson.annotations.SerializedName
 
 data class SystemInfoBean(
-    var os: String,
-    var os_ver: String,
-    var app_ver: String,
-    var dist: String,
-    var imei: String,
-    var mac_addr: String,
-    var network: String,
-    var screen_width: String,
-    var screen_height: String,
-    var device_brand: String,
-    var device_model: String
+    @SerializedName("os") var os: String,
+    @SerializedName("os_ver") var osVer: String,
+    @SerializedName("app_ver") var appVer: String,
+    @SerializedName("dist") var dist: String,
+    @SerializedName("imei") var imei: String,
+    @SerializedName("mac_addr") var macAddr: String,
+    @SerializedName("network") var network: String,
+    @SerializedName("screen_width") var screenWidth: String,
+    @SerializedName("screen_height") var screenHeight: String,
+    @SerializedName("device_brand") var deviceBrand: String,
+    @SerializedName("device_model") var deviceModel: String
 ) : BaseBean()

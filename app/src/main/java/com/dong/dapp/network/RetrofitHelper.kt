@@ -1,6 +1,7 @@
 package com.dong.dapp.network
 
 import com.dong.dapp.DAppApplication
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -14,8 +15,8 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitHelper {
     private const val DEFAULT_TIMEOUT = 10L
-    private const val BASE_URL_RELEASE = " https://dappapi.axonomy.pro/"
-    private const val BASE_URL_DEBUG = " https://dappapi.axonomy.pro/"
+    private const val BASE_URL_RELEASE = "https://dappapi.axonomy.pro/"
+    private const val BASE_URL_DEBUG = "https://dappapi.axonomy.pro/"
 
     private val mRetrofit: Retrofit by lazy {
         val client = OkHttpClient.Builder()

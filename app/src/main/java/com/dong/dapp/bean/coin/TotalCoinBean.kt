@@ -1,5 +1,6 @@
 package com.dong.dapp.bean.coin
 
+import android.os.Parcelable
 import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -15,4 +16,4 @@ data class TotalCoinBean(
     @SerializedName("time") val time: String,
     @SerializedName("status") val status: String,
     @SerializedName("money") val money: String
-) : BaseBean()
+) : BaseBean(), Parcelable

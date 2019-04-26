@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
+import com.dong.dapp.bean.me.OptionBean
 import com.dong.dapp.ui.activity.SettingsActivity
 import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
@@ -68,7 +69,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
     private fun createOptions(): List<MeBean> {
         return listOf(
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_user,
                     "23824734790000",
                     "未实名",
@@ -78,7 +79,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 )
             ),
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_active,
                     "邀请好友",
                     "",
@@ -89,7 +90,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             ),
             MeBean(true, null),
             MeBean(
-                false, MeBean.OptionBean(
+                false,OptionBean(
                     R.mipmap.me_sign,
                     "签到领金币",
                     "",
@@ -100,7 +101,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             ),
             MeBean(true, null),
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_my_cash,
                     "我的现金资产",
                     "今日收益：￥23.56",
@@ -110,7 +111,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 )
             ),
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_my_coin,
                     "我的金币资产",
                     "今日收益：￥20.56",
@@ -121,7 +122,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             ),
             MeBean(true, null),
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_customer,
                     "联系客服",
                     "",
@@ -131,7 +132,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 )
             ),
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_about_us,
                     "关于我们",
                     "",
@@ -141,7 +142,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 )
             ),
             MeBean(
-                false, MeBean.OptionBean(
+                false, OptionBean(
                     R.mipmap.me_settings,
                     "设置",
                     "",

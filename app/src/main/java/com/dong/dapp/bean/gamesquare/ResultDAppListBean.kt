@@ -1,10 +1,10 @@
-package com.dong.dapp.bean.wallet
+package com.dong.dapp.bean.gamesquare
 
 import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class ProjectListBean(
+data class ResultDAppListBean(
     @SerializedName("items") var items: ArrayList<Item>?,
     @SerializedName("page_size") var pageSize: Int,
     @SerializedName("page") var page: Int,

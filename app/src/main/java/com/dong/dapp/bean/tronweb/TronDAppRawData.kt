@@ -1,5 +1,6 @@
 package com.dong.dapp.bean.tronweb
 
+import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 data class TronDAppRawData(
@@ -9,4 +10,4 @@ data class TronDAppRawData(
     @SerializedName("expiration") var expiration: Long = 0,
     @SerializedName("fee_limit") var feeLimit: Int = 0,
     @SerializedName("timestamp") var timestamp: Long = 0
-)
+) : BaseBean()

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <!--任务卡片顶栏颜色-->
+    <color name="colorPrimary">#1B6EDB</color>
+    <color name="colorPrimaryDark">#1B6EDB</color>
+    <!--EditText游标颜色-->
+    <color name="colorAccent">#1B6EDB</color>
 
-    
+
     <!--主题色-->
     <color name="C1">#1B6EDB</color>
 
@@ -34,4 +36,5 @@
     <color name="color_FF6B00">#FF6B00</color>
     <color name="color_FFF0E5">#FFF0E5</color>
     <color name="color_E8F2FF">#E8F2FF</color>
+    <color name="color_9B9B9B">#9B9B9B</color>
 </resources>
