@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.dong.dapp.R
 import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
+import com.dong.dapp.ui.mvp.web.WebActivity
 import kotlinx.android.synthetic.main.app_recycle_item_game_square.view.*
 import kotlinx.android.synthetic.main.fragment_game_square.view.*
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
@@ -47,16 +48,19 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         mRootView.cl_dapp1.iv_logo.setImageResource(R.mipmap.ic_launcher)
         mRootView.cl_dapp1.tv_description.text = "妖精种族，重磅来袭！"
         mRootView.cl_dapp1.tv_playing_count.text = "2192人正在玩"
+        mRootView.cl_dapp1.setOnClickListener { WebActivity.start(this@GameSquareFragment,"asd") }
 
         mRootView.cl_dapp2.tv_name.text = "Tronjoy"
         mRootView.cl_dapp2.iv_logo.setImageResource(R.mipmap.ic_launcher)
         mRootView.cl_dapp2.tv_description.text = "构筑卡牌 探索奇妙梦境世界"
         mRootView.cl_dapp2.tv_playing_count.text = "4556人正在玩"
+        mRootView.cl_dapp2.setOnClickListener { WebActivity.start(this@GameSquareFragment,"asd") }
 
         mRootView.cl_dapp3.tv_name.text = "Traps"
         mRootView.cl_dapp3.iv_logo.setImageResource(R.mipmap.ic_launcher)
         mRootView.cl_dapp3.tv_description.text = "独立RUIUIY竞技类游戏"
         mRootView.cl_dapp3.tv_playing_count.text = "354人正在玩"
+        mRootView.cl_dapp3.setOnClickListener { WebActivity.start(this@GameSquareFragment,"asd") }
 
 
         mRootView.iv_first_charge.setOnClickListener { toast("限时首充特惠") }

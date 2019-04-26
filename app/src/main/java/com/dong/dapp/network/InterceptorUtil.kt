@@ -20,6 +20,7 @@ import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.BufferedSink
 import okio.ByteString
+import org.json.JSONObject
 import java.nio.charset.Charset
 import java.util.*
 
@@ -45,32 +46,9 @@ object InterceptorUtil {
             var url = oldRequest.url()
 
             if (method == "POST") {
-                requestBody?.writeTo(object : BaseSink() {
-                    override fun write(byteString: ByteString): BufferedSink {
-                        //获取原始json数据
-                        val params = byteString.string(Charset.forName("utf-8"))
-                        "原始数据---------> $params".log()
-                        val encryptedParams = encryptParams(params)
-                        "加密数据---------> $encryptedParams".log()
-                        val mediaType = MediaType.parse("application/json; charset=utf-8")
-                        val json = generateNewParams(encryptedParams, method)
-                        "提交参数---------> $json".log()
-                        requestBody = RequestBody.create(mediaType, json)
-                        return this
-                    }
-                })
+                requestBody = dealPost(requestBody)
             } else if (method == "GET") {
-                val params = dealGetParams(url)
-                "原始数据---------> $params".log()
-                val encryptedParams = encryptParams(params)
-                "加密数据---------> $encryptedParams".log()
-                val query = generateNewParams(encryptedParams, method)
-                "提交参数---------> $query".log()
-                url = url.newBuilder()
-                    .scheme(url.scheme())
-                    .host(url.host())
-                    .query(query)
-                    .build()
+                url = dealGet(url)
             }
 
             val systemInfoBean = SystemInfoBean(
@@ -91,7 +69,6 @@ object InterceptorUtil {
             val newRequest = oldRequest.newBuilder()
                 .method(oldRequest.method(), requestBody)
                 .url(url)
-                .addHeader(Constant.AUTHORIZATION, SPUtil.getString(Constant.TOKEN, ""))
                 .addHeader(Constant.REQUEST_ID, UUID.randomUUID().toString().trim().replace("-".toRegex(), ""))
                 .addHeader(Constant.REQUEST_VERSION, "1")
                 .addHeader(Constant.LANGUAGE, Constant.CN)
@@ -116,19 +93,75 @@ object InterceptorUtil {
     }
 
     /**
+     * 处理POST请求流程
+     */
+    private fun dealPost(requestBody: RequestBody?): RequestBody? {
+        var body: RequestBody? = null
+        requestBody?.writeTo(object : BaseSink() {
+            override fun write(byteString: ByteString): BufferedSink {
+                //获取原始json数据
+                val params = byteString.string(Charset.forName("utf-8"))
+                "原始数据---------> $params".log()
+                //添加Token
+                val paramsWithToken = addToken(params)
+                "添加Token后的数据---------> $paramsWithToken".log()
+                val encryptedParams = encryptParams(paramsWithToken)
+                "加密数据---------> $encryptedParams".log()
+                val mediaType = MediaType.parse("application/json; charset=utf-8")
+                val json = generateNewParams(encryptedParams, false)
+                "提交参数---------> $json".log()
+                body = RequestBody.create(mediaType, json)
+                return this
+            }
+        })
+        return body
+    }
+
+    /**
+     * 处理GET请求流程
+     */
+    private fun dealGet(url: HttpUrl): HttpUrl {
+        val params = dealGetParams(url)
+        "原始数据---------> $params".log()
+        //添加Token
+        val paramsWithToken = addToken(params)
+        "添加Token后的数据---------> $paramsWithToken".log()
+        val encryptedParams = encryptParams(paramsWithToken)
+        "加密数据---------> $encryptedParams".log()
+        val query = generateNewParams(encryptedParams, true)
+        "提交参数---------> $query".log()
+        return url.newBuilder()
+            .scheme(url.scheme())
+            .host(url.host())
+            .query(query)
+            .build()
+    }
+
+    /**
+     * 添加Token
+     */
+    private fun addToken(params: String): String {
+        val token = SPUtil.getString(Constant.TOKEN, "")
+        return if (token.isEmpty())
+            params
+        else
+            JSONObject(params).put(Constant.TOKEN, token).toString()
+    }
+
+    /**
      * GET请求参数拼接RequestId
      */
     private fun dealGetParams(url: HttpUrl): String {
-        val map = mutableMapOf<String, String>()
+        val jsonObject = JSONObject()
         url.queryParameterNames().forEach {
             try {
                 //TODO 寻找更好的解决办法
-                map[it] = url.queryParameterValues(it)[0]
+                jsonObject.put(it, url.queryParameterValues(it)[0])
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
-        return map.toJson()
+        return jsonObject.toString()
     }
 
     /**
@@ -143,16 +176,14 @@ object InterceptorUtil {
     /**
      * 生成新的请求参数
      */
-    private fun generateNewParams(encryptedParams: String, method: String): String {
-        return when (method) {
-            "GET" -> "${Constant.API_DATA_NAME}=$encryptedParams&" +
-                    "${Constant.API_VERSION_NAME}=${Constant.API_VERSION}"
-            "POST" -> mapOf(
-                Constant.API_VERSION_NAME to Constant.API_VERSION,
-                Constant.API_TYPE_NAME to Constant.API_TYPE,
-                Constant.API_DATA_NAME to encryptedParams
-            ).toJson()
-            else -> ""
-        }
+    private fun generateNewParams(encryptedParams: String, isGet: Boolean): String {
+        return if (isGet)
+            "${Constant.API_DATA_NAME}=$encryptedParams&${Constant.API_VERSION_NAME}=${Constant.API_VERSION}"
+        else
+            JSONObject()
+                .put(Constant.API_VERSION_NAME, Constant.API_VERSION)
+                .put(Constant.API_TYPE_NAME, Constant.API_TYPE)
+                .put(Constant.API_DATA_NAME, encryptedParams)
+                .toString()
     }
 }

@@ -18,6 +18,9 @@ object RetrofitHelper {
     private const val BASE_URL_RELEASE = "https://dappapi.axonomy.pro/"
     private const val BASE_URL_DEBUG = "https://dappapi.axonomy.pro/"
 
+//    private const val BASE_URL_RELEASE = "http://192.168.216.172:9129/"
+//    private const val BASE_URL_DEBUG = "http://192.168.216.172:9129/"
+
     private val mRetrofit: Retrofit by lazy {
         val client = OkHttpClient.Builder()
             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)

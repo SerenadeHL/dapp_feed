@@ -12,10 +12,13 @@ import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.bean.wallet.*
 import com.dong.dapp.extensions.decrypt
+import com.dong.dapp.extensions.fromJson
+import com.dong.dapp.extensions.fromJsonToList
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
+import me.serenadehl.base.extensions.log
 import me.serenadehl.base.utils.app.AppManager
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -87,14 +90,25 @@ object DAppRequest {
     }
 
     /**
-     * 获取
+     * 获取各个国家区号
      */
-    fun getAreaCode():Observable<ResultAreaCodeBean?>{
-        return Observable.create{
-
-            AppManager.instance.currentActivity.applicationContext.resources.configuration.locale
-            AssetsUtils.getAssets("")
+    fun getAreaCode(): Observable<List<ResultAreaCodeBean>?> {
+        val observable: Observable<List<ResultAreaCodeBean>?> = Observable.create {
+            val fileName = if (Locale.getDefault().country == "CN") {
+                "country_cn.json"
+            } else {
+                "country_en.json"
+            }
+            val json = AssetsUtils.getAssets(fileName)
+            try {
+                val data = json.fromJsonToList<ResultAreaCodeBean>()
+                it.onNext(data!!)
+                it.onComplete()
+            } catch (e: Exception) {
+                it.onError(e)
+            }
         }
+        return observable.async()
     }
 
 

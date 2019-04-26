@@ -3,6 +3,7 @@ package com.dong.dapp.extensions
 import com.dong.dapp.bean.BaseBean
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 
 /**
  * 作者：Serenade
@@ -17,6 +18,11 @@ fun getGson():Gson{
 inline fun <reified T> String.fromJson(clazz: Class<T>): T? {
     if (!isJson()) return null
     return getGson().fromJson(this, clazz)
+}
+
+inline fun <reified T> String.fromJsonToList(): List<T>? {
+    if (!isJson()) return null
+    return getGson().fromJson(this, object :TypeToken<List<T>>(){}.type)
 }
 
 inline fun BaseBean.toJson(): String {

@@ -12,7 +12,6 @@ object Constant {
 
     //======================请求头中固定参数======================
     const val REQUEST_ID = "RequestId"
-    const val AUTHORIZATION = "Authorization"
     const val REQUEST_VERSION = "ReqVer"
     const val LANGUAGE = "Lang"
     const val TERMINAL = "Terminal"

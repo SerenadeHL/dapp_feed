@@ -25,6 +25,9 @@
     <string name="login">登录</string>
     <string name="left_seconds">%s 秒</string>
 
+    <!--选择区号-->
+    <string name="choose_area_code">选择区号</string>
+
 
     <!--游戏广场-->
     <string name="play_count">%s人正在玩</string>
