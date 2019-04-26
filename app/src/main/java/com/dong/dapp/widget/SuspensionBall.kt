@@ -1,8 +1,11 @@
 package com.dong.dapp.widget
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.os.Handler
 import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -28,67 +31,22 @@ class SuspensionBall : AppCompatImageView {
     private var mTouchY = 0F//ACTION_DOWN的y
     private var mTouchRawX = 0F//ACTION_DOWN的屏幕X坐标
     private var mTouchRawY = 0F//ACTION_DOWN的屏幕Y坐标
-    private val mStatus = STATUS_HIDE//状态，默认是收起状态
+    private var mStatus = STATUS_HIDE//状态，默认是收起状态
     private val mAlpha = 0.5F//收起状态下透明度
-    private val mAnimatorDuration = 500L//收起和显示动画时常
+    private val mAnimatorDuration = 300L//收起和显示动画时常
+    private val mShowWaitTime = 1000L//显示等待时常，超过变为收起状态
 
     private lateinit var mListener: Listener//显示状态下点击监听
 
+    private val mHandler = Handler()
 
-    //横向显示动画
-    private val mHorizontalShowAnimatorSet by lazy {
-        AnimatorSet()
-            .setDuration(mAnimatorDuration)
-            .apply {
-                playTogether(
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "translationX", -mWidth / 2F, 0F),
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "alpha", mAlpha, 1F)
-                )
-            }
-    }
-
-    //纵向显示动画
-    private val mVerticalShowAnimatorSet by lazy {
-        AnimatorSet()
-            .setDuration(mAnimatorDuration)
-            .apply {
-                playTogether(
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "translationY", -mHeight / 2F, 0F),
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "alpha", mAlpha, 1F)
-                )
-            }
-    }
-
-    //横向隐藏动画
-    private val mHorizontalHideAnimatorSet by lazy {
-        AnimatorSet()
-            .setDuration(mAnimatorDuration)
-            .apply {
-                playTogether(
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "translationX", 0F, -mWidth / 2F),
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "alpha", 1F, mAlpha)
-                )
-            }
-    }
-
-    //纵向隐藏动画
-    private val mVerticalHideAnimatorSet by lazy {
-        AnimatorSet()
-            .setDuration(mAnimatorDuration)
-            .apply {
-                playTogether(
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "translationY", 0F, -mHeight / 2F),
-                    ObjectAnimator.ofFloat(this@SuspensionBall, "alpha", 1F, mAlpha)
-                )
-            }
-    }
+    private val mFadeOutAnimator = ObjectAnimator.ofFloat(this, "alpha", 1F, mAlpha)
+    private val mShowInAnimator = ObjectAnimator.ofFloat(this, "alpha", mAlpha, 1F)
 
     companion object {
-        const val HIDE = 1//隐藏
-        const val GO_EDGE = 2//移动到边界
-
-        const val STATUS_HIDE = 3//收起状态
-        const val STATUS_SHOW = 4//显示状态
+        const val STATUS_HIDE = 1//收起状态
+        const val STATUS_SHOW = 2//显示状态
+        const val STATUS_MOVING = 3//移动状态
     }
 
     constructor(context: Context) : super(context)
@@ -105,13 +63,22 @@ class SuspensionBall : AppCompatImageView {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        mWidth = measuredWidth
-        mHeight = measuredHeight
+        if (mWidth == 0 && measuredWidth != 0) {
+            mWidth = measuredWidth
+            mHeight = measuredHeight
+            hide()
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        //正在移动到边界的时候不允许触摸
+        if (mStatus == STATUS_MOVING) return true
+
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
+                //移除延迟收起动画
+                mHandler.removeCallbacksAndMessages(null)
+
                 mTouchX = event.x
                 mTouchY = event.y
                 mTouchRawX = event.rawX
@@ -145,13 +112,15 @@ class SuspensionBall : AppCompatImageView {
                             if (::mListener.isInitialized) mListener.onClick()
                         }
                         STATUS_HIDE -> {//收起状态下点击变成显示状态
-                            changeStatus(true)
+                            show()
                         }
                     }
+                    delayHide()
                 } else {
+                    if (mStatus == STATUS_HIDE) return true//如果是收起状态，不响应拖拽事件
+
                     val viewCenterX = x + mWidth / 2F
                     val screenCenterX = mScreenWidth / 2F
-
                     if (viewCenterX < screenCenterX) {
                         //左
                         move(-x)
@@ -167,36 +136,69 @@ class SuspensionBall : AppCompatImageView {
     }
 
     /**
-     * 切换显示和收起状态
+     * 收起
      */
-    private fun changeStatus(show: Boolean) {
-        when {
-            x < 0F -> mHorizontalShowAnimatorSet.start()
-            x == 0F -> mHorizontalHideAnimatorSet.start()
-            y < 0F -> mVerticalShowAnimatorSet.start()
-            y == 0F -> mVerticalHideAnimatorSet.start()
-        }
+    private fun hide() {
+        mStatus = STATUS_MOVING
+        val animator = if (x < mWidth / 2F)
+            ObjectAnimator.ofFloat(this, "translationX", x, -mWidth / 2F)
+        else
+            ObjectAnimator.ofFloat(this, "translationX", x, mScreenWidth - mWidth / 2F)
+        val animatorSet = AnimatorSet().setDuration(mAnimatorDuration)
+        animatorSet.playTogether(animator, mFadeOutAnimator)
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                mStatus = STATUS_HIDE
+            }
+        })
+        animatorSet.start()
+    }
+
+    /**
+     * 延迟收起
+     */
+    private fun delayHide() {
+        mHandler.postDelayed({
+            hide()
+        }, mShowWaitTime)
+    }
+
+    /**
+     * 显示
+     */
+    private fun show() {
+        mStatus = STATUS_MOVING
+        val animator = if (x < 0)
+            ObjectAnimator.ofFloat(this, "translationX", x, 0F)
+        else
+            ObjectAnimator.ofFloat(this, "translationX", x, (mScreenWidth - mWidth).toFloat())
+        val animatorSet = AnimatorSet().setDuration(mAnimatorDuration)
+        animatorSet.playTogether(animator, mShowInAnimator)
+        animatorSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                mStatus = STATUS_SHOW
+            }
+        })
+        animatorSet.start()
     }
 
     /**
      * 移动悬浮球到边界
      */
     private fun move(xDistance: Float) {
-        val animator = ObjectAnimator.ofFloat(this@SuspensionBall, "translationX", x, x + xDistance)
+        mStatus = STATUS_MOVING
+        ObjectAnimator.ofFloat(this, "translationX", x, x + xDistance)
             .apply {
                 interpolator = AccelerateInterpolator()
                 duration = mAnimatorDuration
+                addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator?) {
+                        mStatus = STATUS_SHOW
+                        delayHide()
+                    }
+                })
+                start()
             }
-        AnimatorSet().apply {
-            interpolator = AccelerateInterpolator()
-            playSequentially(animator, mHorizontalHideAnimatorSet)
-            start()
-        }
-    }
-
-
-    private fun generateHorizontalAnimator() {
-
     }
 
     /**

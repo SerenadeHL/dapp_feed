@@ -79,11 +79,11 @@ class MainActivity : BaseActivity() {
 //                it?.log()
 //            }
 
-//        WebActivity.start(this,"asd")
-        DAppRequest.getVerifyCode("17600697395", "0086")
-            .subscribe {
-                it?.log()
-            }
+        WebActivity.start(this,"asd")
+//        DAppRequest.getVerifyCode("17600697395", "0086")
+//            .subscribe {
+//                it?.log()
+//            }
     }
 
     /**
