@@ -78,6 +78,7 @@ class SuspensionBall : AppCompatImageView {
             MotionEvent.ACTION_DOWN -> {
                 //移除延迟收起动画
                 mHandler.removeCallbacksAndMessages(null)
+                "移除延迟收起动画".log()
 
                 mTouchX = event.x
                 mTouchY = event.y
@@ -110,12 +111,13 @@ class SuspensionBall : AppCompatImageView {
                     when (mStatus) {
                         STATUS_SHOW -> {//显示状态下点击触发监听
                             if (::mListener.isInitialized) mListener.onClick()
+
+                            delayHide()
                         }
                         STATUS_HIDE -> {//收起状态下点击变成显示状态
                             show()
                         }
                     }
-                    delayHide()
                 } else {
                     if (mStatus == STATUS_HIDE) return true//如果是收起状态，不响应拖拽事件
 
@@ -158,6 +160,7 @@ class SuspensionBall : AppCompatImageView {
      * 延迟收起
      */
     private fun delayHide() {
+        "延迟收起".log()
         mHandler.postDelayed({
             hide()
         }, mShowWaitTime)
@@ -167,6 +170,7 @@ class SuspensionBall : AppCompatImageView {
      * 显示
      */
     private fun show() {
+        "显示".log()
         mStatus = STATUS_MOVING
         val animator = if (x < 0)
             ObjectAnimator.ofFloat(this, "translationX", x, 0F)
@@ -177,6 +181,7 @@ class SuspensionBall : AppCompatImageView {
         animatorSet.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
                 mStatus = STATUS_SHOW
+                delayHide()
             }
         })
         animatorSet.start()
