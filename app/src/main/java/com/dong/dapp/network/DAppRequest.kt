@@ -3,6 +3,7 @@ package com.dong.dapp.network
 import android.content.res.Resources
 import android.util.DisplayMetrics
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
+import com.dong.dapp.bean.areacode.ResultAreaCodeItemBean
 import com.dong.dapp.bean.gamesquare.RequestDAppListBean
 import com.dong.dapp.bean.gamesquare.ResultDAppListBean
 import com.dong.dapp.bean.kyc.*
@@ -16,6 +17,8 @@ import com.dong.dapp.extensions.fromJson
 import com.dong.dapp.extensions.fromJsonToList
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
 import me.serenadehl.base.extensions.log
@@ -101,7 +104,13 @@ object DAppRequest {
             }
             val json = AssetsUtils.getAssets(fileName)
             try {
-                val data = json.fromJsonToList<ResultAreaCodeBean>()
+                //TODO 错误
+//                val data = json.fromJsonToList<ResultAreaCodeBean>()
+                val data :List<ResultAreaCodeBean> =  Gson().fromJson(json, object : TypeToken<List<ResultAreaCodeBean>>(){}.type)
+                "areaCo222de---------> $data".log()
+                val total = arrayListOf<ResultAreaCodeItemBean>()
+                data?.forEach { total.addAll(it.items) }
+                "total---------> $total".log()
                 it.onNext(data!!)
                 it.onComplete()
             } catch (e: Exception) {

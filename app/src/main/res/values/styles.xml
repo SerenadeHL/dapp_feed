@@ -94,4 +94,13 @@
         <item name="android:includeFontPadding">false</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
     </style>
+
+    <!--ChooseAreaCodeActivity-->
+    <declare-styleable name="SideBar">
+        <attr name="text_size" format="dimension"/>
+        <attr name="default_color" format="color"/>
+        <attr name="chosen_color" format="color"/>
+        <attr name="default_background_color" format="color"/>
+        <attr name="touching_background_color" format="color"/>
+    </declare-styleable>
 </resources>

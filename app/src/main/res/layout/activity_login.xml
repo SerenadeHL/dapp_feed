@@ -23,8 +23,9 @@
             android:textColor="@color/C6"
             android:id="@+id/tv_area_code"
             tools:text="+86"
+            android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:layout_height="wrap_content"/>
+            android:layout_height="@dimen/match_constraint"/>
 
     <ImageView
             android:id="@+id/iv_down_arrow"

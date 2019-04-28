@@ -15,13 +15,11 @@ import com.dong.dapp.ui.mvp.me.MeFragment
 import com.dong.dapp.ui.mvp.web.WebActivity
 import com.dong.dapp.utils.AssetsUtils
 import com.tbruyelle.rxpermissions2.RxPermissions
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.extensions.invisible
-import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.startActivity
-import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.*
 import java.util.*
 
 
@@ -102,6 +100,7 @@ class MainActivity : BaseActivity() {
                 setStatusBarBackgroundResource(R.drawable.g1_horizontal, false)
                 cl_title.setBackgroundResource(R.drawable.g1_horizontal)
                 tv_title.setTextColor(mC2)
+                v_header_divider.invisible()
 
                 tv_title.setText(R.string.title_game_square)
                 tv_game_icon.setTextColor(mC6)
@@ -115,6 +114,7 @@ class MainActivity : BaseActivity() {
                 setStatusBarColor(mC2, true)
                 cl_title.setBackgroundColor(mC2)
                 tv_title.setTextColor(mC6)
+                v_header_divider.visible()
 
                 tv_title.setText(R.string.title_me)
                 tv_game_icon.setTextColor(mB9BCCE)

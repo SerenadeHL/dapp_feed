@@ -14,4 +14,45 @@
              android:layout_height="wrap_content"
              android:layout_width="@dimen/match_constraint"/>
 
+    <android.support.v7.widget.RecyclerView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/C2"
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            android:id="@+id/rv_area_codes"
+            android:overScrollMode="never"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/match_constraint"/>
+
+    <com.dong.dapp.widget.SideBar
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/sb_side_bar"
+            android:paddingStart="@dimen/L6"
+            android:paddingEnd="@dimen/L6"
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            app:text_size="@dimen/F5"
+            app:default_color="@color/C1"
+            app:chosen_color="@color/C6"
+            app:touching_background_color="@color/C2"
+            app:default_background_color="@color/C2"
+            android:layout_height="@dimen/match_constraint"/>
+
+    <TextView
+            android:layout_width="@dimen/dp_text_dialog_width"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/C7"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/F1"
+            android:id="@+id/tv_dialog"
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            android:layout_height="@dimen/dp_text_dialog_height"/>
+
 </android.support.constraint.ConstraintLayout>

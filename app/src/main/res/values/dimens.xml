@@ -8,7 +8,6 @@
     <dimen name="F5">12sp</dimen>
     <dimen name="F6">10sp</dimen>
 
-
     <!--常用尺寸-->
     <dimen name="L1">15dp</dimen>
     <dimen name="L2">44dp</dimen>
@@ -19,25 +18,20 @@
     <dimen name="L7">10dp</dimen>
     <dimen name="L8">20dp</dimen>
 
-
     <!--ConstraintLayout的match_constraint-->
     <dimen name="match_constraint">0dp</dimen>
-
 
     <!--分割线粗细-->
     <dimen name="divider_size">0.5dp</dimen>
 
-
     <!--状态栏高度-->
     <dimen name="dp_status_bar_height">25dp</dimen>
-
 
     <!--右箭头尺寸-->
     <dimen name="right_arrow_width">12dp</dimen>
     <dimen name="right_arrow_height">12dp</dimen>
     <!--右箭头MarginEnd-->
     <dimen name="right_arrow_margin_end">13dp</dimen>
-
 
     <!--MainActivity-->
     <dimen name="dp_main_bottom_tab_padding_bottom">7dp</dimen>
@@ -53,6 +47,10 @@
     <dimen name="dp_invitation_code_margin_start">13dp</dimen>
     <dimen name="dp_login_margin_top">24dp</dimen>
     <dimen name="dp_agreement_margin_bottom">24dp</dimen>
+
+    <!--ChooseAreaCodeActivity-->
+    <dimen name="dp_text_dialog_width">140dp</dimen>
+    <dimen name="dp_text_dialog_height">140dp</dimen>
 
     <!--GameSquareFragment-->
     <dimen name="dp_game_square_announcement_image_margin_start">13dp</dimen>
@@ -83,17 +81,14 @@
     <dimen name="dp_game_square_first_charge_height">95dp</dimen>
     <dimen name="dp_game_square_first_charge_margin_bottom">17dp</dimen>
 
-
     <!--TransferActivity-->
     <dimen name="dp_transfer_question_mark_size">12dp</dimen>
     <dimen name="dp_transfer_question_mark_margin_start">7dp</dimen>
     <dimen name="dp_transfer_quota_margin_horizontal">4dp</dimen>
     <dimen name="dp_transfer_quota_margin_vertical">8dp</dimen>
 
-
     <!--TransferDetailActivity-->
     <dimen name="dp_transfer_detail_money_height">75dp</dimen>
-
 
     <!--TotalCoinCountActivity-->
     <dimen name="dp_total_coin_header_padding_bottom">29dp</dimen>
@@ -102,7 +97,6 @@
 
     <dimen name="dp_total_coin_item_title_margin_top">11dp</dimen>
     <dimen name="dp_total_coin_item_padding_bottom">12dp</dimen>
-
 
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>

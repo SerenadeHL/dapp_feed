@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tv_area_code"
+            android:background="@color/C2"
+            tools:text="中国大陆 +86"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/L7"
+            android:textSize="@dimen/F4"
+            android:textColor="@color/C6"
+            android:paddingEnd="@dimen/match_constraint"
+            android:layout_height="@dimen/L4"/>
+
+    <include
+            layout="@layout/divider"
+            android:layout_marginStart="@dimen/L7"
+            android:layout_height="@dimen/divider_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/v_divider"
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"/>
+</android.support.constraint.ConstraintLayout>

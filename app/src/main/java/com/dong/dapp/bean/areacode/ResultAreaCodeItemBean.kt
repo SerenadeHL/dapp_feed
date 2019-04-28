@@ -9,6 +9,6 @@ import com.google.gson.annotations.SerializedName
  * 创建时间：2019-04-26 19:17:25
  */
 data class ResultAreaCodeItemBean(
-    @SerializedName("code") var code: String,
-    @SerializedName("country") var country: String
+    @SerializedName("code") val code: String,
+    @SerializedName("country") val country: String
 ) : BaseBean()

@@ -27,4 +27,12 @@
             android:id="@+id/iv_back"
             android:layout_marginStart="@dimen/L1"
             android:layout_height="@dimen/L8"/>
+
+    <include layout="@layout/divider"
+             android:id="@+id/v_header_divider"
+             android:layout_width="@dimen/match_constraint"
+             android:layout_height="@dimen/divider_size"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintStart_toStartOf="parent"/>
 </android.support.constraint.ConstraintLayout>
