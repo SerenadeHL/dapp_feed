@@ -18,6 +18,7 @@ interface TronApi {
      * 获取Tron用户信息
      * @param env 线上环境为product
      */
+    //TODO 更改接口
     @POST("public/wallet/tron_userinfo")
     @FormUrlEncoded
     fun getTronUserInfo(@Field("env") env: String): Observable<BaseResponse>
@@ -29,6 +30,7 @@ interface TronApi {
      * @param type
      * @param env 线上环境为product
      */
+    //TODO 更改接口
     @POST("public/wallet/tron_sign")
     @FormUrlEncoded
     fun getTronSign(

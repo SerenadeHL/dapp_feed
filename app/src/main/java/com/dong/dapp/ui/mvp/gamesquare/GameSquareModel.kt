@@ -1,5 +1,8 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
+import com.dong.dapp.bean.gamesquare.ResultDAppListBean
+import com.dong.dapp.network.DAppRequest
+import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
 
 /**
@@ -10,4 +13,7 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
  */
 class GameSquareModel : MVPBaseModel(), IGameSquareModel {
 
+    override fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppListBean?> {
+        return DAppRequest.getDAppList(page, pageSize)
+    }
 }

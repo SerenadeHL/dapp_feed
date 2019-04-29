@@ -1,5 +1,7 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
+import com.dong.dapp.bean.gamesquare.ResultDAppListBean
+import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.IBaseView
 import me.serenadehl.base.base.mvpbase.IBasePresenter
 import me.serenadehl.base.base.mvpbase.IBaseModel
@@ -10,8 +12,16 @@ import me.serenadehl.base.base.mvpbase.IBaseModel
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-11 10:25:57
  */
-interface IGameSquareView : IBaseView
+interface IGameSquareView : IBaseView {
+    fun getDAppListSuccess(data: ResultDAppListBean?)
 
-interface IGameSquarePresenter : IBasePresenter
+    fun getDAppListFailed()
+}
 
-interface IGameSquareModel : IBaseModel
+interface IGameSquarePresenter : IBasePresenter {
+    fun getDAppList(page: Int, pageSize: Int)
+}
+
+interface IGameSquareModel : IBaseModel {
+    fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppListBean?>
+}

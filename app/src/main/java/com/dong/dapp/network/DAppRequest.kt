@@ -8,6 +8,9 @@ import com.dong.dapp.bean.login.RequestLoginBean
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.bean.login.RequestVerifyCodeBean
+import com.dong.dapp.bean.statistics.RequestEnterDAppBean
+import com.dong.dapp.bean.statistics.RequestExitDAppBean
+import com.dong.dapp.bean.statistics.ResultEnterDAppBean
 import com.dong.dapp.bean.wallet.*
 import com.dong.dapp.extensions.*
 import com.dong.dapp.network.api.*
@@ -54,6 +57,27 @@ object DAppRequest {
             .async()
     }
 
+    //=============================================统计接口=============================================
+    /**
+     * 进入DApp
+     */
+    fun enterDApp(pid: String): Observable<ResultEnterDAppBean?> {
+        val requestBean = RequestEnterDAppBean(pid)
+        return RetrofitHelper.create(StatisticsApi::class.java)
+            .enterDApp(requestBean)
+            .decrypt<ResultEnterDAppBean?>()
+            .async()
+    }
+
+    /**
+     * 退出DApp
+     */
+    fun exitDApp(id: String, action: List<Map<String, String>>) {
+        val requestBean = RequestExitDAppBean(id, action)
+        RetrofitHelper.create(StatisticsApi::class.java)
+            .exitDApp(requestBean)
+            .subscribe()
+    }
 
     //=============================================登录接口=============================================
 
@@ -165,8 +189,9 @@ object DAppRequest {
      * @param idNumber 身份证号
      */
     fun isIdCardNumberAvailable(idNumber: String): Observable<ResultIdCardNumberAvailableBean?> {
+        val info = RequestIdCardNumberAvailableBean(idNumber)
         return RetrofitHelper.create(KYCApi::class.java)
-            .isIdCardNumberAvailable(idNumber)
+            .isIdCardNumberAvailable(info)
             .decrypt<ResultIdCardNumberAvailableBean?>()
             .async()
     }

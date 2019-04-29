@@ -69,11 +69,12 @@
     <dimen name="dp_game_square_invite_width">111dp</dimen>
     <dimen name="dp_game_square_invite_height">27dp</dimen>
 
+    <dimen name="dp_divider_margin_start">100dp</dimen>
+
     <dimen name="sp_game_square_coin_text_size">25sp</dimen>
     <dimen name="sp_game_square_cash_text_size">25sp</dimen>
     <dimen name="sp_game_square_sign_text_size">13sp</dimen>
     <dimen name="sp_game_square_invite_text_size">13sp</dimen>
-
 
     <dimen name="dp_game_square_item_icon_width">75dp</dimen>
     <dimen name="dp_game_square_item_icon_height">75dp</dimen>
@@ -98,6 +99,10 @@
 
     <dimen name="dp_total_coin_item_title_margin_top">11dp</dimen>
     <dimen name="dp_total_coin_item_padding_bottom">12dp</dimen>
+
+    <!--KYCActivity-->
+    <dimen name="dp_id_card_label_margin_top">8dp</dimen>
+    <dimen name="dp_verify_margin_top">25dp</dimen>
 
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>

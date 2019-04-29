@@ -3,21 +3,21 @@ package com.dong.dapp.ui.mvp.web
 import android.app.Activity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
-import android.support.v4.app.Fragment
-import android.widget.LinearLayout
 import com.dong.dapp.DAppApplication
 import com.dong.dapp.R
+import com.dong.dapp.bean.statistics.ResultEnterDAppBean
 import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.save
 import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.DAppRequest
 import com.dong.dapp.utils.PopupWindowUtils
+import com.dong.dapp.utils.WebViewUtils
 import com.dong.dapp.widget.SuspensionBall
 import kotlinx.android.synthetic.main.activity_web.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.*
-import razerdp.basepopup.BasePopupWindow
 import wendu.dsbridge.DWebView
+
 
 /**
  * Web容器
@@ -26,16 +26,15 @@ import wendu.dsbridge.DWebView
  * 创建时间：2019-4-11 10:37:01
  */
 class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
-    private lateinit var mUrl: String
+    private lateinit var mUrl: String//DApp的id
+    private lateinit var mPid: String//DApp链接
     private lateinit var mWebView: DWebView
+    private lateinit var mId: String//用户行为id
+    private val mActions by lazy { mutableListOf<Map<String, String>>() }//用户行为
 
     companion object {
-        fun start(activity: Activity, url: String) {
-            activity.startActivity<WebActivity>("url" to url)
-        }
-
-        fun start(fragment: Fragment, url: String) {
-            fragment.startActivity<WebActivity>("url" to url)
+        fun start(activity: Activity, pid: String?, url: String?) {
+            activity.startActivity<WebActivity>("pid" to pid, "url" to url)
         }
     }
 
@@ -44,7 +43,8 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
     override fun createPresenter() = WebPresenter()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        mUrl = intent.getStringExtra("url")
+        mPid = intent.getStringExtra("pid") ?: ""
+        mUrl = intent.getStringExtra("url") ?: ""
 
         mWebView = (application as DAppApplication).getWebView()
         mRootView.addView(
@@ -54,6 +54,8 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
             )
         )
         mWebView.loadUrl(mUrl)
+
+        WebViewUtils.setDrawDuringWindowsAnimating(mWebView)
 
         sb_ball.setListener(object : SuspensionBall.Listener {
             override fun onClick() {
@@ -88,11 +90,21 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
     }
 
     override fun onDestroy() {
+        mPresenter.exitDApp(mId, mActions)
         mWebView.stopLoading()
+        mWebView.clearView()
+        mWebView.destroyDrawingCache()
         mWebView.loadUrl("about:blank")
         mWebView.clearHistory()
         mRootView.removeView(mWebView)
         super.onDestroy()
     }
 
+    override fun enterDAppSuccess(data: ResultEnterDAppBean?) {
+        mId = data?.id ?: ""
+    }
+
+    override fun enterDAppFailed() {
+
+    }
 }

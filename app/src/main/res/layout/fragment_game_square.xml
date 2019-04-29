@@ -297,4 +297,25 @@
             android:layout_marginBottom="@dimen/dp_game_square_first_charge_margin_bottom"
             android:layout_width="@dimen/dp_game_square_first_charge_width"
             android:layout_height="@dimen/dp_game_square_first_charge_height"/>
+
+
+    <include layout="@layout/divider"
+             android:id="@+id/v_divider1"
+             android:layout_height="@dimen/divider_size"
+             android:layout_width="@dimen/match_constraint"
+             app:layout_constraintBottom_toTopOf="@id/cl_dapp2"
+             android:layout_marginStart="@dimen/dp_divider_margin_start"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/cl_dapp1"/>
+
+    <include layout="@layout/divider"
+             android:id="@+id/v_divider2"
+             android:layout_height="@dimen/divider_size"
+             android:layout_width="@dimen/match_constraint"
+             app:layout_constraintBottom_toTopOf="@id/cl_dapp3"
+             android:layout_marginStart="@dimen/dp_divider_margin_start"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/cl_dapp2"/>
 </android.support.constraint.ConstraintLayout>

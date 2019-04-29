@@ -28,7 +28,7 @@
 
         <activity android:name=".ui.activity.SettingsActivity" android:launchMode="singleTask"/>
         <activity android:name=".ui.activity.MainActivity" android:launchMode="singleTask"/>
-        <activity android:name=".ui.activity.KYCActivity"/>
+        <activity android:name=".ui.mvp.kyc.KYCActivity"/>
 
         <activity android:name=".ui.mvp.totalcashcount.TotalCashCountActivity"/>
         <activity android:name=".ui.mvp.totalcoincount.TotalCoinCountActivity"/>

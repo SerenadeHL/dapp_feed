@@ -13,6 +13,6 @@ inline fun ImageView.show(url: String?) {
     Glide.with(this).load(url ?: "").into(this)
 }
 
-inline fun ImageView.showRound(url: String?, radius: Float) {
-    Glide.with(this).load(url ?: "").transform(GlideRoundTransform(radius)).into(this)
+inline fun ImageView.showRound(url: String?, radiusDp: Float) {
+    Glide.with(this).load(url ?: "").transform(GlideRoundTransform(radiusDp)).into(this)
 }

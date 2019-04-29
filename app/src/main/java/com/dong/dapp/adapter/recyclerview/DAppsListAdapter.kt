@@ -20,7 +20,7 @@ class DAppsListAdapter(val activity: Activity) :
 
     init {
         setOnItemClickListener { _, _, position ->
-            WebActivity.start(activity, data[position].url ?: "")
+            WebActivity.start(activity, data[position].pid, data[position].url)
         }
     }
 

@@ -1,5 +1,8 @@
 package com.dong.dapp.ui.mvp.web
 
+import com.dong.dapp.bean.statistics.ResultEnterDAppBean
+import com.dong.dapp.network.DAppRequest
+import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
 
 /**
@@ -10,4 +13,11 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
  */
 class WebModel : MVPBaseModel(), IWebModel {
 
+    override fun enterDApp(pid: String): Observable<ResultEnterDAppBean?> {
+        return DAppRequest.enterDApp(pid)
+    }
+
+    override fun exitDApp(id: String, action: List<Map<String, String>>) {
+        return DAppRequest.exitDApp(id, action)
+    }
 }

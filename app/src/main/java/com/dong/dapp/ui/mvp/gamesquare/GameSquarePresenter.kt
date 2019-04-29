@@ -1,5 +1,7 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
+import com.dong.dapp.bean.gamesquare.ResultDAppListBean
+import com.dong.dapp.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
 
 /**
@@ -12,4 +14,16 @@ class GameSquarePresenter : MVPBasePresenter<IGameSquareView, IGameSquareModel>(
 
     override fun createModel() = GameSquareModel()
 
+    override fun getDAppList(page: Int, pageSize: Int) {
+        mModel.getDAppList(page, pageSize)
+            .subscribe(object : BaseObserver<ResultDAppListBean?>() {
+                override fun next(data: ResultDAppListBean?) {
+                    mView.get()?.getDAppListSuccess(data)
+                }
+
+                override fun error(error: Throwable) {
+                    mView.get()?.getDAppListFailed()
+                }
+            })
+    }
 }

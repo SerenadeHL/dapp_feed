@@ -28,7 +28,7 @@ interface KYCApi {
     /**
      * 获取智能KYC的签名
      */
-    @GET("/api/v1/faceid/get_app_sign")
+    @POST("/api/v1/faceid/get_app_sign")
     fun getKYCSign(): Observable<BaseResponse>
 
     /**
@@ -36,12 +36,11 @@ interface KYCApi {
      * @param idNumber 身份证号
      */
     @POST("/api/v1/faceid/is_right_id_no")
-    @FormUrlEncoded
-    fun isIdCardNumberAvailable(@Field("id_no") idNumber: String): Observable<BaseResponse>
+    fun isIdCardNumberAvailable(@Body requestBean: RequestIdCardNumberAvailableBean): Observable<BaseResponse>
 
     /**
      * KYC验证完成通知后端
      */
     @POST("/api/v1/faceid/app_result")
-    fun finishKYC(@Body info: RequestKYCInfoBean): Observable<BaseResponse>
+    fun finishKYC(@Body requestBean: RequestKYCInfoBean): Observable<BaseResponse>
 }

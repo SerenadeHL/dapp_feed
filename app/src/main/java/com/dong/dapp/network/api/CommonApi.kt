@@ -22,11 +22,12 @@ interface CommonApi {
      * @param pageSize 每页条数
      */
     @POST("/public/dapp/list")
-    fun getDAppList(@Body requestBean:RequestDAppListBean): Observable<BaseResponse>
+    fun getDAppList(@Body requestBean: RequestDAppListBean): Observable<BaseResponse>
 
     /**
      * 上传文件
      */
+    //TODO 更改接口
     @Multipart
     @POST("/api/uploadpublic")
     fun uploadFile(@Part body: MultipartBody.Part): Observable<BaseResponse>

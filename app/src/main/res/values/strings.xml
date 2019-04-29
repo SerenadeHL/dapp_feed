@@ -28,6 +28,12 @@
     <!--选择区号-->
     <string name="choose_area_code">选择区号</string>
 
+    <!--KYC-->
+    <string name="please_input_id_card_number">请输入 18 位身份证号码</string>
+    <string name="id_card_number">身份证号码</string>
+    <string name="verify_immediately">1 分钟极速认证</string>
+    <string name="id_card_has_been_used">该证件已经被使用过了</string>
+    <string name="you_have_passed_kyc">您已经通过了实名认证，请勿重复提交</string>
 
     <!--游戏广场-->
     <string name="play_count">%s人正在玩</string>

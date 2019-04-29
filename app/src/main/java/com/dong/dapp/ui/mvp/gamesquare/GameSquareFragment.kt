@@ -2,6 +2,8 @@ package com.dong.dapp.ui.mvp.gamesquare
 
 import android.os.Bundle
 import com.dong.dapp.R
+import com.dong.dapp.bean.gamesquare.ResultDAppListBean
+import com.dong.dapp.extensions.showRound
 import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
 import com.dong.dapp.ui.mvp.web.WebActivity
@@ -9,8 +11,10 @@ import kotlinx.android.synthetic.main.app_recycle_item_game_square.view.*
 import kotlinx.android.synthetic.main.fragment_game_square.view.*
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
 import me.serenadehl.base.extensions.invisible
+import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
+import java.lang.Exception
 
 /**
  * 游戏广场页Fragment
@@ -19,6 +23,8 @@ import me.serenadehl.base.extensions.toast
  * 创建时间：2019-4-11 10:25:57
  */
 class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareView {
+    private var mPage = 0
+    private var mPageSize = 3
 
     override fun layout() = R.layout.fragment_game_square
 
@@ -41,29 +47,61 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
             toast("邀请好友赚现金")
         }
 
-        //隐藏第一个Item上方分割线
+        //隐藏Item上方分割线
         mRootView.cl_dapp1.v_top_divider.invisible()
+        mRootView.cl_dapp2.v_top_divider.invisible()
+        mRootView.cl_dapp3.v_top_divider.invisible()
 
-        mRootView.cl_dapp1.tv_name.text = "HyperSnakes"
-        mRootView.cl_dapp1.iv_logo.setImageResource(R.mipmap.ic_launcher)
-        mRootView.cl_dapp1.tv_description.text = "妖精种族，重磅来袭！"
-        mRootView.cl_dapp1.tv_playing_count.text = "2192人正在玩"
-        mRootView.cl_dapp1.setOnClickListener { WebActivity.start(this@GameSquareFragment,"asd") }
-
-        mRootView.cl_dapp2.tv_name.text = "Tronjoy"
-        mRootView.cl_dapp2.iv_logo.setImageResource(R.mipmap.ic_launcher)
-        mRootView.cl_dapp2.tv_description.text = "构筑卡牌 探索奇妙梦境世界"
-        mRootView.cl_dapp2.tv_playing_count.text = "4556人正在玩"
-        mRootView.cl_dapp2.setOnClickListener { WebActivity.start(this@GameSquareFragment,"asd") }
-
-        mRootView.cl_dapp3.tv_name.text = "Traps"
-        mRootView.cl_dapp3.iv_logo.setImageResource(R.mipmap.ic_launcher)
-        mRootView.cl_dapp3.tv_description.text = "独立RUIUIY竞技类游戏"
-        mRootView.cl_dapp3.tv_playing_count.text = "354人正在玩"
-        mRootView.cl_dapp3.setOnClickListener { WebActivity.start(this@GameSquareFragment,"asd") }
-
-
+        //TODO 测试
         mRootView.iv_first_charge.setOnClickListener { toast("限时首充特惠") }
+
+        getData()
     }
 
+    private fun getData() {
+        mPresenter.getDAppList(mPage, mPageSize)
+    }
+
+    override fun getDAppListSuccess(data: ResultDAppListBean?) {
+        "getDAppListSuccess-------> $data".log()
+
+        val items = data?.items ?: return
+
+        if (items.isEmpty()) return
+
+        try {
+            val radiusDp = 15F
+            items[0].apply {
+                mRootView.cl_dapp1.tv_name.text = title
+                mRootView.cl_dapp1.iv_logo.showRound(logo, radiusDp)
+                mRootView.cl_dapp1.tv_description.text = intro
+                mRootView.cl_dapp1.tv_playing_count.text = String.format(getString(R.string.play_count), count)
+                mRootView.cl_dapp1.setOnClickListener { enterDApp(this) }
+            }
+            items[1].apply {
+                mRootView.cl_dapp2.tv_name.text = title
+                mRootView.cl_dapp2.iv_logo.showRound(logo, radiusDp)
+                mRootView.cl_dapp2.tv_description.text = intro
+                mRootView.cl_dapp2.tv_playing_count.text = String.format(getString(R.string.play_count), count)
+                mRootView.cl_dapp2.setOnClickListener { enterDApp(this) }
+            }
+            items[2].apply {
+                mRootView.cl_dapp3.tv_name.text = title
+                mRootView.cl_dapp3.iv_logo.showRound(logo, radiusDp)
+                mRootView.cl_dapp3.tv_description.text = intro
+                mRootView.cl_dapp3.tv_playing_count.text = String.format(getString(R.string.play_count), count)
+                mRootView.cl_dapp3.setOnClickListener { enterDApp(this) }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun enterDApp(item: ResultDAppListBean.Item) {
+        WebActivity.start(requireActivity(), item.pid, item.url)
+    }
+
+    override fun getDAppListFailed() {
+        "getDAppListFailed------->".log()
+    }
 }
