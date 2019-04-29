@@ -5,9 +5,14 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.Context.VIBRATOR_SERVICE
+import android.os.Build
 import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.animation.AccelerateInterpolator
@@ -35,6 +40,8 @@ class SuspensionBall : AppCompatImageView {
     private val mAlpha = 0.5F//收起状态下透明度
     private val mAnimatorDuration = 300L//收起和显示动画时常
     private val mShowWaitTime = 1000L//显示等待时常，超过变为收起状态
+    private val mVibrator by lazy { context.getSystemService(VIBRATOR_SERVICE) as Vibrator }//振动器
+    private val mDefaultVibrateTime = 50L//默认震动时长
 
     private lateinit var mListener: Listener//显示状态下点击监听
 
@@ -171,6 +178,8 @@ class SuspensionBall : AppCompatImageView {
      */
     private fun show() {
         "显示".log()
+        //震动
+        vibrate()
         mStatus = STATUS_MOVING
         val animator = if (x < 0)
             ObjectAnimator.ofFloat(this, "translationX", x, 0F)
@@ -185,6 +194,17 @@ class SuspensionBall : AppCompatImageView {
             }
         })
         animatorSet.start()
+    }
+
+    /**
+     * 震动效果
+     */
+    private fun vibrate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(mDefaultVibrateTime, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            mVibrator.vibrate(mDefaultVibrateTime)
+        }
     }
 
     /**

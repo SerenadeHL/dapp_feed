@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
             android:name=".DAppApplication"
@@ -15,8 +16,6 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".ui.mvp.chooseareacode.ChooseAreaCodeActivity">
-        </activity>
         <activity
                 android:name=".ui.activity.SplashActivity"
                 android:theme="@style/SplashTheme">
@@ -26,18 +25,26 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.SettingsActivity"/>
-        <activity android:name=".ui.activity.MainActivity"/>
+
+        <activity android:name=".ui.activity.SettingsActivity" android:launchMode="singleTask"/>
+        <activity android:name=".ui.activity.MainActivity" android:launchMode="singleTask"/>
         <activity android:name=".ui.activity.KYCActivity"/>
+
         <activity android:name=".ui.mvp.totalcashcount.TotalCashCountActivity"/>
         <activity android:name=".ui.mvp.totalcoincount.TotalCoinCountActivity"/>
-        <activity android:name=".ui.mvp.login.LoginActivity"/>
+
+        <activity android:name=".ui.mvp.login.LoginActivity" android:launchMode="singleTask"/>
+        <activity android:name=".ui.mvp.chooseareacode.ChooseAreaCodeActivity" android:launchMode="singleTask"/>
+
         <activity
                 android:name=".ui.mvp.web.WebActivity"
-                android:theme="@style/WebTheme"/>
-        <activity android:name=".ui.mvp.transfer.TransferCoinActivity"/>
-        <activity android:name=".ui.mvp.transfer.TransferCashActivity"/>
-        <activity android:name=".ui.activity.TransferDetailActivity"/>
+                android:theme="@style/WebTheme"
+                android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.mvp.transfer.TransferCoinActivity" android:launchMode="singleTask"/>
+        <activity android:name=".ui.mvp.transfer.TransferCashActivity" android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.activity.TransferDetailActivity" android:launchMode="singleTask"/>
 
         <meta-data
                 android:name="CHANNEL"

@@ -5,7 +5,7 @@ import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import com.megvii.faceidiol.sdk.manager.LegalityStruct
 
-data class InfoBean(
+data class RequestInfoBean(
     @SerializedName("userIDCardName") var userIDCardName: String?,//姓名
     @SerializedName("userIDCardGender") var userIDCardGender: String?,//性别
     @SerializedName("userIDCardNationality") var userIDCardNationality: String?,//民族

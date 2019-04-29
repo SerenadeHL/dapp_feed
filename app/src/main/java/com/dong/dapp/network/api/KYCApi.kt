@@ -23,7 +23,7 @@ interface KYCApi {
         @Field("sign_version") signVersion: String,
         @Field("liveness_type") livenessType: String,
         @Field("comparison_type") comparisonType: Int
-    ): Observable<KYCBizTokenBean?>
+    ): Observable<ResultKYCBizTokenBean?>
 
     /**
      * 获取智能KYC的签名
@@ -43,5 +43,5 @@ interface KYCApi {
      * KYC验证完成通知后端
      */
     @POST("/api/v1/faceid/app_result")
-    fun finishKYC(@Body info: KYCInfoBean): Observable<BaseResponse>
+    fun finishKYC(@Body info: RequestKYCInfoBean): Observable<BaseResponse>
 }

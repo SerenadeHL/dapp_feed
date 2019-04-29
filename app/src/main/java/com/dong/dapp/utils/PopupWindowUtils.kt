@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.main.popup_common_bottom.view.*
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.gone
 import me.serenadehl.base.extensions.visible
+import org.bouncycastle.asn1.x500.style.RFC4519Style.title
+import razerdp.basepopup.BasePopupWindow
 import razerdp.basepopup.QuickPopupBuilder
 import razerdp.basepopup.QuickPopupConfig
 import razerdp.widget.QuickPopup
@@ -32,7 +34,13 @@ object PopupWindowUtils {
     /**
      * 通用底部弹窗
      */
-    fun bottomPopupWindow(context: Context, title: String, content: String?, vararg buttonConfigs: ButtonConfig) {
+    fun bottomPopupWindow(
+        context: Context,
+        title: String,
+        content: String?,
+        dismiss: () -> Unit,
+        vararg buttonConfigs: ButtonConfig
+    ) {
         val showAnimation = AnimationSet(true).apply {
             duration = 200
             addAnimation(
@@ -58,6 +66,11 @@ object PopupWindowUtils {
             .gravity(Gravity.BOTTOM or Gravity.CENTER_VERTICAL)
             .withShowAnimation(showAnimation)
             .withDismissAnimation(dismissAnimation)
+            .dismissListener(object : BasePopupWindow.OnDismissListener() {
+                override fun onDismiss() {
+                    dismiss()
+                }
+            })
 
         val quickPopup = QuickPopupBuilder
             .with(context)

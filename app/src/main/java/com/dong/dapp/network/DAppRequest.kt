@@ -1,9 +1,6 @@
 package com.dong.dapp.network
 
-import android.content.res.Resources
-import android.util.DisplayMetrics
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
-import com.dong.dapp.bean.areacode.ResultAreaCodeItemBean
 import com.dong.dapp.bean.gamesquare.RequestDAppListBean
 import com.dong.dapp.bean.gamesquare.ResultDAppListBean
 import com.dong.dapp.bean.kyc.*
@@ -12,17 +9,12 @@ import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.bean.wallet.*
-import com.dong.dapp.extensions.decrypt
-import com.dong.dapp.extensions.fromJson
-import com.dong.dapp.extensions.fromJsonToList
+import com.dong.dapp.extensions.*
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
-import me.serenadehl.base.extensions.log
-import me.serenadehl.base.utils.app.AppManager
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -53,12 +45,12 @@ object DAppRequest {
     /**
      * 上传文件
      */
-    fun uploadFile(content: ByteArray): Observable<UploadFileBean?> {
+    fun uploadFile(content: ByteArray): Observable<ResultUploadFileBean?> {
         val requestBody = RequestBody.create(MediaType.parse("image/jpg"), content)
         val body = MultipartBody.Part.createFormData("file", "IdCard.jpg", requestBody)
         return RetrofitHelper.create(CommonApi::class.java)
             .uploadFile(body)
-            .decrypt<UploadFileBean?>()
+            .decrypt<ResultUploadFileBean?>()
             .async()
     }
 
@@ -104,14 +96,9 @@ object DAppRequest {
             }
             val json = AssetsUtils.getAssets(fileName)
             try {
-                //TODO 错误
-//                val data = json.fromJsonToList<ResultAreaCodeBean>()
-                val data :List<ResultAreaCodeBean> =  Gson().fromJson(json, object : TypeToken<List<ResultAreaCodeBean>>(){}.type)
-                "areaCo222de---------> $data".log()
-                val total = arrayListOf<ResultAreaCodeItemBean>()
-                data?.forEach { total.addAll(it.items) }
-                "total---------> $total".log()
-                it.onNext(data!!)
+                val data: List<ResultAreaCodeBean> =
+                    json.fromJson(object : TypeToken<List<ResultAreaCodeBean>>() {}.type)!!
+                it.onNext(data)
                 it.onComplete()
             } catch (e: Exception) {
                 it.onError(e)
@@ -157,7 +144,7 @@ object DAppRequest {
         sign: String,
         idCardName: String,
         idCardNumber: String
-    ): Observable<KYCBizTokenBean?> {
+    ): Observable<ResultKYCBizTokenBean?> {
         return RetrofitHelper.create(KYCApi::class.java)
             .getKYCBizToken(sign, idCardName, idCardNumber, "hmac_sha1", "meglive", 1)
             .async()
@@ -166,10 +153,10 @@ object DAppRequest {
     /**
      * 获取智能KYC的签名
      */
-    fun getKYCSign(): Observable<KYCSignBean?> {
+    fun getKYCSign(): Observable<ResultKYCSignBean?> {
         return RetrofitHelper.create(KYCApi::class.java)
             .getKYCSign()
-            .decrypt<KYCSignBean?>()
+            .decrypt<ResultKYCSignBean?>()
             .async()
     }
 
@@ -177,20 +164,20 @@ object DAppRequest {
      * 判断身份证号是否可用
      * @param idNumber 身份证号
      */
-    fun isIdCardNumberAvailable(idNumber: String): Observable<IdCardNumberAvailableBean?> {
+    fun isIdCardNumberAvailable(idNumber: String): Observable<ResultIdCardNumberAvailableBean?> {
         return RetrofitHelper.create(KYCApi::class.java)
             .isIdCardNumberAvailable(idNumber)
-            .decrypt<IdCardNumberAvailableBean?>()
+            .decrypt<ResultIdCardNumberAvailableBean?>()
             .async()
     }
 
     /**
      * KYC验证完成通知后端
      */
-    fun finishKYC(info: KYCInfoBean): Observable<FinishKYCBean?> {
+    fun finishKYC(info: RequestKYCInfoBean): Observable<ResultFinishKYCBean?> {
         return RetrofitHelper.create(KYCApi::class.java)
             .finishKYC(info)
-            .decrypt<FinishKYCBean?>()
+            .decrypt<ResultFinishKYCBean?>()
             .async()
     }
 }

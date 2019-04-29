@@ -11,12 +11,12 @@ import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.save
 import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.utils.PopupWindowUtils
 import com.dong.dapp.widget.SuspensionBall
 import kotlinx.android.synthetic.main.activity_web.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
-import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.startActivity
-import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.*
+import razerdp.basepopup.BasePopupWindow
 import wendu.dsbridge.DWebView
 
 /**
@@ -55,9 +55,19 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
         )
         mWebView.loadUrl(mUrl)
 
-        sb_ball.setListener(object :SuspensionBall.Listener{
+        sb_ball.setListener(object : SuspensionBall.Listener {
             override fun onClick() {
-                toast("点击了")
+                sb_ball.gone()
+                //TODO 测试
+                PopupWindowUtils.bottomPopupWindow(
+                    this@WebActivity, "我的账户", "", { sb_ball.visible() },
+                    PopupWindowUtils.ButtonConfig("充值赢更多", PopupWindowUtils.ButtonConfig.BLUE_SOLID, true) {
+                        toast("充值赢更多")
+                    },
+                    PopupWindowUtils.ButtonConfig("退出游戏", PopupWindowUtils.ButtonConfig.BLUE_NO_SOLID, true) {
+                        toast("退出游戏")
+                    }
+                )
             }
         })
 

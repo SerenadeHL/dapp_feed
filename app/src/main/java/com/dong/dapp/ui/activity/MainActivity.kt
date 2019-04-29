@@ -1,26 +1,19 @@
 package com.dong.dapp.ui.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.R
-import com.dong.dapp.bean.areacode.ResultAreaCodeBean
-import com.dong.dapp.bean.login.RequestVerifyCodeBean
-import com.dong.dapp.extensions.fromJsonToList
-import com.dong.dapp.network.DAppRequest
 import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
 import com.dong.dapp.ui.mvp.login.LoginActivity
 import com.dong.dapp.ui.mvp.me.MeFragment
-import com.dong.dapp.ui.mvp.web.WebActivity
-import com.dong.dapp.utils.AssetsUtils
-import com.tbruyelle.rxpermissions2.RxPermissions
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.extensions.*
-import java.util.*
+import me.serenadehl.base.extensions.invisible
+import me.serenadehl.base.extensions.startActivity
+import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.visible
 
 
 /**
@@ -63,16 +56,6 @@ class MainActivity : BaseActivity() {
         cl_me.setOnClickListener { switchTab(ME) }
 
         cl_game.performClick()
-
-        //TODO 测试
-//        startActivity<TotalCoinCountActivity>()
-//        DAppRequest.getDAppList(0, 10)
-//            .subscribe {
-//                it?.log()
-//            }
-
-//        WebActivity.start(this,"asd")
-        startActivity<LoginActivity>()
     }
 
     /**

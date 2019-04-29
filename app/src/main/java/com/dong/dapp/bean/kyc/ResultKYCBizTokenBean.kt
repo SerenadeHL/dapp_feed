@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * 创建时间：2019-04-18 10:22:13
  */
 
-data class KYCBizTokenBean(
+data class ResultKYCBizTokenBean(
     @SerializedName("error") var error: String?,
     @SerializedName("biz_token") var bizToken: String?,
     @SerializedName("request_id") var requestId: String,

@@ -1,13 +1,9 @@
 package com.dong.dapp.utils
 
-import com.dong.dapp.bean.kyc.UploadFileBean
+import com.dong.dapp.bean.kyc.ResultUploadFileBean
 import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.DAppRequest
 import me.serenadehl.base.extensions.log
-import okhttp3.MediaType
-import okhttp3.RequestBody
-import java.io.File
-import okhttp3.MultipartBody
 
 
 /**
@@ -19,8 +15,8 @@ object UploadFileUtils {
     fun upload(content: ByteArray, success: (String?) -> Unit) {
         "开始上传文件".log()
         DAppRequest.uploadFile(content)
-            .subscribe(object : BaseObserver<UploadFileBean?>() {
-                override fun next(data: UploadFileBean?) {
+            .subscribe(object : BaseObserver<ResultUploadFileBean?>() {
+                override fun next(data: ResultUploadFileBean?) {
                     "上传成功 : $data".log()
                     success(data?.fileUrl)
                 }

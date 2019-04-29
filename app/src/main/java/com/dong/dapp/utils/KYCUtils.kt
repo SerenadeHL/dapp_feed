@@ -85,7 +85,7 @@ object KYCUtils {
             }
             .map {
                 //转换为KYCBizTokenBean类型便于操作
-                return@map it as KYCBizTokenBean?
+                return@map it as ResultKYCBizTokenBean?
             }
             .flatMap { kycBizTokenBean ->
                 //初始化人脸识别
@@ -100,8 +100,8 @@ object KYCUtils {
                 //向后台提交KYC信息
                 return@flatMap DAppRequest.finishKYC(getUploadInfo(bizToken, idCardResult, frontImage, backImage))
             }
-            .subscribe(object : BaseObserver<FinishKYCBean?>() {
-                override fun next(data: FinishKYCBean?) {
+            .subscribe(object : BaseObserver<ResultFinishKYCBean?>() {
+                override fun next(data: ResultFinishKYCBean?) {
                     "KYC验证成功".log()
                 }
 
@@ -134,19 +134,19 @@ object KYCUtils {
         idCardResult: IDCardResult?,
         frontImage: String?,
         backImage: String?
-    ): KYCInfoBean {
+    ): RequestKYCInfoBean {
         val idCardInfo = idCardResult?.idCardInfo
         val birthday =
             "${idCardInfo?.birthYear?.text}-${idCardInfo?.birthMonth?.text}-${idCardInfo?.birthDay?.text}"
-        return KYCInfoBean(
+        return RequestKYCInfoBean(
             bizToken,
-            KYCUserInfoBean(
+            RequestKYCUserInfoBean(
                 idCardInfo?.name?.text,
                 idCardInfo?.idcardNumber?.text,
                 frontImage,
                 backImage,
                 birthday,
-                InfoBean(
+                RequestInfoBean(
                     idCardInfo?.name?.text,
                     idCardInfo?.gender?.text,
                     idCardInfo?.nationality?.text,
@@ -251,13 +251,13 @@ object KYCUtils {
     /**
      * 验证人脸
      */
-    private fun detectUser(): Observable<UserDetectResultBean?> {
+    private fun detectUser(): Observable<ResultUserDetectResultBean?> {
         return Observable.create {
             val applicationContext = AppManager.instance.currentActivity.applicationContext
             FaceIdManager.getInstance(applicationContext).apply {
                 setFaceIdDetectListener(object : FaceIdDetectListener {
                     override fun onSuccess(code: Int, msg: String?) {
-                        it.onNext(UserDetectResultBean(code, msg))
+                        it.onNext(ResultUserDetectResultBean(code, msg))
                         it.onComplete()
                     }
 

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-18 14:50:55
  */
-data class UploadFileBean(
+data class ResultUploadFileBean(
     @SerializedName("uid") var uid: Int,
     @SerializedName("id") var id: String,
     @SerializedName("file_name") var fineName: String,

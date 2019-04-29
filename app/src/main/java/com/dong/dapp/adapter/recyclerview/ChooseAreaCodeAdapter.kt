@@ -14,9 +14,16 @@ import com.dong.dapp.bean.areacode.ResultAreaCodeItemBean
 class ChooseAreaCodeAdapter :
     BaseQuickAdapter<ResultAreaCodeItemBean, BaseViewHolder>(R.layout.app_recycle_item_choose_area_code) {
 
+    private lateinit var mTitleIndex: Set<Int>
+
+    fun setTitleIndex(titleIndex: Set<Int>) {
+        mTitleIndex = titleIndex
+    }
+
     override fun convert(helper: BaseViewHolder?, item: ResultAreaCodeItemBean?) {
         helper?.apply {
             setText(R.id.tv_area_code, "${item?.country} ${item?.code}")
+            setVisible(R.id.v_divider, !mTitleIndex.contains(helper.layoutPosition))
         }
     }
 }

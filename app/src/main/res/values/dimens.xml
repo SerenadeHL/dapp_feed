@@ -51,6 +51,7 @@
     <!--ChooseAreaCodeActivity-->
     <dimen name="dp_text_dialog_width">140dp</dimen>
     <dimen name="dp_text_dialog_height">140dp</dimen>
+    <dimen name="dp_group_height">30dp</dimen>
 
     <!--GameSquareFragment-->
     <dimen name="dp_game_square_announcement_image_margin_start">13dp</dimen>

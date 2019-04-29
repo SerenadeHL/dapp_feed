@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.text.TextUtils
 import com.dong.dapp.Constant
 import com.dong.dapp.R
 import com.dong.dapp.bean.login.ResultLoginBean
@@ -66,9 +67,8 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
             val areaCode = tv_area_code.text.toString()
             val phoneNumber = et_phone_number.text.toString()
             //TODO 校验手机号
-            //获取验证码并开始倒计时
+            //获取验证码
             mPresenter.getVerifyCode(phoneNumber, areaCode)
-            startCountDown()
             et_verify_code.requestFocus()
         }
 
@@ -78,22 +78,6 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
 
             //TODO 校验手机号、验证码、mFp
             mPresenter.login(verifyCode, mFp, invitationCode)
-
-//            val params = mapOf(
-//                "fp" to "74bc0c8a46b5a4f50401a671b879463b",
-//                "invitation_code" to "",
-//                "verification_code" to "711856"
-//            ).toJson()
-//            "params---------> $params".log()
-//            val data = AESUtils.encrypt(params, AESUtils.generateKey(), AESUtils.generateIv())
-//            val encryptKey = RSAUtils.encrypt("${AESUtils.generateKey()}${AESUtils.generateIv()}")
-//            val encryptedParams = "$data.$encryptKey".replace("\n", "")
-//            val json = mapOf(
-//                Constant.API_VERSION_NAME to Constant.API_VERSION,
-//                Constant.API_TYPE_NAME to Constant.API_TYPE,
-//                Constant.API_DATA_NAME to encryptedParams
-//            ).toJson()
-//            "json---------> $json".log()
         }
 
         tv_agreement.text = "登录暨同意《用户协议书》"
@@ -101,6 +85,8 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
 
     override fun getVerifyCodeSuccess(verifyCodeBean: ResultVerifyCodeBean?) {
         mFp = verifyCodeBean?.fp ?: ""
+        //获取验证码成功后开始倒计时
+        startCountDown()
     }
 
     override fun getVerifyCodeFailed() {
@@ -145,6 +131,7 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == mRequestCode && resultCode == Activity.RESULT_OK) {
             mAreaCode = data?.getStringExtra(Constant.AREA_CODE) ?: Constant.AREA_CODE_CN
+            tv_area_code.text = mAreaCode
         }
     }
 }

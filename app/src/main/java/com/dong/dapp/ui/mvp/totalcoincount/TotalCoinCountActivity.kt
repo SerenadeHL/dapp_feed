@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
+import me.serenadehl.base.extensions.invisible
 
 /**
  * 金币资产页
@@ -49,6 +50,7 @@ class TotalCoinCountActivity : MVPBaseActivity<ITotalCoinCountPresenter>(), ITot
         //设置标题栏
         tv_title.setText(R.string.coin_assets)
         tv_title.setTextColor(mC2)
+        v_header_divider.invisible()
 
         //设置StatusBar的高度
         v_status_bar.layoutParams.height = getStatusBarHeight()

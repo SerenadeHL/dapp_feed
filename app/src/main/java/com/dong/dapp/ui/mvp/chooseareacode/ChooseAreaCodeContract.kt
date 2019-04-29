@@ -1,13 +1,10 @@
 package com.dong.dapp.ui.mvp.chooseareacode
 
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
-import com.dong.dapp.extensions.fromJsonToList
-import com.dong.dapp.utils.AssetsUtils
 import io.reactivex.Observable
-import me.serenadehl.base.base.mvpbase.IBaseView
-import me.serenadehl.base.base.mvpbase.IBasePresenter
 import me.serenadehl.base.base.mvpbase.IBaseModel
-import java.util.*
+import me.serenadehl.base.base.mvpbase.IBasePresenter
+import me.serenadehl.base.base.mvpbase.IBaseView
 
 /**
  *
