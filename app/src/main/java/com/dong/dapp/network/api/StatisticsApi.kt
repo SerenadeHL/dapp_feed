@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 /**
+ * 用户行为统计相关API
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-29 17:34:50

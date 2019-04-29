@@ -6,6 +6,7 @@ import io.reactivex.Observable
 import retrofit2.http.*
 
 /**
+ * KYC认证相关API
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-19 11:10:09
