@@ -18,6 +18,7 @@ import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
+import okio.Buffer
 import okio.BufferedSink
 import okio.ByteString
 import org.json.JSONObject
@@ -93,35 +94,44 @@ object InterceptorUtil {
     }
 
     /**
-     * 处理POST请求流程
-     */
-    private fun dealPost(requestBody: RequestBody?): RequestBody? {
-        var body: RequestBody? = null
-        requestBody?.writeTo(object : BaseSink() {
-            override fun write(byteString: ByteString): BufferedSink {
-                //获取原始json数据
-                val params = byteString.string(Charset.forName("utf-8"))
-                "原始数据---------> $params".log()
-                //添加Token
-                val paramsWithToken = addToken(params)
-                "添加Token后的数据---------> $paramsWithToken".log()
-                val encryptedParams = encryptParams(paramsWithToken)
-                "加密数据---------> $encryptedParams".log()
-                val mediaType = MediaType.parse("application/json; charset=utf-8")
-                val json = generateNewParams(encryptedParams, false)
-                "提交参数---------> $json".log()
-                body = RequestBody.create(mediaType, json)
-                return this
-            }
-        })
-        return body
-    }
-
-    /**
      * 处理GET请求流程
      */
     private fun dealGet(url: HttpUrl): HttpUrl {
-        val params = dealGetParams(url)
+        val jsonObject = JSONObject()
+        url.queryParameterNames().forEach {
+            try {
+                //TODO 寻找更好的解决办法
+                jsonObject.put(it, url.queryParameterValues(it)[0])
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        val params = jsonObject.toString()
+        val query = dealGetParams(params)
+        return url.newBuilder()
+            .scheme(url.scheme())
+            .host(url.host())
+            .query(query)
+            .build()
+    }
+
+    /**
+     * 处理POST请求流程
+     */
+    private fun dealPost(requestBody: RequestBody?): RequestBody? {
+        val buffer = Buffer()
+        requestBody?.writeTo(buffer)
+        var params = buffer.readString(Charset.forName("utf-8"))
+        if (params == null || params.isEmpty()) {
+            params = JSONObject().toString()
+        }
+        return dealPostParams(params)
+    }
+
+    /**
+     * 处理GET请求参数
+     */
+    private fun dealGetParams(params: String): String {
         "原始数据---------> $params".log()
         //添加Token
         val paramsWithToken = addToken(params)
@@ -130,11 +140,25 @@ object InterceptorUtil {
         "加密数据---------> $encryptedParams".log()
         val query = generateNewParams(encryptedParams, true)
         "提交参数---------> $query".log()
-        return url.newBuilder()
-            .scheme(url.scheme())
-            .host(url.host())
-            .query(query)
-            .build()
+        return query
+    }
+
+    /**
+     * 处理POST请求参数
+     */
+    private fun dealPostParams(params: String): RequestBody {
+        "原始数据---------> $params".log()
+        //添加Token
+        val paramsWithToken = addToken(params)
+        "添加Token后的数据---------> $paramsWithToken".log()
+        //加密
+        val encryptedParams = encryptParams(paramsWithToken)
+        "加密数据---------> $encryptedParams".log()
+        //构建新的RequestBody
+        val mediaType = MediaType.parse("application/json; charset=utf-8")
+        val json = generateNewParams(encryptedParams, false)
+        "提交参数---------> $json".log()
+        return RequestBody.create(mediaType, json)
     }
 
     /**
@@ -146,22 +170,6 @@ object InterceptorUtil {
             params
         else
             JSONObject(params).put(Constant.TOKEN, token).toString()
-    }
-
-    /**
-     * GET请求参数拼接RequestId
-     */
-    private fun dealGetParams(url: HttpUrl): String {
-        val jsonObject = JSONObject()
-        url.queryParameterNames().forEach {
-            try {
-                //TODO 寻找更好的解决办法
-                jsonObject.put(it, url.queryParameterValues(it)[0])
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-        return jsonObject.toString()
     }
 
     /**

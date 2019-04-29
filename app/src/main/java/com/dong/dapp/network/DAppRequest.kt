@@ -1,5 +1,6 @@
 package com.dong.dapp.network
 
+import com.dong.dapp.bean.BaseBean
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
 import com.dong.dapp.bean.gamesquare.RequestDAppListBean
 import com.dong.dapp.bean.gamesquare.ResultDAppListBean
@@ -8,6 +9,7 @@ import com.dong.dapp.bean.login.RequestLoginBean
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.bean.login.RequestVerifyCodeBean
+import com.dong.dapp.bean.me.ResultUserInfoBean
 import com.dong.dapp.bean.statistics.RequestEnterDAppBean
 import com.dong.dapp.bean.statistics.RequestExitDAppBean
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
@@ -72,11 +74,23 @@ object DAppRequest {
     /**
      * 退出DApp
      */
-    fun exitDApp(id: String, action: List<Map<String, String>>) {
+    fun exitDApp(id: String, action: List<Map<String, String>>): Observable<BaseResponse> {
         val requestBean = RequestExitDAppBean(id, action)
-        RetrofitHelper.create(StatisticsApi::class.java)
+        return RetrofitHelper.create(StatisticsApi::class.java)
             .exitDApp(requestBean)
-            .subscribe()
+    }
+
+
+    //=============================================用户信息接口=============================================
+
+    /**
+     * 获取用户信息
+     */
+    fun getUserInfo(): Observable<ResultUserInfoBean?> {
+        return RetrofitHelper.create(UserApi::class.java)
+            .getUserInfo()
+            .decrypt<ResultUserInfoBean?>()
+            .async()
     }
 
     //=============================================登录接口=============================================

@@ -6,12 +6,14 @@ import android.support.v4.content.ContextCompat
 import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
 import com.dong.dapp.bean.me.OptionBean
+import com.dong.dapp.network.DAppRequest
 import com.dong.dapp.ui.activity.SettingsActivity
 import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
 import kotlinx.android.synthetic.main.fragment_me.view.*
 
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
+import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 
@@ -64,6 +66,11 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             }
         }
         mAdapter.setNewData(createOptions())
+
+        DAppRequest.getUserInfo()
+            .subscribe {
+                "UserInfo------> $it".log()
+            }
     }
 
     private fun createOptions(): List<MeBean> {
@@ -90,7 +97,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             ),
             MeBean(true, null),
             MeBean(
-                false,OptionBean(
+                false, OptionBean(
                     R.mipmap.me_sign,
                     "签到领金币",
                     "",

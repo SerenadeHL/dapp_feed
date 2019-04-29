@@ -21,6 +21,7 @@ interface StatisticsApi {
     fun enterDApp(@Body requestBean: RequestEnterDAppBean): Observable<BaseResponse>
 
     /**
+     * 退出DApp
      * @param id 用户行为id
      * @param action 用户行为记录，格式为：[时间戳:-1]
      */

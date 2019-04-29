@@ -16,7 +16,7 @@ class WebPresenter : MVPBasePresenter<IWebView, IWebModel>(), IWebPresenter {
 
     override fun enterDApp(pid: String) {
         mModel.enterDApp(pid)
-            .subscribe(object :BaseObserver<ResultEnterDAppBean?>(){
+            .subscribe(object : BaseObserver<ResultEnterDAppBean?>() {
                 override fun next(data: ResultEnterDAppBean?) {
                     mView.get()?.enterDAppSuccess(data)
                 }
@@ -25,5 +25,10 @@ class WebPresenter : MVPBasePresenter<IWebView, IWebModel>(), IWebPresenter {
                     mView.get()?.enterDAppFailed()
                 }
             })
+    }
+
+    override fun exitDApp(id: String, action: List<Map<String, String>>) {
+        mModel.exitDApp(id, action)
+            .subscribe()
     }
 }

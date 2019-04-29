@@ -26,8 +26,8 @@ import wendu.dsbridge.DWebView
  * 创建时间：2019-4-11 10:37:01
  */
 class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
-    private lateinit var mUrl: String//DApp的id
-    private lateinit var mPid: String//DApp链接
+    private lateinit var mPid: String//DApp的id
+    private lateinit var mUrl: String//DApp链接
     private lateinit var mWebView: DWebView
     private lateinit var mId: String//用户行为id
     private val mActions by lazy { mutableListOf<Map<String, String>>() }//用户行为
@@ -90,7 +90,9 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
     }
 
     override fun onDestroy() {
-        mPresenter.exitDApp(mId, mActions)
+        if (::mId.isInitialized) {
+            mPresenter.exitDApp(mId, mActions)
+        }
         mWebView.stopLoading()
         mWebView.clearView()
         mWebView.destroyDrawingCache()
@@ -102,6 +104,7 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
 
     override fun enterDAppSuccess(data: ResultEnterDAppBean?) {
         mId = data?.id ?: ""
+        "用户行为id------> $mId".log()
     }
 
     override fun enterDAppFailed() {

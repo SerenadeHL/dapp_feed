@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.web
 
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
+import com.dong.dapp.network.BaseResponse
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.IBaseView
 import me.serenadehl.base.base.mvpbase.IBasePresenter
@@ -27,5 +28,5 @@ interface IWebPresenter : IBasePresenter {
 interface IWebModel : IBaseModel {
     fun enterDApp(pid: String): Observable<ResultEnterDAppBean?>
 
-    fun exitDApp(id: String, action: List<Map<String, String>>)
+    fun exitDApp(id: String, action: List<Map<String, String>>): Observable<BaseResponse>
 }
