@@ -3,7 +3,7 @@ package com.dong.dapp.ui.activity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.R
-import com.dong.dapp.bean.coin.TotalCoinBean
+import com.dong.dapp.bean.coin.ResultTotalCoinBean
 import kotlinx.android.synthetic.main.activity_transfer_detail.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
@@ -38,7 +38,7 @@ class TransferDetailActivity : BaseActivity() {
         tv_status.text = "已完成"
         tv_time.text = "2019.1.3 16:44:33"
         tv_serial_number.text = "728754928351"
-        intent.getParcelableExtra<TotalCoinBean>("data").log()
+        intent.getParcelableExtra<ResultTotalCoinBean>("data").log()
     }
 
 }

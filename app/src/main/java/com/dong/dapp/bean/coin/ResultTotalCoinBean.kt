@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
  * 创建时间：2019-04-25 10:28:11
  */
 @Parcelize
-data class TotalCoinBean(
+data class ResultTotalCoinBean(
     @SerializedName("title") val title: String,
     @SerializedName("time") val time: String,
     @SerializedName("status") val status: String,

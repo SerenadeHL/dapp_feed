@@ -1,8 +1,6 @@
 package com.dong.dapp.network.api
 
-import com.dong.dapp.bean.gamesquare.RequestDAppListBean
-import com.dong.dapp.bean.kyc.*
-import com.dong.dapp.bean.wallet.*
+import com.dong.dapp.bean.multipage.RequestMultiPageBean
 import com.dong.dapp.network.BaseResponse
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -21,14 +19,14 @@ interface CommonApi {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    @POST("/public/dapp/list")
-    fun getDAppList(@Body requestBean: RequestDAppListBean): Observable<BaseResponse>
+    @POST("public/dapp/list")
+    fun getDAppList(@Body requestBean: RequestMultiPageBean): Observable<BaseResponse>
 
     /**
      * 上传文件
      */
     //TODO 更改接口
     @Multipart
-    @POST("/api/uploadpublic")
+    @POST("api/uploadpublic")
     fun uploadFile(@Part body: MultipartBody.Part): Observable<BaseResponse>
 }

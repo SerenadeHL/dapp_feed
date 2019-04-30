@@ -1,7 +1,7 @@
 package com.dong.dapp.ui.mvp.chooseareacode
 
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
 
@@ -13,7 +13,7 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
  */
 class ChooseAreaCodeModel : MVPBaseModel(), IChooseAreaCodeModel {
     override fun getAreaCode(): Observable<List<ResultAreaCodeBean>?> {
-        return DAppRequest.getAreaCode()
+        return RequestManager.getAreaCode()
     }
 
 }

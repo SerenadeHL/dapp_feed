@@ -2,7 +2,8 @@ package com.dong.dapp.ui.mvp.gamesquare
 
 import android.os.Bundle
 import com.dong.dapp.R
-import com.dong.dapp.bean.gamesquare.ResultDAppListBean
+import com.dong.dapp.bean.multipage.ResultMultiPageBean
+import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.extensions.showRound
 import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
@@ -14,7 +15,6 @@ import me.serenadehl.base.extensions.invisible
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
-import java.lang.Exception
 
 /**
  * 游戏广场页Fragment
@@ -62,7 +62,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         mPresenter.getDAppList(mPage, mPageSize)
     }
 
-    override fun getDAppListSuccess(data: ResultDAppListBean?) {
+    override fun getDAppListSuccess(data: ResultMultiPageBean<ResultDAppItemBean>?) {
         "getDAppListSuccess-------> $data".log()
 
         val items = data?.items ?: return
@@ -97,7 +97,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         }
     }
 
-    private fun enterDApp(item: ResultDAppListBean.Item) {
+    private fun enterDApp(item: ResultDAppItemBean) {
         WebActivity.start(requireActivity(), item.pid, item.url)
     }
 

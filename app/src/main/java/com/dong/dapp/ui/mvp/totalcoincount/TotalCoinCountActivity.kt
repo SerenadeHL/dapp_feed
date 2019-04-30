@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import com.dong.dapp.R
 import com.dong.dapp.adapter.recyclerview.CoinAdapter
-import com.dong.dapp.bean.coin.TotalCoinBean
+import com.dong.dapp.bean.coin.ResultTotalCoinBean
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.*
 import kotlinx.android.synthetic.main.title_layout.*
@@ -93,23 +93,23 @@ class TotalCoinCountActivity : MVPBaseActivity<ITotalCoinCountPresenter>(), ITot
         mHeader.tv_cumulative_gain.text = "¥4134.55"
         mHeader.tv_today_obtain.text = "¥41.00"
         val data = arrayListOf(
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "进行中", "+ ¥23.44"),
-            TotalCoinBean("划转到JetAxon", "2019.4.6 14:22", "失败", "- ¥12"),
-            TotalCoinBean("邀请好友{用户名}充值返现", "2019.4.6 14:22", "已完成", "+ ¥2.66"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥1"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥2"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥3"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥4"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥5"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥6"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥7"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥8"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥9"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥10"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥11"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥12"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥13"),
-            TotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥14")
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "进行中", "+ ¥23.44"),
+            ResultTotalCoinBean("划转到JetAxon", "2019.4.6 14:22", "失败", "- ¥12"),
+            ResultTotalCoinBean("邀请好友{用户名}充值返现", "2019.4.6 14:22", "已完成", "+ ¥2.66"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥1"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥2"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥3"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥4"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥5"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥6"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥7"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥8"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥9"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥10"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥11"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥12"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥13"),
+            ResultTotalCoinBean("邀请好友激活奖励", "2019.4.6 14:22", "已完成", "+ ¥14")
         )
         mAdapter.setNewData(data)
     }

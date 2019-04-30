@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.exception.BaseException
 import com.dong.dapp.network.BaseObserver
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import com.megvii.faceidiol.sdk.manager.IDCardManager
 import com.megvii.faceidiol.sdk.manager.IDCardResult
 import com.megvii.faceidiol.sdk.manager.UserDetectConfig
@@ -36,7 +36,7 @@ object KYCUtils {
         var frontImage: String? = null
         var backImage: String? = null
         var sign: String? = null
-        DAppRequest
+        RequestManager
             .getKYCSign()//获取签名信息/
             .flatMap { data ->
                 //初始化身份证识别
@@ -50,7 +50,7 @@ object KYCUtils {
             .flatMap { result ->
                 idCardResult = result
                 //验证身份证是否可用
-                return@flatMap DAppRequest.isIdCardNumberAvailable(result.idCardInfo.idcardNumber.text)
+                return@flatMap RequestManager.isIdCardNumberAvailable(result.idCardInfo.idcardNumber.text)
             }
             .flatMap { data ->
                 //获取人脸识别token并且异步上传身份证图片
@@ -63,7 +63,7 @@ object KYCUtils {
                         UploadFileUtils.upload(idCardResult!!.idCardInfo.imageBackside) {
                             backImage = it
                         }
-                        DAppRequest.getKYCBizToken(
+                        RequestManager.getKYCBizToken(
                             sign ?: "",
                             idCardResult?.idCardInfo?.name?.text ?: "",
                             idCardResult?.idCardInfo?.idcardNumber?.text ?: ""
@@ -98,7 +98,7 @@ object KYCUtils {
             }
             .flatMap {
                 //向后台提交KYC信息
-                return@flatMap DAppRequest.finishKYC(getUploadInfo(bizToken, idCardResult, frontImage, backImage))
+                return@flatMap RequestManager.finishKYC(getUploadInfo(bizToken, idCardResult, frontImage, backImage))
             }
             .subscribe(object : BaseObserver<ResultFinishKYCBean?>() {
                 override fun next(data: ResultFinishKYCBean?) {

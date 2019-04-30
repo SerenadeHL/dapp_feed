@@ -1,10 +1,7 @@
 package com.dong.dapp.jsapi
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.text.TextUtils
-import android.util.Log
 import android.webkit.JavascriptInterface
 import com.dong.dapp.Constant
 import com.dong.dapp.bean.tronweb.TronDAppRequest
@@ -12,11 +9,9 @@ import com.dong.dapp.bean.wallet.TronSignBean
 import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.*
 import com.dong.dapp.network.BaseObserver
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import com.dong.dapp.utils.UserInfoUtils
 import com.google.gson.Gson
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.utils.app.AppManager
 import wendu.dsbridge.CompletionHandler
@@ -119,7 +114,7 @@ class TronPayApi {
         //     tronSignReqBean.setType(TronSignReqBean.Type.HEX.getValue());
         // }
 
-        DAppRequest
+        RequestManager
             .getTronSign(userInfoBean?.publicKey ?: "", transaction, Constant.TEXT)
             .subscribe(object : BaseObserver<TronSignBean?>() {
                 override fun next(data: TronSignBean?) {
@@ -156,7 +151,7 @@ class TronPayApi {
         //DApp传入的json，转换成java bean
         val tronDAppRequest = Gson().fromJson(transaction, TronDAppRequest::class.java)
 
-        DAppRequest
+        RequestManager
             .getTronSign(userInfoBean?.publicKey ?: "", tronDAppRequest?.txID ?: "", Constant.HEX)
             .subscribe(object : BaseObserver<TronSignBean?>() {
                 override fun next(data: TronSignBean?) {

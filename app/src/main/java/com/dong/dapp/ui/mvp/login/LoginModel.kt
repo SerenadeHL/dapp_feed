@@ -2,7 +2,7 @@ package com.dong.dapp.ui.mvp.login
 
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
 
@@ -18,7 +18,7 @@ class LoginModel : MVPBaseModel(), ILoginModel {
      * @param areaCode 区号
      */
     override fun getVerifyCode(phone: String, areaCode: String): Observable<ResultVerifyCodeBean?> {
-        return DAppRequest.getVerifyCode(phone, areaCode)
+        return RequestManager.getVerifyCode(phone, areaCode)
     }
 
     /**
@@ -28,7 +28,7 @@ class LoginModel : MVPBaseModel(), ILoginModel {
      * @param invitationCode 邀请码
      */
     override fun login(verifyCode: String, fp: String, invitationCode: String): Observable<ResultLoginBean?> {
-        return DAppRequest.login(verifyCode,fp, invitationCode)
+        return RequestManager.login(verifyCode,fp, invitationCode)
     }
 
 }

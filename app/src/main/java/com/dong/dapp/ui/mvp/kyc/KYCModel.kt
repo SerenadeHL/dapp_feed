@@ -1,7 +1,7 @@
 package com.dong.dapp.ui.mvp.kyc
 
 import com.dong.dapp.bean.kyc.ResultIdCardNumberAvailableBean
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
 
@@ -13,6 +13,6 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
 class KYCModel : MVPBaseModel(), IKYCModel {
 
     override fun checkIdCarNumber(idNumber: String): Observable<ResultIdCardNumberAvailableBean?> {
-        return DAppRequest.isIdCardNumberAvailable(idNumber)
+        return RequestManager.isIdCardNumberAvailable(idNumber)
     }
 }

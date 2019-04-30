@@ -9,7 +9,7 @@ import com.dong.dapp.bean.statistics.ResultEnterDAppBean
 import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.save
 import com.dong.dapp.network.BaseObserver
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import com.dong.dapp.utils.PopupWindowUtils
 import com.dong.dapp.utils.WebViewUtils
 import com.dong.dapp.widget.SuspensionBall
@@ -73,7 +73,7 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
             }
         })
 
-        DAppRequest.getTronUserInfo()
+        RequestManager.getTronUserInfo()
             .subscribe(object : BaseObserver<UserInfoBean?>() {
                 override fun next(data: UserInfoBean?) {
                     data?.save()

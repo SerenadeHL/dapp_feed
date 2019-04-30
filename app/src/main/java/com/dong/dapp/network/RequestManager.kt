@@ -1,20 +1,22 @@
 package com.dong.dapp.network
 
-import com.dong.dapp.bean.BaseBean
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
-import com.dong.dapp.bean.gamesquare.RequestDAppListBean
-import com.dong.dapp.bean.gamesquare.ResultDAppListBean
+import com.dong.dapp.bean.multipage.RequestMultiPageBean
+import com.dong.dapp.bean.multipage.ResultMultiPageBean
+import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.bean.login.RequestLoginBean
+import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
-import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.bean.me.ResultUserInfoBean
 import com.dong.dapp.bean.statistics.RequestEnterDAppBean
 import com.dong.dapp.bean.statistics.RequestExitDAppBean
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
-import com.dong.dapp.bean.wallet.*
-import com.dong.dapp.extensions.*
+import com.dong.dapp.bean.wallet.TronSignBean
+import com.dong.dapp.bean.wallet.UserInfoBean
+import com.dong.dapp.extensions.decrypt
+import com.dong.dapp.extensions.fromJson
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
 import com.google.gson.reflect.TypeToken
@@ -30,7 +32,7 @@ import java.util.*
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-10 19:46:44
  */
-object DAppRequest {
+object RequestManager {
 
     //=============================================通用接口=============================================
 
@@ -39,11 +41,11 @@ object DAppRequest {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppListBean?> {
-        val requestBean = RequestDAppListBean(page, pageSize)
+    fun getDAppList(page: Int, pageSize: Int): Observable<ResultMultiPageBean<ResultDAppItemBean>?> {
+        val requestBean = RequestMultiPageBean(page, pageSize)
         return RetrofitHelper.create(CommonApi::class.java)
             .getDAppList(requestBean)
-            .decrypt<ResultDAppListBean?>()
+            .decrypt<ResultMultiPageBean<ResultDAppItemBean>?>()
             .async()
     }
 

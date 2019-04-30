@@ -4,7 +4,7 @@ import android.app.Activity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
-import com.dong.dapp.bean.coin.TotalCoinBean
+import com.dong.dapp.bean.coin.ResultTotalCoinBean
 import com.dong.dapp.ui.activity.TransferDetailActivity
 import me.serenadehl.base.extensions.startActivity
 
@@ -14,7 +14,7 @@ import me.serenadehl.base.extensions.startActivity
  * 创建时间：2019-04-24 20:27:47
  */
 class CoinAdapter(activity: Activity) :
-    BaseQuickAdapter<TotalCoinBean, BaseViewHolder>(R.layout.app_recycle_item_coin) {
+    BaseQuickAdapter<ResultTotalCoinBean, BaseViewHolder>(R.layout.app_recycle_item_coin) {
     init {
         setOnItemClickListener { _, _, position ->
             //TODO设置数据
@@ -22,7 +22,7 @@ class CoinAdapter(activity: Activity) :
         }
     }
 
-    override fun convert(helper: BaseViewHolder?, item: TotalCoinBean?) {
+    override fun convert(helper: BaseViewHolder?, item: ResultTotalCoinBean?) {
         helper?.apply {
             setText(R.id.tv_title, item?.title)
             setText(R.id.tv_time, item?.time)

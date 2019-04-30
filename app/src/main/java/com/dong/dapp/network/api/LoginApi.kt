@@ -32,6 +32,6 @@ interface LoginApi {
      * @param fp getVerifyCode接口返回数据
      * @param invitation_code 邀请码
      */
-    @POST("/public/user/register")
+    @POST("public/user/register")
     fun login(@Body requestBean: RequestLoginBean): Observable<BaseResponse>
 }

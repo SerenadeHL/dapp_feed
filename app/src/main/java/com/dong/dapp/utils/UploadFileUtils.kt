@@ -2,7 +2,7 @@ package com.dong.dapp.utils
 
 import com.dong.dapp.bean.kyc.ResultUploadFileBean
 import com.dong.dapp.network.BaseObserver
-import com.dong.dapp.network.DAppRequest
+import com.dong.dapp.network.RequestManager
 import me.serenadehl.base.extensions.log
 
 
@@ -14,7 +14,7 @@ import me.serenadehl.base.extensions.log
 object UploadFileUtils {
     fun upload(content: ByteArray, success: (String?) -> Unit) {
         "开始上传文件".log()
-        DAppRequest.uploadFile(content)
+        RequestManager.uploadFile(content)
             .subscribe(object : BaseObserver<ResultUploadFileBean?>() {
                 override fun next(data: ResultUploadFileBean?) {
                     "上传成功 : $data".log()

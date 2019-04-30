@@ -18,7 +18,7 @@ interface StatisticsApi {
      * 进入DApp
      * @param pid DApp的id
      */
-    @POST("/api/v1/dapp/enter")
+    @POST("api/v1/dapp/enter")
     fun enterDApp(@Body requestBean: RequestEnterDAppBean): Observable<BaseResponse>
 
     /**
@@ -26,6 +26,6 @@ interface StatisticsApi {
      * @param id 用户行为id
      * @param action 用户行为记录，格式为：[时间戳:-1]
      */
-    @POST("/api/v1/dapp/quit")
+    @POST("api/v1/dapp/quit")
     fun exitDApp(@Body requestBean: RequestExitDAppBean): Observable<BaseResponse>
 }

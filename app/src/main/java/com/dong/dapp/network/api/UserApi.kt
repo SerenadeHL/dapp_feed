@@ -14,6 +14,6 @@ interface UserApi {
     /**
      * 获取用户信息
      */
-    @POST("/api/v1/user/meta")
+    @POST("api/v1/user/meta")
     fun getUserInfo(): Observable<BaseResponse>
 }

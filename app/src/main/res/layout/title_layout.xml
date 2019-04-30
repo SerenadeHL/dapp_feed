@@ -19,14 +19,15 @@
             android:layout_height="@dimen/L2"/>
 
     <ImageView
-            android:layout_width="@dimen/L8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/match_constraint"
+            android:paddingStart="@dimen/L1"
+            android:paddingEnd="@dimen/L1"
             android:src="@mipmap/black_left_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/iv_back"
-            android:layout_marginStart="@dimen/L1"
-            android:layout_height="@dimen/L8"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <include layout="@layout/divider"
              android:id="@+id/v_header_divider"
