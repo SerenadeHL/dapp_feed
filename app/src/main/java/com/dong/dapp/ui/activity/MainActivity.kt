@@ -4,20 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.R
-import com.dong.dapp.bean.coin.ResultCoinRecordsItemBean
-import com.dong.dapp.bean.multipage.RequestMultiPageBean
-import com.dong.dapp.bean.multipage.ResultMultiPageBean
-import com.dong.dapp.extensions.decrypt
-import com.dong.dapp.network.RetrofitHelper
-import com.dong.dapp.network.api.CoinApi
 import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
 import com.dong.dapp.ui.mvp.login.LoginActivity
 import com.dong.dapp.ui.mvp.me.MeFragment
-import com.dong.dapp.utils.AESUtils.decrypt
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.extensions.*
+import me.serenadehl.base.extensions.invisible
+import me.serenadehl.base.extensions.startActivity
+import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.visible
 
 
 /**
@@ -60,15 +56,6 @@ class MainActivity : BaseActivity() {
         cl_me.setOnClickListener { switchTab(ME) }
 
         cl_game.performClick()
-
-
-        RetrofitHelper.create(CoinApi::class.java)
-            .getCoinRecords(0, 10)
-            .decrypt<ResultMultiPageBean<ResultCoinRecordsItemBean>?>()
-            .async()
-            .subscribe {
-                "getCoinRecords---------> $it".log()
-            }
     }
 
     /**

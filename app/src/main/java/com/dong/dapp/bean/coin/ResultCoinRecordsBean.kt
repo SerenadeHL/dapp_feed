@@ -1,4 +1,4 @@
-package com.dong.dapp.bean.multipage
+package com.dong.dapp.bean.coin
 
 import com.dong.dapp.bean.BaseBean
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
@@ -7,12 +7,14 @@ import com.google.gson.annotations.SerializedName
 /**
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
- * 创建时间：2019-04-30 10:16:17
+ * 创建时间：2019-05-05 14:55:27
  */
-data class ResultMultiPageBean<T>(
-    @SerializedName("items") var items: List<ResultDAppItemBean>?,//Item
+data class ResultCoinRecordsBean(
+    @SerializedName("items") var items: List<ResultCoinRecordsItemBean>?,//Item
     @SerializedName("page_size") var pageSize: Int, //该页条数
     @SerializedName("page") var page: Int,//页数
     @SerializedName("total_count") var totalCount: Int,//总条数
     @SerializedName("page_count") var pageCount: Int//总页数
-) : BaseBean()
+) : BaseBean() {
+    fun hasMore() = page + 1 < pageCount
+}

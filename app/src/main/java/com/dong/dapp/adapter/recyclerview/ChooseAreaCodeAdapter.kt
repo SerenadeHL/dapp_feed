@@ -11,8 +11,7 @@ import com.dong.dapp.bean.areacode.ResultAreaCodeItemBean
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-28 20:45:01
  */
-class ChooseAreaCodeAdapter :
-    BaseQuickAdapter<ResultAreaCodeItemBean, BaseViewHolder>(R.layout.app_recycle_item_choose_area_code) {
+class ChooseAreaCodeAdapter : BaseQuickAdapter<ResultAreaCodeItemBean, BaseViewHolder>(R.layout.app_recycle_item_choose_area_code) {
 
     private lateinit var mTitleIndex: Set<Int>
 

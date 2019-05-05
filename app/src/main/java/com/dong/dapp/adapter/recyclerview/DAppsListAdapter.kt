@@ -1,6 +1,5 @@
 package com.dong.dapp.adapter.recyclerview
 
-import android.app.Activity
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -15,12 +14,11 @@ import com.dong.dapp.ui.mvp.web.WebActivity
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-11 11:15:09
  */
-class DAppsListAdapter(val activity: Activity) :
-    BaseQuickAdapter<ResultDAppItemBean, BaseViewHolder>(R.layout.app_recycle_item_game_square) {
+class DAppsListAdapter : BaseQuickAdapter<ResultDAppItemBean, BaseViewHolder>(R.layout.app_recycle_item_game_square) {
 
     init {
         setOnItemClickListener { _, _, position ->
-            WebActivity.start(activity, data[position].pid, data[position].url)
+            WebActivity.start(mContext, data[position].pid, data[position].url)
         }
     }
 
@@ -28,7 +26,7 @@ class DAppsListAdapter(val activity: Activity) :
         helper?.apply {
             setText(R.id.tv_name, item?.title)
             setText(R.id.tv_description, item?.intro)
-            setText(R.id.tv_playing_count, String.format(activity.getString(R.string.play_count), item?.count))
+            setText(R.id.tv_playing_count, String.format(mContext.getString(R.string.play_count), item?.count))
             getView<ImageView>(R.id.iv_logo).showRound(item?.logo, 4F)
             setVisible(R.id.v_top_divider, (layoutPosition - headerLayoutCount) > 0)//隐藏第一个Item的分割线
         }

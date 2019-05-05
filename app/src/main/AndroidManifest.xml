@@ -26,17 +26,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.SettingsActivity" android:launchMode="singleTask"/>
-        <activity android:name=".ui.activity.MainActivity" android:launchMode="singleTask"/>
-        <activity android:name=".ui.mvp.kyc.KYCActivity"/>
-
-        <activity android:name=".ui.mvp.totalcashcount.TotalCashCountActivity"/>
-        <activity android:name=".ui.mvp.totalcoincount.TotalCoinCountActivity"/>
-
         <activity android:name=".ui.mvp.login.LoginActivity" android:launchMode="singleTask"/>
         <activity android:name=".ui.mvp.chooseareacode.ChooseAreaCodeActivity" android:launchMode="singleTask"/>
 
-        <activity
+        <activity android:name=".ui.activity.MainActivity" android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.activity.SettingsActivity" android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.mvp.kyc.KYCActivity" android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.mvp.totalcount.totalcashcount.TotalCashCountActivity"
+                  android:launchMode="singleTask"/>
+        <activity android:name=".ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity"
+                  android:launchMode="singleTask"/>
+
+       <activity
                 android:name=".ui.mvp.web.WebActivity"
                 android:theme="@style/WebTheme"
                 android:launchMode="singleTask"/>

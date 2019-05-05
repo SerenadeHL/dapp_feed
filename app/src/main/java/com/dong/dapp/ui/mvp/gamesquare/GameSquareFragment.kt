@@ -2,19 +2,21 @@ package com.dong.dapp.ui.mvp.gamesquare
 
 import android.os.Bundle
 import com.dong.dapp.R
-import com.dong.dapp.bean.multipage.ResultMultiPageBean
+import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
+import com.dong.dapp.extensions.show
 import com.dong.dapp.extensions.showRound
-import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
-import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
+import com.dong.dapp.network.RequestManager.enterDApp
+import com.dong.dapp.ui.mvp.login.LoginActivity
+import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
+import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
 import com.dong.dapp.ui.mvp.web.WebActivity
+import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.app_recycle_item_game_square.view.*
+import kotlinx.android.synthetic.main.fragment_game_square.*
 import kotlinx.android.synthetic.main.fragment_game_square.view.*
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
-import me.serenadehl.base.extensions.invisible
-import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.startActivity
-import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.*
 
 /**
  * 游戏广场页Fragment
@@ -31,6 +33,9 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun createPresenter() = GameSquarePresenter()
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
+
+        mRootView.btn_login.setOnClickListener { startActivity<LoginActivity>() }
+
         mRootView.tv_announcement.text =
             "妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
         mRootView.tv_announcement.requestFocus()
@@ -55,14 +60,28 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         //TODO 测试
         mRootView.iv_first_charge.setOnClickListener { toast("限时首充特惠") }
 
-        getData()
+        loadData()
     }
 
-    private fun getData() {
+    override fun onResume() {
+        super.onResume()
+        if (LoginUtils.isLogin()) {
+            mRootView.iv_top_bg.setImageBitmap(null)
+            mRootView.g_login.visible()
+            mRootView.btn_login.invisible()
+        } else {
+            //TODO iv_top_bg根据后台接口显示对应图
+//            mRootView.iv_top_bg.show()
+            mRootView.g_login.invisible()
+            mRootView.btn_login.visible()
+        }
+    }
+
+    private fun loadData() {
         mPresenter.getDAppList(mPage, mPageSize)
     }
 
-    override fun getDAppListSuccess(data: ResultMultiPageBean<ResultDAppItemBean>?) {
+    override fun getDAppListSuccess(data: ResultDAppBean?) {
         "getDAppListSuccess-------> $data".log()
 
         val items = data?.items ?: return
@@ -76,22 +95,24 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
                 mRootView.cl_dapp1.iv_logo.showRound(logo, radiusDp)
                 mRootView.cl_dapp1.tv_description.text = intro
                 mRootView.cl_dapp1.tv_playing_count.text = String.format(getString(R.string.play_count), count)
-                mRootView.cl_dapp1.setOnClickListener { enterDApp(this) }
+                mRootView.cl_dapp1.setOnClickListener { enterDApp(this@apply) }
             }
             items[1].apply {
                 mRootView.cl_dapp2.tv_name.text = title
                 mRootView.cl_dapp2.iv_logo.showRound(logo, radiusDp)
                 mRootView.cl_dapp2.tv_description.text = intro
                 mRootView.cl_dapp2.tv_playing_count.text = String.format(getString(R.string.play_count), count)
-                mRootView.cl_dapp2.setOnClickListener { enterDApp(this) }
+                mRootView.cl_dapp2.setOnClickListener { enterDApp(this@apply) }
             }
+            v_divider1.visible()
             items[2].apply {
                 mRootView.cl_dapp3.tv_name.text = title
                 mRootView.cl_dapp3.iv_logo.showRound(logo, radiusDp)
                 mRootView.cl_dapp3.tv_description.text = intro
                 mRootView.cl_dapp3.tv_playing_count.text = String.format(getString(R.string.play_count), count)
-                mRootView.cl_dapp3.setOnClickListener { enterDApp(this) }
+                mRootView.cl_dapp3.setOnClickListener { enterDApp(this@apply) }
             }
+            v_divider2.visible()
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -7,15 +7,15 @@
         android:layout_height="match_parent"
         tools:context=".ui.mvp.gamesquare.GameSquareFragment">
 
-    <View
+    <ImageView
             android:layout_width="@dimen/match_constraint"
-            android:id="@+id/v_top_bg"
+            android:id="@+id/iv_top_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/g1_horizontal"
             android:layout_marginBottom="@dimen/L7"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/cv_coin"
+            android:background="@drawable/g1_horizontal"
             android:layout_height="@dimen/match_constraint"/>
 
     <View
@@ -23,7 +23,7 @@
             android:id="@+id/v_bottom_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/v_top_bg"
+            app:layout_constraintTop_toBottomOf="@id/iv_top_bg"
             android:background="@color/C2"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="@dimen/match_constraint"/>
@@ -246,6 +246,28 @@
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 
+    <android.support.constraint.Group
+            app:constraint_referenced_ids="iv_announcement,tv_announcement,tv_today_gains,cv_coin,cv_cash"
+            android:layout_width="wrap_content"
+             android:id="@+id/g_login"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:elevation="@dimen/L1"
+            android:visibility="invisible"
+            android:id="@+id/btn_login"
+            android:textSize="@dimen/F3"
+            android:textColor="@color/C2"
+            android:text="@string/login_immediately_to_get_five_coins"
+            android:background="@drawable/login_btn_bg"
+            android:layout_marginStart="@dimen/dp_game_square_login_button_margin_start"
+            android:layout_marginEnd="@dimen/dp_game_square_login_button_margin_end"
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/cv_coin"
+            android:layout_height="@dimen/L2"/>
+
     <TextView
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/L1"
@@ -302,6 +324,7 @@
     <include layout="@layout/divider"
              android:id="@+id/v_divider1"
              android:layout_height="@dimen/divider_size"
+             android:visibility="invisible"
              android:layout_width="@dimen/match_constraint"
              app:layout_constraintBottom_toTopOf="@id/cl_dapp2"
              android:layout_marginStart="@dimen/dp_divider_margin_start"
@@ -312,6 +335,7 @@
     <include layout="@layout/divider"
              android:id="@+id/v_divider2"
              android:layout_height="@dimen/divider_size"
+             android:visibility="invisible"
              android:layout_width="@dimen/match_constraint"
              app:layout_constraintBottom_toTopOf="@id/cl_dapp3"
              android:layout_marginStart="@dimen/dp_divider_margin_start"

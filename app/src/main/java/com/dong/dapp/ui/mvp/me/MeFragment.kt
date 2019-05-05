@@ -7,8 +7,8 @@ import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
 import com.dong.dapp.bean.me.OptionBean
 import com.dong.dapp.ui.activity.SettingsActivity
-import com.dong.dapp.ui.mvp.totalcashcount.TotalCashCountActivity
-import com.dong.dapp.ui.mvp.totalcoincount.TotalCoinCountActivity
+import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
+import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
 import kotlinx.android.synthetic.main.fragment_me.view.*
 
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment

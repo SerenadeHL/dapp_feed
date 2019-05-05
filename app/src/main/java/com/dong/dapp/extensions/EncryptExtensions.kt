@@ -23,7 +23,7 @@ inline fun <reified T : BaseBean?> Observable<BaseResponse>.decrypt(): Observabl
         } else {
             val decode = Base64.decode(it.data, Base64.DEFAULT)
             val decrypt = AESUtils.decrypt(decode, AESUtils.generateKey(), AESUtils.generateIv())
-            val data = decrypt?.fromJson(T::class.java)
+            val data: T? = decrypt?.fromJson(T::class.java)
             return@flatMap Observable.just(data)
         }
     }.map {

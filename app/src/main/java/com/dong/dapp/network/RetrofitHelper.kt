@@ -1,6 +1,7 @@
 package com.dong.dapp.network
 
 import com.dong.dapp.DAppApplication
+import com.dong.dapp.extensions.getGson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -28,7 +28,7 @@
     <ImageView
             app:layout_constraintTop_toTopOf="@id/tv_balance_label"
             app:layout_constraintBottom_toBottomOf="@id/tv_balance_label"
-            android:src="@mipmap/me_user"
+            android:src="@mipmap/gray_question_mark"
             android:id="@+id/iv_question_mark"
             android:layout_marginStart="@dimen/dp_transfer_question_mark_margin_start"
             app:layout_constraintStart_toEndOf="@id/tv_balance_label"

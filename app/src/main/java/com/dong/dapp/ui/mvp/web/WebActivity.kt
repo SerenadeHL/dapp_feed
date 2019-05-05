@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.web
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import com.dong.dapp.DAppApplication
@@ -33,8 +34,8 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
     private val mActions by lazy { mutableListOf<Map<String, String>>() }//用户行为
 
     companion object {
-        fun start(activity: Activity, pid: String?, url: String?) {
-            activity.startActivity<WebActivity>("pid" to pid, "url" to url)
+        fun start(context: Context, pid: String?, url: String?) {
+            context.startActivity<WebActivity>("pid" to pid, "url" to url)
         }
     }
 

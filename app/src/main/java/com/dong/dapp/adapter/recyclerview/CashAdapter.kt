@@ -1,11 +1,10 @@
 package com.dong.dapp.adapter.recyclerview
 
-import android.app.Activity
 import android.support.v4.content.ContextCompat
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
-import com.dong.dapp.bean.coin.ResultCoinRecordsItemBean
+import com.dong.dapp.bean.cash.ResultCashRecordsItemBean
 import com.dong.dapp.ui.activity.TransferDetailActivity
 import me.serenadehl.base.extensions.startActivity
 
@@ -14,7 +13,7 @@ import me.serenadehl.base.extensions.startActivity
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-24 20:27:47
  */
-class CoinAdapter : BaseQuickAdapter<ResultCoinRecordsItemBean, BaseViewHolder>(R.layout.app_recycle_item_coin) {
+class CashAdapter : BaseQuickAdapter<ResultCashRecordsItemBean, BaseViewHolder>(R.layout.app_recycle_item_cash) {
     init {
         setOnItemClickListener { _, _, position ->
             //TODO设置数据
@@ -22,7 +21,7 @@ class CoinAdapter : BaseQuickAdapter<ResultCoinRecordsItemBean, BaseViewHolder>(
         }
     }
 
-    override fun convert(helper: BaseViewHolder?, item: ResultCoinRecordsItemBean?) {
+    override fun convert(helper: BaseViewHolder?, item: ResultCashRecordsItemBean?) {
         helper?.apply {
             setText(R.id.tv_title, item?.title)
             setText(R.id.tv_time, item?.createAtStr)

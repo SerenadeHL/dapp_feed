@@ -58,6 +58,8 @@
     <dimen name="dp_game_square_announcement_margin_top">6dp</dimen>
     <dimen name="dp_game_square_announcement_margin_start">7dp</dimen>
     <dimen name="sp_game_square_announcement_text_size">13sp</dimen>
+    <dimen name="dp_game_square_login_button_margin_start">38dp</dimen>
+    <dimen name="dp_game_square_login_button_margin_end">38dp</dimen>
 
     <dimen name="dp_game_square_today_gains_margin_top">18dp</dimen>
 
@@ -93,12 +95,21 @@
     <dimen name="dp_transfer_detail_money_height">75dp</dimen>
 
     <!--TotalCoinCountActivity-->
-    <dimen name="dp_total_coin_header_padding_bottom">29dp</dimen>
-    <dimen name="sp_total_coin_header_money_text_size">36sp</dimen>
-    <dimen name="dp_total_coin_header_cumulative_gain_margin_top">6dp</dimen>
+    <dimen name="dp_total_coin_header_bottom_title_margin_top">29dp</dimen>
+    <dimen name="sp_total_coin_header_balance_text_size">36sp</dimen>
+    <dimen name="dp_total_coin_header_transferable_margin_top">6dp</dimen>
+    <dimen name="dp_total_coin_header_question_mark_size">12dp</dimen>
 
     <dimen name="dp_total_coin_item_title_margin_top">11dp</dimen>
     <dimen name="dp_total_coin_item_padding_bottom">12dp</dimen>
+
+    <!--TotalCashCountActivity-->
+    <dimen name="dp_total_cash_header_bottom_title_margin_top">29dp</dimen>
+    <dimen name="sp_total_cash_header_balance_text_size">36sp</dimen>
+    <dimen name="dp_total_cash_header_cumulative_gain_margin_top">6dp</dimen>
+
+    <dimen name="dp_total_cash_item_title_margin_top">11dp</dimen>
+    <dimen name="dp_total_cash_item_padding_bottom">12dp</dimen>
 
     <!--KYCActivity-->
     <dimen name="dp_id_card_label_margin_top">8dp</dimen>

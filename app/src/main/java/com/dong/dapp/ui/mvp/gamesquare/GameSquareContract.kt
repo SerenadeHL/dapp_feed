@@ -1,7 +1,6 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
-import com.dong.dapp.bean.multipage.ResultMultiPageBean
-import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
+import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.IBaseModel
 import me.serenadehl.base.base.mvpbase.IBasePresenter
@@ -14,7 +13,7 @@ import me.serenadehl.base.base.mvpbase.IBaseView
  * 创建时间：2019-4-11 10:25:57
  */
 interface IGameSquareView : IBaseView {
-    fun getDAppListSuccess(data: ResultMultiPageBean<ResultDAppItemBean>?)
+    fun getDAppListSuccess(data: ResultDAppBean?)
 
     fun getDAppListFailed()
 }
@@ -24,5 +23,5 @@ interface IGameSquarePresenter : IBasePresenter {
 }
 
 interface IGameSquareModel : IBaseModel {
-    fun getDAppList(page: Int, pageSize: Int): Observable<ResultMultiPageBean<ResultDAppItemBean>?>
+    fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppBean?>
 }

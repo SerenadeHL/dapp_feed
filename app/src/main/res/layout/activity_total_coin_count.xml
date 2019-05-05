@@ -6,11 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/C2"
-        tools:context=".ui.mvp.totalcoincount.TotalCoinCountActivity">
+        tools:context=".ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity">
 
     <android.support.v7.widget.RecyclerView
             android:layout_width="@dimen/match_constraint"
             android:id="@+id/rv_coin"
+            android:overScrollMode="never"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

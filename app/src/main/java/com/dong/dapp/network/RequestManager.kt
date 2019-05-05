@@ -1,25 +1,27 @@
 package com.dong.dapp.network
 
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
-import com.dong.dapp.bean.multipage.RequestMultiPageBean
-import com.dong.dapp.bean.multipage.ResultMultiPageBean
-import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
+import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashRecordsBean
+import com.dong.dapp.bean.coin.ResultCoinBalanceBean
+import com.dong.dapp.bean.coin.ResultCoinRecordsBean
+import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.bean.login.RequestLoginBean
 import com.dong.dapp.bean.login.RequestVerifyCodeBean
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.bean.me.ResultUserInfoBean
+import com.dong.dapp.bean.multipage.RequestMultiPageBean
 import com.dong.dapp.bean.statistics.RequestEnterDAppBean
 import com.dong.dapp.bean.statistics.RequestExitDAppBean
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
 import com.dong.dapp.bean.wallet.TronSignBean
 import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.decrypt
-import com.dong.dapp.extensions.fromJson
+import com.dong.dapp.extensions.fromJsonArray
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
-import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
 import okhttp3.MediaType
@@ -41,11 +43,11 @@ object RequestManager {
      * @param page 页数
      * @param pageSize 每页条数
      */
-    fun getDAppList(page: Int, pageSize: Int): Observable<ResultMultiPageBean<ResultDAppItemBean>?> {
+    fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppBean?> {
         val requestBean = RequestMultiPageBean(page, pageSize)
         return RetrofitHelper.create(CommonApi::class.java)
             .getDAppList(requestBean)
-            .decrypt<ResultMultiPageBean<ResultDAppItemBean>?>()
+            .decrypt<ResultDAppBean?>()
             .async()
     }
 
@@ -136,8 +138,7 @@ object RequestManager {
             }
             val json = AssetsUtils.getAssets(fileName)
             try {
-                val data: List<ResultAreaCodeBean> =
-                    json.fromJson(object : TypeToken<List<ResultAreaCodeBean>>() {}.type)!!
+                val data: List<ResultAreaCodeBean> = json.fromJsonArray(ResultAreaCodeBean::class.java)!!
                 it.onNext(data)
                 it.onComplete()
             } catch (e: Exception) {
@@ -147,6 +148,55 @@ object RequestManager {
         return observable.async()
     }
 
+
+    //=============================================金币相关接口=============================================
+
+    /**
+     * 获取金币资产
+     */
+    fun getCoinBalance(): Observable<ResultCoinBalanceBean?> {
+        return RetrofitHelper.create(CoinApi::class.java)
+            .getCoinBalance()
+            .decrypt<ResultCoinBalanceBean?>()
+            .async()
+    }
+
+    /**
+     * 获取金币流水
+     * @param page 页数
+     * @param pageSize 条数
+     */
+    fun getCoinRecords(page: Int, pageSize: Int): Observable<ResultCoinRecordsBean?> {
+        return RetrofitHelper.create(CoinApi::class.java)
+            .getCoinRecords(page, pageSize)
+            .decrypt<ResultCoinRecordsBean?>()
+            .async()
+    }
+
+
+    //=============================================现金相关接口=============================================
+
+    /**
+     * 获取现金资产
+     */
+    fun getCashBalance(): Observable<ResultCashBalanceBean?> {
+        return RetrofitHelper.create(CashApi::class.java)
+            .getCashBalance()
+            .decrypt<ResultCashBalanceBean?>()
+            .async()
+    }
+
+    /**
+     * 获取现金流水
+     * @param page 页数
+     * @param pageSize 条数
+     */
+    fun getCashRecords(page: Int, pageSize: Int): Observable<ResultCashRecordsBean?> {
+        return RetrofitHelper.create(CashApi::class.java)
+            .getCashRecords(page, pageSize)
+            .decrypt<ResultCashRecordsBean?>()
+            .async()
+    }
 
     //=============================================Tron相关接口=============================================
 
