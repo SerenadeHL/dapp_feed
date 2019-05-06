@@ -6,12 +6,14 @@ import android.support.v4.content.ContextCompat
 import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
 import com.dong.dapp.bean.me.OptionBean
+import com.dong.dapp.bean.me.ResultUserInfoBean
 import com.dong.dapp.ui.activity.SettingsActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
 import kotlinx.android.synthetic.main.fragment_me.view.*
 
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
+import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 
@@ -65,11 +67,11 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
         }
         mAdapter.setNewData(createOptions())
 
-        //TODO 实现
-//        RequestManager.getUserInfo()
-//            .subscribe {
-//                "UserInfo------> $it".log()
-//            }
+        loadData()
+    }
+
+    private fun loadData() {
+        mPresenter.getUserInfo()
     }
 
     private fun createOptions(): List<MeBean> {
@@ -88,7 +90,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 false, OptionBean(
                     R.mipmap.me_active,
                     "邀请好友",
-                    "",
+                    null,
                     ContextCompat.getColor(requireActivity(), R.color.C7),
                     true,
                     false
@@ -99,7 +101,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 false, OptionBean(
                     R.mipmap.me_sign,
                     "签到领金币",
-                    "",
+                    null,
                     ContextCompat.getColor(requireActivity(), R.color.C7),
                     true,
                     false
@@ -131,7 +133,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 false, OptionBean(
                     R.mipmap.me_customer,
                     "联系客服",
-                    "",
+                    null,
                     ContextCompat.getColor(requireActivity(), R.color.color_FF6B00),
                     true,
                     true
@@ -141,7 +143,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 false, OptionBean(
                     R.mipmap.me_about_us,
                     "关于我们",
-                    "",
+                    null,
                     ContextCompat.getColor(requireActivity(), R.color.color_FF6B00),
                     true,
                     true
@@ -151,13 +153,26 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                 false, OptionBean(
                     R.mipmap.me_settings,
                     "设置",
-                    "",
+                    null,
                     ContextCompat.getColor(requireActivity(), R.color.color_FF6B00),
                     true,
                     false
                 )
             )
         )
+    }
+
+    override fun getUserInfoSuccess(data: ResultUserInfoBean?) {
+        "getUserInfoSuccess-------> $data".log()
+        mAdapter.getItem(0)?.option?.apply {
+            title = data?.account
+            //TODO 根据kycStatus设置不同文字
+            text = data?.kycStatus?.toString()
+        }
+    }
+
+    override fun getUserInfoFailed() {
+        "getUserInfoFailed------->".log()
     }
 
 }

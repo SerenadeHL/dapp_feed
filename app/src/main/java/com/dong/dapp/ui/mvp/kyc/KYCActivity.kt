@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_kyc.*
 import me.serenadehl.base.base.BaseActivity
 import me.serenadehl.base.base.mvpbase.IBaseView
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
+import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toast
 
 /**
@@ -31,12 +32,12 @@ class KYCActivity : MVPBaseActivity<IKYCPresenter>(), IKYCView {
             //TODO 校验身份证是否合法
             mPresenter.checkIdCarNumber(idCardNumber)
         }
-
     }
 
 
     @SuppressLint("CheckResult")
     override fun checkIdCarNumberSuccess(bean: ResultIdCardNumberAvailableBean?) {
+        "checkIdCarNumberSuccess-------> isRight=${bean?.isRight}".log()
         when (bean?.isRight) {
             0 -> {
                 toast(R.string.id_card_has_been_used)
@@ -63,6 +64,6 @@ class KYCActivity : MVPBaseActivity<IKYCPresenter>(), IKYCView {
     }
 
     override fun checkIdCarNumberFailed() {
-
+        "checkIdCarNumberFailed------->".log()
     }
 }

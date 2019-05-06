@@ -21,6 +21,12 @@ interface CommonApi {
     fun getCommonConfiguration(): Observable<BaseResponse>
 
     /**
+     * 获取公告
+     */
+    @GET("api/df/notices")
+    fun getAnnouncement(): Observable<BaseResponse>
+
+    /**
      * 获取DApp列表
      * @param page 页数
      * @param pageSize 每页条数

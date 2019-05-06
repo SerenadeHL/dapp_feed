@@ -117,9 +117,10 @@ dependencies {
     implementation 'com.github.razerdp:BasePopup:2.1.9'
     //MultiDex
     implementation 'com.android.support:multidex:1.0.3'
-
     //Java不支持PKCS7Padding，需要引入bouncycastle来实现
     implementation 'org.bouncycastle:bcprov-jdk16:1.46'
+    //跑马灯
+    implementation'com.sunfusheng:MarqueeView:1.4.1'
 
     //DSBridge
     implementation project(':dsbridge')
@@ -128,6 +129,7 @@ dependencies {
     implementation(name: 'idcard_ocr', ext: 'aar')
     //FaceID人脸核身
     implementation(name: 'zzplatform_sdk', ext: 'aar')
+
 
     //LeakCanary
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'

@@ -70,6 +70,8 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
             //获取验证码
             mPresenter.getVerifyCode(phoneNumber, areaCode)
             et_verify_code.requestFocus()
+            //开始倒计时
+            startCountDown()
         }
 
         btn_login.setOnClickListener {
@@ -85,21 +87,21 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
 
     override fun getVerifyCodeSuccess(verifyCodeBean: ResultVerifyCodeBean?) {
         mFp = verifyCodeBean?.fp ?: ""
-        //获取验证码成功后开始倒计时
-        startCountDown()
+        "getVerifyCodeSuccess-------> fm=$mFp".log()
     }
 
     override fun getVerifyCodeFailed() {
-
+        "getVerifyCodeFailed------->".log()
     }
 
     override fun loginSuccess(loginBean: ResultLoginBean?) {
+        "loginSuccess-------> token=${loginBean?.token}".log()
         LoginUtils.saveLoginTag(loginBean?.token ?: "")
         finish()
     }
 
     override fun loginFailed() {
-
+        "loginFailed------->".log()
     }
 
     /**

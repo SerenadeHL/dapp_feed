@@ -9,8 +9,9 @@ import com.google.gson.annotations.SerializedName
  * 创建时间：2019-05-06 10:28:21
  */
 data class ResultCommonConfigurationBean(
-    @SerializedName("tabs") val tabs: MutableList<ResultCommonConfigurationTabBean>,
+    @SerializedName("tabs") val tabs: List<ResultCommonConfigurationTabBean>,
     @SerializedName("home_public_header") val homePublicHeader: String,
+    @SerializedName("floating") val floating: ResultCommonConfigurationFloatingBean,
     @SerializedName("about_url") val aboutUrl: String,
-    @SerializedName("menu") val menu: MutableList<MutableList<ResultCommonConfigurationMeOptionBean>>
+    @SerializedName("menu") val menu: List<List<ResultCommonConfigurationMeOptionBean>>
 ):BaseBean()

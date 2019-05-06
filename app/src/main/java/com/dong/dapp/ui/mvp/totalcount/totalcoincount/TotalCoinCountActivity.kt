@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.*
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
+import me.serenadehl.base.extensions.log
 
 /**
  * 金币资产页
@@ -52,11 +53,11 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
     }
 
     override fun getCoinBalanceSuccess(data: ResultCoinBalanceBean?) {
-        mHeader.tv_balance.text = data?.balance ?: ""
+        mHeader.tv_balance.text = data?.balance
         mHeader.tv_approximately.text = String.format(getString(R.string.approximately), data?.evalValue)
-        mHeader.tv_transferable.text = data?.transferable ?: ""
-        mHeader.tv_locked.text = data?.locked ?: ""
-        mHeader.tv_today_obtain.text = data?.todayRevenue ?: ""
+        mHeader.tv_transferable.text = data?.transferable
+        mHeader.tv_locked.text = data?.locked
+        mHeader.tv_today_obtain.text = data?.todayRevenue
     }
 
     override fun getCoinBalanceFailed() {
@@ -77,6 +78,6 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
     }
 
     override fun getCoinRecordsFailed() {
-
+        "getCoinRecordsFailed------->".log()
     }
 }

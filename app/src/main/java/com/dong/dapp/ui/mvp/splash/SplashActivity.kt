@@ -53,14 +53,14 @@ class SplashActivity : MVPBaseActivity<ISplashPresenter>(), ISplashView {
     }
 
     override fun getCommonConfigurationSuccess(data: ResultCommonConfigurationBean?) {
-        "getCommonConfigurationSuccess--------> $data".log()
+        "getCommonConfigurationSuccess-------> $data".log()
         RuntimeData.mResultCommonConfigurationBean = data
         startActivity<MainActivity>()
         finish()
     }
 
     override fun getCommonConfigurationFailed() {
-
+        "getCommonConfigurationFailed------->".log()
     }
 
 }

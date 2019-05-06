@@ -17,12 +17,12 @@ interface CoinApi {
     /**
      * 获取金币资产
      */
-    @GET("assets/coin/trx/balance")
+    @GET("api/df/assets/coin/trx/balance")
     fun getCoinBalance(): Observable<BaseResponse>
 
     /**
      * 获取金币流水
      */
-    @GET("asset/coin/trx/change/records")
+    @GET("api/df/asset/coin/trx/change/records")
     fun getCoinRecords(@Query("page") page: Int, @Query("page_size") pageSize: Int): Observable<BaseResponse>
 }

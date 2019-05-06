@@ -105,10 +105,10 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
 
     override fun enterDAppSuccess(data: ResultEnterDAppBean?) {
         mId = data?.id ?: ""
-        "用户行为id------> $mId".log()
+        "enterDAppSuccess------> 用户行为id=$mId".log()
     }
 
     override fun enterDAppFailed() {
-
+        "enterDAppFailed------->".log()
     }
 }

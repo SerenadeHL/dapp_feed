@@ -3,6 +3,10 @@ package com.dong.dapp.ui.mvp.gamesquare
 import android.os.Bundle
 import com.dong.dapp.R
 import com.dong.dapp.RuntimeData
+import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.coin.ResultCoinBalanceBean
+import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
+import com.dong.dapp.bean.gamesquare.ResultAnnouncementItemBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.extensions.show
@@ -37,13 +41,9 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
 
         mRootView.btn_login.setOnClickListener { startActivity<LoginActivity>() }
 
-        mRootView.tv_announcement.text =
-            "妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
-        mRootView.tv_announcement.requestFocus()
         mRootView.cv_coin.setOnClickListener { startActivity<TotalCoinCountActivity>() }
         mRootView.cv_cash.setOnClickListener { startActivity<TotalCashCountActivity>() }
-        mRootView.tv_coin.text = "2.56"
-        mRootView.tv_cash.text = "¥66.56"
+
         mRootView.tv_sign.setOnClickListener {
             //TODO 点我签到
             toast("点我签到")
@@ -78,7 +78,23 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     }
 
     private fun loadData() {
+        mPresenter.getAnnouncement()
+        mPresenter.getTodayCoinIncome()
+        mPresenter.getTodayCashIncome()
         mPresenter.getDAppList(mPage, mPageSize)
+    }
+
+    private fun enterDApp(item: ResultDAppItemBean) {
+        WebActivity.start(requireActivity(), item.pid, item.url)
+    }
+
+    override fun getAnnouncementSuccess(data: ResultAnnouncementBean?) {
+        "getAnnouncementSuccess-------> $data".log()
+        mRootView.av_announcement.startWithList(data?.items)
+    }
+
+    override fun getAnnouncementFailed() {
+        "getAnnouncementFailed------->".log()
     }
 
     override fun getDAppListSuccess(data: ResultDAppBean?) {
@@ -118,11 +134,24 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         }
     }
 
-    private fun enterDApp(item: ResultDAppItemBean) {
-        WebActivity.start(requireActivity(), item.pid, item.url)
-    }
-
     override fun getDAppListFailed() {
         "getDAppListFailed------->".log()
+    }
+
+
+    override fun getTodayCoinIncomeSuccess(data: ResultCoinBalanceBean?) {
+        mRootView.tv_coin.text = data?.todayRevenue
+    }
+
+    override fun getTodayCoinIncomeFailed() {
+        "getTodayCoinIncomeFailed------->".log()
+    }
+
+    override fun getTodayCashIncomeSuccess(data: ResultCashBalanceBean?) {
+        mRootView.tv_cash.text = String.format(getString(R.string.money_with_symbol), data?.todayRevenue)
+    }
+
+    override fun getTodayCashIncomeFailed() {
+        "getTodayCashIncomeFailed------->".log()
     }
 }

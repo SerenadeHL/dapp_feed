@@ -33,34 +33,33 @@
             android:id="@+id/iv_announcement"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/dp_game_square_announcement_image_margin_start"
-            app:layout_constraintTop_toTopOf="@+id/tv_announcement"
+            app:layout_constraintTop_toTopOf="@+id/av_announcement"
             android:src="@mipmap/announcement"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_announcement"
+            app:layout_constraintBottom_toBottomOf="@+id/av_announcement"
             android:layout_height="@dimen/L8"/>
 
-    <TextView
-            android:id="@+id/tv_announcement"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/C2"
-            android:textSize="@dimen/sp_game_square_announcement_text_size"
-            android:focusableInTouchMode="true"
+    <com.dong.dapp.widget.AnnouncementView
+            android:id="@+id/av_announcement"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            app:mvAnimDuration="1000"
+            app:mvDirection="bottom_to_top"
+            app:mvInterval="3000"
             app:layout_constraintStart_toEndOf="@id/iv_announcement"
-            tools:text="妖精种族，重磅来袭！构筑卡牌 探索奇妙梦境世界！"
+            app:mvTextColor="@color/C2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/L1"
             android:layout_marginTop="@dimen/dp_game_square_announcement_margin_top"
             android:layout_marginStart="@dimen/dp_game_square_announcement_margin_start"
-            android:includeFontPadding="false"
-            android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/L1"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:layout_height="wrap_content"/>
+            app:mvTextSize="@dimen/sp_game_square_announcement_text_size"
+            app:mvSingleLine="true"/>
 
     <TextView
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/today_gains"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_announcement"
+            app:layout_constraintTop_toBottomOf="@id/av_announcement"
             android:layout_marginTop="@dimen/dp_game_square_today_gains_margin_top"
             android:id="@+id/tv_today_gains"
             android:textSize="@dimen/F3"
@@ -247,9 +246,9 @@
     </android.support.v7.widget.CardView>
 
     <android.support.constraint.Group
-            app:constraint_referenced_ids="iv_announcement,tv_announcement,tv_today_gains,cv_coin,cv_cash"
+            app:constraint_referenced_ids="iv_announcement,av_announcement,tv_today_gains,cv_coin,cv_cash"
             android:layout_width="wrap_content"
-             android:id="@+id/g_login"
+            android:id="@+id/g_login"
             android:layout_height="wrap_content"/>
 
     <Button

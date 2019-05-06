@@ -48,7 +48,7 @@
         <activity android:name=".ui.mvp.transfer.TransferCoinActivity" android:launchMode="singleTask"/>
         <activity android:name=".ui.mvp.transfer.TransferCashActivity" android:launchMode="singleTask"/>
 
-        <activity android:name=".ui.activity.TransferDetailActivity" android:launchMode="singleTask"/>
+        <activity android:name=".ui.mvp.transferdetail.TransferDetailActivity" android:launchMode="singleTask"/>
 
         <meta-data
                 android:name="CHANNEL"

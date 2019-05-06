@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_total_cash_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_cash.view.*
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
+import me.serenadehl.base.extensions.log
 
 /**
  * 现金资产页
@@ -78,6 +79,6 @@ class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter
     }
 
     override fun getCashRecordsFailed() {
-
+        "getCashRecordsFailed------->".log()
     }
 }

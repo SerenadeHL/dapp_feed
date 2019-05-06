@@ -1,12 +1,11 @@
 package com.dong.dapp.adapter.recyclerview
 
-import android.app.Activity
 import android.support.v4.content.ContextCompat
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
 import com.dong.dapp.bean.coin.ResultCoinRecordsItemBean
-import com.dong.dapp.ui.activity.TransferDetailActivity
+import com.dong.dapp.ui.mvp.transferdetail.TransferDetailActivity
 import me.serenadehl.base.extensions.startActivity
 
 /**

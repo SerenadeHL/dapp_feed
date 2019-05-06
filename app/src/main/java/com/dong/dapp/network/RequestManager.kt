@@ -2,10 +2,12 @@ package com.dong.dapp.network
 
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashRecordDetailBean
 import com.dong.dapp.bean.cash.ResultCashRecordsBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.bean.common.ResultCommonConfigurationBean
+import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.kyc.*
 import com.dong.dapp.bean.login.RequestLoginBean
@@ -22,7 +24,6 @@ import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.decrypt
 import com.dong.dapp.extensions.fromJsonArray
 import com.dong.dapp.network.api.*
-import com.dong.dapp.utils.AESUtils.decrypt
 import com.dong.dapp.utils.AssetsUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
@@ -43,10 +44,20 @@ object RequestManager {
     /**
      * 获取通用配置
      */
-    fun getCommonConfiguration():Observable<ResultCommonConfigurationBean?>{
+    fun getCommonConfiguration(): Observable<ResultCommonConfigurationBean?> {
         return RetrofitHelper.create(CommonApi::class.java)
             .getCommonConfiguration()
             .decrypt<ResultCommonConfigurationBean?>()
+            .async()
+    }
+
+    /**
+     * 获取公告
+     */
+    fun getAnnouncement(): Observable<ResultAnnouncementBean?>{
+        return RetrofitHelper.create(CommonApi::class.java)
+            .getAnnouncement()
+            .decrypt<ResultAnnouncementBean?>()
             .async()
     }
 
@@ -209,6 +220,18 @@ object RequestManager {
             .decrypt<ResultCashRecordsBean?>()
             .async()
     }
+
+    /**
+     * 获取现金流水详情
+     * @param recordId 流水id
+     */
+    fun getCashRecordDetail(recordId: String): Observable<ResultCashRecordDetailBean?> {
+        return RetrofitHelper.create(CashApi::class.java)
+            .getCashRecordDetail(recordId)
+            .decrypt<ResultCashRecordDetailBean?>()
+            .async()
+    }
+
 
     //=============================================Tron相关接口=============================================
 
