@@ -2,6 +2,7 @@ package com.dong.dapp.ui.mvp.gamesquare
 
 import android.os.Bundle
 import com.dong.dapp.R
+import com.dong.dapp.RuntimeData
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.extensions.show
@@ -70,8 +71,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
             mRootView.g_login.visible()
             mRootView.btn_login.invisible()
         } else {
-            //TODO iv_top_bg根据后台接口显示对应图
-//            mRootView.iv_top_bg.show()
+            mRootView.iv_top_bg.show(RuntimeData.mResultCommonConfigurationBean?.homePublicHeader)
             mRootView.g_login.invisible()
             mRootView.btn_login.visible()
         }

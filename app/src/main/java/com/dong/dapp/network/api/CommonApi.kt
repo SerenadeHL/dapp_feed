@@ -15,6 +15,12 @@ import retrofit2.http.*
 interface CommonApi {
 
     /**
+     * 获取通用配置
+     */
+    @POST("public/common/dappfeed")
+    fun getCommonConfiguration(): Observable<BaseResponse>
+
+    /**
      * 获取DApp列表
      * @param page 页数
      * @param pageSize 每页条数
