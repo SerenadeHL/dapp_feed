@@ -33,6 +33,8 @@
 
         <activity android:name=".ui.activity.SettingsActivity" android:launchMode="singleTask"/>
 
+        <activity android:name=".ui.activity.PersonalInfoActivity" android:launchMode="singleTask"/>
+
         <activity android:name=".ui.mvp.kyc.KYCActivity" android:launchMode="singleTask"/>
 
         <activity android:name=".ui.mvp.totalcount.totalcashcount.TotalCashCountActivity"

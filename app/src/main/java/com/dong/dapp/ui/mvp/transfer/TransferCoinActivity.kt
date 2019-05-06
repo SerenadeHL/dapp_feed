@@ -8,7 +8,7 @@ import com.dong.dapp.R
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-24 11:55:26
  */
-class TransferCoinActivity : TransferActivity() {
+class TransferCoinActivity : TransferParentActivity() {
 
     override fun getTitleResId() = R.string.transfer_coin
 

@@ -19,12 +19,13 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-24 11:10:26
  */
-abstract class TransferActivity : MVPBaseActivity<ITransferPresenter>() {
+abstract class TransferParentActivity : MVPBaseActivity<ITransferPresenter>() {
     private var mSelected = 0
     private val mOptions by lazy { arrayOf(tv_option0, tv_option1, tv_option2, tv_option3, tv_option4, tv_option5) }
+    private val mOptionMoneys by lazy { arrayOf("20元", "50元", "100元", "200元", "500元", "1000元") }
 
-    private val mC2 by lazy { ContextCompat.getColor(this@TransferActivity, R.color.C2) }
-    private val mC6 by lazy { ContextCompat.getColor(this@TransferActivity, R.color.C6) }
+    private val mC2 by lazy { ContextCompat.getColor(this@TransferParentActivity, R.color.C2) }
+    private val mC6 by lazy { ContextCompat.getColor(this@TransferParentActivity, R.color.C6) }
 
     override fun createPresenter() = TransferPresenter()
 
@@ -49,12 +50,7 @@ abstract class TransferActivity : MVPBaseActivity<ITransferPresenter>() {
         tv_quota.textSize = getQuotaTextSPSize()
 
         //TODO 测试
-        tv_option0.text = "20元"
-        tv_option1.text = "50元"
-        tv_option2.text = "100元"
-        tv_option3.text = "200元"
-        tv_option4.text = "500元"
-        tv_option5.text = "1000元"
+        mOptions.withIndex().forEach { it.value.text = mOptionMoneys[it.index] }
 
         tv_explanation.text =
             "划转说明\n将金币实时划转到JetAxon.com，再前往该网站提取奖励。\n玩游戏和邀请好友，可赢取更多金币和现金奖励。\n被划转的金币，只会显示在JetAxon.com，暂时无法用于游戏。"

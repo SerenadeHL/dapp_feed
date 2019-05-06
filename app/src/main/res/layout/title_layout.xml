@@ -11,7 +11,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/game_square"
+            tools:text="这是一个标题"
             android:id="@+id/tv_title"
             android:textSize="@dimen/F2"
             android:gravity="center"
@@ -27,7 +27,19 @@
             android:src="@mipmap/black_left_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+            android:id="@+id/iv_share"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/match_constraint"
+            android:paddingStart="@dimen/L1"
+            android:paddingEnd="@dimen/L1"
+            android:src="@mipmap/share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <include layout="@layout/divider"
              android:id="@+id/v_header_divider"

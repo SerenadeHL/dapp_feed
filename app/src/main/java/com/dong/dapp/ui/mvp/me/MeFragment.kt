@@ -7,6 +7,7 @@ import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
 import com.dong.dapp.bean.me.OptionBean
 import com.dong.dapp.bean.me.ResultUserInfoBean
+import com.dong.dapp.ui.activity.PersonalInfoActivity
 import com.dong.dapp.ui.activity.SettingsActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
@@ -24,6 +25,8 @@ import me.serenadehl.base.extensions.toast
  * 创建时间：2019-4-10 19:56:56
  */
 class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
+    private var mUserInfo: ResultUserInfoBean? = null
+
     private val mAdapter = MeAdapter()
 
     override fun layout() = R.layout.fragment_me
@@ -35,8 +38,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
         mAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> {//用户信息
-                    //TODO 跳转到用户信息页面
-                    toast("用户信息")
+                    startActivity<PersonalInfoActivity>("data" to mUserInfo)
                 }
                 1 -> {//邀请好友
                     //TODO 跳转到邀请好友页面
@@ -164,6 +166,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
 
     override fun getUserInfoSuccess(data: ResultUserInfoBean?) {
         "getUserInfoSuccess-------> $data".log()
+        mUserInfo = data
         mAdapter.getItem(0)?.option?.apply {
             title = data?.account
             //TODO 根据kycStatus设置不同文字

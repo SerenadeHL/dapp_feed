@@ -3,6 +3,7 @@ package com.dong.dapp.ui.activity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.dong.dapp.R
+import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings.view.*
 import kotlinx.android.synthetic.main.title_layout.*
@@ -43,6 +44,7 @@ class SettingsActivity : BaseActivity() {
 
         tv_logout.setOnClickListener {
             //TODO 退出登录
+            LoginUtils.removeLoginTag()
             toast("退出登录")
         }
     }

@@ -112,8 +112,15 @@
     <dimen name="dp_total_cash_item_padding_bottom">12dp</dimen>
 
     <!--KYCActivity-->
-    <dimen name="dp_id_card_label_margin_top">8dp</dimen>
-    <dimen name="dp_verify_margin_top">25dp</dimen>
+    <dimen name="dp_kyc_id_card_label_margin_top">8dp</dimen>
+    <dimen name="dp_kyc_verify_margin_top">25dp</dimen>
+
+    <!--PersonalInfoActivity-->
+    <dimen name="dp_personal_info_logo_width">115dp</dimen>
+    <dimen name="dp_personal_info_logo_height">115dp</dimen>
+    <dimen name="dp_personal_info_slogan_margin_top">27dp</dimen>
+    <dimen name="dp_personal_info_explanation_margin_top">23dp</dimen>
+    <dimen name="dp_personal_info_kyc_button_margin_top">39dp</dimen>
 
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>

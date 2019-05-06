@@ -17,7 +17,7 @@ class CoinAdapter : BaseQuickAdapter<ResultCoinRecordsItemBean, BaseViewHolder>(
     init {
         setOnItemClickListener { _, _, position ->
             //TODO设置数据
-            mContext.startActivity<TransferDetailActivity>("data" to getItem(position))
+            mContext.startActivity<TransferDetailActivity>("id" to (getItem(position)?.id?:""))
         }
     }
 

@@ -39,6 +39,12 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
 
+        mRootView.av_announcement.setOnItemClickListener { position, _ ->
+            //TODO 点击了公告
+            val item = mRootView.av_announcement.messages[position] as ResultAnnouncementItemBean
+            toast("点击了公告---> $item")
+        }
+
         mRootView.btn_login.setOnClickListener { startActivity<LoginActivity>() }
 
         mRootView.cv_coin.setOnClickListener { startActivity<TotalCoinCountActivity>() }
@@ -67,6 +73,8 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun onResume() {
         super.onResume()
         if (LoginUtils.isLogin()) {
+            mPresenter.getTodayCoinIncome()
+            mPresenter.getTodayCashIncome()
             mRootView.iv_top_bg.setImageBitmap(null)
             mRootView.g_login.visible()
             mRootView.btn_login.invisible()
@@ -79,8 +87,6 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
 
     private fun loadData() {
         mPresenter.getAnnouncement()
-        mPresenter.getTodayCoinIncome()
-        mPresenter.getTodayCashIncome()
         mPresenter.getDAppList(mPage, mPageSize)
     }
 
@@ -137,7 +143,6 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun getDAppListFailed() {
         "getDAppListFailed------->".log()
     }
-
 
     override fun getTodayCoinIncomeSuccess(data: ResultCoinBalanceBean?) {
         mRootView.tv_coin.text = data?.todayRevenue

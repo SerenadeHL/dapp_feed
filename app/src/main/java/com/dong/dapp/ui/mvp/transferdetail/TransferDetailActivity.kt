@@ -22,6 +22,8 @@ import me.serenadehl.base.extensions.visible
  * 创建时间：2019-04-24 16:20:51
  */
 class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITransferDetailView {
+    private lateinit var mId: String
+
     private val mC2 by lazy { ContextCompat.getColor(this@TransferDetailActivity, R.color.C2) }
 
     override fun createPresenter() = TransferDetailPresenter()
@@ -39,7 +41,13 @@ class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITra
         cl_title.setBackgroundColor(mC2)
         tv_title.setText(R.string.transfer_detail)
 
-        intent.getParcelableExtra<ResultCoinRecordsItemBean>("data").log()
+        mId = intent.getStringExtra("id")
+
+        loadData()
+    }
+
+    private fun loadData() {
+        mPresenter.getCashRecordDetail(mId)
     }
 
     override fun getCashRecordDetailSuccess(data: ResultCashRecordDetailBean?) {
