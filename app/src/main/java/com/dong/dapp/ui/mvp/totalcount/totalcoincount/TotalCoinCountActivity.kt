@@ -10,11 +10,10 @@ import com.dong.dapp.adapter.recyclerview.CoinAdapter
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
+import com.dong.dapp.ui.mvp.transfer.TransferCoinActivity
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.*
-import me.serenadehl.base.extensions.dimen
-import me.serenadehl.base.extensions.getStatusBarHeight
-import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.*
 
 /**
  * 金币资产页
@@ -33,6 +32,10 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (mHeader.tv_balance.layoutParams as ConstraintLayout.LayoutParams).topMargin += getStatusBarHeight() + dimen(R.dimen.L2)
+
+        btn_transfer.setOnClickListener { startActivity<TransferCoinActivity>() }
+        //TODO 充值
+        btn_recharge.setOnClickListener { toast("充值") }
     }
 
     override fun getTitleResId() = R.string.coin_assets

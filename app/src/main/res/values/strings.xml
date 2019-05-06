@@ -97,5 +97,6 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="transfer">划转</string>
+    <string name="recharge">充值</string>
 
 </resources>

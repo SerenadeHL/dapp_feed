@@ -8,6 +8,36 @@
         android:background="@color/C2"
         tools:context=".ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity">
 
+    <Button
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_recharge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:id="@+id/btn_transfer"
+            android:textSize="@dimen/F3"
+            android:textColor="@color/C2"
+            android:text="@string/transfer"
+            android:layout_marginEnd="@dimen/dp_total_coin_btn_margin"
+            android:layout_marginBottom="@dimen/L6"
+            android:background="@drawable/round_rect_solid_btn_bg"
+            android:layout_height="@dimen/L2"/>
+
+    <Button
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toEndOf="@id/btn_transfer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/dp_total_coin_btn_margin"
+            android:id="@+id/btn_recharge"
+            android:textSize="@dimen/F3"
+            android:textColor="@color/C2"
+            android:text="@string/recharge"
+            android:layout_marginEnd="@dimen/L1"
+            android:layout_marginBottom="@dimen/L6"
+            android:background="@drawable/total_coin_btn_bg"
+            android:layout_height="@dimen/L2"/>
+
     <android.support.v7.widget.RecyclerView
             android:layout_width="@dimen/match_constraint"
             android:id="@+id/rv_coin"
@@ -16,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_transfer"
             android:layout_height="@dimen/match_constraint"/>
 
     <View

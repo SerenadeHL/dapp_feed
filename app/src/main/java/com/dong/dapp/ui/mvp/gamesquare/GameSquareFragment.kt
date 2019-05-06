@@ -85,6 +85,16 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        mRootView.av_announcement.startFlipping()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mRootView.av_announcement.stopFlipping()
+    }
+
     private fun loadData() {
         mPresenter.getAnnouncement()
         mPresenter.getDAppList(mPage, mPageSize)

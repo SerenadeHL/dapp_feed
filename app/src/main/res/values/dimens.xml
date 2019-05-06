@@ -103,6 +103,8 @@
     <dimen name="dp_total_coin_item_title_margin_top">11dp</dimen>
     <dimen name="dp_total_coin_item_padding_bottom">12dp</dimen>
 
+    <dimen name="dp_total_coin_btn_margin">4.5dp</dimen>
+
     <!--TotalCashCountActivity-->
     <dimen name="dp_total_cash_header_bottom_title_margin_top">29dp</dimen>
     <dimen name="sp_total_cash_header_balance_text_size">36sp</dimen>
