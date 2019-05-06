@@ -21,6 +21,12 @@ interface CommonApi {
     fun getCommonConfiguration(): Observable<BaseResponse>
 
     /**
+     * 获取版本更新信息
+     */
+    @POST("public/common/version/2")
+    fun getUpdateInfo(): Observable<BaseResponse>
+
+    /**
      * 获取公告
      */
     @GET("api/df/notices")

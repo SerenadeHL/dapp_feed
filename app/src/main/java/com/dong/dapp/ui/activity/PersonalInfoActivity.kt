@@ -19,6 +19,7 @@ import me.serenadehl.base.extensions.startActivity
 class PersonalInfoActivity : BaseActivity() {
     private var mUserInfo: ResultUserInfoBean? = null
 
+    private val mC1 by lazy { ContextCompat.getColor(this@PersonalInfoActivity, R.color.C1) }
     private val mC2 by lazy { ContextCompat.getColor(this@PersonalInfoActivity, R.color.C2) }
 
     override fun layout() = R.layout.activity_personal_info
@@ -37,13 +38,22 @@ class PersonalInfoActivity : BaseActivity() {
         tv_phone_number.text = mUserInfo?.account
 
         //TODO 根据kycStatus设置不同文案、背景以及按钮点击事件
-//        when (mUserInfo?.kycStatus) {
-//             -> {
-//            }
-//            else -> {
+//        btn_kyc.apply {
+//            when (mUserInfo?.kycStatus) {
+//                isKyc -> {
+//                    setOnClickListener { }
+//                    setText(R.string.kyc_identified)
+//                    setTextColor(mC1)
+//                    setBackgroundResource(R.drawable.personal_info_btn_bg)
+//                }
+//                else -> {
+//                    setOnClickListener { startActivity<KYCActivity>() }
+//                    setText(R.string.kyc_identification)
+//                    setTextColor(mC2)
+//                    setBackgroundResource(R.drawable.round_rect_solid_btn_bg)
+//                }
 //            }
 //        }
-        btn_kyc.setOnClickListener { startActivity<KYCActivity>() }
     }
 
 }

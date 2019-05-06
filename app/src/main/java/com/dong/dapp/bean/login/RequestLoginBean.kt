@@ -4,6 +4,7 @@ import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 登录请求Bean
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-26 14:38:25

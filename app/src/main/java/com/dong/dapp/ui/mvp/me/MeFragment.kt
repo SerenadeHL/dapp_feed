@@ -68,7 +68,10 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             }
         }
         mAdapter.setNewData(createOptions())
+    }
 
+    override fun onResume() {
+        super.onResume()
         loadData()
     }
 
@@ -81,8 +84,8 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
             MeBean(
                 false, OptionBean(
                     R.mipmap.me_user,
-                    "23824734790000",
-                    "未实名",
+                    null,
+                    null,
                     ContextCompat.getColor(requireActivity(), R.color.C7),
                     true,
                     true

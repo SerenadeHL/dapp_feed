@@ -1,12 +1,10 @@
 package com.dong.dapp.bean.coin
 
-import android.os.Parcelable
 import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 /**
- * 金币流水Bean
+ * 金币流水结果ItemBean
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-30 9:54:06

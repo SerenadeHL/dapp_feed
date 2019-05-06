@@ -4,7 +4,7 @@ import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
- * 金币余额Bean
+ * 现金余额结果Bean
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-30 9:54:06

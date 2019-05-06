@@ -7,6 +7,7 @@ import com.dong.dapp.bean.cash.ResultCashRecordsBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.bean.common.ResultCommonConfigurationBean
+import com.dong.dapp.bean.common.ResultUpdateInfoBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.kyc.*
@@ -52,9 +53,19 @@ object RequestManager {
     }
 
     /**
+     * 获取版本更新信息
+     */
+    fun getUpdateInfo(): Observable<ResultUpdateInfoBean?> {
+        return RetrofitHelper.create(CommonApi::class.java)
+            .getUpdateInfo()
+            .decrypt<ResultUpdateInfoBean?>()
+            .async()
+    }
+
+    /**
      * 获取公告
      */
-    fun getAnnouncement(): Observable<ResultAnnouncementBean?>{
+    fun getAnnouncement(): Observable<ResultAnnouncementBean?> {
         return RetrofitHelper.create(CommonApi::class.java)
             .getAnnouncement()
             .decrypt<ResultAnnouncementBean?>()
