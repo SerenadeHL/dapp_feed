@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
@@ -43,28 +44,28 @@ class GameSquarePresenter : MVPBasePresenter<IGameSquareView, IGameSquareModel>(
             })
     }
 
-    override fun getTodayCoinIncome() {
-        mModel.getTodayCoinIncome()
+    override fun getDailyCoinIncome() {
+        mModel.getDailyCoinIncome()
             .subscribe(object : BaseObserver<ResultCoinBalanceBean?>() {
                 override fun next(data: ResultCoinBalanceBean?) {
-                    mView.get()?.getTodayCoinIncomeSuccess(data)
+                    mView.get()?.getDailyCoinIncomeSuccess(data)
                 }
 
                 override fun error(error: Throwable) {
-                    mView.get()?.getTodayCoinIncomeFailed()
+                    mView.get()?.getDailyCoinIncomeFailed()
                 }
             })
     }
 
-    override fun getTodayCashIncome() {
-        mModel.getTodayCashIncome()
-            .subscribe(object : BaseObserver<ResultCashBalanceBean?>() {
-                override fun next(data: ResultCashBalanceBean?) {
-                    mView.get()?.getTodayCashIncomeSuccess(data)
+    override fun getDailyCashIncome() {
+        mModel.getDailyCashIncome()
+            .subscribe(object : BaseObserver<ResultCashDailyIncomeBean?>() {
+                override fun next(data: ResultCashDailyIncomeBean?) {
+                    mView.get()?.getDailyCashIncomeSuccess(data)
                 }
 
                 override fun error(error: Throwable) {
-                    mView.get()?.getTodayCashIncomeFailed()
+                    mView.get()?.getDailyCashIncomeFailed()
                 }
             })
     }

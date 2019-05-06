@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
@@ -24,13 +25,13 @@ interface IGameSquareView : IBaseView {
 
     fun getDAppListFailed()
 
-    fun getTodayCoinIncomeSuccess(data: ResultCoinBalanceBean?)
+    fun getDailyCoinIncomeSuccess(data: ResultCoinBalanceBean?)
 
-    fun getTodayCoinIncomeFailed()
+    fun getDailyCoinIncomeFailed()
 
-    fun getTodayCashIncomeSuccess(data: ResultCashBalanceBean?)
+    fun getDailyCashIncomeSuccess(data: ResultCashDailyIncomeBean?)
 
-    fun getTodayCashIncomeFailed()
+    fun getDailyCashIncomeFailed()
 }
 
 interface IGameSquarePresenter : IBasePresenter {
@@ -47,14 +48,14 @@ interface IGameSquarePresenter : IBasePresenter {
     fun getDAppList(page: Int, pageSize: Int)
 
     /**
-     * 获取今日金币收益
+     * 获取每日金币收益
      */
-    fun getTodayCoinIncome()
+    fun getDailyCoinIncome()
 
     /**
-     * 获取今日现金收益
+     * 获取每日现金收益
      */
-    fun getTodayCashIncome()
+    fun getDailyCashIncome()
 }
 
 interface IGameSquareModel : IBaseModel {
@@ -71,12 +72,12 @@ interface IGameSquareModel : IBaseModel {
     fun getDAppList(page: Int, pageSize: Int): Observable<ResultDAppBean?>
 
     /**
-     * 获取今日金币收益
+     * 获取每日金币收益
      */
-    fun getTodayCoinIncome(): Observable<ResultCoinBalanceBean?>
+    fun getDailyCoinIncome(): Observable<ResultCoinBalanceBean?>
 
     /**
-     * 获取今日现金收益
+     * 获取每日现金收益
      */
-    fun getTodayCashIncome(): Observable<ResultCashBalanceBean?>
+    fun getDailyCashIncome(): Observable<ResultCashDailyIncomeBean?>
 }

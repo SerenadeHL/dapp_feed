@@ -14,6 +14,12 @@ import retrofit2.http.Query
  */
 interface CashApi {
     /**
+     * 获取现金每日收益
+     */
+    @GET("api/df/user/me/today/cash/revenue")
+    fun getCashDailyIncome(): Observable<BaseResponse>
+
+    /**
      * 获取现金资产
      */
     @GET("api/df/assets/cash/balance")

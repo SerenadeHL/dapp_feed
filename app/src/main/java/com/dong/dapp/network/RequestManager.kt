@@ -2,6 +2,7 @@ package com.dong.dapp.network
 
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.cash.ResultCashRecordDetailBean
 import com.dong.dapp.bean.cash.ResultCashRecordsBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
@@ -209,6 +210,16 @@ object RequestManager {
 
 
     //=============================================现金相关接口=============================================
+
+    /**
+     * 获取现金每日收益
+     */
+    fun getCashDailyIncome(): Observable<ResultCashDailyIncomeBean?>{
+        return RetrofitHelper.create(CashApi::class.java)
+            .getCashDailyIncome()
+            .decrypt<ResultCashDailyIncomeBean?>()
+            .async()
+    }
 
     /**
      * 获取现金资产

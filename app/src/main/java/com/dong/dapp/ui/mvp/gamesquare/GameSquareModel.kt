@@ -1,6 +1,7 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
@@ -24,11 +25,11 @@ class GameSquareModel : MVPBaseModel(), IGameSquareModel {
         return RequestManager.getDAppList(page, pageSize)
     }
 
-    override fun getTodayCoinIncome(): Observable<ResultCoinBalanceBean?> {
+    override fun getDailyCoinIncome(): Observable<ResultCoinBalanceBean?> {
         return RequestManager.getCoinBalance()
     }
 
-    override fun getTodayCashIncome(): Observable<ResultCashBalanceBean?> {
-        return RequestManager.getCashBalance()
+    override fun getDailyCashIncome(): Observable<ResultCashDailyIncomeBean?> {
+        return RequestManager.getCashDailyIncome()
     }
 }

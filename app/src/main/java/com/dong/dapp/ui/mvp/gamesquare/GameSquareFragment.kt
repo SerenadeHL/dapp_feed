@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.dong.dapp.R
 import com.dong.dapp.RuntimeData
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
+import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementItemBean
@@ -11,7 +12,6 @@ import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.extensions.show
 import com.dong.dapp.extensions.showRound
-import com.dong.dapp.network.RequestManager.enterDApp
 import com.dong.dapp.ui.mvp.login.LoginActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
@@ -42,7 +42,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         mRootView.av_announcement.setOnItemClickListener { position, _ ->
             //TODO 点击了公告
             val item = mRootView.av_announcement.messages[position] as ResultAnnouncementItemBean
-            toast("点击了公告---> $item")
+            toast("点击了公告-------> $item")
         }
 
         mRootView.btn_login.setOnClickListener { startActivity<LoginActivity>() }
@@ -73,8 +73,8 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun onResume() {
         super.onResume()
         if (LoginUtils.isLogin()) {
-            mPresenter.getTodayCoinIncome()
-            mPresenter.getTodayCashIncome()
+            mPresenter.getDailyCoinIncome()
+            mPresenter.getDailyCashIncome()
             mRootView.iv_top_bg.setImageBitmap(null)
             mRootView.g_login.visible()
             mRootView.btn_login.invisible()
@@ -144,19 +144,21 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         "getDAppListFailed------->".log()
     }
 
-    override fun getTodayCoinIncomeSuccess(data: ResultCoinBalanceBean?) {
+    override fun getDailyCoinIncomeSuccess(data: ResultCoinBalanceBean?) {
+        "getDailyCoinIncomeSuccess-------> $data".log()
         mRootView.tv_coin.text = data?.todayRevenue
     }
 
-    override fun getTodayCoinIncomeFailed() {
-        "getTodayCoinIncomeFailed------->".log()
+    override fun getDailyCoinIncomeFailed() {
+        "getDailyCoinIncomeFailed------->".log()
     }
 
-    override fun getTodayCashIncomeSuccess(data: ResultCashBalanceBean?) {
-        mRootView.tv_cash.text = String.format(getString(R.string.money_with_symbol), data?.todayRevenue)
+    override fun getDailyCashIncomeSuccess(data: ResultCashDailyIncomeBean?) {
+        "getDailyCashIncomeSuccess-------> $data".log()
+        mRootView.tv_cash.text = String.format(getString(R.string.money_with_symbol), data?.cash)
     }
 
-    override fun getTodayCashIncomeFailed() {
-        "getTodayCashIncomeFailed------->".log()
+    override fun getDailyCashIncomeFailed() {
+        "getDailyCashIncomeFailed------->".log()
     }
 }

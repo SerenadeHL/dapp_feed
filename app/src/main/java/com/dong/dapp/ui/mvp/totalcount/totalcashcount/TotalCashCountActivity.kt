@@ -11,11 +11,13 @@ import com.dong.dapp.adapter.recyclerview.CashAdapter
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
 import com.dong.dapp.bean.cash.ResultCashRecordsBean
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
+import com.dong.dapp.ui.mvp.transfer.TransferCashActivity
 import kotlinx.android.synthetic.main.activity_total_cash_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_cash.view.*
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
 import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.startActivity
 
 /**
  * 现金资产页
@@ -34,6 +36,8 @@ class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (mHeader.tv_balance.layoutParams as ConstraintLayout.LayoutParams).topMargin += getStatusBarHeight() + dimen(R.dimen.L2)
+
+        btn_transfer.setOnClickListener { startActivity<TransferCashActivity>() }
     }
 
     override fun getTitleResId() = R.string.cash_assets
