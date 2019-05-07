@@ -11,6 +11,7 @@ import com.dong.dapp.ui.activity.PersonalInfoActivity
 import com.dong.dapp.ui.activity.SettingsActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
 import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
+import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.fragment_me.view.*
 
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment

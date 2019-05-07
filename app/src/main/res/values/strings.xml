@@ -99,4 +99,7 @@
     <string name="transfer">划转</string>
     <string name="recharge">充值</string>
 
+    <!--充值-->
+    <string name="recharge_game_coins">游戏金币充值</string>
+
 </resources>

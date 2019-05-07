@@ -1,10 +1,13 @@
 package com.dong.dapp.network.api
 
+import com.dong.dapp.bean.coin.RequestCoinBalanceBean
+import com.dong.dapp.bean.coin.RequestCoinRecordsBean
 import com.dong.dapp.bean.multipage.RequestMultiPageBean
 import com.dong.dapp.network.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /**
@@ -16,13 +19,17 @@ import retrofit2.http.Query
 interface CoinApi {
     /**
      * 获取金币资产
+     * @param protocol 公链类型 tron 0 EOS 1 ETH 2
      */
-    @GET("api/df/assets/coin/trx/balance")
-    fun getCoinBalance(): Observable<BaseResponse>
+    @POST("api/v1/wallet/details")
+    fun getCoinBalance(@Body requestBean: RequestCoinBalanceBean): Observable<BaseResponse>
 
     /**
      * 获取金币流水
+     * @param protocol 公链类型 tron 0 EOS 1 ETH 2
+     * @param page 页数
+     * @param page_size 条数
      */
-    @GET("api/df/asset/coin/trx/change/records")
-    fun getCoinRecords(@Query("page") page: Int, @Query("page_size") pageSize: Int): Observable<BaseResponse>
+    @POST("api/v1/wallet/txns")
+    fun getCoinRecords(@Body requestBean: RequestCoinRecordsBean): Observable<BaseResponse>
 }

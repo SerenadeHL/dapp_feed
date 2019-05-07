@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.dong.dapp">
-
+    <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 震动权限 -->
     <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
@@ -25,32 +29,48 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.mvp.login.LoginActivity" android:launchMode="singleTask"/>
-        <activity android:name=".ui.mvp.chooseareacode.ChooseAreaCodeActivity" android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.activity.MainActivity" android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.activity.SettingsActivity" android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.activity.PersonalInfoActivity" android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.mvp.kyc.KYCActivity" android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.mvp.totalcount.totalcashcount.TotalCashCountActivity"
-                  android:launchMode="singleTask"/>
-        <activity android:name=".ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity"
-                  android:launchMode="singleTask"/>
-
-       <activity
-                android:name=".ui.mvp.web.WebActivity"
-                android:theme="@style/WebTheme"
+        <activity
+                android:name=".ui.mvp.login.LoginActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.chooseareacode.ChooseAreaCodeActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.activity.MainActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.activity.SettingsActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.activity.PersonalInfoActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.kyc.KYCActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.totalcount.totalcashcount.TotalCashCountActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity"
                 android:launchMode="singleTask"/>
 
-        <activity android:name=".ui.mvp.transfer.TransferCoinActivity" android:launchMode="singleTask"/>
-        <activity android:name=".ui.mvp.transfer.TransferCashActivity" android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.recharge.RechargeActivity"
+                android:launchMode="singleTask"/>
 
-        <activity android:name=".ui.mvp.transferdetail.TransferDetailActivity" android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.web.WebActivity"
+                android:launchMode="singleTask"
+                android:theme="@style/WebTheme"/>
+        <activity
+                android:name=".ui.mvp.transfer.TransferCoinActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.transfer.TransferCashActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.transferdetail.TransferDetailActivity"
+                android:launchMode="singleTask"/>
 
         <meta-data
                 android:name="CHANNEL"

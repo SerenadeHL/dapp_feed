@@ -10,6 +10,13 @@ import com.google.gson.annotations.SerializedName
  * 创建时间：2019-04-30 9:54:06
  */
 data class ResultCoinRecordsItemBean(
+    @SerializedName("hash") val hash: String,//交易id
+    @SerializedName("data") val data: String?,//交易名目
+    @SerializedName("value") val value: String,//交易数目
+    @SerializedName("timestamp") val time: String,//时间
+    @SerializedName("confirmed") val confirmed: Int,//交易状态 完成 1 进行中0
+
+
     @SerializedName("id") val id: String,//记录id
     @SerializedName("title") val title: String,//标题
     @SerializedName("amount") val amount: String,//数量

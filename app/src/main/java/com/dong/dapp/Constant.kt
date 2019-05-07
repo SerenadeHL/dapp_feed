@@ -37,4 +37,11 @@ object Constant {
     //======================区号======================
     const val AREA_CODE = "area_code"
     const val AREA_CODE_CN = "0086"
+
+    //======================KYC状态======================
+    const val UN_UPLOAD = -1//未上传
+    const val IN_VERIFYING = 0//审核中
+    const val VERIFY_PASSED = 1//认证通过
+    const val VERIFY_UN_PASSED = 2//认证未通过
+
 }

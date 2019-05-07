@@ -35,7 +35,6 @@ class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITra
         setupStatusBar()
         setStatusBarColor(mC2, true)
         //返回按钮
-        iv_back.visible()
         iv_back.setOnClickListener { finish() }
         //设置标题栏
         cl_title.setBackgroundColor(mC2)

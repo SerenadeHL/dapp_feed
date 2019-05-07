@@ -7,6 +7,7 @@ import com.dong.dapp.R
 import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
 import com.dong.dapp.ui.mvp.login.LoginActivity
 import com.dong.dapp.ui.mvp.me.MeFragment
+import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
@@ -53,7 +54,13 @@ class MainActivity : BaseActivity() {
             .commitNow()
 
         cl_game.setOnClickListener { switchTab(GAME) }
-        cl_me.setOnClickListener { switchTab(ME) }
+        cl_me.setOnClickListener {
+            if (!LoginUtils.isLogin()) {
+                startActivity<LoginActivity>()
+                return@setOnClickListener
+            }
+            switchTab(ME)
+        }
 
         cl_game.performClick()
     }

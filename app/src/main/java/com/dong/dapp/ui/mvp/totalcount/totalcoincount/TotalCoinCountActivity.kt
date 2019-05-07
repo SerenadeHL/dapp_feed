@@ -9,6 +9,7 @@ import com.dong.dapp.R
 import com.dong.dapp.adapter.recyclerview.CoinAdapter
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
+import com.dong.dapp.ui.mvp.recharge.RechargeActivity
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
 import com.dong.dapp.ui.mvp.transfer.TransferCoinActivity
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
@@ -34,8 +35,7 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
         (mHeader.tv_balance.layoutParams as ConstraintLayout.LayoutParams).topMargin += getStatusBarHeight() + dimen(R.dimen.L2)
 
         btn_transfer.setOnClickListener { startActivity<TransferCoinActivity>() }
-        //TODO 充值
-        btn_recharge.setOnClickListener { toast("充值") }
+        btn_recharge.setOnClickListener { startActivity<RechargeActivity>() }
     }
 
     override fun getTitleResId() = R.string.coin_assets
@@ -56,18 +56,20 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
     }
 
     override fun getCoinBalanceSuccess(data: ResultCoinBalanceBean?) {
+        "getCoinBalanceSuccess-------> $data".log()
         mHeader.tv_balance.text = data?.balance
-        mHeader.tv_approximately.text = String.format(getString(R.string.approximately), data?.evalValue)
+        mHeader.tv_approximately.text = String.format(getString(R.string.approximately), data?.balanceCNY)
         mHeader.tv_transferable.text = data?.transferable
         mHeader.tv_locked.text = data?.locked
         mHeader.tv_today_obtain.text = data?.todayRevenue
     }
 
     override fun getCoinBalanceFailed() {
-
+        "getCoinBalanceFailed------->".log()
     }
 
     override fun getCoinRecordsSuccess(data: ResultCoinRecordsBean?, refresh: Boolean) {
+        "getCoinRecordsSuccess-------> $data".log()
         if (refresh) {
             mAdapter.setNewData(data?.items)
         } else {

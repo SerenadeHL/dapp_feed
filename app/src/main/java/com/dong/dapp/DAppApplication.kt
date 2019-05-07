@@ -1,7 +1,10 @@
 package com.dong.dapp
 
+import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.support.multidex.MultiDex
+import android.util.Log
 import android.view.ViewGroup
 import com.dong.dapp.jsapi.TronPayApi
 import com.dong.dapp.ui.mvp.web.WebActivity
@@ -13,10 +16,21 @@ import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
+import com.umeng.analytics.MobclickAgent
+import com.umeng.commonsdk.UMConfigure
+import com.umeng.message.PushAgent
 import io.reactivex.plugins.RxJavaPlugins
 import me.serenadehl.base.BaseApplication
 import me.serenadehl.base.utils.app.AppManager
 import wendu.dsbridge.DWebView
+import skin.support.SkinCompatManager
+import com.umeng.message.IUmengRegisterCallback
+import me.serenadehl.base.extensions.log
+import android.app.ActivityManager
+import com.dong.dapp.utils.SystemUtils
+import com.squareup.leakcanary.LeakCanary
+import com.taobao.accs.utl.UtilityImpl.isMainProcess
+
 
 /**
  * 作者：Serenade
@@ -37,11 +51,70 @@ class DAppApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-//        LeakCanary.install(this)
+        if (!SystemUtils.isMainProcess(this)) return
+        initX5WebView()
+        initLeakCanary()
+        initRxJava()
+        initSkin()
+        initUmeng()
+    }
+
+    /**
+     * 初始友盟相关
+     */
+    private fun initUmeng() {
+        // 初始化SDK
+        //TODO 替换密钥
+        UMConfigure.init(this, "appkey", "channel", UMConfigure.DEVICE_TYPE_PHONE, "pushSecret")
+        // 选用AUTO页面采集模式
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.MANUAL)
+
+        PushAgent.getInstance(this).register(object : IUmengRegisterCallback {
+            override fun onSuccess(deviceToken: String) {
+                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
+                "注册成功：deviceToken：-------->  $deviceToken".log()
+            }
+
+            override fun onFailure(s: String, s1: String) {
+                "注册失败：-------->  s:$s,s1:$s1".log()
+            }
+        })
+        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacksImpl() {
+            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+                PushAgent.getInstance(activity).onAppStart()
+            }
+
+            override fun onActivityResumed(activity: Activity?) {
+                MobclickAgent.onResume(activity)
+            }
+
+            override fun onActivityPaused(activity: Activity?) {
+                MobclickAgent.onPause(activity)
+            }
+        })
+    }
+
+    /**
+     * 初始化LeakCanary
+     */
+    private fun initLeakCanary() {
+        LeakCanary.install(this)
+    }
+
+    /**
+     * 初始化RxJava异常处理
+     */
+    private fun initRxJava() {
         RxJavaPlugins.setErrorHandler { throwable ->
             //异常处理
             throwable.printStackTrace()
         }
+    }
+
+    /**
+     * 初始化腾讯X5内核WebView
+     */
+    private fun initX5WebView() {
         QbSdk.initX5Environment(this, object : QbSdk.PreInitCallback {
             override fun onCoreInitFinished() {
 
@@ -102,6 +175,13 @@ class DAppApplication : BaseApplication() {
             }
         })
         mWebView = DWebView(this@DAppApplication)
+    }
+
+    /**
+     * 初始化换肤组件
+     */
+    private fun initSkin() {
+        SkinCompatManager.withoutActivity(this).loadSkin()
     }
 
     fun getWebView(): DWebView {

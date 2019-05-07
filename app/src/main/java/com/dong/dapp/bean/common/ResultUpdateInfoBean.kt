@@ -10,12 +10,12 @@ import com.google.gson.annotations.SerializedName
  */
 //TODO 添加注释 详情见桌面TODO.txt
 data class ResultUpdateInfoBean(
-    @SerializedName("app_name") val appName: String,
-    @SerializedName("version") val version: String,
-    @SerializedName("versionCode") val versionCode: Int,
-    @SerializedName("update_type") val updateType: Int,
-    @SerializedName("url") val url: String,
-    @SerializedName("production") val production: Int,
-    @SerializedName("content") val content: String,
+    @SerializedName("app_name") val appName: String,//App名称
+    @SerializedName("version") val version: String,//版本名
+    @SerializedName("versionCode") val versionCode: Int,//版本号
+    @SerializedName("update_type") val updateType: Int,//强制更新0 显示1 不显示2
+    @SerializedName("url") val url: String,//更新地址
+    @SerializedName("production") val production: Int,//app审核中0 正式上线>0
+    @SerializedName("content") val content: String,//更新弹窗文案
     @SerializedName("break_web") val breakWeb: String
 ) : BaseBean()

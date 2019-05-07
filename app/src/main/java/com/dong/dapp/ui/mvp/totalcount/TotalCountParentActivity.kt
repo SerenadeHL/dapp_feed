@@ -44,7 +44,6 @@ abstract class TotalCountParentActivity<P : IBasePresenter> : MVPBaseActivity<P>
         iv_back.setOnClickListener { finish() }
         //设置标题栏
         tv_title.setTextColor(mC2)
-        //设置标题栏
         tv_title.setText(getTitleResId())
         v_header_divider.invisible()
         //设置StatusBar的高度

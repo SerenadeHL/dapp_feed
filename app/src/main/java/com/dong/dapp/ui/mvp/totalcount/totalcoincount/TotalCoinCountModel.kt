@@ -1,5 +1,6 @@
 package com.dong.dapp.ui.mvp.totalcount.totalcoincount
 
+import com.dong.dapp.MoneyType
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.network.RequestManager
@@ -15,11 +16,11 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
 class TotalCoinCountModel : MVPBaseModel(), ITotalCoinCountModel {
 
     override fun getCoinBalance(): Observable<ResultCoinBalanceBean?> {
-        return RequestManager.getCoinBalance()
+        return RequestManager.getCoinBalance(MoneyType.TRON)
     }
 
     override fun getCoinRecords(page: Int, pageSize: Int): Observable<ResultCoinRecordsBean?> {
-        return RequestManager.getCoinRecords(page, pageSize)
+        return RequestManager.getCoinRecords(MoneyType.TRON, page, pageSize)
     }
 
 }

@@ -5,6 +5,8 @@ import com.dong.dapp.bean.cash.ResultCashBalanceBean
 import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.cash.ResultCashRecordDetailBean
 import com.dong.dapp.bean.cash.ResultCashRecordsBean
+import com.dong.dapp.bean.coin.RequestCoinBalanceBean
+import com.dong.dapp.bean.coin.RequestCoinRecordsBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.bean.common.ResultCommonConfigurationBean
@@ -18,6 +20,9 @@ import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
 import com.dong.dapp.bean.me.ResultUserInfoBean
 import com.dong.dapp.bean.multipage.RequestMultiPageBean
+import com.dong.dapp.bean.recharge.RequestRechargeOrderBean
+import com.dong.dapp.bean.recharge.ResultRechargeOptionsBean
+import com.dong.dapp.bean.recharge.ResultRechargeOrderBean
 import com.dong.dapp.bean.statistics.RequestEnterDAppBean
 import com.dong.dapp.bean.statistics.RequestExitDAppBean
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
@@ -32,6 +37,7 @@ import me.serenadehl.base.extensions.async
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Body
 import java.util.*
 
 /**
@@ -188,22 +194,26 @@ object RequestManager {
 
     /**
      * 获取金币资产
+     * @param protocol 公链类型 tron 0 EOS 1 ETH 2
      */
-    fun getCoinBalance(): Observable<ResultCoinBalanceBean?> {
+    fun getCoinBalance(protocol: Int): Observable<ResultCoinBalanceBean?> {
+        val requestBean = RequestCoinBalanceBean(protocol)
         return RetrofitHelper.create(CoinApi::class.java)
-            .getCoinBalance()
+            .getCoinBalance(requestBean)
             .decrypt<ResultCoinBalanceBean?>()
             .async()
     }
 
     /**
      * 获取金币流水
+     * @param protocol 公链类型 tron 0 EOS 1 ETH 2
      * @param page 页数
      * @param pageSize 条数
      */
-    fun getCoinRecords(page: Int, pageSize: Int): Observable<ResultCoinRecordsBean?> {
+    fun getCoinRecords(protocol: Int, page: Int, pageSize: Int): Observable<ResultCoinRecordsBean?> {
+        val requestBean = RequestCoinRecordsBean(protocol, page, pageSize)
         return RetrofitHelper.create(CoinApi::class.java)
-            .getCoinRecords(page, pageSize)
+            .getCoinRecords(requestBean)
             .decrypt<ResultCoinRecordsBean?>()
             .async()
     }
@@ -214,7 +224,7 @@ object RequestManager {
     /**
      * 获取现金每日收益
      */
-    fun getCashDailyIncome(): Observable<ResultCashDailyIncomeBean?>{
+    fun getCashDailyIncome(): Observable<ResultCashDailyIncomeBean?> {
         return RetrofitHelper.create(CashApi::class.java)
             .getCashDailyIncome()
             .decrypt<ResultCashDailyIncomeBean?>()
@@ -251,6 +261,31 @@ object RequestManager {
         return RetrofitHelper.create(CashApi::class.java)
             .getCashRecordDetail(recordId)
             .decrypt<ResultCashRecordDetailBean?>()
+            .async()
+    }
+
+
+    //=============================================充值相关接口=============================================
+
+    /**
+     * 获取充值商品列表
+     */
+    fun getRechargeOptions(): Observable<ResultRechargeOptionsBean?> {
+        return RetrofitHelper.create(RechargeApi::class.java)
+            .getRechargeOptions()
+            .decrypt<ResultRechargeOptionsBean?>()
+            .async()
+    }
+
+    /**
+     * 获取充值订单信息
+     * @param product_id 商品id
+     */
+    fun getRechargeOrder(id: String): Observable<ResultRechargeOrderBean?> {
+        val requestBean = RequestRechargeOrderBean(id)
+        return RetrofitHelper.create(RechargeApi::class.java)
+            .getRechargeOrder(requestBean)
+            .decrypt<ResultRechargeOrderBean?>()
             .async()
     }
 

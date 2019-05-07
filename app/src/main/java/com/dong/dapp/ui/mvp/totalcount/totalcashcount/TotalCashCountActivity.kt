@@ -59,6 +59,7 @@ class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter
 
     @SuppressLint("SetTextI18n")
     override fun getCashBalanceSuccess(data: ResultCashBalanceBean?) {
+        "getCashBalanceSuccess-------> $data".log()
         val moneyWithSymbol = getString(R.string.money_with_symbol)
         mHeader.tv_balance.text = String.format(moneyWithSymbol, data?.balance)
         mHeader.tv_cumulative_gain.text = String.format(moneyWithSymbol, data?.totalRevenue)
@@ -66,10 +67,11 @@ class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter
     }
 
     override fun getCashBalanceFailed() {
-
+        "getCashBalanceFailed------->".log()
     }
 
     override fun getCashRecordsSuccess(data: ResultCashRecordsBean?, refresh: Boolean) {
+        "getCashRecordsSuccess-------> $data".log()
         if (refresh) {
             mAdapter.setNewData(data?.items)
         } else {

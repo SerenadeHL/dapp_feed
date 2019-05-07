@@ -1,5 +1,6 @@
 package com.dong.dapp.network
 
+import android.os.Build
 import android.util.Log
 import com.dong.dapp.BuildConfig
 import com.dong.dapp.Constant
@@ -31,6 +32,15 @@ import java.util.*
  * 创建时间：2018-02-21 16:22:08
  */
 object InterceptorUtil {
+    private val mSystemVersion by lazy { SystemUtils.getSystemVersion() }
+    private val mAppVersionName by lazy { SystemUtils.getAppVersionName() }
+    private val mIMEI by lazy { SystemUtils.getIMEI() }
+    private val mMacAddress by lazy { SystemUtils.getMacAddress() }
+    private val mScreenWidth by lazy { SystemUtils.getScreenWidth().toString() }
+    private val mScreenHeight by lazy { SystemUtils.getScreenHeight().toString() }
+    private val mDeviceBrand by lazy { SystemUtils.getDeviceBrand() }
+    private val mDeviceModel by lazy { SystemUtils.getDeviceModel() }
+
     //日志拦截器
     fun getLogInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Log.i(TAG, "" + message) })
@@ -54,16 +64,16 @@ object InterceptorUtil {
 
             val systemInfoBean = SystemInfoBean(
                 Constant.OS,
-                SystemUtils.getSystemVersion(),
-                SystemUtils.getAppVersionName(),
+                mSystemVersion,
+                mAppVersionName,
                 BuildConfig.FLAVOR,
-                SystemUtils.getIMEI(),
-                SystemUtils.getMacAddress(),
+                mIMEI,
+                mMacAddress,
                 getNetworkType(),
-                SystemUtils.getScreenWidth().toString(),
-                SystemUtils.getScreenHeight().toString(),
-                SystemUtils.getDeviceBrand(),
-                SystemUtils.getDeviceModel()
+                mScreenWidth,
+                mScreenHeight,
+                mDeviceBrand,
+                mDeviceModel
             )
 
             //新的请求
