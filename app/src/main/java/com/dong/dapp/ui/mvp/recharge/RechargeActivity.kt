@@ -4,6 +4,7 @@ import com.dong.dapp.R
 import kotlinx.android.synthetic.main.activity_recharge.*
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_recharge.v_status_bar
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.title_layout.*
@@ -19,6 +20,7 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-5-7 16:14:11
  */
+@Route(path = "/ui/mvp/recharge/RechargeActivity")
 class RechargeActivity : MVPBaseActivity<IRechargePresenter>(), IRechargeView {
     private val mC2 by lazy { ContextCompat.getColor(this@RechargeActivity, R.color.C2) }
 

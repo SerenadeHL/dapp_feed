@@ -178,6 +178,6 @@
             android:text="@string/confirm_extraction"
             android:layout_marginEnd="@dimen/L1"
             android:layout_marginBottom="@dimen/L6"
-            android:background="@drawable/round_rect_solid_btn_bg"
+            android:background="@drawable/round_rect_solid_dark_blue_bg"
             android:layout_height="@dimen/L2"/>
 </android.support.constraint.ConstraintLayout>

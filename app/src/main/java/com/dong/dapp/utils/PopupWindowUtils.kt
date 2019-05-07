@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.popup_common_bottom.view.*
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.gone
 import me.serenadehl.base.extensions.visible
-import org.bouncycastle.asn1.x500.style.RFC4519Style.title
 import razerdp.basepopup.BasePopupWindow
 import razerdp.basepopup.QuickPopupBuilder
 import razerdp.basepopup.QuickPopupConfig
@@ -110,8 +109,8 @@ object PopupWindowUtils {
             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, context.dimen(R.dimen.L2))
             setBackgroundResource(
                 when (config.type) {
-                    BLUE_SOLID -> R.drawable.round_rect_solid_btn_bg
-                    BLUE_NO_SOLID -> R.drawable.round_rect_no_solid_btn_bg
+                    BLUE_SOLID -> R.drawable.round_rect_solid_dark_blue_bg
+                    BLUE_NO_SOLID -> R.drawable.round_rect_no_solid_dark_blue_bg
                     else -> ERROR
                 }
             )

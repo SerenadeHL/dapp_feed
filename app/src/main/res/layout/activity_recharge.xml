@@ -7,6 +7,44 @@
         android:layout_height="match_parent"
         tools:context=".ui.mvp.recharge.RechargeActivity">
 
+    <Button
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/L1"
+            android:id="@+id/btn_transfer"
+            android:textSize="@dimen/F3"
+            android:textColor="@color/C2"
+            android:text="@string/pay_immediately"
+            android:layout_marginEnd="@dimen/L1"
+            android:layout_marginBottom="@dimen/L6"
+            android:background="@drawable/round_rect_solid_dark_blue_bg"
+            android:layout_height="@dimen/L2"/>
+
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="@dimen/match_constraint"
+            app:layout_constraintBottom_toTopOf="@+id/btn_transfer"
+            android:id="@+id/rv_cash"
+            android:overScrollMode="never"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="@dimen/match_constraint"/>
+
+    <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_title"
+            android:alpha="0"
+            android:id="@+id/v_top_bg"
+            android:background="@color/C2"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/match_constraint"/>
+
     <View
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintStart_toStartOf="parent"

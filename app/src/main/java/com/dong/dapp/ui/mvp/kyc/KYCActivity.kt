@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.R
 import com.dong.dapp.bean.kyc.ResultIdCardNumberAvailableBean
 import com.dong.dapp.utils.KYCUtils
@@ -21,6 +22,7 @@ import me.serenadehl.base.extensions.toast
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-19 11:44:33
  */
+@Route(path = "/ui/mvp/kyc/KYCActivity")
 class KYCActivity : MVPBaseActivity<IKYCPresenter>(), IKYCView {
 
     private val mC2 by lazy { ContextCompat.getColor(this@KYCActivity, R.color.C2) }

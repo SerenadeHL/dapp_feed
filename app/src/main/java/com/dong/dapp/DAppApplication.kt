@@ -27,6 +27,7 @@ import skin.support.SkinCompatManager
 import com.umeng.message.IUmengRegisterCallback
 import me.serenadehl.base.extensions.log
 import android.app.ActivityManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.utils.SystemUtils
 import com.squareup.leakcanary.LeakCanary
 import com.taobao.accs.utl.UtilityImpl.isMainProcess
@@ -55,8 +56,20 @@ class DAppApplication : BaseApplication() {
         initX5WebView()
         initLeakCanary()
         initRxJava()
+        initARouter()
         initSkin()
         initUmeng()
+    }
+
+    /**
+     * 初始化ARouter
+     */
+    private fun initARouter() {
+        if (isDebug()) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog()   // 打印日志
+            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this) // 尽可能早，推荐在Application中初始化
     }
 
     /**

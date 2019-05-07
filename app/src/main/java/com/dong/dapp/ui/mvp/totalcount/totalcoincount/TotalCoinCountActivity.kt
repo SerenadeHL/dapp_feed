@@ -3,6 +3,7 @@ package com.dong.dapp.ui.mvp.totalcount.totalcoincount
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
@@ -11,7 +12,7 @@ import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.ui.mvp.recharge.RechargeActivity
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
-import com.dong.dapp.ui.mvp.transfer.TransferCoinActivity
+import com.dong.dapp.ui.mvp.transfer.transfercoin.TransferCoinActivity
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.*
 import me.serenadehl.base.extensions.*
@@ -22,6 +23,7 @@ import me.serenadehl.base.extensions.*
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-23 16:27:16
  */
+@Route(path = "/ui/mvp/totalcount/totalcoincount/TotalCoinCountActivity")
 class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter>(), ITotalCoinCountView {
 
     private val mAdapter by lazy { CoinAdapter() }

@@ -101,5 +101,6 @@
 
     <!--充值-->
     <string name="recharge_game_coins">游戏金币充值</string>
+    <string name="pay_immediately">立即支付</string>
 
 </resources>

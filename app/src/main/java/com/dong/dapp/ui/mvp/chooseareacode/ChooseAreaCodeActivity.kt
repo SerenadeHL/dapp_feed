@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.ArrayMap
 import android.webkit.WebMessagePort
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.Constant
 import com.dong.dapp.R
 import com.dong.dapp.adapter.recyclerview.ChooseAreaCodeAdapter
@@ -27,6 +28,7 @@ import me.serenadehl.base.extensions.log
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-26 16:49:36
  */
+@Route(path = "/ui/mvp/chooseareacode/ChooseAreaCodeActivity")
 class ChooseAreaCodeActivity : MVPBaseActivity<IChooseAreaCodePresenter>(), IChooseAreaCodeView {
     private val mAdapter by lazy { ChooseAreaCodeAdapter() }
     private val mIndexMap by lazy { ArrayMap<Int, String>() }

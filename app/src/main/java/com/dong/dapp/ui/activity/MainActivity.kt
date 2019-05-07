@@ -3,6 +3,7 @@ package com.dong.dapp.ui.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.R
 import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
 import com.dong.dapp.ui.mvp.login.LoginActivity
@@ -23,6 +24,7 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-16 19:46:44
  */
+@Route(path = "/ui/activity/MainActivity")
 class MainActivity : BaseActivity() {
     companion object {
         const val GAME = 0//游戏广场

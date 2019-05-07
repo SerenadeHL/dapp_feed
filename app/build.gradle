@@ -14,7 +14,13 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "inner"]//添加一个默认渠道号
+        manifestPlaceholders = [CHANNEL_VALUE: "yingyongbao"]//添加一个默认渠道号
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //ARouter生成文档路径
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
     }
     lintOptions {
         //允许模拟器运行
@@ -55,15 +61,12 @@ android {
         }
     }
 
+    //============================================多渠道打包============================================
     flavorDimensions "default"
 
     productFlavors {
-        inner {}
-        kuan {}
-        xiaomi {}
-        qh360 {}
-        baidu {}
-        wandoujia {}
+        yingyongbao {}
+        googleplay {}
     }
 
     productFlavors.all { flavor ->
@@ -79,7 +82,16 @@ configurations.all {
     }
 }
 
+kapt {
+    arguments {
+        //ARouter参数
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+
 dependencies {
+    //本地依赖
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -123,10 +135,12 @@ dependencies {
     implementation'com.sunfusheng:MarqueeView:1.4.1'
     //换肤
     implementation 'skin.support:skin-support:3.1.1'
+    //ARouter
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
 
     //友盟基础组件
     implementation  'com.umeng.umsdk:common:2.0.0'
-    implementation  'com.umeng.umsdk:utdid:1.1.5.3'
     //友盟统计
     implementation 'com.umeng.umsdk:analytics:8.0.0'
     //友盟推送

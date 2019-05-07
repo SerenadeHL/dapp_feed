@@ -2,6 +2,7 @@ package com.dong.dapp.ui.mvp.transferdetail
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.R
 import com.dong.dapp.bean.cash.ResultCashRecordDetailBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsItemBean
@@ -21,6 +22,7 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-24 16:20:51
  */
+@Route(path = "/ui/mvp/transferdetail/TransferDetailActivity")
 class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITransferDetailView {
     private lateinit var mId: String
 

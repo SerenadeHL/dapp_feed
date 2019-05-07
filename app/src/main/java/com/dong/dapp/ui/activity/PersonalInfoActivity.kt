@@ -2,6 +2,7 @@ package com.dong.dapp.ui.activity
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.Constant
 import com.dong.dapp.R
 import com.dong.dapp.bean.me.ResultUserInfoBean
@@ -9,7 +10,6 @@ import com.dong.dapp.ui.mvp.kyc.KYCActivity
 import kotlinx.android.synthetic.main.activity_personal_info.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 
@@ -18,6 +18,7 @@ import me.serenadehl.base.extensions.toast
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-05-06 17:24:16
  */
+@Route(path = "/ui/activity/PersonalInfoActivity")
 class PersonalInfoActivity : BaseActivity() {
     private var mUserInfo: ResultUserInfoBean? = null
 
@@ -46,7 +47,7 @@ class PersonalInfoActivity : BaseActivity() {
                     setOnClickListener { }
                     setText(R.string.kyc_identified)
                     setTextColor(mC1)
-                    setBackgroundResource(R.drawable.personal_info_btn_bg)
+                    setBackgroundResource(R.drawable.round_rect_solid_light_blue_bg)
                 }
                 Constant.IN_VERIFYING -> {
                     //TODO 审核中
@@ -56,7 +57,7 @@ class PersonalInfoActivity : BaseActivity() {
                     setOnClickListener { startActivity<KYCActivity>() }
                     setText(R.string.kyc_identification)
                     setTextColor(mC2)
-                    setBackgroundResource(R.drawable.round_rect_solid_btn_bg)
+                    setBackgroundResource(R.drawable.round_rect_solid_dark_blue_bg)
                 }
             }
         }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.Constant
 import com.dong.dapp.R
 import com.dong.dapp.bean.login.ResultLoginBean
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-19 10:57:09
  */
+@Route(path = "/ui/mvp/login/LoginActivity")
 class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
     private val mC2 by lazy { ContextCompat.getColor(this@LoginActivity, R.color.C2) }
     private val mCountDownTime = 120L

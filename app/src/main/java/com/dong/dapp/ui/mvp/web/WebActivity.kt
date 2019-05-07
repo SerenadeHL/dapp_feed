@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.DAppApplication
 import com.dong.dapp.R
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
@@ -26,6 +27,7 @@ import wendu.dsbridge.DWebView
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-11 10:37:01
  */
+@Route(path = "/ui/mvp/web/WebActivity")
 class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
     private lateinit var mPid: String//DApp的id
     private lateinit var mUrl: String//DApp链接

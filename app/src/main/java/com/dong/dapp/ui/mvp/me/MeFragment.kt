@@ -3,6 +3,8 @@ package com.dong.dapp.ui.mvp.me
 import com.dong.dapp.R
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.launcher.ARouter
+import com.dong.dapp.Router
 import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
 import com.dong.dapp.bean.me.OptionBean
@@ -36,6 +38,7 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
         mRootView.rv_me.adapter = mAdapter
+        val aRouter = ARouter.getInstance()
         mAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> {//用户信息
@@ -50,10 +53,12 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
                     toast("签到领金币")
                 }
                 5 -> {//我的现金资产
-                    startActivity<TotalCashCountActivity>()
+                    aRouter.build(Router.TOTAL_CASH_COUNT)
+                        .navigation()
                 }
                 6 -> {//我的金币资产
-                    startActivity<TotalCoinCountActivity>()
+                    aRouter.build(Router.TOTAL_COIN_COUNT)
+                        .navigation()
                 }
                 8 -> {//联系客服
                     //TODO 跳转到联系客服页面

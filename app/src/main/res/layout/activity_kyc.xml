@@ -64,7 +64,7 @@
             android:id="@+id/btn_verify"
             android:textColor="@color/C2"
             android:text="@string/verify_immediately"
-            android:background="@drawable/round_rect_solid_btn_bg"
+            android:background="@drawable/round_rect_solid_dark_blue_bg"
             android:layout_marginEnd="@dimen/L1"
             android:layout_marginTop="@dimen/dp_kyc_verify_margin_top"
             android:layout_width="@dimen/match_constraint"

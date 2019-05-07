@@ -2,6 +2,7 @@ package com.dong.dapp.ui.activity
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.R
 import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -16,6 +17,7 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-23 14:58:51
  */
+@Route(path = "/ui/activity/SettingsActivity")
 class SettingsActivity : BaseActivity() {
 
     private val mC2 by lazy { ContextCompat.getColor(this@SettingsActivity, R.color.C2) }

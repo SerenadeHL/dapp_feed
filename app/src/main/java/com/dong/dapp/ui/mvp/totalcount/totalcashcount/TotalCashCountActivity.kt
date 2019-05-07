@@ -4,14 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
+import com.dong.dapp.Router
 import com.dong.dapp.adapter.recyclerview.CashAdapter
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
 import com.dong.dapp.bean.cash.ResultCashRecordsBean
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
-import com.dong.dapp.ui.mvp.transfer.TransferCashActivity
+import com.dong.dapp.ui.mvp.transfer.transfercash.TransferCashActivity
 import kotlinx.android.synthetic.main.activity_total_cash_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_cash.view.*
 import me.serenadehl.base.extensions.dimen
@@ -25,6 +27,7 @@ import me.serenadehl.base.extensions.startActivity
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-23 16:26:19
  */
+@Route(path = Router.TOTAL_CASH_COUNT)
 class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter>(), ITotalCashCountView {
 
     private val mAdapter by lazy { CashAdapter() }

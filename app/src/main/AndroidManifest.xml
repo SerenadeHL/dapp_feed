@@ -63,10 +63,10 @@
                 android:launchMode="singleTask"
                 android:theme="@style/WebTheme"/>
         <activity
-                android:name=".ui.mvp.transfer.TransferCoinActivity"
+                android:name=".ui.mvp.transfer.transfercoin.TransferCoinActivity"
                 android:launchMode="singleTask"/>
         <activity
-                android:name=".ui.mvp.transfer.TransferCashActivity"
+                android:name=".ui.mvp.transfer.transfercash.TransferCashActivity"
                 android:launchMode="singleTask"/>
         <activity
                 android:name=".ui.mvp.transferdetail.TransferDetailActivity"

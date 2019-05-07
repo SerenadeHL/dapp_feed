@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"/>
 
     <Button
-            android:background="@drawable/round_rect_no_solid_btn_bg"
+            android:background="@drawable/round_rect_no_solid_dark_blue_bg"
             android:layout_width="90dp"
             android:text="@string/get_verify_code"
             android:textColor="@color/C1"
@@ -154,7 +154,7 @@
             android:id="@+id/btn_login"
             android:textColor="@color/C2"
             android:text="@string/login_immediately"
-            android:background="@drawable/round_rect_solid_btn_bg"
+            android:background="@drawable/round_rect_solid_dark_blue_bg"
             android:layout_marginEnd="@dimen/L1"
             android:layout_marginTop="@dimen/dp_login_margin_top"
             android:layout_width="@dimen/match_constraint"

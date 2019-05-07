@@ -1,6 +1,8 @@
-package com.dong.dapp.ui.mvp.transfer
+package com.dong.dapp.ui.mvp.transfer.transfercoin
 
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.R
+import com.dong.dapp.ui.mvp.transfer.TransferParentActivity
 
 /**
  * 划转金币页
@@ -8,6 +10,7 @@ import com.dong.dapp.R
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-24 11:55:26
  */
+@Route(path = "/ui/mvp/transfer/transfercoin/TransferCoinActivity")
 class TransferCoinActivity : TransferParentActivity() {
 
     override fun getTitleResId() = R.string.transfer_coin

@@ -95,7 +95,7 @@
             android:textSize="@dimen/F3"
             android:text="@string/kyc_identification"
             android:layout_marginStart="@dimen/L1"
-            android:background="@drawable/round_rect_solid_btn_bg"
+            android:background="@drawable/round_rect_solid_dark_blue_bg"
             android:layout_marginEnd="@dimen/L1"
             android:layout_marginTop="@dimen/dp_personal_info_kyc_button_margin_top"
             app:layout_constraintTop_toBottomOf="@id/tv_explanation"
