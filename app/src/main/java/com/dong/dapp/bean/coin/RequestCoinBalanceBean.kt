@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.coin
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
  */
 data class RequestCoinBalanceBean(
     @SerializedName("protocol") val protocol: Int//公链类型 tron 0 EOS 1 ETH 2
-) : BaseBean()
+)

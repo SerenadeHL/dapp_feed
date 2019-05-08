@@ -2,25 +2,30 @@ package com.dong.dapp.ui.activity
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.dong.dapp.Constant
+import com.alibaba.android.arouter.launcher.ARouter
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.bean.me.ResultUserInfoBean
-import com.dong.dapp.ui.mvp.kyc.KYCActivity
 import kotlinx.android.synthetic.main.activity_personal_info.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 
 /**
+ * 个人信息页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-05-06 17:24:16
  */
-@Route(path = "/ui/activity/PersonalInfoActivity")
+@Route(path = Router.PERSONAL_INFO_ACTIVITY)
 class PersonalInfoActivity : BaseActivity() {
-    private var mUserInfo: ResultUserInfoBean? = null
+    @JvmField
+    @Autowired(name = RouterParams.DATA)
+    var mUserInfo: ResultUserInfoBean? = null
 
     private val mC1 by lazy { ContextCompat.getColor(this@PersonalInfoActivity, R.color.C1) }
     private val mC2 by lazy { ContextCompat.getColor(this@PersonalInfoActivity, R.color.C2) }
@@ -28,6 +33,7 @@ class PersonalInfoActivity : BaseActivity() {
     override fun layout() = R.layout.activity_personal_info
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        ARouter.getInstance().inject(this)
         //设置状态栏
         setupStatusBar()
         setStatusBarColor(mC2, true)
@@ -35,8 +41,6 @@ class PersonalInfoActivity : BaseActivity() {
         iv_back.setOnClickListener { finish() }
         //设置标题栏
         tv_title.setText(R.string.personal_info)
-
-        mUserInfo = intent.getParcelableExtra("data")
 
         tv_phone_number.text = mUserInfo?.account
 
@@ -54,7 +58,7 @@ class PersonalInfoActivity : BaseActivity() {
                     toast("审核中")
                 }
                 else -> {
-                    setOnClickListener { startActivity<KYCActivity>() }
+                    setOnClickListener { ARouter.getInstance().build(Router.KYC_ACTIVITY).navigation() }
                     setText(R.string.kyc_identification)
                     setTextColor(mC2)
                     setBackgroundResource(R.drawable.round_rect_solid_dark_blue_bg)

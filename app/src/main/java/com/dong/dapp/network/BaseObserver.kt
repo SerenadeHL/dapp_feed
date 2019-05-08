@@ -22,9 +22,9 @@ abstract class BaseObserver<T> : Observer<T> {
     override fun onError(e: Throwable) {
         e.printStackTrace()
         when (e) {
-            is SocketTimeoutException -> AppManager.instance.currentActivity.toast("请求超时！")
-            is ConnectException -> AppManager.instance.currentActivity.toast("网络中断，请检查您的网络状态！")
-            is UnknownHostException -> AppManager.instance.currentActivity.toast("网络错误，请检查您的网络状态！")
+            is SocketTimeoutException -> AppManager.currentActivity.toast("请求超时！")
+            is ConnectException -> AppManager.currentActivity.toast("网络中断，请检查您的网络状态！")
+            is UnknownHostException -> AppManager.currentActivity.toast("网络错误，请检查您的网络状态！")
             is BaseException -> {
                 if (e.code == 401) {//Token失效
                     LoginUtils.removeLoginTag()

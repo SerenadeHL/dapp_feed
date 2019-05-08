@@ -1,9 +1,7 @@
 package com.dong.dapp.bean.gamesquare
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import com.sunfusheng.marqueeview.IMarqueeItem
-import com.sunfusheng.marqueeview.MarqueeView
 
 /**
  * 游戏广场公告结果ItemBean
@@ -15,6 +13,6 @@ data class ResultAnnouncementItemBean(
     @SerializedName("url") val url: String,//地址
     @SerializedName("id") val id: String,//id
     @SerializedName("title") val title: String//标题
-) : BaseBean(), IMarqueeItem {
+) : IMarqueeItem {
     override fun marqueeMessage() = title
 }

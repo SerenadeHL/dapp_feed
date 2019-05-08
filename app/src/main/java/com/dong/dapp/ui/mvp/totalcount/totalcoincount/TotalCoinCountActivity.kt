@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
 import com.dong.dapp.adapter.recyclerview.CoinAdapter
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
-import com.dong.dapp.ui.mvp.recharge.RechargeActivity
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
-import com.dong.dapp.ui.mvp.transfer.transfercoin.TransferCoinActivity
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.*
-import me.serenadehl.base.extensions.*
+import me.serenadehl.base.extensions.dimen
+import me.serenadehl.base.extensions.getStatusBarHeight
+import me.serenadehl.base.extensions.log
 
 /**
  * 金币资产页
@@ -23,7 +25,7 @@ import me.serenadehl.base.extensions.*
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-23 16:27:16
  */
-@Route(path = "/ui/mvp/totalcount/totalcoincount/TotalCoinCountActivity")
+@Route(path = Router.TOTAL_COIN_COUNT_ACTIVITY)
 class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter>(), ITotalCoinCountView {
 
     private val mAdapter by lazy { CoinAdapter() }
@@ -34,11 +36,11 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (mHeader.tv_balance.layoutParams as ConstraintLayout.LayoutParams).topMargin += getStatusBarHeight() + dimen(R.dimen.L2)
-
-        btn_transfer.setOnClickListener { startActivity<TransferCoinActivity>() }
-        btn_recharge.setOnClickListener { startActivity<RechargeActivity>() }
+        btn_transfer.setOnClickListener { ARouter.getInstance().build(Router.TRANSFER_COIN_ACTIVITY).navigation() }
+        btn_recharge.setOnClickListener { ARouter.getInstance().build(Router.RECHARGE_ACTIVITY).navigation() }
     }
+
+    override fun getTopMarginViewId() = R.id.tv_balance
 
     override fun getTitleResId() = R.string.coin_assets
 

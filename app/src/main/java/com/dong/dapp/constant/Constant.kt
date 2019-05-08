@@ -1,4 +1,4 @@
-package com.dong.dapp
+package com.dong.dapp.constant
 
 /**
  * 作者：Serenade
@@ -44,4 +44,8 @@ object Constant {
     const val VERIFY_PASSED = 1//认证通过
     const val VERIFY_UN_PASSED = 2//认证未通过
 
+
+    const val TRON = 0
+    const val EOS = 1
+    const val ETH = 2
 }

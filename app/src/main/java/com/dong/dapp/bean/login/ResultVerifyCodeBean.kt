@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.login
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 data class ResultVerifyCodeBean(
     @SerializedName("fp") val fp: String?,//验证码的指纹
     @SerializedName("registered") val registered: String?//注册状态
-) : BaseBean()
+)

@@ -1,7 +1,5 @@
 package com.dong.dapp.bean.coin
 
-import com.dong.dapp.bean.BaseBean
-import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -16,6 +14,6 @@ data class ResultCoinRecordsBean(
     @SerializedName("page") var page: Int,//页数
     @SerializedName("total_count") var totalCount: Int,//总条数
     @SerializedName("page_count") var pageCount: Int//总页数
-) : BaseBean() {
+)  {
     fun hasMore() = page + 1 < pageCount
 }

@@ -1,8 +1,6 @@
 package com.dong.dapp.network
 
 import com.dong.dapp.DAppApplication
-import com.dong.dapp.extensions.getGson
-import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,8 +17,8 @@ object RetrofitHelper {
     private const val BASE_URL_RELEASE = "https://dappapi.axonomy.pro/"
     private const val BASE_URL_DEBUG = "https://dappapi.axonomy.pro/"
 
-//    private const val BASE_URL_RELEASE = "http://192.168.216.172:9129/"
-//    private const val BASE_URL_DEBUG = "http://192.168.216.172:9129/"
+//    private const val BASE_URL_RELEASE = "http://192.168.216.137:9129/"
+//    private const val BASE_URL_DEBUG = "http://192.168.216.137:9129/"
 
     private val mRetrofit: Retrofit by lazy {
         val client = OkHttpClient.Builder()
@@ -28,7 +26,7 @@ object RetrofitHelper {
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(InterceptorUtil.getHeaderInterceptor())
-            .addInterceptor(InterceptorUtil.getLogInterceptor())//添加日志拦截器
+            .addInterceptor(InterceptorUtil.getLogInterceptor())//添加日   志拦截器
             .build()
 
         Retrofit.Builder()

@@ -10,6 +10,7 @@
             android:layout_width="@dimen/match_constraint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/v_bg"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/g1_vertical"
             app:layout_constraintBottom_toTopOf="@+id/tv_gains_detail"

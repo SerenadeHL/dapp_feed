@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.cash
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -13,4 +12,4 @@ data class ResultCashBalanceBean(
     @SerializedName("balance") val balance: String,//金币资产
     @SerializedName("total_revenue") val totalRevenue: String,//总收益
     @SerializedName("today_revenue") val todayRevenue: String//今日收益
-) : BaseBean()
+)

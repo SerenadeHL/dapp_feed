@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.recharge
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -13,4 +12,4 @@ data class ResultRechargeOptionsItemBean(
     @SerializedName("id") val id: String,//商品id
     @SerializedName("title") val title: String,//商品标题
     @SerializedName("cost") val cost: String//商品价格
-) : BaseBean()
+)

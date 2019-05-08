@@ -1,12 +1,14 @@
 package com.dong.dapp.ui.mvp.web
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.DAppApplication
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
 import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.save
@@ -17,38 +19,38 @@ import com.dong.dapp.utils.WebViewUtils
 import com.dong.dapp.widget.SuspensionBall
 import kotlinx.android.synthetic.main.activity_web.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
-import me.serenadehl.base.extensions.*
+import me.serenadehl.base.extensions.gone
+import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.visible
 import wendu.dsbridge.DWebView
 
 
 /**
- * Web容器
+ * Web容器页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-11 10:37:01
  */
-@Route(path = "/ui/mvp/web/WebActivity")
+@Route(path = Router.WEB_ACTIVITY)
 class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
-    private lateinit var mPid: String//DApp的id
-    private lateinit var mUrl: String//DApp链接
+    @JvmField
+    @Autowired(name = RouterParams.ID)
+    var mPid: String? = null//DApp的id
+    @JvmField
+    @Autowired(name = RouterParams.URL)
+    var mUrl: String? = null//DApp链接
+
     private lateinit var mWebView: DWebView
     private lateinit var mId: String//用户行为id
     private val mActions by lazy { mutableListOf<Map<String, String>>() }//用户行为
-
-    companion object {
-        fun start(context: Context, pid: String?, url: String?) {
-            context.startActivity<WebActivity>("pid" to pid, "url" to url)
-        }
-    }
 
     override fun layout() = R.layout.activity_web
 
     override fun createPresenter() = WebPresenter()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        mPid = intent.getStringExtra("pid") ?: ""
-        mUrl = intent.getStringExtra("url") ?: ""
-
+        ARouter.getInstance().inject(this)
         mWebView = (application as DAppApplication).getWebView()
         mRootView.addView(
             mWebView, 0, ConstraintLayout.LayoutParams(
@@ -90,10 +92,13 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
                     "==onComplete==".log()
                 }
             })
+
+        mPresenter.enterDApp(mPid ?: "")
     }
 
     override fun onDestroy() {
         if (::mId.isInitialized) {
+            mActions.add(mapOf(System.currentTimeMillis().toString() to "-1"))
             mPresenter.exitDApp(mId, mActions)
         }
         mWebView.stopLoading()

@@ -1,11 +1,10 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
-import com.dong.dapp.MoneyType
-import com.dong.dapp.bean.cash.ResultCashBalanceBean
 import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
@@ -27,7 +26,7 @@ class GameSquareModel : MVPBaseModel(), IGameSquareModel {
     }
 
     override fun getDailyCoinIncome(): Observable<ResultCoinBalanceBean?> {
-        return RequestManager.getCoinBalance(MoneyType.TRON)
+        return RequestManager.getCoinBalance(Constant.TRON)
     }
 
     override fun getDailyCashIncome(): Observable<ResultCashDailyIncomeBean?> {

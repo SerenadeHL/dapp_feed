@@ -1,9 +1,12 @@
 package com.dong.dapp.ui.mvp.gamesquare
 
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.RuntimeData
-import com.dong.dapp.bean.cash.ResultCashBalanceBean
 import com.dong.dapp.bean.cash.ResultCashDailyIncomeBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
@@ -12,16 +15,15 @@ import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.extensions.show
 import com.dong.dapp.extensions.showRound
-import com.dong.dapp.ui.mvp.login.LoginActivity
-import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
-import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
-import com.dong.dapp.ui.mvp.web.WebActivity
 import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.app_recycle_item_game_square.view.*
 import kotlinx.android.synthetic.main.fragment_game_square.*
 import kotlinx.android.synthetic.main.fragment_game_square.view.*
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
-import me.serenadehl.base.extensions.*
+import me.serenadehl.base.extensions.invisible
+import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.extensions.visible
 
 /**
  * 游戏广场页Fragment
@@ -29,6 +31,7 @@ import me.serenadehl.base.extensions.*
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-11 10:25:57
  */
+@Route(path = Router.GAME_SQUARE_FRAGMENT)
 class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareView {
     private var mPage = 0
     private var mPageSize = 3
@@ -45,10 +48,10 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
             toast("点击了公告-------> $item")
         }
 
-        mRootView.btn_login.setOnClickListener { startActivity<LoginActivity>() }
+        mRootView.btn_login.setOnClickListener { ARouter.getInstance().build(Router.LOGIN_ACTIVITY).navigation() }
 
-        mRootView.cv_coin.setOnClickListener { startActivity<TotalCoinCountActivity>() }
-        mRootView.cv_cash.setOnClickListener { startActivity<TotalCashCountActivity>() }
+        mRootView.cv_coin.setOnClickListener { ARouter.getInstance().build(Router.TOTAL_COIN_COUNT_ACTIVITY).navigation() }
+        mRootView.cv_cash.setOnClickListener { ARouter.getInstance().build(Router.TOTAL_CASH_COUNT_ACTIVITY).navigation() }
 
         mRootView.tv_sign.setOnClickListener {
             //TODO 点我签到
@@ -95,13 +98,25 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
         mRootView.av_announcement.stopFlipping()
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden)
+            mRootView.av_announcement.stopFlipping()
+        else
+            mRootView.av_announcement.startFlipping()
+    }
+
     private fun loadData() {
         mPresenter.getAnnouncement()
         mPresenter.getDAppList(mPage, mPageSize)
     }
 
     private fun enterDApp(item: ResultDAppItemBean) {
-        WebActivity.start(requireActivity(), item.pid, item.url)
+        ARouter.getInstance()
+            .build(Router.WEB_ACTIVITY)
+            .withString(RouterParams.ID,item.pid)
+            .withString(RouterParams.URL,item.url)
+            .navigation()
     }
 
     override fun getAnnouncementSuccess(data: ResultAnnouncementBean?) {

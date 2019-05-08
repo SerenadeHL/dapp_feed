@@ -1,7 +1,6 @@
 package com.dong.dapp.bean.me
 
 import android.os.Parcelable
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -17,4 +16,4 @@ data class ResultUserInfoBean(
     @SerializedName("kyc_status") val kycStatus: Int,//KYC状态
     @SerializedName("invitation_code") val invitationCode: String,//邀请码
     @SerializedName("account") val account: String//账号
-) : BaseBean(), Parcelable
+) : Parcelable

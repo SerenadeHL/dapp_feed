@@ -4,17 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.dong.dapp.Constant
+import com.alibaba.android.arouter.launcher.ARouter
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
-import com.dong.dapp.extensions.toJson
-import com.dong.dapp.ui.mvp.chooseareacode.ChooseAreaCodeActivity
-import com.dong.dapp.utils.AESUtils
 import com.dong.dapp.utils.LoginUtils
-import com.dong.dapp.utils.RSAUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,8 +19,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.showKeyboard
-import me.serenadehl.base.extensions.startActivity
 import java.util.concurrent.TimeUnit
 
 /**
@@ -32,7 +27,7 @@ import java.util.concurrent.TimeUnit
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-19 10:57:09
  */
-@Route(path = "/ui/mvp/login/LoginActivity")
+@Route(path = Router.LOGIN_ACTIVITY)
 class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
     private val mC2 by lazy { ContextCompat.getColor(this@LoginActivity, R.color.C2) }
     private val mCountDownTime = 120L
@@ -62,7 +57,7 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
         et_phone_number.requestFocus()
 
         tv_area_code.setOnClickListener {
-            startActivityForResult(Intent(this@LoginActivity, ChooseAreaCodeActivity::class.java), mRequestCode)
+            ARouter.getInstance().build(Router.CHOOSE_AREA_CODE_ACTIVITY).navigation(this@LoginActivity,mRequestCode)
         }
 
         btn_get_verify_code.setOnClickListener {

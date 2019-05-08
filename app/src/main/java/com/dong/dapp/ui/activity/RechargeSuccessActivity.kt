@@ -1,0 +1,23 @@
+package com.dong.dapp.ui.activity
+
+import android.support.v4.content.ContextCompat
+import android.text.SpannableString
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+
+/**
+ * 划转成功页
+ * 作者：Serenade
+ * 邮箱：SerenadeHL@163.com
+ * 创建时间：2019-05-08 20:02:58
+ */
+@Route(path = Router.RECHARGE_SUCCESS_ACTIVITY)
+class RechargeSuccessActivity : SuccessActivity() {
+
+    override fun getTitleResId() = R.string.recharge_success
+
+    override fun getDescription(): SpannableString {
+        return SpannableString(getString(R.string.recharge_success_description))
+    }
+}

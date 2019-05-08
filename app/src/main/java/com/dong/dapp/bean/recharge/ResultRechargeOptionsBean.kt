@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.recharge
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResultRechargeOptionsBean(
     @SerializedName("item") val item: List<ResultRechargeOptionsItemBean>//商品列表
-) : BaseBean()
+)

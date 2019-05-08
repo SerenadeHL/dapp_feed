@@ -114,11 +114,11 @@ object KYCUtils {
                         when (error.code) {
                             ID_CARD_HAS_BEEN_USED -> {
                                 //TODO 测试
-                                AppManager.instance.currentActivity.toast("身份证已经被使用")
+                                AppManager.currentActivity.toast("身份证已经被使用")
                             }
                             KYC_HAVE_BEEN_FINISHED -> {
                                 //TODO 测试
-                                AppManager.instance.currentActivity.toast("已经完成KYC")
+                                AppManager.currentActivity.toast("已经完成KYC")
                             }
                         }
                     }
@@ -175,7 +175,7 @@ object KYCUtils {
      */
     private fun initIdCardDetect(sign: String?): Observable<String?> {
         return Observable.create {
-            val applicationContext = AppManager.instance.currentActivity.applicationContext
+            val applicationContext = AppManager.currentActivity.applicationContext
             val config = UserDetectConfig()
             //设置屏幕方向0竖屏 1横屏
             config.screenDirection = 0
@@ -211,7 +211,7 @@ object KYCUtils {
      */
     private fun initUserDetect(bizToken: String?): Observable<String> {
         return Observable.create {
-            FaceIdManager.getInstance(AppManager.instance.currentActivity.application).apply {
+            FaceIdManager.getInstance(AppManager.currentActivity.application).apply {
                 setFaceIdInitListener(object : FaceIdInitListener {
                     override fun onSuccess() {
                         "人脸核身初始化成功".log()
@@ -244,7 +244,7 @@ object KYCUtils {
                 }
             }
             IDCardManager.getInstance()
-                .startDetect(AppManager.instance.currentActivity.applicationContext, bizToken, "")
+                .startDetect(AppManager.currentActivity.applicationContext, bizToken, "")
         }
     }
 
@@ -253,7 +253,7 @@ object KYCUtils {
      */
     private fun detectUser(): Observable<ResultUserDetectResultBean?> {
         return Observable.create {
-            val applicationContext = AppManager.instance.currentActivity.applicationContext
+            val applicationContext = AppManager.currentActivity.applicationContext
             FaceIdManager.getInstance(applicationContext).apply {
                 setFaceIdDetectListener(object : FaceIdDetectListener {
                     override fun onSuccess(code: Int, msg: String?) {

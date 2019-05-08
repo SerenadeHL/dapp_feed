@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.kyc
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -15,4 +14,4 @@ data class ResultUploadFileBean(
     @SerializedName("ext_name") var extName: String,
     @SerializedName("file_url") var fileUrl: String,
     @SerializedName("content_type") var contentType: String
-) : BaseBean()
+)

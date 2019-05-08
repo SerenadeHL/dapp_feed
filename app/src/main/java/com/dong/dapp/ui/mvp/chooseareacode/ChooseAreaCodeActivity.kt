@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.ArrayMap
-import android.webkit.WebMessagePort
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.dong.dapp.Constant
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
 import com.dong.dapp.adapter.recyclerview.ChooseAreaCodeAdapter
 import com.dong.dapp.bean.areacode.ResultAreaCodeBean
 import com.dong.dapp.bean.areacode.ResultAreaCodeItemBean
-import com.dong.dapp.ui.mvp.login.LoginActivity
 import com.dong.dapp.widget.SideBar
 import com.dong.dapp.widget.TitleItemDecoration
 import com.dong.dapp.widget.TopSmoothScroller
@@ -23,12 +22,12 @@ import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.log
 
 /**
- *
+ * 选择区号页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-26 16:49:36
  */
-@Route(path = "/ui/mvp/chooseareacode/ChooseAreaCodeActivity")
+@Route(path = Router.CHOOSE_AREA_CODE_ACTIVITY)
 class ChooseAreaCodeActivity : MVPBaseActivity<IChooseAreaCodePresenter>(), IChooseAreaCodeView {
     private val mAdapter by lazy { ChooseAreaCodeAdapter() }
     private val mIndexMap by lazy { ArrayMap<Int, String>() }

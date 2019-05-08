@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.others
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -21,4 +20,4 @@ data class SystemInfoBean(
     @SerializedName("screen_height") var screenHeight: String,//屏幕高度
     @SerializedName("device_brand") var deviceBrand: String,//手机品牌
     @SerializedName("device_model") var deviceModel: String//手机型号
-) : BaseBean()
+)

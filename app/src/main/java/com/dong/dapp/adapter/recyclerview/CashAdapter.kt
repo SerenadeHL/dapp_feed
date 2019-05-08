@@ -1,12 +1,13 @@
 package com.dong.dapp.adapter.recyclerview
 
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.bean.cash.ResultCashRecordsItemBean
-import com.dong.dapp.ui.mvp.transferdetail.TransferDetailActivity
-import me.serenadehl.base.extensions.startActivity
 
 /**
  * 作者：Serenade
@@ -17,7 +18,10 @@ class CashAdapter : BaseQuickAdapter<ResultCashRecordsItemBean, BaseViewHolder>(
     init {
         setOnItemClickListener { _, _, position ->
             //TODO设置数据
-            mContext.startActivity<TransferDetailActivity>("id" to (getItem(position)?.id?:""))
+            ARouter.getInstance()
+                .build(Router.TRANSFER_DETAIL_ACTIVITY)
+                .withString(RouterParams.ID, getItem(position)?.id)
+                .navigation()
         }
     }
 

@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.kyc
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
 data class RequestKYCInfoBean(
     @SerializedName("biz_token") var bizToken: String?,//bizToken
     @SerializedName("id_info") var idInfo: RequestKYCUserInfoBean?//用户信息
-) : BaseBean()
+)

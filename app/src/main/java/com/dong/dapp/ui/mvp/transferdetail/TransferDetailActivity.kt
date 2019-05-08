@@ -2,19 +2,17 @@ package com.dong.dapp.ui.mvp.transferdetail
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.bean.cash.ResultCashRecordDetailBean
-import com.dong.dapp.bean.coin.ResultCoinRecordsItemBean
 import kotlinx.android.synthetic.main.activity_transfer_detail.*
 import kotlinx.android.synthetic.main.title_layout.*
-import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.base.mvpbase.IBasePresenter
-import me.serenadehl.base.base.mvpbase.IBaseView
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
-import me.serenadehl.base.base.mvpbase.MVPBasePresenter
 import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.visible
 
 /**
  * 划转明细页
@@ -22,9 +20,11 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-24 16:20:51
  */
-@Route(path = "/ui/mvp/transferdetail/TransferDetailActivity")
+@Route(path = Router.TRANSFER_DETAIL_ACTIVITY)
 class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITransferDetailView {
-    private lateinit var mId: String
+    @JvmField
+    @Autowired(name = RouterParams.ID)
+    var mId: String? = null
 
     private val mC2 by lazy { ContextCompat.getColor(this@TransferDetailActivity, R.color.C2) }
 
@@ -33,6 +33,7 @@ class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITra
     override fun layout() = R.layout.activity_transfer_detail
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        ARouter.getInstance().inject(this)
         //设置状态栏
         setupStatusBar()
         setStatusBarColor(mC2, true)
@@ -42,13 +43,11 @@ class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITra
         cl_title.setBackgroundColor(mC2)
         tv_title.setText(R.string.transfer_detail)
 
-        mId = intent.getStringExtra("id")
-
         loadData()
     }
 
     private fun loadData() {
-        mPresenter.getCashRecordDetail(mId)
+        mPresenter.getCashRecordDetail(mId?:"")
     }
 
     override fun getCashRecordDetailSuccess(data: ResultCashRecordDetailBean?) {

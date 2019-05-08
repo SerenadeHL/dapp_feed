@@ -2,21 +2,20 @@ package com.dong.dapp.ui.mvp.totalcount
 
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
-import kotlinx.android.synthetic.main.activity_total_coin_count.v_status_bar
-import kotlinx.android.synthetic.main.activity_total_coin_count.v_top_bg
-import kotlinx.android.synthetic.main.app_recycle_header_total_cash.view.*
+import com.dong.dapp.utils.SystemUtils
+import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.IBasePresenter
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
-import me.serenadehl.base.extensions.dimen
-import me.serenadehl.base.extensions.getStatusBarHeight
-import me.serenadehl.base.extensions.invisible
+import me.serenadehl.base.extensions.*
+
 
 /**
  * 资产基类
@@ -26,12 +25,12 @@ import me.serenadehl.base.extensions.invisible
  */
 abstract class TotalCountParentActivity<P : IBasePresenter> : MVPBaseActivity<P>() {
     protected var mPage = 0
-    protected var mPageSize = 3
+    protected var mPageSize = 20
 
     private var mYOffset = 0
     private var mAlphaDistance = 0
 
-    protected val mHeader:View by lazy { layoutInflater.inflate(getHeaderResId(), null, false) }
+    protected val mHeader: View by lazy { layoutInflater.inflate(getHeaderResId(), null, false) }
 
     protected val mC2 by lazy { ContextCompat.getColor(this@TotalCountParentActivity, R.color.C2) }
     protected val mC6 by lazy { ContextCompat.getColor(this@TotalCountParentActivity, R.color.C6) }
@@ -49,7 +48,16 @@ abstract class TotalCountParentActivity<P : IBasePresenter> : MVPBaseActivity<P>
         //设置StatusBar的高度
         v_status_bar.layoutParams.height = getStatusBarHeight()
 
+        ConstraintSet().apply {
+            clone(mHeader as ConstraintLayout)
+            setMargin(getTopMarginViewId(), ConstraintSet.TOP, getStatusBarHeight() + dimen(R.dimen.L2))
+            applyTo(mHeader as ConstraintLayout)
+        }
+
         getAdapter().addHeaderView(mHeader)
+        getAdapter().emptyView = generateEmptyView()
+        getAdapter().setHeaderAndEmpty(true)
+
         getRecyclerView().apply {
             adapter = this@TotalCountParentActivity.getAdapter()
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -79,6 +87,11 @@ abstract class TotalCountParentActivity<P : IBasePresenter> : MVPBaseActivity<P>
                         iv_back.setImageResource(R.mipmap.white_left_arrow)
                         tv_title.setTextColor(mC2)
                     }
+
+                    if (alpha == 1F)
+                        v_header_divider.visible()
+                    else
+                        v_header_divider.invisible()
                 }
             })
         }
@@ -89,11 +102,23 @@ abstract class TotalCountParentActivity<P : IBasePresenter> : MVPBaseActivity<P>
         loadData(true)
     }
 
+    private fun generateEmptyView(): View {
+        val emptyView = layoutInflater.inflate(R.layout.empty_layout, getRecyclerView(), false)
+        val screenHeight = SystemUtils.getScreenHeight()
+        val headerHeight = mHeader.measureAndGetMeasuredHeight()
+        val bottomButtonHeight = dimen(R.dimen.L2)
+        val bottomButtonMarginBottom = dimen(R.dimen.L6)
+        emptyView.layoutParams.height = screenHeight - headerHeight - bottomButtonHeight - bottomButtonMarginBottom
+        return emptyView
+    }
+
+    abstract fun getTopMarginViewId(): Int
+
     abstract fun getTitleResId(): Int
 
     abstract fun getHeaderData()
 
-    protected open fun loadData(refresh: Boolean){
+    protected open fun loadData(refresh: Boolean) {
         if (refresh) mPage = 0 else mPage++
     }
 

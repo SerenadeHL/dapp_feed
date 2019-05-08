@@ -26,18 +26,18 @@ import com.dong.dapp.bean.recharge.ResultRechargeOrderBean
 import com.dong.dapp.bean.statistics.RequestEnterDAppBean
 import com.dong.dapp.bean.statistics.RequestExitDAppBean
 import com.dong.dapp.bean.statistics.ResultEnterDAppBean
+import com.dong.dapp.bean.upload.ResultOSSUploadPermissionBean
 import com.dong.dapp.bean.wallet.TronSignBean
 import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.decrypt
-import com.dong.dapp.extensions.fromJsonArray
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
+import me.serenadehl.base.extensions.fromJsonArray
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
 import java.util.*
 
 /**
@@ -92,17 +92,31 @@ object RequestManager {
             .async()
     }
 
+
+    //=============================================上传文件接口=============================================
+
+    /**
+     * 获取oss客户端上传权限（限制版）
+     */
+    fun getOSSUploadPermission(): Observable<ResultOSSUploadPermissionBean?> {
+        return RetrofitHelper.create(UploadApi::class.java)
+            .getOSSUploadPermission()
+            .decrypt<ResultOSSUploadPermissionBean?>()
+            .async()
+    }
+
     /**
      * 上传文件
      */
     fun uploadFile(content: ByteArray): Observable<ResultUploadFileBean?> {
         val requestBody = RequestBody.create(MediaType.parse("image/jpg"), content)
         val body = MultipartBody.Part.createFormData("file", "IdCard.jpg", requestBody)
-        return RetrofitHelper.create(CommonApi::class.java)
+        return RetrofitHelper.create(UploadApi::class.java)
             .uploadFile(body)
             .decrypt<ResultUploadFileBean?>()
             .async()
     }
+
 
     //=============================================统计接口=============================================
     /**

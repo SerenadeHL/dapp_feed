@@ -124,6 +124,17 @@
     <dimen name="dp_personal_info_explanation_margin_top">23dp</dimen>
     <dimen name="dp_personal_info_kyc_button_margin_top">39dp</dimen>
 
+    <!--RechargeActivity-->
+    <dimen name="dp_recharge_card_title_margin_start">33dp</dimen>
+    <dimen name="dp_recharge_card_title_margin_top">21dp</dimen>
+    <dimen name="dp_recharge_card_description_margin_top">12dp</dimen>
+    <dimen name="sp_recharge_card_count_text_size">36sp</dimen>
+
+    <!--SuccessActivity-->
+    <dimen name="dp_success_icon_width">120dp</dimen>
+    <dimen name="dp_success_icon_height">120dp</dimen>
+    <dimen name="dp_finish_btn_margin_top">64dp</dimen>
+
     <!--PopupWindowUtils-->
     <dimen name="dp_button_container_gone_margin_top">30dp</dimen>
 

@@ -76,12 +76,12 @@ class DAppApplication : BaseApplication() {
      * 初始友盟相关
      */
     private fun initUmeng() {
-        // 初始化SDK
+        //初始化SDK
         //TODO 替换密钥
         UMConfigure.init(this, "appkey", "channel", UMConfigure.DEVICE_TYPE_PHONE, "pushSecret")
-        // 选用AUTO页面采集模式
+        //友盟统计
         MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.MANUAL)
-
+        //友盟推送
         PushAgent.getInstance(this).register(object : IUmengRegisterCallback {
             override fun onSuccess(deviceToken: String) {
                 //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
@@ -92,6 +92,7 @@ class DAppApplication : BaseApplication() {
                 "注册失败：-------->  s:$s,s1:$s1".log()
             }
         })
+
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacksImpl() {
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
                 PushAgent.getInstance(activity).onAppStart()
@@ -178,7 +179,7 @@ class DAppApplication : BaseApplication() {
 
                         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                             if (url.startsWith("exit")) {
-                                AppManager.instance.finishActivity(WebActivity::class.java)
+                                AppManager.finishActivity(WebActivity::class.java)
                                 return true
                             }
                             return false

@@ -5,21 +5,20 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
-import com.dong.dapp.Router
+import com.dong.dapp.constant.Router
 import com.dong.dapp.adapter.recyclerview.CashAdapter
 import com.dong.dapp.bean.cash.ResultCashBalanceBean
 import com.dong.dapp.bean.cash.ResultCashRecordsBean
 import com.dong.dapp.ui.mvp.totalcount.TotalCountParentActivity
-import com.dong.dapp.ui.mvp.transfer.transfercash.TransferCashActivity
 import kotlinx.android.synthetic.main.activity_total_cash_count.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_cash.view.*
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
 import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.startActivity
 
 /**
  * 现金资产页
@@ -27,7 +26,7 @@ import me.serenadehl.base.extensions.startActivity
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-23 16:26:19
  */
-@Route(path = Router.TOTAL_CASH_COUNT)
+@Route(path = Router.TOTAL_CASH_COUNT_ACTIVITY)
 class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter>(), ITotalCashCountView {
 
     private val mAdapter by lazy { CashAdapter() }
@@ -38,10 +37,10 @@ class TotalCashCountActivity : TotalCountParentActivity<ITotalCashCountPresenter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (mHeader.tv_balance.layoutParams as ConstraintLayout.LayoutParams).topMargin += getStatusBarHeight() + dimen(R.dimen.L2)
-
-        btn_transfer.setOnClickListener { startActivity<TransferCashActivity>() }
+        btn_transfer.setOnClickListener { ARouter.getInstance().build(Router.TRANSFER_CASH_ACTIVITY).navigation() }
     }
+
+    override fun getTopMarginViewId() = R.id.tv_balance
 
     override fun getTitleResId() = R.string.cash_assets
 

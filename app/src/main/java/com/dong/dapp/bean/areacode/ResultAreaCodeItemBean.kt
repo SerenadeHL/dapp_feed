@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.areacode
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 data class ResultAreaCodeItemBean(
     @SerializedName("code") val code: String,//区号
     @SerializedName("country") val country: String//国家名
-) : BaseBean()
+)

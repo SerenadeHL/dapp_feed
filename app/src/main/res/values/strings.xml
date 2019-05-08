@@ -82,6 +82,14 @@
     <string name="time_with_colon">时间：</string>
     <string name="serial_number_with_colon">流水号：</string>
 
+    <!--划转成功-->
+    <string name="transfer_success">划转成功</string>
+    <string name="transfer_success_description">划转成功，您可以前往jetaxon.pro查看</string>
+    <string name="finish">完成</string>
+    <!--充值成功-->
+    <string name="recharge_success">充值成功</string>
+    <string name="recharge_success_description">充值成功，请返回账户查看</string>
+
     <!--现金、金币资产明细-->
     <string name="cumulative_gain">累计收益</string>
     <string name="today_obtain">今日获得</string>
@@ -102,5 +110,8 @@
     <!--充值-->
     <string name="recharge_game_coins">游戏金币充值</string>
     <string name="pay_immediately">立即支付</string>
+    <string name="recharge_card_title">游戏金币充值卡</string>
+    <string name="recharge_card_count">100 金币</string>
+    <string name="recharge_card_description">游戏消费赠返金币</string>
 
 </resources>

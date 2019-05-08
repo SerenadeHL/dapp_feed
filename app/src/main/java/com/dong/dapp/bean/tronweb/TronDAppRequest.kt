@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.tronweb
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 data class TronDAppRequest(
@@ -9,4 +8,4 @@ data class TronDAppRequest(
     @SerializedName("raw_data") var tronDAppRawData: TronDAppRawData?,
     @SerializedName("host") var host: String? ,
     @SerializedName("href") var href: String?
-) : BaseBean()
+)

@@ -1,9 +1,9 @@
 package com.dong.dapp.utils
 
 import android.text.TextUtils
-import com.dong.dapp.Constant
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.bean.wallet.UserInfoBean
-import com.dong.dapp.extensions.toJson
+import me.serenadehl.base.extensions.toJson
 import me.serenadehl.base.utils.sharedpre.SPUtil
 
 

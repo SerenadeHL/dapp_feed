@@ -1,18 +1,17 @@
 package com.dong.dapp.network
 
-import android.os.Build
 import android.util.Log
 import com.dong.dapp.BuildConfig
-import com.dong.dapp.Constant
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.DAppApplication
 import com.dong.dapp.bean.others.SystemInfoBean
-import com.dong.dapp.extensions.toJson
 import com.dong.dapp.utils.AESUtils
 import com.dong.dapp.utils.NetworkUtils
 import com.dong.dapp.utils.RSAUtils
 import com.dong.dapp.utils.SystemUtils
 import me.serenadehl.base.extensions.TAG
 import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.toJson
 import me.serenadehl.base.utils.sharedpre.SPUtil
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
@@ -20,8 +19,6 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.Buffer
-import okio.BufferedSink
-import okio.ByteString
 import org.json.JSONObject
 import java.nio.charset.Charset
 import java.util.*

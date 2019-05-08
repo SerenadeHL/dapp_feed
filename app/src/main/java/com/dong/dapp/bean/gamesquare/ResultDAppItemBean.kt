@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.gamesquare
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -19,4 +18,4 @@ data class ResultDAppItemBean(
     @SerializedName("author") var author: String?,//作者
     @SerializedName("logo") var logo: String?,//图标
     @SerializedName("cnt") var count: Int?//玩的人数
-) : BaseBean()
+)

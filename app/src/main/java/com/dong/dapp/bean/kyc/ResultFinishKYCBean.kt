@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.kyc
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
 data class ResultFinishKYCBean(
     @SerializedName("result_code") var resultCode: Int,
     @SerializedName("result_message") var resultMessage: String?
-) : BaseBean()
+)

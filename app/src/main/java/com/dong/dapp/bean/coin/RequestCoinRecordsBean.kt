@@ -1,7 +1,5 @@
 package com.dong.dapp.bean.coin
 
-import com.dong.dapp.bean.BaseBean
-import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -14,4 +12,4 @@ data class RequestCoinRecordsBean(
     @SerializedName("protocol") var protocol: Int,//公链类型 tron 0 EOS 1 ETH 2
     @SerializedName("page") var page: Int,//页数
     @SerializedName("page_size") var pageSize: Int//该页条数
-) : BaseBean()
+)

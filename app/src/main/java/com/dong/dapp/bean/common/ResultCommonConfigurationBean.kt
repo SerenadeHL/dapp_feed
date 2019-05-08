@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.common
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -15,4 +14,4 @@ data class ResultCommonConfigurationBean(
     @SerializedName("floating") val floating: ResultCommonConfigurationFloatingBean,//悬浮按钮
     @SerializedName("about_url") val aboutUrl: String,//关于我们地址
     @SerializedName("menu") val menu: List<List<ResultCommonConfigurationMeOptionBean>>//我页面选项配置
-) : BaseBean()
+)

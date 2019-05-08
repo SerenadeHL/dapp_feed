@@ -1,7 +1,5 @@
 package com.dong.dapp.bean.recharge
 
-import com.dong.dapp.bean.BaseBean
-
 /**
  * 充值下单结果Bean
  * 作者：Serenade
@@ -11,4 +9,4 @@ import com.dong.dapp.bean.BaseBean
 //TODO 添加参数
 data class ResultRechargeOrderBean(
     val test: String
-) : BaseBean()
+)

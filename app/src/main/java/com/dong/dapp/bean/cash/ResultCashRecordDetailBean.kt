@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.cash
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -17,4 +16,4 @@ data class ResultCashRecordDetailBean(
     @SerializedName("changed_type") val changedType: Int,//资金变化类型{-1,1},{减少, 增加}
     @SerializedName("done_status") val doneStatus: Int,//流水状态{0,1,2,3},{进行中, 已到账, 已完成, 已失败}
     @SerializedName("create_at_str") val createAtStr: String//创建时间
-) : BaseBean()
+)

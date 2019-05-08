@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.gamesquare
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResultAnnouncementBean(
     @SerializedName("items") val items: List<ResultAnnouncementItemBean>//游戏广场公告列表
-) : BaseBean()
+)

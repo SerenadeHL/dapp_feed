@@ -72,6 +72,12 @@
                 android:name=".ui.mvp.transferdetail.TransferDetailActivity"
                 android:launchMode="singleTask"/>
 
+        <activity android:name=".ui.activity.TransferSuccessActivity"
+                  android:launchMode="singleTask"/>
+
+        <activity android:name=".ui.activity.RechargeSuccessActivity"
+                  android:launchMode="singleTask"/>
+
         <meta-data
                 android:name="CHANNEL"
                 android:value="${CHANNEL_VALUE}"/>

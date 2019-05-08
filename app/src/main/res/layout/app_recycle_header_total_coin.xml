@@ -8,6 +8,7 @@
 
     <View
             android:layout_width="@dimen/match_constraint"
+            android:id="@+id/v_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

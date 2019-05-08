@@ -1,7 +1,8 @@
 package com.dong.dapp.extensions
 
-import com.dong.dapp.Constant
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.bean.wallet.UserInfoBean
+import me.serenadehl.base.extensions.toJson
 import me.serenadehl.base.utils.sharedpre.SPUtil
 
 /**

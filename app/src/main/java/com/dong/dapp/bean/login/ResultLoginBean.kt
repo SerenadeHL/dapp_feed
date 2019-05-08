@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.login
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResultLoginBean(
     @SerializedName("token") var token: String?//登录标识
-): BaseBean()
+)

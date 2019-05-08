@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.statistics
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 data class RequestExitDAppBean(
     @SerializedName("id") var id: String,//用户行为id
     @SerializedName("action") var action: List<Map<String, String>>//用户行为
-) : BaseBean()
+)

@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.common
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -13,4 +12,4 @@ data class ResultCommonConfigurationTabBean(
     @SerializedName("name") val name: String,//标题
     @SerializedName("active") val active: String,//选中状态下图标地址
     @SerializedName("img") val img: String//未选中状态下图标地址
-) : BaseBean()
+)

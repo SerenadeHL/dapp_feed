@@ -3,20 +3,20 @@ package com.dong.dapp.jsapi
 import android.app.AlertDialog
 import android.text.TextUtils
 import android.webkit.JavascriptInterface
-import com.dong.dapp.Constant
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.bean.tronweb.TronDAppRequest
 import com.dong.dapp.bean.wallet.TronSignBean
 import com.dong.dapp.bean.wallet.UserInfoBean
-import com.dong.dapp.extensions.*
 import com.dong.dapp.network.BaseObserver
 import com.dong.dapp.network.RequestManager
 import com.dong.dapp.utils.UserInfoUtils
 import com.google.gson.Gson
+import me.serenadehl.base.extensions.isJson
 import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.toJson
 import me.serenadehl.base.utils.app.AppManager
 import wendu.dsbridge.CompletionHandler
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * 波场相关的DApp js与原生交互
@@ -60,7 +60,7 @@ class TronPayApi {
         } else {
             //密文需要用户授权
             if (mAlertDialog == null) {
-                mAlertDialog = AlertDialog.Builder(AppManager.instance.currentActivity)
+                mAlertDialog = AlertDialog.Builder(AppManager.currentActivity)
                     .setMessage("DApp请求Tron账户进行签名操作，是否继续？\n$transaction")
                     .setCancelable(false)
                     .setPositiveButton(android.R.string.ok) { _, _ ->

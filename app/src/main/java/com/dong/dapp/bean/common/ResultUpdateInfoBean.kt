@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.common
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -18,4 +17,4 @@ data class ResultUpdateInfoBean(
     @SerializedName("production") val production: Int,//app审核中0 正式上线>0
     @SerializedName("content") val content: String,//更新弹窗文案
     @SerializedName("break_web") val breakWeb: String
-) : BaseBean()
+)

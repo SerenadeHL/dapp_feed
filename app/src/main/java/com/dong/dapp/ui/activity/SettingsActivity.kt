@@ -4,20 +4,20 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
 import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.activity_settings.view.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
 import me.serenadehl.base.extensions.toast
-import me.serenadehl.base.extensions.visible
 
 /**
+ * 设置页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-23 14:58:51
  */
-@Route(path = "/ui/activity/SettingsActivity")
+@Route(path = Router.SETTINGS_ACTIVITY)
 class SettingsActivity : BaseActivity() {
 
     private val mC2 by lazy { ContextCompat.getColor(this@SettingsActivity, R.color.C2) }

@@ -1,24 +1,20 @@
 package com.dong.dapp.ui.mvp.me
 
-import com.dong.dapp.R
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import com.alibaba.android.arouter.facade.Postcard
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.dong.dapp.Router
+import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.adapter.recyclerview.MeAdapter
 import com.dong.dapp.bean.me.MeBean
 import com.dong.dapp.bean.me.OptionBean
 import com.dong.dapp.bean.me.ResultUserInfoBean
-import com.dong.dapp.ui.activity.PersonalInfoActivity
-import com.dong.dapp.ui.activity.SettingsActivity
-import com.dong.dapp.ui.mvp.totalcount.totalcashcount.TotalCashCountActivity
-import com.dong.dapp.ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity
-import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.fragment_me.view.*
-
 import me.serenadehl.base.base.mvpbase.MVPBaseFragment
 import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 
 /**
@@ -27,6 +23,7 @@ import me.serenadehl.base.extensions.toast
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-10 19:56:56
  */
+@Route(path = Router.ME_FRAGMENT)
 class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
     private var mUserInfo: ResultUserInfoBean? = null
 
@@ -38,40 +35,44 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
         mRootView.rv_me.adapter = mAdapter
-        val aRouter = ARouter.getInstance()
+        val router = ARouter.getInstance()
         mAdapter.setOnItemClickListener { _, _, position ->
-            when (position) {
+            val postCard: Postcard? = when (position) {
                 0 -> {//用户信息
-                    startActivity<PersonalInfoActivity>("data" to mUserInfo)
+                    router.build(Router.PERSONAL_INFO_ACTIVITY).withParcelable(RouterParams.DATA, mUserInfo)
                 }
                 1 -> {//邀请好友
                     //TODO 跳转到邀请好友页面
                     toast("邀请好友")
+                    null
                 }
                 3 -> {//签到领金币
                     //TODO 跳转到签到领金币页面
                     toast("签到领金币")
+                    null
                 }
                 5 -> {//我的现金资产
-                    aRouter.build(Router.TOTAL_CASH_COUNT)
-                        .navigation()
+                    router.build(Router.TOTAL_CASH_COUNT_ACTIVITY)
                 }
                 6 -> {//我的金币资产
-                    aRouter.build(Router.TOTAL_COIN_COUNT)
-                        .navigation()
+                    router.build(Router.TOTAL_COIN_COUNT_ACTIVITY)
                 }
                 8 -> {//联系客服
                     //TODO 跳转到联系客服页面
                     toast("联系客服")
+                    null
                 }
                 9 -> {//关于我们
                     //TODO 跳转到关于我们页面
                     toast("关于我们")
+                    null
                 }
                 10 -> {//设置
-                    startActivity<SettingsActivity>()
+                    router.build(Router.SETTINGS_ACTIVITY)
                 }
+                else -> null
             }
+            postCard?.navigation()
         }
         mAdapter.setNewData(createOptions())
     }

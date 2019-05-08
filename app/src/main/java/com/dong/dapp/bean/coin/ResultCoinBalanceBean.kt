@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.coin
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -16,4 +15,4 @@ data class ResultCoinBalanceBean(
     @SerializedName("balance_cny") val balanceCNY: String,//价值人民币
     @SerializedName("available") val transferable: String,//可划转
     @SerializedName("todayrevenue") val todayRevenue: String//今日收益
-) : BaseBean()
+)

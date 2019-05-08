@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.areacode
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 data class ResultAreaCodeBean(
     @SerializedName("index") val index: String,//首字母
     @SerializedName("items") val items: List<ResultAreaCodeItemBean>//首字母对应的区号列表
-) : BaseBean()
+)

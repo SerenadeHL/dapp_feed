@@ -1,8 +1,6 @@
 package com.dong.dapp.utils
 
-import android.content.Context
 import me.serenadehl.base.utils.app.AppManager
-
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -16,7 +14,7 @@ object AssetsUtils {
     fun getAssets(fileName: String): String {
         var jsStr = ""
         try {
-            val inputStream = AppManager.instance.currentActivity.applicationContext.assets.open(fileName)
+            val inputStream = AppManager.currentActivity.applicationContext.assets.open(fileName)
             val buff = ByteArray(1024)
             val fromFile = ByteArrayOutputStream()
             do {

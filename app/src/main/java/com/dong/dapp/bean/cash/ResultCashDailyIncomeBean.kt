@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.cash
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResultCashDailyIncomeBean(
     @SerializedName("cash") val cash: String//每日收入
-) : BaseBean()
+)

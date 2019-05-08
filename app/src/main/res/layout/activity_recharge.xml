@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:background="@color/C2"
         android:layout_height="match_parent"
         tools:context=".ui.mvp.recharge.RechargeActivity">
 
@@ -13,7 +14,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="@dimen/L1"
-            android:id="@+id/btn_transfer"
+            android:id="@+id/btn_pay"
             android:textSize="@dimen/F3"
             android:textColor="@color/C2"
             android:text="@string/pay_immediately"
@@ -23,16 +24,95 @@
             android:layout_height="@dimen/L2"/>
 
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.widget.NestedScrollView
             android:layout_width="@dimen/match_constraint"
-            app:layout_constraintBottom_toTopOf="@+id/btn_transfer"
-            android:id="@+id/rv_cash"
+            app:layout_constraintBottom_toTopOf="@id/btn_pay"
+            android:id="@+id/nsv_content"
             android:overScrollMode="never"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="@dimen/match_constraint"/>
+            android:layout_height="@dimen/match_constraint">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <ImageView android:layout_width="@dimen/match_constraint"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       android:src="@mipmap/recharge_top_bg"
+                       android:id="@+id/iv_bg"
+                       app:layout_constraintDimensionRatio="750:500"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:layout_height="@dimen/match_constraint"/>
+
+            <Space
+                    android:id="@+id/s_space"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_bg"
+                    android:layout_marginTop="@dimen/L4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <ImageView
+                    android:id="@+id/iv_card"
+                    android:layout_width="@dimen/match_constraint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="533:338"
+                    android:layout_marginStart="@dimen/L7"
+                    android:layout_marginEnd="@dimen/L7"
+                    app:layout_constraintBottom_toBottomOf="@id/s_space"
+                    android:src="@mipmap/recharge_card"
+                    android:layout_height="@dimen/match_constraint"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/recharge_card_title"
+                    android:id="@+id/tv_recharge_card_title"
+                    android:includeFontPadding="false"
+                    app:layout_constraintStart_toStartOf="@id/iv_card"
+                    app:layout_constraintTop_toTopOf="@id/iv_card"
+                    android:textSize="@dimen/F2"
+                    android:textColor="@color/color_FFE7C3"
+                    android:layout_marginTop="@dimen/dp_recharge_card_title_margin_top"
+                    android:layout_marginStart="@dimen/dp_recharge_card_title_margin_start"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_recharge_card_count"
+                    app:layout_constraintStart_toStartOf="@id/iv_card"
+                    app:layout_constraintEnd_toEndOf="@id/iv_card"
+                    app:layout_constraintTop_toTopOf="@id/iv_card"
+                    android:text="@string/recharge_card_count"
+                    android:textSize="@dimen/sp_recharge_card_count_text_size"
+                    android:textColor="@color/color_FFE7C3"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_card"
+                    android:includeFontPadding="false"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="@dimen/L6"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/recharge_card_description"
+                    android:textColor="@color/color_FFE7C3"
+                    android:textSize="@dimen/F5"
+                    app:layout_constraintStart_toStartOf="@id/iv_bg"
+                    app:layout_constraintEnd_toEndOf="@id/iv_bg"
+                    android:layout_marginTop="@dimen/dp_recharge_card_description_margin_top"
+                    android:id="@+id/tv_recharge_card_description"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recharge_card_count"
+                    android:layout_height="wrap_content"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
     <View
             app:layout_constraintStart_toStartOf="parent"

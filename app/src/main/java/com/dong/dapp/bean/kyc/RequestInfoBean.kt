@@ -1,7 +1,6 @@
 package com.dong.dapp.bean.kyc
 
 import android.graphics.PointF
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 import com.megvii.faceidiol.sdk.manager.LegalityStruct
 
@@ -23,4 +22,4 @@ data class RequestInfoBean(
     @SerializedName("idcardEmblemRect") var idcardEmblemRect: Array<PointF>?,//国徽面证件区域
     @SerializedName("idcardEmblemCompleteType") var idcardEmblemCompleteType: Int?,//国徽面完整性
     @SerializedName("idcardEmblemLegalityItem") var idcardEmblemLegalityItem: LegalityStruct?//国徽面五种分类结果
-) : BaseBean()
+)

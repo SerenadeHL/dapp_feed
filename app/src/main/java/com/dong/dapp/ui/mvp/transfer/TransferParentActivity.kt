@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
 import kotlinx.android.synthetic.main.activity_transfer.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
@@ -58,6 +60,10 @@ abstract class TransferParentActivity : MVPBaseActivity<ITransferPresenter>() {
         btn_confirm_extraction.setOnClickListener {
             //TODO 确认提取
             toast("确认提取")
+
+            ARouter.getInstance()
+                .build(Router.TRANSFER_SUCCESS_ACTIVITY)
+                .navigation()
         }
 
         //初始化选项

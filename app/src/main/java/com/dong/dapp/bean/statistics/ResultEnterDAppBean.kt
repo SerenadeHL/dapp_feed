@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.statistics
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -11,4 +10,4 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResultEnterDAppBean(
     @SerializedName("id") val id: String//用户行为id
-) : BaseBean()
+)

@@ -2,18 +2,17 @@ package com.dong.dapp.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
-import com.dong.dapp.ui.mvp.gamesquare.GameSquareFragment
-import com.dong.dapp.ui.mvp.login.LoginActivity
-import com.dong.dapp.ui.mvp.me.MeFragment
+import com.dong.dapp.constant.Router
 import com.dong.dapp.utils.LoginUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
 import me.serenadehl.base.extensions.invisible
-import me.serenadehl.base.extensions.startActivity
 import me.serenadehl.base.extensions.toast
 import me.serenadehl.base.extensions.visible
 
@@ -24,7 +23,7 @@ import me.serenadehl.base.extensions.visible
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-04-16 19:46:44
  */
-@Route(path = "/ui/activity/MainActivity")
+@Route(path = Router.MAIN_ACTIVITY)
 class MainActivity : BaseActivity() {
     companion object {
         const val GAME = 0//游戏广场
@@ -39,8 +38,8 @@ class MainActivity : BaseActivity() {
     private val mC6 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C6) }
     private val mB9BCCE by lazy { ContextCompat.getColor(this@MainActivity, R.color.color_B9BCCE) }
 
-    private val mGameSquareFragment by lazy { GameSquareFragment() }//游戏广场
-    private val mMeFragment by lazy { MeFragment() }//我
+    private val mGameSquareFragment by lazy { ARouter.getInstance().build(Router.GAME_SQUARE_FRAGMENT).navigation() as Fragment }//游戏广场
+    private val mMeFragment by lazy { ARouter.getInstance().build(Router.ME_FRAGMENT).navigation() as Fragment  }//我
 
     override fun layout() = R.layout.activity_main
 
@@ -58,7 +57,7 @@ class MainActivity : BaseActivity() {
         cl_game.setOnClickListener { switchTab(GAME) }
         cl_me.setOnClickListener {
             if (!LoginUtils.isLogin()) {
-                startActivity<LoginActivity>()
+                ARouter.getInstance().build(Router.LOGIN_ACTIVITY).navigation()
                 return@setOnClickListener
             }
             switchTab(ME)

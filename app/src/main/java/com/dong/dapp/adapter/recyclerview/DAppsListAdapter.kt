@@ -1,12 +1,14 @@
 package com.dong.dapp.adapter.recyclerview
 
 import android.widget.ImageView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dong.dapp.R
+import com.dong.dapp.constant.Router
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.bean.gamesquare.ResultDAppItemBean
 import com.dong.dapp.extensions.showRound
-import com.dong.dapp.ui.mvp.web.WebActivity
 
 /**
  * Dapp列表Adapter
@@ -18,7 +20,12 @@ class DAppsListAdapter : BaseQuickAdapter<ResultDAppItemBean, BaseViewHolder>(R.
 
     init {
         setOnItemClickListener { _, _, position ->
-            WebActivity.start(mContext, data[position].pid, data[position].url)
+            val item = data[position]
+            ARouter.getInstance()
+                .build(Router.WEB_ACTIVITY)
+                .withString(RouterParams.ID, item.pid)
+                .withString(RouterParams.URL, item.url)
+                .navigation()
         }
     }
 

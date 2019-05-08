@@ -1,11 +1,11 @@
 package com.dong.dapp.extensions
 
 import android.util.Base64
-import com.dong.dapp.bean.BaseBean
 import com.dong.dapp.exception.BaseException
 import com.dong.dapp.network.BaseResponse
 import com.dong.dapp.utils.AESUtils
 import io.reactivex.Observable
+import me.serenadehl.base.extensions.fromJson
 
 /**
  * 作者：Serenade
@@ -16,7 +16,7 @@ import io.reactivex.Observable
 /**
  * 解密
  */
-inline fun <reified T : BaseBean?> Observable<BaseResponse>.decrypt(): Observable<T?> {
+inline fun <reified T> Observable<BaseResponse>.decrypt(): Observable<T?> {
     return flatMap {
         if (it.code != 200) {
             return@flatMap Observable.error<BaseException>(BaseException(it.code, it.errMsg))

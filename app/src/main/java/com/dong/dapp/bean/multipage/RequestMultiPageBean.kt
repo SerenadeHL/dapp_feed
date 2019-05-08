@@ -1,6 +1,5 @@
 package com.dong.dapp.bean.multipage
 
-import com.dong.dapp.bean.BaseBean
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 data class RequestMultiPageBean(
     @SerializedName("page") val page: Int,//页数
     @SerializedName("page_size") val pageSize: Int//每页条目数
-) : BaseBean()
+)
