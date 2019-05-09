@@ -5,10 +5,13 @@ import android.content.Context
 import android.os.Bundle
 import android.support.multidex.MultiDex
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.jsapi.TronPayApi
 import com.dong.dapp.ui.mvp.web.DAppWebActivity
 import com.dong.dapp.utils.AssetsUtils
 import com.dong.dapp.utils.NetworkUtils
+import com.dong.dapp.utils.SystemUtils
+import com.squareup.leakcanary.LeakCanary
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
 import com.tencent.smtt.sdk.QbSdk
@@ -17,17 +20,14 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
+import com.umeng.message.IUmengRegisterCallback
 import com.umeng.message.PushAgent
 import io.reactivex.plugins.RxJavaPlugins
 import me.serenadehl.base.BaseApplication
-import me.serenadehl.base.utils.app.AppManager
-import wendu.dsbridge.DWebView
-import skin.support.SkinCompatManager
-import com.umeng.message.IUmengRegisterCallback
 import me.serenadehl.base.extensions.log
-import com.alibaba.android.arouter.launcher.ARouter
-import com.dong.dapp.utils.SystemUtils
-import com.squareup.leakcanary.LeakCanary
+import me.serenadehl.base.utils.app.AppManager
+import skin.support.SkinCompatManager
+import wendu.dsbridge.DWebView
 
 
 /**

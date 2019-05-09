@@ -1,5 +1,6 @@
 package com.dong.dapp.ui.mvp.main
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,6 +14,7 @@ import com.dong.dapp.constant.Router
 import com.dong.dapp.utils.LoginUtils
 import com.dong.dapp.utils.RouterUtils
 import com.dong.dapp.utils.UpdateUtils
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
@@ -73,15 +75,6 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
         cl_game.performClick()
 
         loadData()
-
-        //TODO 测试
-        val url = "asdas"
-        RouterUtils.route(
-            "jump://${Router.COMMON_WEB_ACTIVITY}?url_base64=${Base64.encodeToString(
-                url.toByteArray(),
-                Base64.DEFAULT
-            )}"
-        )
     }
 
     private fun loadData() {

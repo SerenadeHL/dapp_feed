@@ -9,14 +9,12 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
 import com.dong.dapp.constant.Router
 import com.dong.dapp.constant.RouterParams
-import com.squareup.leakcanary.RefWatcher
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_common_web.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
 import me.serenadehl.base.extensions.log
-import java.lang.Exception
 
 /**
  * Web网页

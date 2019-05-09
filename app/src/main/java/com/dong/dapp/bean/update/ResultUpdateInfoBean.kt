@@ -17,5 +17,6 @@ data class ResultUpdateInfoBean(
     @SerializedName("url") val url: String,//更新地址
     @SerializedName("production") val production: Int,//app审核中0 正式上线>0
     @SerializedName("content") val content: String,//更新弹窗文案
-    @SerializedName("break_web") val breakWeb: Int//是否强制打开网页
+    @SerializedName("break_web") val breakWeb: Int,//是否强制打开网页
+    @SerializedName("md5") val md5: String//APKmd5值
 )

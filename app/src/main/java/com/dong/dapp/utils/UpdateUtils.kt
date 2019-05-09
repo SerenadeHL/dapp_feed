@@ -1,6 +1,6 @@
 package com.dong.dapp.utils
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import com.dong.dapp.bean.update.ResultUpdateInfoBean
 import com.dong.dapp.widget.UpdateDialog
 
@@ -13,7 +13,7 @@ object UpdateUtils {
     /**
      * 检查更新
      */
-    fun checkUpdate(activity: Activity, data: ResultUpdateInfoBean?) {
+    fun checkUpdate(activity: AppCompatActivity, data: ResultUpdateInfoBean?) {
         if (data?.updateType == 2 || data == null) return//不显示
         UpdateDialog(activity, data).show()
     }
