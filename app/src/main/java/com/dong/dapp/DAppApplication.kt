@@ -4,10 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.multidex.MultiDex
-import android.util.Log
 import android.view.ViewGroup
 import com.dong.dapp.jsapi.TronPayApi
-import com.dong.dapp.ui.mvp.web.WebActivity
+import com.dong.dapp.ui.mvp.web.DAppWebActivity
 import com.dong.dapp.utils.AssetsUtils
 import com.dong.dapp.utils.NetworkUtils
 import com.tencent.smtt.export.external.interfaces.SslError
@@ -26,11 +25,9 @@ import wendu.dsbridge.DWebView
 import skin.support.SkinCompatManager
 import com.umeng.message.IUmengRegisterCallback
 import me.serenadehl.base.extensions.log
-import android.app.ActivityManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.utils.SystemUtils
 import com.squareup.leakcanary.LeakCanary
-import com.taobao.accs.utl.UtilityImpl.isMainProcess
 
 
 /**
@@ -179,7 +176,7 @@ class DAppApplication : BaseApplication() {
 
                         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                             if (url.startsWith("exit")) {
-                                AppManager.finishActivity(WebActivity::class.java)
+                                AppManager.finishActivity(DAppWebActivity::class.java)
                                 return true
                             }
                             return false

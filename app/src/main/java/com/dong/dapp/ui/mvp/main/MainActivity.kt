@@ -1,18 +1,23 @@
-package com.dong.dapp.ui.activity
+package com.dong.dapp.ui.mvp.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.util.Base64
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
+import com.dong.dapp.bean.update.ResultUpdateInfoBean
 import com.dong.dapp.constant.Router
 import com.dong.dapp.utils.LoginUtils
+import com.dong.dapp.utils.RouterUtils
+import com.dong.dapp.utils.UpdateUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
-import me.serenadehl.base.base.BaseActivity
+import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.invisible
+import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toast
 import me.serenadehl.base.extensions.visible
 
@@ -24,7 +29,7 @@ import me.serenadehl.base.extensions.visible
  * 创建时间：2019-04-16 19:46:44
  */
 @Route(path = Router.MAIN_ACTIVITY)
-class MainActivity : BaseActivity() {
+class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
     companion object {
         const val GAME = 0//游戏广场
         const val ME = 1//我
@@ -39,7 +44,9 @@ class MainActivity : BaseActivity() {
     private val mB9BCCE by lazy { ContextCompat.getColor(this@MainActivity, R.color.color_B9BCCE) }
 
     private val mGameSquareFragment by lazy { ARouter.getInstance().build(Router.GAME_SQUARE_FRAGMENT).navigation() as Fragment }//游戏广场
-    private val mMeFragment by lazy { ARouter.getInstance().build(Router.ME_FRAGMENT).navigation() as Fragment  }//我
+    private val mMeFragment by lazy { ARouter.getInstance().build(Router.ME_FRAGMENT).navigation() as Fragment }//我
+
+    override fun createPresenter() = MainPresenter()
 
     override fun layout() = R.layout.activity_main
 
@@ -64,6 +71,22 @@ class MainActivity : BaseActivity() {
         }
 
         cl_game.performClick()
+
+        loadData()
+
+        //TODO 测试
+        val url = "asdas"
+        RouterUtils.route(
+            "jump://${Router.COMMON_WEB_ACTIVITY}?url_base64=${Base64.encodeToString(
+                url.toByteArray(),
+                Base64.DEFAULT
+            )}"
+        )
+    }
+
+    private fun loadData() {
+        //检查版本更新
+        mPresenter.getUpdateInfo()
     }
 
     /**
@@ -116,5 +139,14 @@ class MainActivity : BaseActivity() {
             }
         }
         transaction.commitNow()
+    }
+
+    override fun getUpdateInfoSuccess(data: ResultUpdateInfoBean?) {
+        "getUpdateInfoSuccess-------> $data".log()
+        UpdateUtils.checkUpdate(this, data)
+    }
+
+    override fun getUpdateInfoFailed() {
+        "getUpdateInfoFailed------->".log()
     }
 }

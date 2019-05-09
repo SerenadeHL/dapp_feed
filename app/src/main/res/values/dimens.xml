@@ -33,6 +33,11 @@
     <!--右箭头MarginEnd-->
     <dimen name="right_arrow_margin_end">13dp</dimen>
 
+
+    <!--UpdateDialog-->
+    <dimen name="dp_update_padding">38dp</dimen>
+    <dimen name="dp_update_description_padding">27dp</dimen>
+
     <!--MainActivity-->
     <dimen name="dp_main_bottom_tab_padding_bottom">7dp</dimen>
     <dimen name="dp_main_bottom_tab_icon_width">25dp</dimen>
@@ -130,7 +135,7 @@
     <dimen name="dp_recharge_card_description_margin_top">12dp</dimen>
     <dimen name="sp_recharge_card_count_text_size">36sp</dimen>
 
-    <!--SuccessActivity-->
+    <!--SuccessParentActivity-->
     <dimen name="dp_success_icon_width">120dp</dimen>
     <dimen name="dp_success_icon_height">120dp</dimen>
     <dimen name="dp_finish_btn_margin_top">64dp</dimen>

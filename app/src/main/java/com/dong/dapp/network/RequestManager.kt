@@ -10,7 +10,7 @@ import com.dong.dapp.bean.coin.RequestCoinRecordsBean
 import com.dong.dapp.bean.coin.ResultCoinBalanceBean
 import com.dong.dapp.bean.coin.ResultCoinRecordsBean
 import com.dong.dapp.bean.common.ResultCommonConfigurationBean
-import com.dong.dapp.bean.common.ResultUpdateInfoBean
+import com.dong.dapp.bean.update.ResultUpdateInfoBean
 import com.dong.dapp.bean.gamesquare.ResultAnnouncementBean
 import com.dong.dapp.bean.gamesquare.ResultDAppBean
 import com.dong.dapp.bean.kyc.*

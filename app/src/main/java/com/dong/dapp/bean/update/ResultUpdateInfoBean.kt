@@ -1,4 +1,4 @@
-package com.dong.dapp.bean.common
+package com.dong.dapp.bean.update
 
 import com.google.gson.annotations.SerializedName
 
@@ -11,10 +11,11 @@ import com.google.gson.annotations.SerializedName
 data class ResultUpdateInfoBean(
     @SerializedName("app_name") val appName: String,//App名称
     @SerializedName("version") val version: String,//版本名
+    @SerializedName("review_version") val reviewVersion: String,//正在审核中的版本名
     @SerializedName("versionCode") val versionCode: Int,//版本号
     @SerializedName("update_type") val updateType: Int,//强制更新0 显示1 不显示2
     @SerializedName("url") val url: String,//更新地址
     @SerializedName("production") val production: Int,//app审核中0 正式上线>0
     @SerializedName("content") val content: String,//更新弹窗文案
-    @SerializedName("break_web") val breakWeb: String
+    @SerializedName("break_web") val breakWeb: Int//是否强制打开网页
 )

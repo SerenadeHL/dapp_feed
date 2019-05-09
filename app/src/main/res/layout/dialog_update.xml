@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:paddingStart="@dimen/dp_update_padding"
+        android:paddingEnd="@dimen/dp_update_padding"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="450:215"
+            android:src="@mipmap/update_header"
+            android:layout_width="@dimen/match_constraint"
+            android:id="@+id/iv_head"
+            android:layout_height="@dimen/match_constraint"/>
+
+    <TextView
+            android:layout_width="@dimen/match_constraint"
+            android:paddingStart="@dimen/L7"
+            android:background="@color/C2"
+            android:paddingEnd="@dimen/L7"
+            android:id="@+id/tv_description"
+            android:paddingTop="@dimen/dp_update_description_padding"
+            android:paddingBottom="@dimen/dp_update_description_padding"
+            app:layout_constraintStart_toStartOf="@id/iv_head"
+            app:layout_constraintEnd_toEndOf="@id/iv_head"
+            app:layout_constraintTop_toBottomOf="@id/iv_head"
+            tools:text="这是更新这是更新描述这描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述这是更新描述"
+            android:textSize="@dimen/F4"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:text="@string/find_new_version"
+            android:id="@+id/tv_title"
+            android:textSize="@dimen/F2"
+            android:textColor="@color/C6"
+            app:layout_constraintStart_toStartOf="@id/iv_head"
+            app:layout_constraintEnd_toEndOf="@id/iv_head"
+            app:layout_constraintTop_toBottomOf="@id/iv_head"
+            app:layout_constraintBottom_toBottomOf="@id/iv_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <include layout="@layout/divider"
+             android:layout_width="@dimen/match_constraint"
+             android:id="@+id/v_divider"
+             android:layout_height="@dimen/divider_size"
+             app:layout_constraintEnd_toEndOf="@id/iv_head"
+             app:layout_constraintTop_toBottomOf="@id/tv_description"
+             app:layout_constraintStart_toStartOf="@id/iv_head"/>
+
+    <Button android:layout_width="@dimen/match_constraint"
+            app:layout_constraintStart_toStartOf="@id/iv_head"
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintEnd_toStartOf="@+id/btn_update"
+            android:text="@string/cancel"
+            android:textColor="@color/C7"
+            android:textSize="@dimen/F3"
+            android:background="@drawable/update_cancel_btn_bg"
+            android:id="@+id/btn_cancel"
+            android:layout_height="@dimen/L2"/>
+
+    <Button android:layout_width="@dimen/match_constraint"
+            app:layout_constraintEnd_toEndOf="@id/iv_head"
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintStart_toEndOf="@+id/btn_cancel"
+            android:id="@+id/btn_update"
+            android:background="@drawable/update_experience_immediately_single_corner_btn_bg"
+            android:text="@string/experience_immediately"
+            android:textColor="@color/C2"
+            android:textSize="@dimen/F3"
+            android:layout_height="@dimen/L2"/>
+</android.support.constraint.ConstraintLayout>

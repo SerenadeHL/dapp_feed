@@ -12,7 +12,7 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-11 10:37:01
  */
-class WebModel : MVPBaseModel(), IWebModel {
+class DAppWebModel : MVPBaseModel(), IDAppWebModel {
 
     override fun enterDApp(pid: String): Observable<ResultEnterDAppBean?> {
         return RequestManager.enterDApp(pid)

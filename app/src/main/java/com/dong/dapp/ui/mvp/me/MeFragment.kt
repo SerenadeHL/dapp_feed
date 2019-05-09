@@ -39,7 +39,8 @@ class MeFragment : MVPBaseFragment<IMePresenter>(), IMeView {
         mAdapter.setOnItemClickListener { _, _, position ->
             val postCard: Postcard? = when (position) {
                 0 -> {//用户信息
-                    router.build(Router.PERSONAL_INFO_ACTIVITY).withParcelable(RouterParams.DATA, mUserInfo)
+                    router.build(Router.PERSONAL_INFO_ACTIVITY)
+                        .withParcelable(RouterParams.DATA, mUserInfo)
                 }
                 1 -> {//邀请好友
                     //TODO 跳转到邀请好友页面

@@ -15,7 +15,7 @@
     </style>
 
     <!--WebView页主题-->
-    <style name="WebTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="WebTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
     </style>
 
@@ -25,6 +25,11 @@
     <style name="DividerStyle">
         <item name="android:background">@color/C9</item>
         <item name="android:layout_height">@dimen/divider_size</item>
+    </style>
+
+    <!--更新弹窗样式-->
+    <style name="UpdateDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
     </style>
 
     <!--==========================================自定义样式==========================================-->

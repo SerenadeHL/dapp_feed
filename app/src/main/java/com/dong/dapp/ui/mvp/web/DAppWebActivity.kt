@@ -17,7 +17,7 @@ import com.dong.dapp.network.RequestManager
 import com.dong.dapp.utils.PopupWindowUtils
 import com.dong.dapp.utils.WebViewUtils
 import com.dong.dapp.widget.SuspensionBall
-import kotlinx.android.synthetic.main.activity_web.*
+import kotlinx.android.synthetic.main.activity_dapp_web.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.gone
 import me.serenadehl.base.extensions.log
@@ -27,13 +27,13 @@ import wendu.dsbridge.DWebView
 
 
 /**
- * Web容器页
+ * DAppWeb容器页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-4-11 10:37:01
  */
-@Route(path = Router.WEB_ACTIVITY)
-class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
+@Route(path = Router.DAPP_WEB_ACTIVITY)
+class DAppWebActivity : MVPBaseActivity<IDAppWebPresenter>(), IDAppWebView {
     @JvmField
     @Autowired(name = RouterParams.ID)
     var mPid: String? = null//DApp的id
@@ -45,9 +45,9 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
     private lateinit var mId: String//用户行为id
     private val mActions by lazy { mutableListOf<Map<String, String>>() }//用户行为
 
-    override fun layout() = R.layout.activity_web
+    override fun layout() = R.layout.activity_dapp_web
 
-    override fun createPresenter() = WebPresenter()
+    override fun createPresenter() = DAppWebPresenter()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
@@ -67,7 +67,7 @@ class WebActivity : MVPBaseActivity<IWebPresenter>(), IWebView {
                 sb_ball.gone()
                 //TODO 测试
                 PopupWindowUtils.bottomPopupWindow(
-                    this@WebActivity, "我的账户", "", { sb_ball.visible() },
+                    this@DAppWebActivity, "我的账户", "", { sb_ball.visible() },
                     PopupWindowUtils.ButtonConfig("充值赢更多", PopupWindowUtils.ButtonConfig.BLUE_SOLID, true) {
                         toast("充值赢更多")
                     },

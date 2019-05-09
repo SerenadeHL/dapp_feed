@@ -22,7 +22,7 @@ class DAppsListAdapter : BaseQuickAdapter<ResultDAppItemBean, BaseViewHolder>(R.
         setOnItemClickListener { _, _, position ->
             val item = data[position]
             ARouter.getInstance()
-                .build(Router.WEB_ACTIVITY)
+                .build(Router.DAPP_WEB_ACTIVITY)
                 .withString(RouterParams.ID, item.pid)
                 .withString(RouterParams.URL, item.url)
                 .navigation()

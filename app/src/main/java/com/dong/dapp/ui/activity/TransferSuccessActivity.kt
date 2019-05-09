@@ -12,7 +12,7 @@ import com.dong.dapp.constant.Router
  * 创建时间：2019-05-08 20:02:58
  */
 @Route(path = Router.TRANSFER_SUCCESS_ACTIVITY)
-class TransferSuccessActivity : SuccessActivity() {
+class TransferSuccessActivity : SuccessParentActivity() {
 
     override fun getTitleResId() = R.string.transfer_success
 

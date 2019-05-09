@@ -9,12 +9,13 @@ object Router {
 
     //=========================================Activity=========================================
     const val SPLASH_ACTIVITY = "/ui/mvp/splash/SplashActivity"//启动页
-    const val MAIN_ACTIVITY = "/ui/activity/MainActivity"//主页
+    const val MAIN_ACTIVITY = "/ui/mvp/main/MainActivity"//主页
 
     const val LOGIN_ACTIVITY = "/ui/mvp/login/LoginActivity"//登录页
     const val CHOOSE_AREA_CODE_ACTIVITY = "/ui/mvp/chooseareacode/ChooseAreaCodeActivity"//选择区号页
 
-    const val WEB_ACTIVITY = "/ui/mvp/web/WebActivity"//WebView页
+    const val DAPP_WEB_ACTIVITY = "/ui/mvp/web/DAppWebActivity"//DAppWebView页
+    const val COMMON_WEB_ACTIVITY = "/ui/activity/CommonWebActivity"//普通WebView页
 
     const val SETTINGS_ACTIVITY = "/ui/activity/SettingsActivity"//设置页
     const val PERSONAL_INFO_ACTIVITY = "/ui/activity/PersonalInfoActivity"//个人信息页

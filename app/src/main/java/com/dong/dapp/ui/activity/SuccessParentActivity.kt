@@ -14,8 +14,8 @@ import me.serenadehl.base.base.BaseActivity
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2019-05-08 19:51:40
  */
-abstract class SuccessActivity : BaseActivity() {
-    private val mC2 by lazy { ContextCompat.getColor(this@SuccessActivity, R.color.C2) }
+abstract class SuccessParentActivity : BaseActivity() {
+    private val mC2 by lazy { ContextCompat.getColor(this@SuccessParentActivity, R.color.C2) }
 
     override fun layout() = R.layout.activity_success
 
