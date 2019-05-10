@@ -1,20 +1,18 @@
 package com.dong.dapp.ui.mvp.main
 
-import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.util.Base64
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
 import com.dong.dapp.bean.update.ResultUpdateInfoBean
 import com.dong.dapp.constant.Router
 import com.dong.dapp.utils.LoginUtils
-import com.dong.dapp.utils.RouterUtils
-import com.dong.dapp.utils.UpdateUtils
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.dong.dapp.utils.SystemUtils
+import com.dong.dapp.widget.UpdateDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
@@ -39,6 +37,8 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
         const val EXIT_INTERVAL = 2000//双击返回键退出的间隔
     }
 
+    fun getContent() = mRootView
+
     private var mLastBackPressed = 0L//上次按退出键的时间
 
     private val mC2 by lazy { ContextCompat.getColor(this@MainActivity, R.color.C2) }
@@ -47,6 +47,8 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
 
     private val mGameSquareFragment by lazy { ARouter.getInstance().build(Router.GAME_SQUARE_FRAGMENT).navigation() as Fragment }//游戏广场
     private val mMeFragment by lazy { ARouter.getInstance().build(Router.ME_FRAGMENT).navigation() as Fragment }//我
+
+    private lateinit var mUpdateDialog: UpdateDialog//更新弹窗
 
     override fun createPresenter() = MainPresenter()
 
@@ -134,9 +136,16 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
         transaction.commitNow()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mUpdateDialog.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun getUpdateInfoSuccess(data: ResultUpdateInfoBean?) {
         "getUpdateInfoSuccess-------> $data".log()
-        UpdateUtils.checkUpdate(this, data)
+        if (data?.updateType == 2 || SystemUtils.getAppVersionCode().toInt() == data?.versionCode || data == null) return//不显示
+        mUpdateDialog = UpdateDialog(this, data)
+        mUpdateDialog.show()
     }
 
     override fun getUpdateInfoFailed() {

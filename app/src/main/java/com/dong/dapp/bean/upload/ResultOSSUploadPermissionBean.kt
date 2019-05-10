@@ -11,6 +11,7 @@ import com.google.gson.annotations.SerializedName
 data class ResultOSSUploadPermissionBean(
     @SerializedName("AccessKeyId") val accessKeyId: String,//AccessKeyId
     @SerializedName("AccessKeySecret") val accessKeySecret: String,//AccessKeySecret
+    @SerializedName("Expiration") val expiration: String,//时间
     @SerializedName("SecurityToken") val securityToken: String,//stsToken
     @SerializedName("catalogue") val catalogue: String//当前账号可以上传的目录（userid）
 )

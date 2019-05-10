@@ -48,4 +48,7 @@ object Constant {
     const val TRON = 0
     const val EOS = 1
     const val ETH = 2
+
+
+    const val USER_AGREEMENT = "用户协议书"
 }

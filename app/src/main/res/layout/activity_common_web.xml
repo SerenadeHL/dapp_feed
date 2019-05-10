@@ -18,6 +18,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_title"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/match_constraint"/>
 </android.support.constraint.ConstraintLayout>

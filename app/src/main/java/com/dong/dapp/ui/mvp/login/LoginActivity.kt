@@ -8,9 +8,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.constant.Constant
 import com.dong.dapp.R
+import com.dong.dapp.RuntimeData
 import com.dong.dapp.constant.Router
 import com.dong.dapp.bean.login.ResultLoginBean
 import com.dong.dapp.bean.login.ResultVerifyCodeBean
+import com.dong.dapp.constant.RouterParams
 import com.dong.dapp.utils.LoginUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -57,7 +59,7 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
         et_phone_number.requestFocus()
 
         tv_area_code.setOnClickListener {
-            ARouter.getInstance().build(Router.CHOOSE_AREA_CODE_ACTIVITY).navigation(this@LoginActivity,mRequestCode)
+            ARouter.getInstance().build(Router.CHOOSE_AREA_CODE_ACTIVITY).navigation(this@LoginActivity, mRequestCode)
         }
 
         btn_get_verify_code.setOnClickListener {
@@ -79,7 +81,13 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
             mPresenter.login(verifyCode, mFp, invitationCode)
         }
 
-        tv_agreement.text = "登录暨同意《用户协议书》"
+        tv_agreement.setOnClickListener {
+            ARouter.getInstance()
+                .build(Router.COMMON_WEB_ACTIVITY)
+                .withString(RouterParams.URL, RuntimeData.mResultCommonConfigurationBean?.userProtocol)
+                .withString(RouterParams.TITLE, Constant.USER_AGREEMENT)
+                .navigation()
+        }
     }
 
     override fun getVerifyCodeSuccess(verifyCodeBean: ResultVerifyCodeBean?) {

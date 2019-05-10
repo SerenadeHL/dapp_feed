@@ -30,6 +30,9 @@
     <string name="login_immediately">立即登录</string>
     <string name="login">登录</string>
     <string name="left_seconds">%s 秒</string>
+    <string name="user_agreement">登录暨同意
+        <u><font color='#333333'>《用户协议书》</font></u>
+    </string>
 
     <!--选择区号-->
     <string name="choose_area_code">选择区号</string>

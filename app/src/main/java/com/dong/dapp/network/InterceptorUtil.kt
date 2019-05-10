@@ -13,10 +13,7 @@ import me.serenadehl.base.extensions.TAG
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toJson
 import me.serenadehl.base.utils.sharedpre.SPUtil
-import okhttp3.HttpUrl
-import okhttp3.Interceptor
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.Buffer
 import org.json.JSONObject
@@ -53,7 +50,7 @@ object InterceptorUtil {
             var requestBody = oldRequest.body()
             var url = oldRequest.url()
 
-            if (method == "POST") {
+            if (method == "POST" && requestBody !is MultipartBody) {
                 requestBody = dealPost(requestBody)
             } else if (method == "GET") {
                 url = dealGet(url)

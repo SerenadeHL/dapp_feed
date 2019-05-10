@@ -1,20 +1,31 @@
 package com.dong.dapp.ui.activity
 
 import android.os.Bundle
+import android.os.Environment
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v4.content.ContextCompat
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.dong.dapp.R
+import com.dong.dapp.constant.Constant
 import com.dong.dapp.constant.Router
 import com.dong.dapp.constant.RouterParams
+import com.dong.dapp.utils.DownloadUtil
+import com.tencent.smtt.sdk.TbsReaderView
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_common_web.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
+import me.serenadehl.base.extensions.dimen
+import me.serenadehl.base.extensions.invisible
 import me.serenadehl.base.extensions.log
+import org.bouncycastle.asn1.x500.style.RFC4519Style.name
+import java.io.File
+import java.net.URL
 
 /**
  * Web网页
@@ -29,6 +40,12 @@ class CommonWebActivity : BaseActivity() {
     @Autowired(name = RouterParams.URL)
     var mUrl: String? = null
 
+    @JvmField
+    @Autowired(name = RouterParams.TITLE)
+    var mTitle: String? = null
+
+    private lateinit var mTbsReaderView: TbsReaderView
+
     private val mC2 by lazy { ContextCompat.getColor(this@CommonWebActivity, R.color.C2) }
 
     override fun layout() = R.layout.activity_common_web
@@ -41,10 +58,13 @@ class CommonWebActivity : BaseActivity() {
         //返回按钮
         iv_back.setOnClickListener { finish() }
         //设置标题栏
-        tv_title.setText(R.string.personal_info)
+        tv_title.text = mTitle
         cl_title.setBackgroundColor(mC2)
 
-        "mUrl----------->$mUrl".log()
+        if (mUrl?.endsWith(".pdf", true) == true) {
+            initPDFReader()
+            return
+        }
 
         //TODO 配置WebView
         wv_web.webViewClient = WebViewClient()
@@ -53,8 +73,56 @@ class CommonWebActivity : BaseActivity() {
         wv_web.loadUrl(mUrl)
     }
 
+    private fun initPDFReader() {
+        mTbsReaderView = TbsReaderView(this@CommonWebActivity, null)
+        val matchConstraint = dimen(R.dimen.match_constraint)
+        val params = ConstraintLayout.LayoutParams(matchConstraint, matchConstraint).apply {
+            startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+            endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+            bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+            topToBottom = R.id.cl_title
+        }
+        mTbsReaderView.layoutParams = params
+        mRootView.addView(mTbsReaderView)
+        mTbsReaderView.preOpen("pdf", false)
+
+
+        val dir = filesDir.absolutePath
+        val name = mUrl?.substringAfterLast("/")
+
+        val pdf = File(dir, name)
+        if (pdf.exists()) {
+            openPDF(pdf)
+        } else {
+            DownloadUtil.get()
+                .download(mUrl, dir, name, object : DownloadUtil.OnDownloadListener {
+                    override fun onDownloadSuccess() {
+                        "onDownloadSuccess--------->".log()
+                        runOnUiThread { openPDF(pdf) }
+                    }
+
+                    override fun onDownloading(progress: Int) {
+                        "onDownloading---------> $progress".log()
+                    }
+
+                    override fun onDownloadFailed() {
+                        "onDownloadFailed--------->".log()
+                    }
+
+                })
+        }
+    }
+
+    private fun openPDF(file: File) {
+        val bundle = Bundle()
+        bundle.putString("filePath", file.absolutePath)//存放pdf 的文件
+        bundle.putString("tempPath", file.parent)//存放临时文件的目录。运行后，会在path2的目录下生成.tbs...的文件
+        mTbsReaderView.openFile(bundle)
+    }
+
     override fun onDestroy() {
         try {
+            mTbsReaderView.onStop()
             (wv_web.parent as ViewGroup).removeView(wv_web)
             wv_web.destroy()
         } catch (e: Exception) {

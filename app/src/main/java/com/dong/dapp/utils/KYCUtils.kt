@@ -57,10 +57,12 @@ object KYCUtils {
                 return@flatMap when (data.isRight) {
                     1 -> {
                         //异步上传身份证图片
-                        UploadFileUtils.upload(idCardResult!!.idCardInfo.imageFrontside) {
+                        OSSUtils.upload(AppManager.currentActivity.applicationContext,true,idCardResult!!.idCardInfo.imageFrontside){
+                            "身份证正面图片地址--------> $it".log()
                             frontImage = it
                         }
-                        UploadFileUtils.upload(idCardResult!!.idCardInfo.imageBackside) {
+                        OSSUtils.upload(AppManager.currentActivity.applicationContext,true,idCardResult!!.idCardInfo.imageBackside){
+                            "身份证背面图片地址--------> $it".log()
                             backImage = it
                         }
                         RequestManager.getKYCBizToken(

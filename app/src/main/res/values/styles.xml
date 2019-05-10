@@ -28,7 +28,7 @@
     </style>
 
     <!--更新弹窗样式-->
-    <style name="UpdateDialog" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="UpdateDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
     </style>
 

@@ -6,6 +6,7 @@ import com.dong.dapp.network.BaseResponse
 import com.dong.dapp.utils.AESUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.fromJson
+import me.serenadehl.base.extensions.log
 
 /**
  * 作者：Serenade
@@ -23,6 +24,7 @@ inline fun <reified T> Observable<BaseResponse>.decrypt(): Observable<T?> {
         } else {
             val decode = Base64.decode(it.data, Base64.DEFAULT)
             val decrypt = AESUtils.decrypt(decode, AESUtils.generateKey(), AESUtils.generateIv())
+            "解密数据---------> $decrypt".log()
             val data: T? = decrypt?.fromJson(T::class.java)
             return@flatMap Observable.just(data)
         }

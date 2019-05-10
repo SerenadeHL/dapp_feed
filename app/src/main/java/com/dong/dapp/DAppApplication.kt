@@ -132,6 +132,8 @@ class DAppApplication : BaseApplication() {
             }
 
             override fun onViewInitFinished(p0: Boolean) {
+                "X5WebViewInitFinished---------->$p0".log()
+                //TODO x5web内核
                 DWebView.setWebContentsDebuggingEnabled(DEBUG)
                 mWebView.apply {
                     settings.apply {

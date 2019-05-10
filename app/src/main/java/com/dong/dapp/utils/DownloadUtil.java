@@ -62,6 +62,7 @@ public class DownloadUtil {
                     long sum = 0;
                     while ((len = is.read(buf)) != -1) {
                         fos.write(buf, 0, len);
+                        fos.flush();
                         sum += len;
                         int progress = (int) (sum * 1.0f / total * 100);
                         // 下载中
@@ -71,17 +72,18 @@ public class DownloadUtil {
                     // 下载完成
                     listener.onDownloadSuccess();
                 } catch (Exception e) {
+                    e.printStackTrace();
                     listener.onDownloadFailed();
                 } finally {
                     try {
                         if (is != null)
                             is.close();
-                    } catch (IOException e) {
+                    } catch (IOException ignored) {
                     }
                     try {
                         if (fos != null)
                             fos.close();
-                    } catch (IOException e) {
+                    } catch (IOException ignored) {
                     }
                 }
             }

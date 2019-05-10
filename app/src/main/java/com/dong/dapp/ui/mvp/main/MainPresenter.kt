@@ -16,7 +16,6 @@ class MainPresenter : MVPBasePresenter<IMainView, IMainModel>(), IMainPresenter 
     override fun getUpdateInfo() {
         mModel.getUpdateInfo()
             .subscribe(object :BaseObserver<ResultUpdateInfoBean?>(){
-
                 override fun next(data: ResultUpdateInfoBean?) {
                     mView.get()?.getUpdateInfoSuccess(data)
                 }

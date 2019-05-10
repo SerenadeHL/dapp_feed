@@ -15,7 +15,6 @@ class SplashPresenter : MVPBasePresenter<ISplashView, ISplashModel>(), ISplashPr
 
     override fun getCommonConfiguration() {
         mModel.getCommonConfiguration()
-            .retry()
             .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCommonConfigurationBean?>() {
                 override fun next(data: ResultCommonConfigurationBean?) {

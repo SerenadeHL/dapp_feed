@@ -32,6 +32,7 @@ import com.dong.dapp.bean.wallet.UserInfoBean
 import com.dong.dapp.extensions.decrypt
 import com.dong.dapp.network.api.*
 import com.dong.dapp.utils.AssetsUtils
+import com.dong.dapp.utils.LocaleUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
 import me.serenadehl.base.extensions.fromJsonArray
@@ -105,19 +106,6 @@ object RequestManager {
             .async()
     }
 
-    /**
-     * 上传文件
-     */
-    fun uploadFile(content: ByteArray): Observable<ResultUploadFileBean?> {
-        val requestBody = RequestBody.create(MediaType.parse("image/jpg"), content)
-        val body = MultipartBody.Part.createFormData("file", "IdCard.jpg", requestBody)
-        return RetrofitHelper.create(UploadApi::class.java)
-            .uploadFile(body)
-            .decrypt<ResultUploadFileBean?>()
-            .async()
-    }
-
-
     //=============================================统计接口=============================================
     /**
      * 进入DApp
@@ -186,7 +174,7 @@ object RequestManager {
      */
     fun getAreaCode(): Observable<List<ResultAreaCodeBean>?> {
         val observable: Observable<List<ResultAreaCodeBean>?> = Observable.create {
-            val fileName = if (Locale.getDefault().country == "CN") {
+            val fileName = if (LocaleUtils.isCN()) {
                 "country_cn.json"
             } else {
                 "country_en.json"

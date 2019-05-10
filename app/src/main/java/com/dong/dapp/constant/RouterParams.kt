@@ -9,4 +9,5 @@ object RouterParams {
     const val DATA = "data"
     const val ID = "id"
     const val URL = "url"
+    const val TITLE = "title"
 }

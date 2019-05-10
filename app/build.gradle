@@ -139,6 +139,9 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.4.1'
     kapt 'com.alibaba:arouter-compiler:1.2.2'
 
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.2'
+
+
     //友盟基础组件
     implementation  'com.umeng.umsdk:common:2.0.0'
     //友盟统计

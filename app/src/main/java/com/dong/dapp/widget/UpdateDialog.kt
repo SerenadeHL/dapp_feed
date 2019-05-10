@@ -9,12 +9,15 @@ import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.os.Message
+import android.provider.Settings
+import android.support.annotation.RequiresApi
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import com.dong.dapp.R
 import com.dong.dapp.bean.update.ResultUpdateInfoBean
 import com.dong.dapp.utils.DownloadUtil
@@ -25,6 +28,7 @@ import me.serenadehl.base.extensions.md5
 import me.serenadehl.base.extensions.visible
 import java.io.File
 
+
 /**
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
@@ -32,6 +36,7 @@ import java.io.File
  */
 class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBean) {
     private lateinit var mDialog: AlertDialog
+
     private lateinit var mView: View
     private var mDownloaded = false
 
@@ -47,7 +52,7 @@ class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBe
                     mView.btn_update.setText(R.string.install_immediately)
                     mView.btn_update.isEnabled = true
                     mDownloaded = true
-                    installApk(activity, apk)
+                    installApk(apk)
                     removeCallbacksAndMessages(null)
                 }
                 DOWNLOAD_FAILED -> {
@@ -68,6 +73,8 @@ class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBe
         const val DOWNLOAD_SUCCESS = 1
         const val DOWNLOADING = 2
         const val DOWNLOAD_FAILED = 3
+
+        const val REQUEST_INSTALL_PERMISSION_CODE = 10086
     }
 
     init {
@@ -92,7 +99,6 @@ class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBe
                 }
             }
             .create()
-
 
         //判断本地是否已经下载过了
         mDownloaded = apk.exists() && apk.md5() == info.md5
@@ -122,12 +128,13 @@ class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBe
                     if (granted) {
                         //如果已经下载了直接安装
                         if (mDownloaded) {
-                            installApk(activity, apk)
+                            installApk(apk)
                             return@subscribe
                         }
                         //开始下载，改变按钮状态
                         mView.btn_update.apply {
-                            text = String.format(activity.getString(R.string.downloading_with_progress), "0")
+                            text =
+                                String.format(activity.getString(R.string.downloading_with_progress), "0")
                             isEnabled = false
                         }
                         downloadApk()
@@ -140,38 +147,61 @@ class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBe
      * 下载apk
      */
     private fun downloadApk() {
-        Thread {
-            DownloadUtil.get().download(info.url, dir, name, object : DownloadUtil.OnDownloadListener {
-                override fun onDownloadSuccess() {
-                    mHandler.sendMessage(Message.obtain().apply {
-                        what = DOWNLOAD_SUCCESS
-                    })
-                }
+        DownloadUtil.get().download(info.url, dir, name, object : DownloadUtil.OnDownloadListener {
+            override fun onDownloadSuccess() {
+                mHandler.sendMessage(Message.obtain().apply {
+                    what = DOWNLOAD_SUCCESS
+                })
+            }
 
-                override fun onDownloading(progress: Int) {
-                    mHandler.sendMessage(Message.obtain().apply {
-                        what = DOWNLOADING
-                        arg1 = progress
-                    })
-                }
+            override fun onDownloading(progress: Int) {
+                mHandler.sendMessage(Message.obtain().apply {
+                    what = DOWNLOADING
+                    arg1 = progress
+                })
+            }
 
-                override fun onDownloadFailed() {
-                    mHandler.sendMessage(Message.obtain().apply {
-                        what = DOWNLOAD_FAILED
-                    })
-                }
-            })
-        }.start()
+            override fun onDownloadFailed() {
+                mHandler.sendMessage(Message.obtain().apply {
+                    what = DOWNLOAD_FAILED
+                })
+            }
+        })
     }
 
     /**
      * 安装apk
      */
-    private fun installApk(activity: Activity, apkFile: File) {
+    @SuppressLint("CheckResult")
+    private fun installApk(apkFile: File) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val installAllowed = activity.packageManager.canRequestPackageInstalls()
+            if (installAllowed) {
+                installApkCompat(apkFile)
+            } else {
+                startInstallPermissionSettingActivity(activity)
+            }
+
+        } else {
+            installApkCompat(apkFile)
+        }
+    }
+
+    /**
+     * 开启设置安装未知来源应用权限界面
+     * @param context
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private fun startInstallPermissionSettingActivity(activity: AppCompatActivity) {
+        val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:${activity.packageName}"))
+        activity.startActivityForResult(intent, REQUEST_INSTALL_PERMISSION_CODE)
+    }
+
+    private fun installApkCompat(apkFile: File) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             val contentUri = FileProvider.getUriForFile(
                 activity
                 , "com.dong.dapp.fileProvider"
@@ -187,4 +217,10 @@ class UpdateDialog(val activity: AppCompatActivity, val info: ResultUpdateInfoBe
     fun show() = mDialog.show()
 
     fun dismiss() = mDialog.dismiss()
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_INSTALL_PERMISSION_CODE && resultCode == Activity.RESULT_OK) {
+            installApk(apk)
+        }
+    }
 }

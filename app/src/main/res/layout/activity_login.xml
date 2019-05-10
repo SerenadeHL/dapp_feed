@@ -166,7 +166,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/tv_agreement"
-            tools:text="登录暨同意《用户协议书》"
+            android:text="@string/user_agreement"
             android:includeFontPadding="false"
             android:textColor="@color/color_9B9B9B"
             android:textSize="@dimen/F5"
