@@ -21,6 +21,9 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
             }
         }
+        ndk {
+            abiFilters 'armeabi'
+        }
     }
     lintOptions {
         //允许模拟器运行
@@ -132,7 +135,7 @@ dependencies {
     //Java不支持PKCS7Padding，需要引入bouncycastle来实现
     implementation 'org.bouncycastle:bcprov-jdk16:1.46'
     //跑马灯
-    implementation'com.sunfusheng:MarqueeView:1.4.1'
+    implementation 'com.sunfusheng:MarqueeView:1.4.1'
     //换肤
     implementation 'skin.support:skin-support:3.1.1'
     //ARouter
@@ -143,7 +146,7 @@ dependencies {
 
 
     //友盟基础组件
-    implementation  'com.umeng.umsdk:common:2.0.0'
+    implementation 'com.umeng.umsdk:common:2.0.0'
     //友盟统计
     implementation 'com.umeng.umsdk:analytics:8.0.0'
     //友盟推送
@@ -157,7 +160,7 @@ dependencies {
     //FaceID人脸核身
     implementation(name: 'zzplatform_sdk', ext: 'aar')
     //支付宝SDK
-    implementation (name: 'alipaySdk-15.6.2-20190416165036', ext: 'aar')
+    implementation(name: 'alipaySdk-15.6.2-20190416165036', ext: 'aar')
 
     //LeakCanary
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'

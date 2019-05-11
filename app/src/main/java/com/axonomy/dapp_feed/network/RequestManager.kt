@@ -388,7 +388,6 @@ object RequestManager {
     /**
      * 获取智能KYC的BizToken
      */
-    //TODO 无解密
     fun getKYCBizToken(
         sign: String,
         idCardName: String,

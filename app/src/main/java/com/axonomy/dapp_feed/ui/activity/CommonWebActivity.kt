@@ -127,7 +127,7 @@ class CommonWebActivity : BaseActivity() {
 
     override fun onDestroy() {
         try {
-            mTbsReaderView.onStop()
+            if (::mTbsReaderView.isInitialized) mTbsReaderView.onStop()
             (dwv_web.parent as ViewGroup).removeView(dwv_web)
             dwv_web.destroy()
         } catch (e: Throwable) {
