@@ -26,7 +26,7 @@
             android:layout_width="@dimen/match_constraint"
             android:layout_height="@dimen/match_constraint"/>
 
-    <com.dong.dapp.widget.SideBar
+    <com.axonomy.dapp_feed.widget.SideBar
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/sb_side_bar"
             android:paddingStart="@dimen/L6"

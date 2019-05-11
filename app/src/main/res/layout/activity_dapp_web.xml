@@ -9,7 +9,7 @@
 
 
 
-    <com.dong.dapp.widget.SuspensionBall
+    <com.axonomy.dapp_feed.widget.SuspensionBall
             android:id="@+id/sb_ball"
             android:src="@mipmap/me_user"
             android:layout_width="40dp"

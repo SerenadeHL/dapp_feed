@@ -7,7 +7,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.dong.dapp"
+        applicationId "com.axonomy.dapp_feed"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -161,4 +161,5 @@ dependencies {
 
     //LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 }

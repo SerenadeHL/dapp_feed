@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.dong.dapp">
+          package="com.axonomy.dapp_feed">
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
-            android:name=".DAppApplication"
+            android:name="com.axonomy.dapp_feed.DAppApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -93,7 +93,7 @@
         <!--适配7.0文件系统-->
         <provider
                 android:name="android.support.v4.content.FileProvider"
-                android:authorities="com.dong.dapp.fileProvider"
+                android:authorities="com.axonomy.dapp_feed.fileProvider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data

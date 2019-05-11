@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/av_announcement"
             android:layout_height="@dimen/L8"/>
 
-    <com.dong.dapp.widget.AnnouncementView
+    <com.axonomy.dapp_feed.widget.AnnouncementView
             android:id="@+id/av_announcement"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"

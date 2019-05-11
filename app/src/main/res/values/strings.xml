@@ -54,11 +54,15 @@
     <string name="popular_games">热门游戏</string>
     <string name="login_immediately_to_get_five_coins">立即登录领取 5 金币</string>
 
+    <!--游戏页-->
+    <string name="exit_game">退出游戏</string>
+
     <!--设置-->
     <string name="settings">设置</string>
     <string name="certification">实名认证</string>
     <string name="version_update">版本更新</string>
     <string name="logout">退出登录</string>
+    <string name="sure">确定</string>
 
     <!--个人信息-->
     <string name="personal_info">个人信息</string>
