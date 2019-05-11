@@ -4,6 +4,7 @@ import com.axonomy.dapp_feed.bean.cash.ResultCashBalanceBean
 import com.axonomy.dapp_feed.bean.cash.ResultCashRecordsBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 
 /**
  *
@@ -18,6 +19,7 @@ class TotalCashCountPresenter : MVPBasePresenter<ITotalCashCountView, ITotalCash
 
     override fun getCashBalance() {
         mModel.getCashBalance()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCashBalanceBean?>() {
                 override fun next(data: ResultCashBalanceBean?) {
                     mView.get()?.getCashBalanceSuccess(data)
@@ -31,6 +33,7 @@ class TotalCashCountPresenter : MVPBasePresenter<ITotalCashCountView, ITotalCash
 
     override fun getCashRecords(page: Int, pageSize: Int, refresh: Boolean) {
         mModel.getCashRecords(page, pageSize)
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCashRecordsBean?>() {
                 override fun next(data: ResultCashRecordsBean?) {
                     mView.get()?.getCashRecordsSuccess(data, refresh)

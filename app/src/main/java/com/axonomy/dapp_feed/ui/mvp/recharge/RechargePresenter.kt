@@ -4,6 +4,7 @@ import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOptionsBean
 import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOrderBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 
 /**
  *
@@ -17,6 +18,7 @@ class RechargePresenter : MVPBasePresenter<IRechargeView, IRechargeModel>(), IRe
 
     override fun getRechargeOptions() {
         mModel.getRechargeOptions()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultRechargeOptionsBean?>() {
                 override fun next(data: ResultRechargeOptionsBean?) {
                     mView.get()?.getRechargeOptionsSuccess(data)
@@ -30,6 +32,7 @@ class RechargePresenter : MVPBasePresenter<IRechargeView, IRechargeModel>(), IRe
 
     override fun getRechargeOrder(id: String) {
         mModel.getRechargeOrder(id)
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultRechargeOrderBean?>() {
                 override fun next(data: ResultRechargeOrderBean?) {
                     mView.get()?.getRechargeOrderSuccess(data)

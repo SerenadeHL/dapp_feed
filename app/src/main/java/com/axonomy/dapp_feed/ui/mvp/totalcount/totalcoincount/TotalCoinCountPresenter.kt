@@ -4,6 +4,7 @@ import com.axonomy.dapp_feed.bean.coin.ResultCoinBalanceBean
 import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 
 /**
  *
@@ -18,6 +19,7 @@ class TotalCoinCountPresenter : MVPBasePresenter<ITotalCoinCountView, ITotalCoin
 
     override fun getCoinBalance() {
         mModel.getCoinBalance()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCoinBalanceBean?>() {
                 override fun next(data: ResultCoinBalanceBean?) {
                     mView.get()?.getCoinBalanceSuccess(data)
@@ -31,6 +33,7 @@ class TotalCoinCountPresenter : MVPBasePresenter<ITotalCoinCountView, ITotalCoin
 
     override fun getCoinRecords(page: Int, pageSize: Int, refresh: Boolean) {
         mModel.getCoinRecords(page, pageSize)
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCoinRecordsBean?>() {
                 override fun next(data: ResultCoinRecordsBean?) {
                     mView.get()?.getCoinRecordsSuccess(data, refresh)

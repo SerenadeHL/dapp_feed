@@ -5,6 +5,7 @@ import com.axonomy.dapp_feed.bean.login.ResultVerifyCodeBean
 import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 import me.serenadehl.base.extensions.log
 
 /**
@@ -18,6 +19,7 @@ class LoginPresenter : MVPBasePresenter<ILoginView, ILoginModel>(), ILoginPresen
 
     override fun getVerifyCode(phone: String, areaCode: String) {
         mModel.getVerifyCode(phone, areaCode)
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultVerifyCodeBean?>() {
                 override fun next(data: ResultVerifyCodeBean?) {
                     mView.get()?.getVerifyCodeSuccess(data)
@@ -31,6 +33,7 @@ class LoginPresenter : MVPBasePresenter<ILoginView, ILoginModel>(), ILoginPresen
 
     override fun login(verifyCode: String, fp: String, invitationCode: String) {
         mModel.login(verifyCode, fp, invitationCode)
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultLoginBean?>() {
                 override fun next(data: ResultLoginBean?) {
                     mView.get()?.loginSuccess(data)
@@ -44,6 +47,7 @@ class LoginPresenter : MVPBasePresenter<ILoginView, ILoginModel>(), ILoginPresen
 
     override fun getUserInfo() {
         mModel.getUserInfo()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object :BaseObserver<ResultUserInfoBean?>(){
                 override fun next(data: ResultUserInfoBean?) {
                     mView.get()?.getUserInfoSuccess(data)
