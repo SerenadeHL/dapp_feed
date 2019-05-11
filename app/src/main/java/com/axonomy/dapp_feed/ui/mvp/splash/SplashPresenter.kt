@@ -1,6 +1,7 @@
 package com.axonomy.dapp_feed.ui.mvp.splash
 
 import com.axonomy.dapp_feed.bean.common.ResultCommonConfigurationBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
 import me.serenadehl.base.extensions.addDisposable
@@ -23,6 +24,19 @@ class SplashPresenter : MVPBasePresenter<ISplashView, ISplashModel>(), ISplashPr
 
                 override fun error(error: Throwable) {
                     mView.get()?.getCommonConfigurationFailed()
+                }
+            })
+    }
+
+    override fun getUserInfo() {
+        mModel.getUserInfo()
+            .subscribe(object : BaseObserver<ResultUserInfoBean?>() {
+                override fun next(data: ResultUserInfoBean?) {
+                    mView.get()?.getUserInfoSuccess(data)
+                }
+
+                override fun error(error: Throwable) {
+                    mView.get()?.getUserInfoFailed()
                 }
             })
     }

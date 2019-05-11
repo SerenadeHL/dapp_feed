@@ -2,6 +2,7 @@ package com.axonomy.dapp_feed.ui.mvp.login
 
 import com.axonomy.dapp_feed.bean.login.ResultLoginBean
 import com.axonomy.dapp_feed.bean.login.ResultVerifyCodeBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.IBaseModel
 import me.serenadehl.base.base.mvpbase.IBasePresenter
@@ -32,6 +33,16 @@ interface ILoginView : IBaseView {
      * 登录失败
      */
     fun loginFailed()
+
+    /**
+     * 获取用户信息成功
+     */
+    fun getUserInfoSuccess(data: ResultUserInfoBean?)
+
+    /**
+     * 获取用户信息失败
+     */
+    fun getUserInfoFailed()
 }
 
 interface ILoginPresenter : IBasePresenter {
@@ -49,6 +60,11 @@ interface ILoginPresenter : IBasePresenter {
      * @param invitationCode 邀请码
      */
     fun login(verifyCode: String, fp: String, invitationCode: String)
+
+    /**
+     * 获取用户信息
+     */
+    fun getUserInfo()
 }
 
 interface ILoginModel : IBaseModel {
@@ -66,4 +82,9 @@ interface ILoginModel : IBaseModel {
      * @param invitationCode 邀请码
      */
     fun login(verifyCode: String, fp: String, invitationCode: String): Observable<ResultLoginBean?>
+
+    /**
+     * 获取用户信息
+     */
+    fun getUserInfo(): Observable<ResultUserInfoBean?>
 }

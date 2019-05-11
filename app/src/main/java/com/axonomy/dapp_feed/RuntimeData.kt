@@ -1,6 +1,7 @@
 package com.axonomy.dapp_feed
 
 import com.axonomy.dapp_feed.bean.common.ResultCommonConfigurationBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 
 /**
  * 作者：Serenade
@@ -10,4 +11,11 @@ import com.axonomy.dapp_feed.bean.common.ResultCommonConfigurationBean
 object RuntimeData {
     //常用配置
     var mResultCommonConfigurationBean: ResultCommonConfigurationBean? = null
+    //用户信息
+    var mResultUserInfoBean: ResultUserInfoBean? = null
+
+    //今日金币收益
+    var mTodayCoinRevenue:String? = null
+    //今日现金收益
+    var mTodayCashRevenue:String? = null
 }

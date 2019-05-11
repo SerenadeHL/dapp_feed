@@ -6,6 +6,7 @@ import com.axonomy.dapp_feed.network.BaseResponse
 import com.axonomy.dapp_feed.utils.AESUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.fromJson
+import me.serenadehl.base.extensions.isJson
 import me.serenadehl.base.extensions.log
 
 /**

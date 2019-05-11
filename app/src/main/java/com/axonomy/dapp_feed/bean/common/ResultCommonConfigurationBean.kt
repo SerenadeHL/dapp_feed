@@ -14,6 +14,7 @@ data class ResultCommonConfigurationBean(
     @SerializedName("ui_package") val uiPackage: ResultUIPackageBean,//主页底部皮肤包
     @SerializedName("home_public_header") val homePublicHeader: String,//游戏广场未登录时头部背景图
     @SerializedName("floating") val floating: ResultCommonConfigurationFloatingBean,//悬浮按钮
+    @SerializedName("webpage") val webPage: ResultWebPageBean,//网页
     @SerializedName("about_url") val aboutUrl: String,//关于我们地址
     @SerializedName("menu") val menu: List<List<ResultCommonConfigurationMeOptionBean>>//我页面选项配置
 )

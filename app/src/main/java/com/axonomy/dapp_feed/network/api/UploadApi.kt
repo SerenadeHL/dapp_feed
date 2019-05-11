@@ -21,12 +21,4 @@ interface UploadApi {
      */
     @GET("api/oss/sts/limit")
     fun getOSSUploadPermission(): Observable<BaseResponse>
-
-    /**
-     * 上传文件
-     */
-    //TODO 更改接口
-    @Multipart
-    @POST("api/uploadpublic")
-    fun uploadFile(@Part body: MultipartBody.Part): Observable<BaseResponse>
 }

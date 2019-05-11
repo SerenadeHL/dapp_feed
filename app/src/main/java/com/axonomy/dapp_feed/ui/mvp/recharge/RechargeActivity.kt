@@ -3,14 +3,22 @@ package com.axonomy.dapp_feed.ui.mvp.recharge
 import com.axonomy.dapp_feed.R
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOptionsBean
+import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOptionsItemBean
+import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOrderBean
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.utils.PayUtils
+import com.dong.dapp.utils.SystemUtils
 import kotlinx.android.synthetic.main.activity_recharge.*
 import kotlinx.android.synthetic.main.title_layout.*
 
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
+import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
 import me.serenadehl.base.extensions.invisible
 import me.serenadehl.base.extensions.log
@@ -23,7 +31,12 @@ import me.serenadehl.base.extensions.log
  */
 @Route(path = Router.RECHARGE_ACTIVITY)
 class RechargeActivity : MVPBaseActivity<IRechargePresenter>(), IRechargeView {
+    private var mCurrentSelectOption: TextView? = null
+    private val mColumnCount = 3
+
     private val mC2 by lazy { ContextCompat.getColor(this@RechargeActivity, R.color.C2) }
+    private val mC6 by lazy { ContextCompat.getColor(this@RechargeActivity, R.color.C6) }
+    private val mL5 by lazy { dimen(R.dimen.L5) }
 
     override fun layout() = R.layout.activity_recharge
 
@@ -43,17 +56,113 @@ class RechargeActivity : MVPBaseActivity<IRechargePresenter>(), IRechargeView {
         v_status_bar.layoutParams.height = getStatusBarHeight()
 
         btn_pay.setOnClickListener {
-            //TODO 获取订单
-            val order =
-                "format=json&timestamp=2019-05-11+10%3A23%3A15&charset=utf-8&app_id=2019042564288575&biz_content=%22%7B%5C%22out_trade_no%5C%22%3A%5C%22bb6b8908739311e99eea00163e10b855%5C%22%2C%5C%22product_code%5C%22%3A%5C%22trx-5%5C%22%2C%5C%22seller_id%5C%22%3A%5C%222088431981538912%5C%22%2C%5C%22timeout_express%5C%22%3A%5C%2210m%5C%22%2C%5C%22total_amount%5C%22%3A%5C%225.0000000000%5C%22%7D%22&sign=iWYIy3THffk7ROdiM9YpyByZCy0xxljmLdHzFPvl4I878XSXlWIPJUoa4KASZlfqzqQjWrVvDAD3fnc4ve8BxmqSCartIJh99DVNfUYp7PoV34KhWOGPdNK6g%2FgBoMy%2Bsy3uW3u8%2FlVYBtfn3PCSbI%2F%2B0iyVWq4GmF4fAhXaOcbyfWs%2FYKWimkknmGg4y4VceaqMQKaAY0P3srhmUH%2Bc%2B09O%2B770rCi9tjpuZpNUI2yb01w6my2hUIOXTKNV8c4rlImXOfTVT8KWodOL8gDnMqyiD54bzpgoMcjyN1YcvbiDqx%2FY4NxTFgSMuTK%2BcfizCTI0tW5NWJKcUUGJxX82vg%3D%3D&version=1.0&sign_type=RSA2&method=alipay.trade.app.pay"
-            PayUtils.alipay(this@RechargeActivity, order) {
-                "resultStatus-------> ${it["resultStatus"]}".log()
-                if (it["resultStatus"] == "9000") {
-                    ARouter.getInstance()
-                        .build(Router.RECHARGE_SUCCESS_ACTIVITY)
-                        .navigation()
-                }
+            mPresenter.getRechargeOrder((mCurrentSelectOption?.tag as ResultRechargeOptionsItemBean?)?.id ?: "")
+        }
+
+        loadData()
+    }
+
+    private fun loadData() {
+        mPresenter.getRechargeOptions()
+    }
+
+    override fun getRechargeOptionsSuccess(data: ResultRechargeOptionsBean?) {
+        "getRechargeOptionsSuccess-------> $data".log()
+        var subLinear: LinearLayout? = null
+        data?.items?.withIndex()?.forEach {
+            val isFirst = it.index % mColumnCount == 0
+            if (isFirst) {
+                subLinear = generateSubLinear()
+                ll_options.addView(subLinear)
             }
+            subLinear?.addView(generateOption(it.value, !isFirst))
+        }
+
+        try {
+            //选中第一个选项
+            (ll_options.getChildAt(0) as LinearLayout).getChildAt(0).performClick()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun getRechargeOptionsFailed() {
+        "getRechargeOptionsFailed------->".log()
+    }
+
+    override fun getRechargeOrderSuccess(data: ResultRechargeOrderBean?) {
+        "getRechargeOrderSuccess-------> $data".log()
+        PayUtils.alipay(this@RechargeActivity, data?.info ?: "") {
+            "resultStatus-------> ${it["resultStatus"]}".log()
+            if (it["resultStatus"] == "9000") {
+                ARouter.getInstance()
+                    .build(Router.RECHARGE_SUCCESS_ACTIVITY)
+                    .navigation()
+            }
+        }
+    }
+
+    override fun getRechargeOrderFailed() {
+        "getRechargeOrderFailed------->".log()
+    }
+
+    /**
+     * 生成行
+     */
+    private fun generateSubLinear(): LinearLayout {
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dimen(R.dimen.dp_recharge_sublinear_height)
+            ).apply { weightSum = mColumnCount.toFloat() }
+        }
+    }
+
+    /**
+     * 生成选项
+     */
+    private fun generateOption(item: ResultRechargeOptionsItemBean, margin: Boolean): TextView {
+        return TextView(this).apply {
+            val width =
+                (SystemUtils.getScreenWidth() - dimen(R.dimen.L1) * 2 - dimen(R.dimen.dp_recharge_option_margin_start) * (mColumnCount - 1)) / mColumnCount
+            layoutParams = LinearLayout.LayoutParams(width, mL5).apply {
+                if (margin) marginStart = dimen(R.dimen.dp_recharge_option_margin_start)
+            }
+            text = item.title
+            textSize = 16F
+            setTextColor(mC6)
+            gravity = Gravity.CENTER
+            includeFontPadding = false
+            setBackgroundResource(R.drawable.round_rect_no_solid_quota_bg)
+            setOnClickListener {
+                if (mCurrentSelectOption == this) return@setOnClickListener//点击相同按钮不做处理
+                unSelect(mCurrentSelectOption)
+                select(this)
+                mCurrentSelectOption = this
+                tv_cost.text = String.format(getString(R.string.money_with_symbol), item.cost)
+            }
+            tag = item
+        }
+    }
+
+    /**
+     * 选择
+     */
+    private fun select(option: TextView?) {
+        option?.apply {
+            setTextColor(mC2)
+            setBackgroundResource(R.drawable.g2_vertical_round_rect)
+        }
+    }
+
+    /**
+     * 取消选择
+     */
+    private fun unSelect(option: TextView?) {
+        option?.apply {
+            setTextColor(mC6)
+            setBackgroundResource(R.drawable.round_rect_no_solid_quota_bg)
         }
     }
 

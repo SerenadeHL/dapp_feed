@@ -10,7 +10,11 @@ import com.alibaba.android.arouter.launcher.ARouter
  * 创建时间：2019-05-09 11:35:08
  */
 object RouterUtils {
-    fun route(url: String) {
+    const val SERVICE_CELL_CLICK = "serviceCellClick"
+    const val SERVICE = "service"
+
+    fun route(url: String?, callFunc: (String, Map<String, String?>) -> Unit) {
+        if (url == null || url.isEmpty()) return
         val uri = Uri.parse(url)
         when (uri.scheme) {
             "jump" -> {
@@ -28,7 +32,17 @@ object RouterUtils {
             }
             "func" -> {
                 val methodName = uri.host ?: return
-                //TODO 方法
+                val paramsMap = mutableMapOf<String, String?>()
+                uri.queryParameterNames.forEach {
+                    var key = it
+                    var value = uri.getQueryParameter(key)
+                    if (key.endsWith("_base64")) {//如果是以_base64为后缀的，做base64解码处理
+                        key = key.substring(0, key.lastIndexOf("_base64"))
+                        value = String(Base64.decode(value, Base64.DEFAULT))
+                    }
+                    paramsMap[key] = value
+                }
+                callFunc(methodName, paramsMap)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.axonomy.dapp_feed.ui.activity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
+import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -10,15 +11,17 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.R
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.constant.RouterParams
+import com.axonomy.dapp_feed.extensions.show
+import com.axonomy.dapp_feed.jsapi.CommonApi
 import com.axonomy.dapp_feed.utils.DownloadUtil
-import com.tencent.smtt.sdk.TbsReaderView
-import com.tencent.smtt.sdk.WebChromeClient
-import com.tencent.smtt.sdk.WebViewClient
+import com.axonomy.dapp_feed.utils.WebViewUtils
+import com.tencent.smtt.sdk.*
 import kotlinx.android.synthetic.main.activity_common_web.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.log
+import me.serenadehl.base.extensions.visible
 import java.io.File
 
 /**
@@ -55,16 +58,24 @@ class CommonWebActivity : BaseActivity() {
         tv_title.text = mTitle
         cl_title.setBackgroundColor(mC2)
 
+        "mUrl---------> $mUrl".log()
         if (mUrl?.endsWith(".pdf", true) == true) {
             initPDFReader()
             return
         }
 
-        //TODO 配置WebView
-        wv_web.webViewClient = WebViewClient()
-        wv_web.webChromeClient = WebChromeClient()
+        initWebView()
 
-        wv_web.loadUrl(mUrl)
+        dwv_web.loadUrl(mUrl)
+    }
+
+    private fun initWebView() {
+        dwv_web.apply {
+            WebViewUtils.setSetting(this@apply)
+            addJavascriptObject(CommonApi(this@CommonWebActivity), CommonApi.NAME)
+            webChromeClient = object : WebChromeClient() {}
+            webViewClient = object : WebViewClient() {}
+        }
     }
 
     private fun initPDFReader() {
@@ -117,12 +128,48 @@ class CommonWebActivity : BaseActivity() {
     override fun onDestroy() {
         try {
             mTbsReaderView.onStop()
-            (wv_web.parent as ViewGroup).removeView(wv_web)
-            wv_web.destroy()
-        } catch (e: Exception) {
+            (dwv_web.parent as ViewGroup).removeView(dwv_web)
+            dwv_web.destroy()
+        } catch (e: Throwable) {
             e.printStackTrace()
         }
         super.onDestroy()
     }
 
+    /**
+     * 设置标题
+     */
+    fun setTitle(title: String?) {
+        tv_title.text = title
+    }
+
+    /**
+     * 设置右侧图片
+     */
+    fun setRightImage(url: String?) {
+        iv_right.visible()
+        iv_right.show(url)
+    }
+
+    /**
+     * 设置右侧文字
+     */
+    fun setRightText(text: String?) {
+        tv_right.visible()
+        tv_right.text = text
+    }
+
+    /**
+     * 设置右侧图片点击事件
+     */
+    fun setRightImageOnClickListener(listener: View.OnClickListener) {
+        iv_right.setOnClickListener(listener)
+    }
+
+    /**
+     * 设置右侧文字点击事件
+     */
+    fun setRightTextOnClickListener(listener: View.OnClickListener) {
+        tv_right.setOnClickListener(listener)
+    }
 }

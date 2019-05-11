@@ -27,7 +27,7 @@ import java.util.*
 class TronPayApi {
 
     companion object {
-        const val JS_Bridge_Tag = "tronPay_js"
+        const val NAME = "tronPay_js"
     }
 
     private var mAlertDialog: AlertDialog.Builder? = null

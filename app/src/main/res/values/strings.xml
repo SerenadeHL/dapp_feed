@@ -57,12 +57,21 @@
     <!--游戏页-->
     <string name="exit_game">退出游戏</string>
 
+    <!--我-->
+    <string name="today_revenue">今日收益：%s</string>
+    <string name="today_revenue_with_symbol">今日收益：￥%s</string>
+    <string name="open_wechat">打开微信？</string>
+    <string name="wechat_number_copied">已复制微信号:%s</string>
+
     <!--设置-->
     <string name="settings">设置</string>
     <string name="certification">实名认证</string>
     <string name="version_update">版本更新</string>
     <string name="logout">退出登录</string>
     <string name="sure">确定</string>
+    <string name="checking_update">正在检查更新</string>
+    <string name="newest_version">已经是最新版本</string>
+    <string name="checking_update_failed">检查失败</string>
 
     <!--个人信息-->
     <string name="personal_info">个人信息</string>
@@ -71,6 +80,8 @@
     <string name="kyc_explanation">提升您的账户资产安全等级，充值提现更便捷</string>
     <string name="kyc_identification">实名认证</string>
     <string name="kyc_identified">已认证</string>
+    <string name="kyc_unidentified">未认证</string>
+    <string name="kyc_identifing">审核中</string>
 
     <!--金币资产-->
     <string name="coin_assets">金币资产</string>
@@ -86,6 +97,11 @@
     <string name="coin_quota">提现额度</string>
     <string name="cash_quota">选择划转额度</string>
     <string name="confirm_extraction">确认提取</string>
+
+    <!--充值-->
+    <string name="order_cost">订单金额</string>
+    <string name="pay_method">支付方式</string>
+    <string name="pay_hint">1. 充值金币和游戏内挣得得金币，可随时全额提现 \n2. 所有游戏共用一个金币账户，全场通用 \n3. 充值时 1金币 = 0.452元人民币 \n4. 0.1金币可玩HyperSanke 1局，或Trap one 1局</string>
 
     <!--划转详情-->
     <string name="transfer_detail">明细详情</string>

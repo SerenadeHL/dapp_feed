@@ -12,8 +12,13 @@ import com.axonomy.dapp_feed.R
  */
 object DialogUtils {
     fun show(activity: Activity, titleResId: Int, listener: DialogInterface.OnClickListener) {
+        show(activity, titleResId, null, listener)
+    }
+
+    fun show(activity: Activity, titleResId: Int, msg: String?, listener: DialogInterface.OnClickListener) {
         AlertDialog.Builder(activity)
             .setTitle(titleResId)
+            .setMessage(msg)
             .setPositiveButton(R.string.sure, listener)
             .setNegativeButton(R.string.cancel, null)
             .show()

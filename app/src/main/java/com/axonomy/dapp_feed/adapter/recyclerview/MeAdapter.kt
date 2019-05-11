@@ -2,11 +2,13 @@ package com.axonomy.dapp_feed.adapter.recyclerview
 
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
+import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.util.MultiTypeDelegate
 import com.axonomy.dapp_feed.R
 import com.axonomy.dapp_feed.bean.me.MeBean
+import com.axonomy.dapp_feed.extensions.show
 
 /**
  * 作者：Serenade
@@ -38,7 +40,7 @@ class MeAdapter : BaseQuickAdapter<MeBean, BaseViewHolder>(R.layout.app_recycle_
 
         val option = item.option!!//选项参数
         helper?.apply {
-            setImageResource(R.id.iv_icon, option.resId)//设置图标
+            getView<ImageView>(R.id.iv_icon).show(option.icon)//设置图标
             setText(R.id.tv_title, option.title)//设置标题
             setText(R.id.tv_text, option.text)//设置箭头左侧文字
             val color = if (option.textColor.isEmpty()) {
@@ -47,7 +49,7 @@ class MeAdapter : BaseQuickAdapter<MeBean, BaseViewHolder>(R.layout.app_recycle_
                 Color.parseColor(option.textColor)
             }
             setTextColor(R.id.tv_text, color)//设置箭头左侧文字颜色
-            setVisible(R.id.iv_right_arrow, option.showRightArrow)//是否显示右箭头
+            setGone(R.id.iv_right_arrow, option.showRightArrow)//是否显示右箭头
             setVisible(R.id.v_bottom_divider, option.showDivider)//是否显示分割线
         }
     }

@@ -9,5 +9,5 @@ import com.google.gson.annotations.SerializedName
  * 创建时间：2019-05-07 16:51:06
  */
 data class ResultRechargeOptionsBean(
-    @SerializedName("item") val item: List<ResultRechargeOptionsItemBean>//商品列表
+    @SerializedName("items") val items: List<ResultRechargeOptionsItemBean>//商品列表
 )

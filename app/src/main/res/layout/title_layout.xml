@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-            android:id="@+id/iv_share"
+            android:id="@+id/iv_right"
             android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/match_constraint"
@@ -40,6 +40,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingStart="@dimen/L1"
+            android:textColor="@color/C6"
+            android:visibility="invisible"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_right"
+            android:paddingEnd="@dimen/L1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="测试一下"
+            android:layout_height="@dimen/match_constraint"/>
 
     <include layout="@layout/divider"
              android:id="@+id/v_header_divider"

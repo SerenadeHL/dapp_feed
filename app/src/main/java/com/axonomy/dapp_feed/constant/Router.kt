@@ -17,7 +17,7 @@ object Router {
     const val DAPP_WEB_ACTIVITY = "/ui/mvp/web/DAppWebActivity"//DAppWebView页
     const val COMMON_WEB_ACTIVITY = "/ui/activity/CommonWebActivity"//普通WebView页
 
-    const val SETTINGS_ACTIVITY = "/ui/activity/SettingsActivity"//设置页
+    const val SETTINGS_ACTIVITY = "/ui/mvp/settings/SettingsActivity"//设置页
     const val PERSONAL_INFO_ACTIVITY = "/ui/activity/PersonalInfoActivity"//个人信息页
     const val KYC_ACTIVITY = "/ui/mvp/kyc/KYCActivity"//KYC页
 
@@ -33,5 +33,5 @@ object Router {
     //=========================================Fragment=========================================
     const val GAME_SQUARE_FRAGMENT = "/ui/mvp/gamesquare/GameSquareFragment"//游戏广场页
 
-    const val ME_FRAGMENT = "/ui/mvp/me/MeFragment"//我页
+    const val ME_FRAGMENT = "/ui/fragment/MeFragment"//我页
 }

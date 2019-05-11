@@ -12,8 +12,8 @@
              android:layout_height="wrap_content"
              android:layout_width="@dimen/match_constraint"/>
 
-    <com.tencent.smtt.sdk.WebView
-            android:id="@+id/wv_web"
+    <wendu.dsbridge.DWebView
+            android:id="@+id/dwv_web"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

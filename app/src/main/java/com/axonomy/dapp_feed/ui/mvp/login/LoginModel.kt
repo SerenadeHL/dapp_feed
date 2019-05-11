@@ -2,6 +2,7 @@ package com.axonomy.dapp_feed.ui.mvp.login
 
 import com.axonomy.dapp_feed.bean.login.ResultLoginBean
 import com.axonomy.dapp_feed.bean.login.ResultVerifyCodeBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import com.axonomy.dapp_feed.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
@@ -31,4 +32,10 @@ class LoginModel : MVPBaseModel(), ILoginModel {
         return RequestManager.login(verifyCode,fp, invitationCode)
     }
 
+    /**
+     * 获取用户信息
+     */
+    override fun getUserInfo(): Observable<ResultUserInfoBean?> {
+        return RequestManager.getUserInfo()
+    }
 }

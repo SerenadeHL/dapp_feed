@@ -42,7 +42,7 @@
                 android:name=".ui.mvp.main.MainActivity"
                 android:launchMode="singleTask"/>
         <activity
-                android:name=".ui.activity.SettingsActivity"
+                android:name=".ui.mvp.settings.SettingsActivity"
                 android:launchMode="singleTask"/>
         <activity
                 android:name=".ui.activity.PersonalInfoActivity"

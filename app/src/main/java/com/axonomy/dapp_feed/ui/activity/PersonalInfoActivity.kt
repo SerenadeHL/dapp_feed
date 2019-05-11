@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.constant.Constant
 import com.axonomy.dapp_feed.R
+import com.axonomy.dapp_feed.RuntimeData
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.constant.RouterParams
 import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
@@ -23,9 +24,6 @@ import me.serenadehl.base.extensions.toast
  */
 @Route(path = Router.PERSONAL_INFO_ACTIVITY)
 class PersonalInfoActivity : BaseActivity() {
-    @JvmField
-    @Autowired(name = RouterParams.DATA)
-    var mUserInfo: ResultUserInfoBean? = null
 
     private val mC1 by lazy { ContextCompat.getColor(this@PersonalInfoActivity, R.color.C1) }
     private val mC2 by lazy { ContextCompat.getColor(this@PersonalInfoActivity, R.color.C2) }
@@ -42,11 +40,10 @@ class PersonalInfoActivity : BaseActivity() {
         //设置标题栏
         tv_title.setText(R.string.personal_info)
 
-        tv_phone_number.text = mUserInfo?.account
+        tv_phone_number.text = RuntimeData.mResultUserInfoBean?.account
 
-        //TODO 根据kycStatus设置不同文案、背景以及按钮点击事件
         btn_kyc.apply {
-            when (mUserInfo?.kycStatus) {
+            when (RuntimeData.mResultUserInfoBean?.kycStatus) {
                 Constant.VERIFY_PASSED -> {
                     setOnClickListener { }
                     setText(R.string.kyc_identified)
@@ -54,8 +51,10 @@ class PersonalInfoActivity : BaseActivity() {
                     setBackgroundResource(R.drawable.round_rect_solid_light_blue_bg)
                 }
                 Constant.IN_VERIFYING -> {
-                    //TODO 审核中
-                    toast("审核中")
+                    setOnClickListener { }
+                    setText(R.string.kyc_identifing)
+                    setTextColor(mC1)
+                    setBackgroundResource(R.drawable.round_rect_solid_light_blue_bg)
                 }
                 else -> {
                     setOnClickListener { ARouter.getInstance().build(Router.KYC_ACTIVITY).navigation() }

@@ -9,15 +9,12 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.jsapi.TronPayApi
 import com.axonomy.dapp_feed.ui.mvp.web.DAppWebActivity
 import com.axonomy.dapp_feed.utils.AssetsUtils
+import com.axonomy.dapp_feed.utils.WebViewUtils
 import com.dong.dapp.utils.NetworkUtils
 import com.dong.dapp.utils.SystemUtils
-import com.squareup.leakcanary.LeakCanary
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
-import com.tencent.smtt.sdk.QbSdk
-import com.tencent.smtt.sdk.WebSettings
-import com.tencent.smtt.sdk.WebView
-import com.tencent.smtt.sdk.WebViewClient
+import com.tencent.smtt.sdk.*
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.message.IUmengRegisterCallback
@@ -109,7 +106,7 @@ class DAppApplication : BaseApplication() {
      * 初始化LeakCanary
      */
     private fun initLeakCanary() {
-        LeakCanary.install(this)
+//        LeakCanary.install(this)
     }
 
     /**
@@ -136,28 +133,9 @@ class DAppApplication : BaseApplication() {
                 //TODO x5web内核
                 DWebView.setWebContentsDebuggingEnabled(DEBUG)
                 mWebView.apply {
-                    settings.apply {
-                        //设置 缓存模式
-                        cacheMode = if (NetworkUtils.isNetworkConnected()) {
-                            WebSettings.LOAD_DEFAULT
-                        } else {
-                            WebSettings.LOAD_CACHE_ELSE_NETWORK
-                        }
-                        //设置渲染等级为高
-                        setRenderPriority(WebSettings.RenderPriority.HIGH)
-                        //开启 DOM storage API 功能
-                        domStorageEnabled = true
-                        //开启 database storage API 功能
-                        databaseEnabled = true
-                        val cacheDirPath = filesDir.absolutePath + packageName
-                        //设置数据库缓存路径
-                        databasePath = cacheDirPath
-                        //设置  Application Caches 缓存目录
-                        setAppCachePath(cacheDirPath)
-                        //开启 Application Caches 功能
-                        setAppCacheEnabled(true)
-                    }
-                    addJavascriptObject(TronPayApi(), TronPayApi.JS_Bridge_Tag)
+                    WebViewUtils.setSetting(this@apply)
+                    addJavascriptObject(TronPayApi(), TronPayApi.NAME)
+                    webChromeClient = object : WebChromeClient() {}
                     webViewClient = object : WebViewClient() {
                         override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
                             // super.onReceivedSslError(view, handler, error);

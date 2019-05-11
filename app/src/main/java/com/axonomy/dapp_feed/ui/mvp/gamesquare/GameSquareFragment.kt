@@ -45,10 +45,10 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
 
         mRootView.av_announcement.setOnItemClickListener { position, _ ->
             val item = mRootView.av_announcement.messages[position] as ResultAnnouncementItemBean
-            RouterUtils.route(item.url)
+            RouterUtils.route(item.url) { _, _ -> }
         }
 
-        mRootView.btn_login.setOnClickListener { ARouter.getInstance().build(Router.LOGIN_ACTIVITY).navigation() }
+        mRootView.btn_login.setOnClickListener { LoginUtils.goLogin() }
 
         mRootView.cv_coin.setOnClickListener {
             ARouter.getInstance().build(Router.TOTAL_COIN_COUNT_ACTIVITY).navigation()
@@ -59,13 +59,11 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
 
         //签到
         mRootView.tv_sign.setOnClickListener {
-            //TODO 点我签到
-            toast("点我签到")
+            RouterUtils.route(RuntimeData.mResultCommonConfigurationBean?.webPage?.signUrl?.pathAndroid) { _, _ -> }
         }
         //邀请好友
         mRootView.tv_invite.setOnClickListener {
-            //TODO 邀请好友
-            toast("邀请好友")
+            RouterUtils.route(RuntimeData.mResultCommonConfigurationBean?.webPage?.inviteUrl?.pathAndroid) { _, _ -> }
         }
 
         //隐藏Item上方分割线
@@ -75,6 +73,10 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
 
         //充值
         mRootView.iv_first_charge.setOnClickListener {
+            if (!LoginUtils.isLogin()) {
+                LoginUtils.goLogin()
+                return@setOnClickListener
+            }
             ARouter.getInstance()
                 .build(Router.RECHARGE_ACTIVITY)
                 .navigation()
@@ -122,6 +124,10 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     }
 
     private fun enterDApp(item: ResultDAppItemBean) {
+        if (!LoginUtils.isLogin()) {
+            LoginUtils.goLogin()
+            return
+        }
         ARouter.getInstance()
             .build(Router.DAPP_WEB_ACTIVITY)
             .withString(RouterParams.ID, item.pid)
@@ -182,6 +188,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun getDailyCoinIncomeSuccess(data: ResultCoinBalanceBean?) {
         "getDailyCoinIncomeSuccess-------> $data".log()
         mRootView.tv_coin.text = data?.todayRevenue
+        RuntimeData.mTodayCoinRevenue = data?.todayRevenue
     }
 
     override fun getDailyCoinIncomeFailed() {
@@ -191,6 +198,7 @@ class GameSquareFragment : MVPBaseFragment<IGameSquarePresenter>(), IGameSquareV
     override fun getDailyCashIncomeSuccess(data: ResultCashDailyIncomeBean?) {
         "getDailyCashIncomeSuccess-------> $data".log()
         mRootView.tv_cash.text = String.format(getString(R.string.money_with_symbol), data?.cash)
+        RuntimeData.mTodayCashRevenue = data?.cash
     }
 
     override fun getDailyCashIncomeFailed() {

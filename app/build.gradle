@@ -160,6 +160,6 @@ dependencies {
     implementation (name: 'alipaySdk-15.6.2-20190416165036', ext: 'aar')
 
     //LeakCanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 }

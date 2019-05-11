@@ -5,6 +5,7 @@ import com.axonomy.dapp_feed.network.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 /**
  * 充值相关API
@@ -24,7 +25,7 @@ interface RechargeApi {
      * 获取充值订单信息
      * @param product_id 商品id
      */
-    @GET("api/df/asset/coin/trx/deposit/order")
+    @POST("api/df/asset/coin/trx/deposit/order")
     fun getRechargeOrder(@Body requestBean: RequestRechargeOrderBean): Observable<BaseResponse>
 
 }

@@ -2,6 +2,9 @@ package com.axonomy.dapp_feed.utils
 
 import android.os.Build
 import android.view.View
+import com.dong.dapp.utils.NetworkUtils
+import com.tencent.smtt.sdk.WebSettings
+import wendu.dsbridge.DWebView
 
 /**
  * 作者：Serenade
@@ -9,6 +12,30 @@ import android.view.View
  * 创建时间：2019-04-29 16:11:47
  */
 object WebViewUtils {
+
+    fun setSetting(webView: DWebView) {
+        webView.settings.apply {
+            //设置 缓存模式
+            cacheMode = if (NetworkUtils.isNetworkConnected()) {
+                WebSettings.LOAD_DEFAULT
+            } else {
+                WebSettings.LOAD_CACHE_ELSE_NETWORK
+            }
+            //设置渲染等级为高
+            setRenderPriority(WebSettings.RenderPriority.HIGH)
+            //开启 DOM storage API 功能
+            domStorageEnabled = true
+            //开启 database storage API 功能
+            databaseEnabled = true
+            val cacheDirPath = webView.context.filesDir.absolutePath + webView.context.packageName
+            //设置数据库缓存路径
+            databasePath = cacheDirPath
+            //设置  Application Caches 缓存目录
+            setAppCachePath(cacheDirPath)
+            //开启 Application Caches 功能
+            setAppCacheEnabled(true)
+        }
+    }
 
     /**
      * 让 activity transition 动画过程中可以正常渲染页面

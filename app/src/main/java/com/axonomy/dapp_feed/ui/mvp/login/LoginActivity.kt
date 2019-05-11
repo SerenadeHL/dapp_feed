@@ -12,6 +12,7 @@ import com.axonomy.dapp_feed.RuntimeData
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.bean.login.ResultLoginBean
 import com.axonomy.dapp_feed.bean.login.ResultVerifyCodeBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import com.axonomy.dapp_feed.constant.RouterParams
 import com.axonomy.dapp_feed.utils.LoginUtils
 import io.reactivex.Observable
@@ -102,11 +103,21 @@ class LoginActivity : MVPBaseActivity<ILoginPresenter>(), ILoginView {
     override fun loginSuccess(loginBean: ResultLoginBean?) {
         "loginSuccess-------> token=${loginBean?.token}".log()
         LoginUtils.saveLoginTag(loginBean?.token ?: "")
-        finish()
+        mPresenter.getUserInfo()
     }
 
     override fun loginFailed() {
         "loginFailed------->".log()
+    }
+
+    override fun getUserInfoSuccess(data: ResultUserInfoBean?) {
+        "getUserInfoSuccess-------> $data".log()
+        RuntimeData.mResultUserInfoBean = data
+        finish()
+    }
+
+    override fun getUserInfoFailed() {
+        "getUserInfoFailed------->".log()
     }
 
     /**

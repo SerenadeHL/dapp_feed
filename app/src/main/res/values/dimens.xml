@@ -134,6 +134,11 @@
     <dimen name="dp_recharge_card_title_margin_top">21dp</dimen>
     <dimen name="dp_recharge_card_description_margin_top">12dp</dimen>
     <dimen name="sp_recharge_card_count_text_size">36sp</dimen>
+    <dimen name="dp_recharge_option_margin_start">8dp</dimen>
+    <dimen name="dp_recharge_sublinear_height">68dp</dimen>
+    <dimen name="dp_recharge_cost_label_margin_top">17dp</dimen>
+    <dimen name="dp_recharge_pay_method_height">24dp</dimen>
+    <dimen name="dp_recharge_pay_method_width">70dp</dimen>
 
     <!--SuccessParentActivity-->
     <dimen name="dp_success_icon_width">120dp</dimen>

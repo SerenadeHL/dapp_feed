@@ -1,8 +1,10 @@
 package com.axonomy.dapp_feed.utils
 
 import android.text.TextUtils
+import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.constant.Constant
 import com.axonomy.dapp_feed.bean.wallet.UserInfoBean
+import com.axonomy.dapp_feed.constant.Router
 import me.serenadehl.base.extensions.toJson
 import me.serenadehl.base.utils.sharedpre.SPUtil
 
@@ -19,6 +21,13 @@ object LoginUtils {
      */
     fun isLogin(): Boolean {
         return !TextUtils.isEmpty(SPUtil.getString(Constant.TOKEN))
+    }
+
+    /**
+     * 打开登录页
+     */
+    fun goLogin() {
+        ARouter.getInstance().build(Router.LOGIN_ACTIVITY).navigation()
     }
 
     /**

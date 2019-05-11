@@ -9,6 +9,7 @@ import com.axonomy.dapp_feed.R
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.RuntimeData
 import com.axonomy.dapp_feed.bean.common.ResultCommonConfigurationBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import com.tbruyelle.rxpermissions2.RxPermissions
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.log
@@ -47,6 +48,7 @@ class SplashActivity : MVPBaseActivity<ISplashPresenter>(), ISplashView {
 
     private fun loadData() {
         mPresenter.getCommonConfiguration()
+        mPresenter.getUserInfo()
     }
 
     override fun getCommonConfigurationSuccess(data: ResultCommonConfigurationBean?) {
@@ -63,4 +65,12 @@ class SplashActivity : MVPBaseActivity<ISplashPresenter>(), ISplashView {
         "getCommonConfigurationFailed------->".log()
     }
 
+    override fun getUserInfoSuccess(data: ResultUserInfoBean?) {
+        "getUserInfoSuccess-------> $data".log()
+        RuntimeData.mResultUserInfoBean = data
+    }
+
+    override fun getUserInfoFailed() {
+        "getUserInfoFailed------->".log()
+    }
 }

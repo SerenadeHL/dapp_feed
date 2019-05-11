@@ -2,6 +2,7 @@ package com.axonomy.dapp_feed.ui.mvp.login
 
 import com.axonomy.dapp_feed.bean.login.ResultLoginBean
 import com.axonomy.dapp_feed.bean.login.ResultVerifyCodeBean
+import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
 import me.serenadehl.base.extensions.log
@@ -19,12 +20,10 @@ class LoginPresenter : MVPBasePresenter<ILoginView, ILoginModel>(), ILoginPresen
         mModel.getVerifyCode(phone, areaCode)
             .subscribe(object : BaseObserver<ResultVerifyCodeBean?>() {
                 override fun next(data: ResultVerifyCodeBean?) {
-                    "获取验证码成功,data=$data".log()
                     mView.get()?.getVerifyCodeSuccess(data)
                 }
 
                 override fun error(error: Throwable) {
-                    "获取验证码失败".log()
                     mView.get()?.getVerifyCodeFailed()
                 }
             })
@@ -34,13 +33,24 @@ class LoginPresenter : MVPBasePresenter<ILoginView, ILoginModel>(), ILoginPresen
         mModel.login(verifyCode, fp, invitationCode)
             .subscribe(object : BaseObserver<ResultLoginBean?>() {
                 override fun next(data: ResultLoginBean?) {
-                    "登录成功,data=$data".log()
                     mView.get()?.loginSuccess(data)
                 }
 
                 override fun error(error: Throwable) {
-                    "登录失败".log()
                     mView.get()?.loginFailed()
+                }
+            })
+    }
+
+    override fun getUserInfo() {
+        mModel.getUserInfo()
+            .subscribe(object :BaseObserver<ResultUserInfoBean?>(){
+                override fun next(data: ResultUserInfoBean?) {
+                    mView.get()?.getUserInfoSuccess(data)
+                }
+
+                override fun error(error: Throwable) {
+                    mView.get()?.getUserInfoFailed()
                 }
             })
     }

@@ -68,7 +68,7 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
         cl_game.setOnClickListener { switchTab(GAME) }
         cl_me.setOnClickListener {
             if (!LoginUtils.isLogin()) {
-                ARouter.getInstance().build(Router.LOGIN_ACTIVITY).navigation()
+                LoginUtils.goLogin()
                 return@setOnClickListener
             }
             switchTab(ME)
