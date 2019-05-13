@@ -3,6 +3,7 @@ package com.axonomy.dapp_feed.ui.mvp.totalcount.totalcoincount
 import com.axonomy.dapp_feed.bean.coin.ResultCoinBalanceBean
 import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsBean
 import com.axonomy.dapp_feed.constant.Constant
+import com.axonomy.dapp_feed.constant.Protocol
 import com.axonomy.dapp_feed.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
@@ -16,11 +17,11 @@ import me.serenadehl.base.base.mvpbase.MVPBaseModel
 class TotalCoinCountModel : MVPBaseModel(), ITotalCoinCountModel {
 
     override fun getCoinBalance(): Observable<ResultCoinBalanceBean?> {
-        return RequestManager.getCoinBalance(Constant.TRON)
+        return RequestManager.getCoinBalance(Protocol.TRON)
     }
 
     override fun getCoinRecords(page: Int, pageSize: Int): Observable<ResultCoinRecordsBean?> {
-        return RequestManager.getCoinRecords(Constant.TRON, page, pageSize)
+        return RequestManager.getCoinRecords(Protocol.TRON, page, pageSize)
     }
 
 }

@@ -1,53 +1,38 @@
-package com.axonomy.dapp_feed.ui.mvp.transferdetail
+package com.axonomy.dapp_feed.ui.mvp.transferdetail.transfercashdetail
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.R
+import com.axonomy.dapp_feed.bean.cash.ResultCashRecordDetailBean
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.constant.RouterParams
-import com.axonomy.dapp_feed.bean.cash.ResultCashRecordDetailBean
+import com.axonomy.dapp_feed.ui.mvp.transferdetail.TransferDetailParentActivity
 import kotlinx.android.synthetic.main.activity_transfer_detail.*
-import kotlinx.android.synthetic.main.title_layout.*
-import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.log
 
 /**
- * 划转明细页
+ * 现金划转详情页
  * 作者：Serenade
  * 邮箱：SerenadeHL@163.com
- * 创建时间：2019-04-24 16:20:51
+ * 创建时间：2019-05-13 10:08:26
  */
-@Route(path = Router.TRANSFER_DETAIL_ACTIVITY)
-class TransferDetailActivity : MVPBaseActivity<ITransferDetailPresenter>(), ITransferDetailView {
+@Route(path = Router.TRANSFER_CASH_DETAIL_ACTIVITY)
+class TransferCashDetailActivity :TransferDetailParentActivity<ITransferCashDetailPresenter>(), ITransferCashDetailView {
     @JvmField
     @Autowired(name = RouterParams.ID)
     var mId: String? = null
 
-    private val mC2 by lazy { ContextCompat.getColor(this@TransferDetailActivity, R.color.C2) }
-
-    override fun createPresenter() = TransferDetailPresenter()
-
-    override fun layout() = R.layout.activity_transfer_detail
+    override fun createPresenter() = TransferCashDetailPresenter()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ARouter.getInstance().inject(this)
-        //设置状态栏
-        setupStatusBar()
-        setStatusBarColor(mC2, true)
-        //返回按钮
-        iv_back.setOnClickListener { finish() }
-        //设置标题栏
-        cl_title.setBackgroundColor(mC2)
-        tv_title.setText(R.string.transfer_detail)
-
+        super.onActivityCreated(savedInstanceState)
         loadData()
     }
 
     private fun loadData() {
-        mPresenter.getCashRecordDetail(mId?:"")
+        mPresenter.getCashRecordDetail(mId ?: "")
     }
 
     override fun getCashRecordDetailSuccess(data: ResultCashRecordDetailBean?) {

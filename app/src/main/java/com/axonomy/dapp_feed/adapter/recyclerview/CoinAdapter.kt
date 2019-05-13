@@ -17,10 +17,9 @@ import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsItemBean
 class CoinAdapter : BaseQuickAdapter<ResultCoinRecordsItemBean, BaseViewHolder>(R.layout.app_recycle_item_coin) {
     init {
         setOnItemClickListener { _, _, position ->
-            //TODO 传递完整数据 而非hash ID
             ARouter.getInstance()
-                .build(Router.TRANSFER_DETAIL_ACTIVITY)
-                .withString(RouterParams.ID, getItem(position)?.hash)
+                .build(Router.TRANSFER_COIN_DETAIL_ACTIVITY)
+                .withParcelable(RouterParams.DATA, getItem(position))
                 .navigation()
         }
     }

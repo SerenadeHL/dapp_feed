@@ -2,6 +2,7 @@ package com.axonomy.dapp_feed.utils
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.DialogInterface
 import com.axonomy.dapp_feed.R
 
@@ -22,5 +23,9 @@ object DialogUtils {
             .setPositiveButton(R.string.sure, listener)
             .setNegativeButton(R.string.cancel, null)
             .show()
+    }
+
+    fun showProgressDialog(activity: Activity, title: String, message: String): ProgressDialog {
+        return ProgressDialog.show(activity, title, message)
     }
 }

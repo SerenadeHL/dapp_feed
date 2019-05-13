@@ -26,7 +26,8 @@ object Router {
     const val TRANSFER_CASH_ACTIVITY = "/ui/mvp/transfer/transfercash/TransferCashActivity"//划转现金页
     const val TRANSFER_COIN_ACTIVITY = "/ui/mvp/transfer/transfercoin/TransferCoinActivity"//划转金币页
     const val RECHARGE_ACTIVITY = "/ui/mvp/recharge/RechargeActivity"//充值页
-    const val TRANSFER_DETAIL_ACTIVITY = "/ui/mvp/transferdetail/TransferDetailActivity"//划转详情页
+    const val TRANSFER_COIN_DETAIL_ACTIVITY = "/ui/mvp/transferdetail/transfercoindetail/TransferCoinDetailActivity"//金币划转详情页
+    const val TRANSFER_CASH_DETAIL_ACTIVITY = "/ui/mvp/transferdetail/transfercashdetail/TransferCashDetailActivity"//现金划转详情页
     const val TRANSFER_SUCCESS_ACTIVITY = "/ui/activity/TransferSuccessActivity"//划转成功页
     const val RECHARGE_SUCCESS_ACTIVITY = "/ui/activity/RechargeSuccessActivity"//划转成功页
 

@@ -5,6 +5,7 @@ import com.axonomy.dapp_feed.bean.coin.ResultCoinBalanceBean
 import com.axonomy.dapp_feed.bean.gamesquare.ResultAnnouncementBean
 import com.axonomy.dapp_feed.bean.gamesquare.ResultDAppBean
 import com.axonomy.dapp_feed.constant.Constant
+import com.axonomy.dapp_feed.constant.Protocol
 import com.axonomy.dapp_feed.network.RequestManager
 import io.reactivex.Observable
 import me.serenadehl.base.base.mvpbase.MVPBaseModel
@@ -26,7 +27,7 @@ class GameSquareModel : MVPBaseModel(), IGameSquareModel {
     }
 
     override fun getDailyCoinIncome(): Observable<ResultCoinBalanceBean?> {
-        return RequestManager.getCoinBalance(Constant.TRON)
+        return RequestManager.getCoinBalance(Protocol.TRON)
     }
 
     override fun getDailyCashIncome(): Observable<ResultCashDailyIncomeBean?> {

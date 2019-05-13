@@ -8,8 +8,11 @@ import android.support.v4.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.R
+import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsItemBean
 import com.axonomy.dapp_feed.bean.update.ResultUpdateInfoBean
 import com.axonomy.dapp_feed.constant.Router
+import com.axonomy.dapp_feed.constant.RouterParams
+import com.axonomy.dapp_feed.utils.DialogUtils
 import com.axonomy.dapp_feed.utils.LoginUtils
 import com.axonomy.dapp_feed.widget.UpdateDialog
 import com.dong.dapp.utils.SystemUtils

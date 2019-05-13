@@ -1,6 +1,9 @@
 package com.axonomy.dapp_feed.ui.mvp.web
 
+import com.axonomy.dapp_feed.bean.dapp.ResultPublicKeyBean
 import com.axonomy.dapp_feed.bean.statistics.ResultEnterDAppBean
+import com.axonomy.dapp_feed.constant.Constant
+import com.axonomy.dapp_feed.constant.Protocol
 import com.axonomy.dapp_feed.network.BaseResponse
 import com.axonomy.dapp_feed.network.RequestManager
 import io.reactivex.Observable
@@ -20,5 +23,9 @@ class DAppWebModel : MVPBaseModel(), IDAppWebModel {
 
     override fun exitDApp(id: String, action: List<Map<String, String>>): Observable<BaseResponse?> {
         return RequestManager.exitDApp(id, action)
+    }
+
+    override fun getPublicKey(): Observable<ResultPublicKeyBean?> {
+        return RequestManager.getPublicKey(Protocol.TRON)
     }
 }

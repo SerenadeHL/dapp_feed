@@ -31,15 +31,15 @@ import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOrderBean
 import com.axonomy.dapp_feed.bean.statistics.RequestEnterDAppBean
 import com.axonomy.dapp_feed.bean.statistics.RequestExitDAppBean
 import com.axonomy.dapp_feed.bean.statistics.ResultEnterDAppBean
+import com.axonomy.dapp_feed.bean.dapp.RequestPublicKeyBean
+import com.axonomy.dapp_feed.bean.dapp.RequestSignBean
 import com.axonomy.dapp_feed.bean.upload.ResultOSSUploadPermissionBean
-import com.axonomy.dapp_feed.bean.wallet.TronSignBean
-import com.axonomy.dapp_feed.bean.wallet.UserInfoBean
+import com.axonomy.dapp_feed.bean.dapp.ResultSignBean
+import com.axonomy.dapp_feed.bean.dapp.ResultPublicKeyBean
 import com.axonomy.dapp_feed.extensions.decrypt
 import com.axonomy.dapp_feed.network.api.*
 import com.axonomy.dapp_feed.utils.AssetsUtils
 import com.axonomy.dapp_feed.utils.LocaleUtils
-import com.axonomy.dapp_feed.utils.OSSUtils
-import com.axonomy.dapp_feed.bean.kyc.*
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
 import me.serenadehl.base.extensions.fromJsonArray
@@ -119,46 +119,24 @@ object RequestManager {
     @SuppressLint("CheckResult")
     fun uploadToOSS(
         context: Context,
-        isPrivate: Boolean,
+        bucketName: String,
+        endPoint: String,
         data: ByteArray,
         ossUploadPermissionBean: ResultOSSUploadPermissionBean
     ): Observable<String> {
-       return Observable.create<String> {
-            val cn = LocaleUtils.isCN()
-            var bucketName = ""
-            var bucketUrl = ""
-            if (cn) {
-                if (isPrivate) {
-                    bucketName = OSSUtils.OSS_BUCKET_PRIVATE_KYC_CN
-                    bucketUrl = OSSUtils.OSS_BUCKET_URL_KYC_CN
-                } else {
-                    bucketName = OSSUtils.OSS_BUCKET_PRIVATE_CN
-                    bucketUrl = OSSUtils.OSS_BUCKET_URL_CN
-                }
-            } else {
-                if (isPrivate) {
-                    bucketName = OSSUtils.OSS_BUCKET_PRIVATE_KYC_EN
-                    bucketUrl = OSSUtils.OSS_BUCKET_URL_KYC_EN
-                } else {
-                    bucketName = OSSUtils.OSS_BUCKET_PRIVATE_EN
-                    bucketUrl = OSSUtils.OSS_BUCKET_URL_EN
-                }
-            }
-            val endPoint = if (cn) OSSUtils.OSS_ENDPOINT_CN else OSSUtils.OSS_ENDPOINT_EN
-            val fileUrl =
-                bucketUrl + ossUploadPermissionBean.catalogue + File.separator + System.currentTimeMillis() + ".png"
+        return Observable.create<String> {
+            val fileDir = ossUploadPermissionBean.catalogue + File.separator + System.currentTimeMillis() + ".png"
             // 构造上传请求。
-            val put = PutObjectRequest(bucketName, fileUrl, data)
+            val put = PutObjectRequest(bucketName, fileDir, data)
             val credentialProvider = OSSStsTokenCredentialProvider(
                 ossUploadPermissionBean.accessKeyId,
                 ossUploadPermissionBean.accessKeySecret,
                 ossUploadPermissionBean.securityToken
             )
-
             try {
                 val client = OSSClient(context.applicationContext, endPoint, credentialProvider)
                 client.putObject(put)
-                it.onNext(fileUrl)
+                it.onNext(endPoint + File.separator + fileDir)
                 it.onComplete()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -357,28 +335,29 @@ object RequestManager {
     }
 
 
-    //=============================================Tron相关接口=============================================
+    //=============================================DApp相关接口=============================================
 
     /**
-     * 获取Tron用户信息
+     * 获取公钥
+     * @param protocol 公链类型 tron 0 EOS 1 ETH 2
      */
-    fun getTronUserInfo(): Observable<UserInfoBean?> {
-        return RetrofitHelper.create(TronApi::class.java)
-            .getTronUserInfo("product")
-            .decrypt<UserInfoBean?>()
+    fun getPublicKey(protocol: Int): Observable<ResultPublicKeyBean?> {
+        val requestBean = RequestPublicKeyBean(protocol)
+        return RetrofitHelper.create(DAppApi::class.java)
+            .getTronPublicKey(requestBean)
+            .decrypt<ResultPublicKeyBean?>()
             .async()
     }
 
     /**
-     * 获取Tron签名
-     * @param publicKey
-     * @param message
-     * @param type
+     * 获取签名
+     * @param protocol 公链类型 tron 0 EOS 1 ETH 2
      */
-    fun getTronSign(publicKey: String, message: String, type: String): Observable<TronSignBean?> {
-        return RetrofitHelper.create(TronApi::class.java)
-            .getTronSign(publicKey, message, type, "product")
-            .decrypt<TronSignBean?>()
+    fun getSign(protocol: Int, message: String, type: String): Observable<ResultSignBean?> {
+        val requestBean = RequestSignBean(protocol, message, type)
+        return RetrofitHelper.create(DAppApi::class.java)
+            .getTronSign(requestBean)
+            .decrypt<ResultSignBean?>()
             .async()
     }
 

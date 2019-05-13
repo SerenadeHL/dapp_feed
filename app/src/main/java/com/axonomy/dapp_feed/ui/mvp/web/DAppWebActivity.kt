@@ -7,13 +7,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.DAppApplication
 import com.axonomy.dapp_feed.R
+import com.axonomy.dapp_feed.bean.dapp.ResultPublicKeyBean
+import com.axonomy.dapp_feed.bean.statistics.ResultEnterDAppBean
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.constant.RouterParams
-import com.axonomy.dapp_feed.bean.statistics.ResultEnterDAppBean
-import com.axonomy.dapp_feed.bean.wallet.UserInfoBean
-import com.axonomy.dapp_feed.extensions.save
-import com.axonomy.dapp_feed.network.BaseObserver
-import com.axonomy.dapp_feed.network.RequestManager
 import com.axonomy.dapp_feed.utils.PopupWindowUtils
 import com.axonomy.dapp_feed.utils.WebViewUtils
 import com.axonomy.dapp_feed.widget.SuspensionBall
@@ -77,22 +74,8 @@ class DAppWebActivity : MVPBaseActivity<IDAppWebPresenter>(), IDAppWebView {
             }
         })
 
-        RequestManager.getTronUserInfo()
-            .subscribe(object : BaseObserver<UserInfoBean?>() {
-                override fun next(data: UserInfoBean?) {
-                    data?.save()
-                }
-
-                override fun error(error: Throwable) {
-                    error.printStackTrace()
-                }
-
-                override fun complete() {
-                    "==onComplete==".log()
-                }
-            })
-
         mPresenter.enterDApp(mPid ?: "")
+        mPresenter.getPublicKey()
     }
 
     override fun onDestroy() {
@@ -116,5 +99,14 @@ class DAppWebActivity : MVPBaseActivity<IDAppWebPresenter>(), IDAppWebView {
 
     override fun enterDAppFailed() {
         "enterDAppFailed------->".log()
+    }
+
+    override fun getPublicKeySuccess(data: ResultPublicKeyBean?) {
+        "getPublicKeySuccess------->".log()
+        (application as DAppApplication).getTronApi().setPublicKey(data?.publicKey)
+    }
+
+    override fun getPublicKeyFailed() {
+        "getPublicKeyFailed------->".log()
     }
 }

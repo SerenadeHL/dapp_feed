@@ -1,4 +1,4 @@
-package com.axonomy.dapp_feed.ui.mvp.transferdetail
+package com.axonomy.dapp_feed.ui.mvp.transferdetail.transfercashdetail
 
 import com.axonomy.dapp_feed.bean.cash.ResultCashRecordDetailBean
 import io.reactivex.Observable
@@ -12,13 +12,13 @@ import me.serenadehl.base.base.mvpbase.IBaseView
  * 创建时间：2019-05-06 13:20:47
  */
 
-interface ITransferDetailView : IBaseView {
+interface ITransferCashDetailView : IBaseView {
     fun getCashRecordDetailSuccess(data: ResultCashRecordDetailBean?)
 
     fun getCashRecordDetailFailed()
 }
 
-interface ITransferDetailPresenter : IBasePresenter {
+interface ITransferCashDetailPresenter : IBasePresenter {
     /**
      * 获取现金流水详情
      * @param recordId 流水id
@@ -26,7 +26,7 @@ interface ITransferDetailPresenter : IBasePresenter {
     fun getCashRecordDetail(recordId: String)
 }
 
-interface ITransferDetailModel : IBaseModel {
+interface ITransferCashDetailModel : IBaseModel {
     /**
      * 获取现金流水详情
      * @param recordId 流水id

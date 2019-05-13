@@ -34,6 +34,7 @@ import wendu.dsbridge.DWebView
  */
 class DAppApplication : BaseApplication() {
     private lateinit var mWebView: DWebView
+    private lateinit var mTronPayApi: TronPayApi
 
     companion object {
         fun isDebug() = DEBUG
@@ -134,7 +135,8 @@ class DAppApplication : BaseApplication() {
                 DWebView.setWebContentsDebuggingEnabled(DEBUG)
                 mWebView.apply {
                     WebViewUtils.setSetting(this@apply)
-                    addJavascriptObject(TronPayApi(), TronPayApi.NAME)
+                    mTronPayApi = TronPayApi()
+                    addJavascriptObject(mTronPayApi, TronPayApi.NAME)
                     webChromeClient = object : WebChromeClient() {}
                     webViewClient = object : WebViewClient() {
                         override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
@@ -181,4 +183,6 @@ class DAppApplication : BaseApplication() {
         }
         return mWebView
     }
+
+    fun getTronApi() = mTronPayApi
 }

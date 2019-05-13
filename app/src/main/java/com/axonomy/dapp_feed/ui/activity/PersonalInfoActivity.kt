@@ -2,19 +2,15 @@ package com.axonomy.dapp_feed.ui.activity
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.axonomy.dapp_feed.constant.Constant
 import com.axonomy.dapp_feed.R
 import com.axonomy.dapp_feed.RuntimeData
 import com.axonomy.dapp_feed.constant.Router
-import com.axonomy.dapp_feed.constant.RouterParams
-import com.axonomy.dapp_feed.bean.me.ResultUserInfoBean
+import com.axonomy.dapp_feed.constant.KYCStatus
 import kotlinx.android.synthetic.main.activity_personal_info.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.BaseActivity
-import me.serenadehl.base.extensions.toast
 
 /**
  * 个人信息页
@@ -39,18 +35,21 @@ class PersonalInfoActivity : BaseActivity() {
         iv_back.setOnClickListener { finish() }
         //设置标题栏
         tv_title.setText(R.string.personal_info)
+    }
 
+    override fun onResume() {
+        super.onResume()
         tv_phone_number.text = RuntimeData.mResultUserInfoBean?.account
 
         btn_kyc.apply {
             when (RuntimeData.mResultUserInfoBean?.kycStatus) {
-                Constant.VERIFY_PASSED -> {
+                KYCStatus.VERIFY_PASSED -> {
                     setOnClickListener { }
                     setText(R.string.kyc_identified)
                     setTextColor(mC1)
                     setBackgroundResource(R.drawable.round_rect_solid_light_blue_bg)
                 }
-                Constant.IN_VERIFYING -> {
+                KYCStatus.IN_VERIFYING -> {
                     setOnClickListener { }
                     setText(R.string.kyc_identifing)
                     setTextColor(mC1)

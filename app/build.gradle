@@ -21,9 +21,9 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
             }
         }
-        ndk {
-            abiFilters 'armeabi'
-        }
+//        ndk {
+//            abiFilters 'armeabi'
+//        }
     }
     lintOptions {
         //允许模拟器运行

@@ -77,7 +77,10 @@
                 android:name=".ui.mvp.transfer.transfercash.TransferCashActivity"
                 android:launchMode="singleTask"/>
         <activity
-                android:name=".ui.mvp.transferdetail.TransferDetailActivity"
+                android:name=".ui.mvp.transferdetail.transfercashdetail.TransferCashDetailActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.mvp.transferdetail.transfercoindetail.TransferCoinDetailActivity"
                 android:launchMode="singleTask"/>
 
         <activity android:name=".ui.activity.TransferSuccessActivity"

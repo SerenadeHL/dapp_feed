@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResultUserInfoBean(
     @SerializedName("user_id") val userId: Int,//用户id
-    @SerializedName("kyc_status") val kycStatus: Int,//KYC状态
+    @SerializedName("kyc_status") var kycStatus: Int,//KYC状态
     @SerializedName("invitation_code") val invitationCode: String,//邀请码
     @SerializedName("account") val account: String//账号
 )

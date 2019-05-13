@@ -5,7 +5,6 @@ import com.axonomy.dapp_feed.bean.kyc.*
 import com.axonomy.dapp_feed.exception.BaseException
 import com.axonomy.dapp_feed.network.BaseObserver
 import com.axonomy.dapp_feed.network.RequestManager
-import com.axonomy.dapp_feed.bean.kyc.*
 import com.megvii.faceidiol.sdk.manager.IDCardManager
 import com.megvii.faceidiol.sdk.manager.IDCardResult
 import com.megvii.faceidiol.sdk.manager.UserDetectConfig
@@ -14,7 +13,6 @@ import com.megvii.meglive_sdk.sdk.listener.FaceIdInitListener
 import com.megvii.meglive_sdk.sdk.manager.FaceIdManager
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.log
-import me.serenadehl.base.extensions.toast
 import me.serenadehl.base.utils.app.AppManager
 
 /**
@@ -24,14 +22,14 @@ import me.serenadehl.base.utils.app.AppManager
  */
 
 object KYCUtils {
-    private const val BIZ_TOKEN_IS_NULL = 0
-    private const val ID_CARD_MANAGER_INIT_FAILED = 1
-    private const val ID_CARD_CANT_BE_DETECTED = 2
-    private const val ID_CARD_HAS_BEEN_USED = 3
-    private const val KYC_HAVE_BEEN_FINISHED = 4
+    const val BIZ_TOKEN_IS_NULL = 0
+    const val ID_CARD_MANAGER_INIT_FAILED = 1
+    const val ID_CARD_CAN_NOT_BE_DETECTED = 2
+    const val ID_CARD_HAS_BEEN_USED = 3
+    const val KYC_HAVE_BEEN_FINISHED = 4
 
     @SuppressLint("CheckResult")
-    fun start() {
+    fun start(success: () -> Unit, fail: (e: Throwable) -> Unit) {
         var idCardResult: IDCardResult? = null
         var bizToken: String? = null
         var frontImage: String? = null
@@ -58,11 +56,19 @@ object KYCUtils {
                 return@flatMap when (data.isRight) {
                     1 -> {
                         //异步上传身份证图片
-                        OSSUtils.upload(AppManager.currentActivity.applicationContext,true,idCardResult!!.idCardInfo.imageFrontside){
+                        OSSUtils.upload(
+                            AppManager.currentActivity.applicationContext,
+                            true,
+                            idCardResult!!.idCardInfo.imageFrontside
+                        ) {
                             "身份证正面图片地址--------> $it".log()
                             frontImage = it
                         }
-                        OSSUtils.upload(AppManager.currentActivity.applicationContext,true,idCardResult!!.idCardInfo.imageBackside){
+                        OSSUtils.upload(
+                            AppManager.currentActivity.applicationContext,
+                            true,
+                            idCardResult!!.idCardInfo.imageBackside
+                        ) {
                             "身份证背面图片地址--------> $it".log()
                             backImage = it
                         }
@@ -106,25 +112,13 @@ object KYCUtils {
             .subscribe(object : BaseObserver<ResultFinishKYCBean?>() {
                 override fun next(data: ResultFinishKYCBean?) {
                     "KYC验证成功".log()
+                    success()
                 }
 
                 override fun error(error: Throwable) {
                     super.error(error)
                     "KYC验证失败".log()
-                    if (error is BaseException) {
-                        "BaseExceptionErrorCode=${error.code}".log()
-                        "BaseExceptionErrorMsg=${error.msg}".log()
-                        when (error.code) {
-                            ID_CARD_HAS_BEEN_USED -> {
-                                //TODO 测试
-                                AppManager.currentActivity.toast("身份证已经被使用")
-                            }
-                            KYC_HAVE_BEEN_FINISHED -> {
-                                //TODO 测试
-                                AppManager.currentActivity.toast("已经完成KYC")
-                            }
-                        }
-                    }
+                    fail(error)
                 }
             })
     }
@@ -245,7 +239,7 @@ object KYCUtils {
                 } else {
                     it.onError(
                         BaseException(
-                            ID_CARD_CANT_BE_DETECTED,
+                            ID_CARD_CAN_NOT_BE_DETECTED,
                             "id card can't be detected"
                         )
                     )

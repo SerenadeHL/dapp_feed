@@ -1,5 +1,6 @@
 package com.axonomy.dapp_feed.ui.mvp.web
 
+import com.axonomy.dapp_feed.bean.dapp.ResultPublicKeyBean
 import com.axonomy.dapp_feed.bean.statistics.ResultEnterDAppBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
@@ -31,5 +32,18 @@ class DAppWebPresenter : MVPBasePresenter<IDAppWebView, IDAppWebModel>(), IDAppW
     override fun exitDApp(id: String, action: List<Map<String, String>>) {
         mModel.exitDApp(id, action)
             .subscribe()
+    }
+
+    override fun getPublicKey() {
+        mModel.getPublicKey()
+            .subscribe(object : BaseObserver<ResultPublicKeyBean?>() {
+                override fun next(data: ResultPublicKeyBean?) {
+                    mView.get()?.getPublicKeySuccess(data)
+                }
+
+                override fun error(error: Throwable) {
+                    mView.get()?.getPublicKeyFailed()
+                }
+            })
     }
 }

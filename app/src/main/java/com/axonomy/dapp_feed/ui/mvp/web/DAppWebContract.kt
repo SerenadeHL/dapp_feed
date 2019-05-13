@@ -1,5 +1,6 @@
 package com.axonomy.dapp_feed.ui.mvp.web
 
+import com.axonomy.dapp_feed.bean.dapp.ResultPublicKeyBean
 import com.axonomy.dapp_feed.bean.statistics.ResultEnterDAppBean
 import com.axonomy.dapp_feed.network.BaseResponse
 import io.reactivex.Observable
@@ -17,16 +18,30 @@ interface IDAppWebView : IBaseView {
     fun enterDAppSuccess(data: ResultEnterDAppBean?)
 
     fun enterDAppFailed()
+
+    fun getPublicKeySuccess(data :ResultPublicKeyBean?)
+
+    fun getPublicKeyFailed()
 }
 
 interface IDAppWebPresenter : IBasePresenter {
     fun enterDApp(pid: String)
 
     fun exitDApp(id: String, action: List<Map<String, String>>)
+
+    /**
+     * 获取公钥
+     */
+    fun getPublicKey()
 }
 
 interface IDAppWebModel : IBaseModel {
     fun enterDApp(pid: String): Observable<ResultEnterDAppBean?>
 
     fun exitDApp(id: String, action: List<Map<String, String>>): Observable<BaseResponse?>
+
+    /**
+     * 获取公钥
+     */
+    fun getPublicKey(): Observable<ResultPublicKeyBean?>
 }

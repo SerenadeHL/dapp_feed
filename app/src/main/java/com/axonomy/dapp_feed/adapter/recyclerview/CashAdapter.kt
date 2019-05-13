@@ -19,7 +19,7 @@ class CashAdapter : BaseQuickAdapter<ResultCashRecordsItemBean, BaseViewHolder>(
         setOnItemClickListener { _, _, position ->
             //TODO设置数据
             ARouter.getInstance()
-                .build(Router.TRANSFER_DETAIL_ACTIVITY)
+                .build(Router.TRANSFER_CASH_DETAIL_ACTIVITY)
                 .withString(RouterParams.ID, getItem(position)?.id)
                 .navigation()
         }

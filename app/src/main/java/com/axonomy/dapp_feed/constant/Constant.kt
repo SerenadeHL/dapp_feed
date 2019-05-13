@@ -7,7 +7,6 @@ package com.axonomy.dapp_feed.constant
  */
 object Constant {
     //======================SharedPreference======================
-    const val USER_INFO = "user_info"
     const val TOKEN = "token"
 
     //======================请求头中固定参数======================
@@ -37,18 +36,6 @@ object Constant {
     //======================区号======================
     const val AREA_CODE = "area_code"
     const val AREA_CODE_CN = "0086"
-
-    //======================KYC状态======================
-    const val UN_UPLOAD = -1//未上传
-    const val IN_VERIFYING = 0//审核中
-    const val VERIFY_PASSED = 1//认证通过
-    const val VERIFY_UN_PASSED = 2//认证未通过
-
-
-    const val TRON = 0
-    const val EOS = 1
-    const val ETH = 2
-
 
     const val USER_AGREEMENT = "用户协议书"
 }
