@@ -1,6 +1,5 @@
 package com.axonomy.dapp_feed.ui.mvp.recharge
 
-import com.axonomy.dapp_feed.R
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
@@ -8,20 +7,20 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.axonomy.dapp_feed.R
 import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOptionsBean
 import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOptionsItemBean
 import com.axonomy.dapp_feed.bean.recharge.ResultRechargeOrderBean
 import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.utils.PayUtils
-import com.dong.dapp.utils.SystemUtils
 import kotlinx.android.synthetic.main.activity_recharge.*
 import kotlinx.android.synthetic.main.title_layout.*
-
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.dimen
 import me.serenadehl.base.extensions.getStatusBarHeight
 import me.serenadehl.base.extensions.invisible
 import me.serenadehl.base.extensions.log
+import me.serenadehl.base.utils.app.SystemUtils
 
 /**
  * 充值页
@@ -125,7 +124,7 @@ class RechargeActivity : MVPBaseActivity<IRechargePresenter>(), IRechargeView {
     private fun generateOption(item: ResultRechargeOptionsItemBean, margin: Boolean): TextView {
         return TextView(this).apply {
             val width =
-                (SystemUtils.getScreenWidth() - dimen(R.dimen.L1) * 2 - dimen(R.dimen.dp_recharge_option_margin_start) * (mColumnCount - 1)) / mColumnCount
+                (SystemUtils.getScreenWidth(this@RechargeActivity) - dimen(R.dimen.L1) * 2 - dimen(R.dimen.dp_recharge_option_margin_start) * (mColumnCount - 1)) / mColumnCount
             layoutParams = LinearLayout.LayoutParams(width, mL5).apply {
                 if (margin) marginStart = dimen(R.dimen.dp_recharge_option_margin_start)
             }

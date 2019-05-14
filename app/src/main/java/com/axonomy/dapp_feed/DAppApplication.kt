@@ -6,15 +6,17 @@ import android.os.Bundle
 import android.support.multidex.MultiDex
 import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
+import com.axonomy.dapp_feed.constant.ThirdSDKKeys
 import com.axonomy.dapp_feed.jsapi.TronPayApi
 import com.axonomy.dapp_feed.ui.mvp.web.DAppWebActivity
 import com.axonomy.dapp_feed.utils.AssetsUtils
 import com.axonomy.dapp_feed.utils.WebViewUtils
-import com.dong.dapp.utils.NetworkUtils
-import com.dong.dapp.utils.SystemUtils
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
-import com.tencent.smtt.sdk.*
+import com.tencent.smtt.sdk.QbSdk
+import com.tencent.smtt.sdk.WebChromeClient
+import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 import com.umeng.analytics.MobclickAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.message.IUmengRegisterCallback
@@ -23,6 +25,7 @@ import io.reactivex.plugins.RxJavaPlugins
 import me.serenadehl.base.BaseApplication
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.utils.app.AppManager
+import me.serenadehl.base.utils.app.SystemUtils
 import skin.support.SkinCompatManager
 import wendu.dsbridge.DWebView
 
@@ -72,8 +75,7 @@ class DAppApplication : BaseApplication() {
      */
     private fun initUmeng() {
         //初始化SDK
-        //TODO 替换密钥
-        UMConfigure.init(this, "appkey", "channel", UMConfigure.DEVICE_TYPE_PHONE, "pushSecret")
+        UMConfigure.init(this, ThirdSDKKeys.UMENG_APP_KEY, "umeng", UMConfigure.DEVICE_TYPE_PHONE, ThirdSDKKeys.UMENG_MESSAGE_SECRET)
         //友盟统计
         MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.MANUAL)
         //友盟推送

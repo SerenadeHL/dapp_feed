@@ -23,5 +23,4 @@ class TotalCoinCountModel : MVPBaseModel(), ITotalCoinCountModel {
     override fun getCoinRecords(page: Int, pageSize: Int): Observable<ResultCoinRecordsBean?> {
         return RequestManager.getCoinRecords(Protocol.TRON, page, pageSize)
     }
-
 }

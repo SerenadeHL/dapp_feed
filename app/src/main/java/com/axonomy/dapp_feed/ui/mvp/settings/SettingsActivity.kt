@@ -11,12 +11,12 @@ import com.axonomy.dapp_feed.constant.Router
 import com.axonomy.dapp_feed.utils.DialogUtils
 import com.axonomy.dapp_feed.utils.LoginUtils
 import com.axonomy.dapp_feed.widget.UpdateDialog
-import com.dong.dapp.utils.SystemUtils
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toast
+import me.serenadehl.base.utils.app.SystemUtils
 
 /**
  * 设置页
@@ -68,7 +68,7 @@ class SettingsActivity : MVPBaseActivity<ISettingsPresenter>(), ISettingsView {
     override fun getUpdateInfoSuccess(data: ResultUpdateInfoBean?) {
         tv_version_update.isEnabled = true
         "getUpdateInfoSuccess-------> $data".log()
-        if (data?.updateType == 2 || SystemUtils.getAppVersionCode().toInt() == data?.versionCode || data == null) {//不显示
+        if (data?.updateType == 2 || SystemUtils.getAppVersionCode(this@SettingsActivity) == data?.versionCode || data == null) {//不显示
             toast(R.string.newest_version)
             return
         }

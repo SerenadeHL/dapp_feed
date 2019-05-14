@@ -53,6 +53,13 @@
     <dimen name="dp_login_margin_top">24dp</dimen>
     <dimen name="dp_agreement_margin_bottom">24dp</dimen>
 
+    <!--InvitationHistoryActivity-->
+    <dimen name="dp_invitation_history_header_height">40dp</dimen>
+    <dimen name="sp_invitation_history_item_account_text_size">15sp</dimen>
+    <dimen name="sp_invitation_history_item_kyc_status_text_size">15sp</dimen>
+    <dimen name="dp_invitation_history_item_time_margin_top">7dp</dimen>
+    <dimen name="dp_invitation_history_item_time_margin_bottom">12dp</dimen>
+
     <!--ChooseAreaCodeActivity-->
     <dimen name="dp_text_dialog_width">140dp</dimen>
     <dimen name="dp_text_dialog_height">140dp</dimen>

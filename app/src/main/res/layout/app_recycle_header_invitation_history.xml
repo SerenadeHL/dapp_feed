@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/invited_user"
+            android:layout_marginStart="@dimen/L1"
+            android:gravity="center"
+            android:textSize="@dimen/F5"
+            android:textColor="@color/C8"
+            android:layout_height="@dimen/dp_invitation_history_header_height"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/certification"
+            android:layout_marginEnd="@dimen/L1"
+            android:gravity="center"
+            android:textSize="@dimen/F5"
+            android:textColor="@color/C8"
+            android:layout_height="@dimen/dp_invitation_history_header_height"/>
+</android.support.constraint.ConstraintLayout>

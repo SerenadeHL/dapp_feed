@@ -31,8 +31,16 @@
     <string name="login">登录</string>
     <string name="left_seconds">%s 秒</string>
     <string name="user_agreement">登录暨同意
-        <u><font color='#333333'>《用户协议书》</font></u>
+        <u>
+            <font color='#333333'>《用户协议书》</font>
+        </u>
     </string>
+
+    <!--邀请记录-->
+    <string name="invitation_history_detail">邀请记录明细</string>
+    <string name="verified">已实名</string>
+    <string name="unverified">未实名</string>
+    <string name="invited_user">邀请用户</string>
 
     <!--选择区号-->
     <string name="choose_area_code">选择区号</string>
@@ -93,6 +101,9 @@
     <!--现金资产-->
     <string name="cash_assets">现金资产</string>
 
+    <!--游戏收益规则说明-->
+    <string name="revenue_rules">游戏收益规则说明</string>
+
     <!--划转-->
     <string name="transfer_coin">划转金币</string>
     <string name="transfer_cash">划转现金</string>
@@ -105,7 +116,9 @@
     <!--充值-->
     <string name="order_cost">订单金额</string>
     <string name="pay_method">支付方式</string>
-    <string name="pay_hint">1. 充值金币和游戏内挣得得金币，可随时全额提现 \n2. 所有游戏共用一个金币账户，全场通用 \n3. 充值时 1金币 = 0.452元人民币 \n4. 0.1金币可玩HyperSanke 1局，或Trap one 1局</string>
+    <string name="pay_hint">1. 充值金币和游戏内挣得得金币，可随时全额提现 \n2. 所有游戏共用一个金币账户，全场通用 \n3. 充值时 1金币 = 0.452元人民币 \n4.
+        0.1金币可玩HyperSanke 1局，或Trap one 1局
+    </string>
 
     <!--划转详情-->
     <string name="transfer_detail">明细详情</string>

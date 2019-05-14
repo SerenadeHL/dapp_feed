@@ -36,6 +36,7 @@ class DAppWebPresenter : MVPBasePresenter<IDAppWebView, IDAppWebModel>(), IDAppW
 
     override fun getPublicKey() {
         mModel.getPublicKey()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultPublicKeyBean?>() {
                 override fun next(data: ResultPublicKeyBean?) {
                     mView.get()?.getPublicKeySuccess(data)

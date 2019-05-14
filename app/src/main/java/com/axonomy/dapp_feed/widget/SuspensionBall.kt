@@ -15,8 +15,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.animation.AccelerateInterpolator
-import com.dong.dapp.utils.SystemUtils
 import me.serenadehl.base.extensions.log
+import me.serenadehl.base.utils.app.SystemUtils
 
 
 /**
@@ -63,8 +63,8 @@ class SuspensionBall : AppCompatImageView {
 
     init {
         mTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
-        mScreenWidth = SystemUtils.getScreenWidth()
-        mScreenHeight = SystemUtils.getScreenHeight()
+        mScreenWidth = SystemUtils.getScreenWidth(context)
+        mScreenHeight = SystemUtils.getScreenHeight(context)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

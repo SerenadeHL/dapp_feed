@@ -8,14 +8,10 @@ import android.support.v4.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.axonomy.dapp_feed.R
-import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsItemBean
 import com.axonomy.dapp_feed.bean.update.ResultUpdateInfoBean
 import com.axonomy.dapp_feed.constant.Router
-import com.axonomy.dapp_feed.constant.RouterParams
-import com.axonomy.dapp_feed.utils.DialogUtils
 import com.axonomy.dapp_feed.utils.LoginUtils
 import com.axonomy.dapp_feed.widget.UpdateDialog
-import com.dong.dapp.utils.SystemUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
@@ -23,6 +19,7 @@ import me.serenadehl.base.extensions.invisible
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toast
 import me.serenadehl.base.extensions.visible
+import me.serenadehl.base.utils.app.SystemUtils
 
 
 /**
@@ -154,7 +151,7 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
 
     override fun getUpdateInfoSuccess(data: ResultUpdateInfoBean?) {
         "getUpdateInfoSuccess-------> $data".log()
-        if (data?.updateType == 2 || SystemUtils.getAppVersionCode().toInt() == data?.versionCode || data == null) return//不显示
+        if (data?.updateType == 2 || SystemUtils.getAppVersionCode(this@MainActivity) == data?.versionCode || data == null) return//不显示
         mUpdateDialog = UpdateDialog(this, data)
         mUpdateDialog.show()
     }

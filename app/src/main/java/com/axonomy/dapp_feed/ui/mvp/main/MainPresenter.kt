@@ -3,6 +3,7 @@ package com.axonomy.dapp_feed.ui.mvp.main
 import com.axonomy.dapp_feed.bean.update.ResultUpdateInfoBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 
 /**
  * 作者：Serenade
@@ -15,6 +16,7 @@ class MainPresenter : MVPBasePresenter<IMainView, IMainModel>(), IMainPresenter 
 
     override fun getUpdateInfo() {
         mModel.getUpdateInfo()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object :BaseObserver<ResultUpdateInfoBean?>(){
                 override fun next(data: ResultUpdateInfoBean?) {
                     mView.get()?.getUpdateInfoSuccess(data)

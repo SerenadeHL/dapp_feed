@@ -5,6 +5,7 @@ import com.axonomy.dapp_feed.bean.coin.RequestCoinRecordsBean
 import com.axonomy.dapp_feed.network.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 /**
@@ -29,4 +30,10 @@ interface CoinApi {
      */
     @POST("api/v1/wallet/txns")
     fun getCoinRecords(@Body requestBean: RequestCoinRecordsBean): Observable<BaseResponse>
+
+    /**
+     * 获取收益规则说明
+     */
+    @GET("api/df/revenue/rule")
+    fun getRevenueRules(): Observable<BaseResponse>
 }

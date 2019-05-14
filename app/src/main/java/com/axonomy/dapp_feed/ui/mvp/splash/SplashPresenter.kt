@@ -30,6 +30,7 @@ class SplashPresenter : MVPBasePresenter<ISplashView, ISplashModel>(), ISplashPr
 
     override fun getUserInfo() {
         mModel.getUserInfo()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultUserInfoBean?>() {
                 override fun next(data: ResultUserInfoBean?) {
                     mView.get()?.getUserInfoSuccess(data)

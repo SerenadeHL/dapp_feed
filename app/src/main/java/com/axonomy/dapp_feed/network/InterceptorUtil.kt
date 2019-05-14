@@ -3,16 +3,17 @@ package com.axonomy.dapp_feed.network
 import android.net.Uri
 import android.util.Log
 import com.axonomy.dapp_feed.BuildConfig
-import com.axonomy.dapp_feed.constant.Constant
 import com.axonomy.dapp_feed.DAppApplication
 import com.axonomy.dapp_feed.bean.others.SystemInfoBean
+import com.axonomy.dapp_feed.constant.Constant
 import com.axonomy.dapp_feed.utils.AESUtils
 import com.axonomy.dapp_feed.utils.RSAUtils
-import com.dong.dapp.utils.NetworkUtils
-import com.dong.dapp.utils.SystemUtils
 import me.serenadehl.base.extensions.TAG
 import me.serenadehl.base.extensions.log
 import me.serenadehl.base.extensions.toJson
+import me.serenadehl.base.utils.app.AppManager
+import me.serenadehl.base.utils.app.NetworkUtils
+import me.serenadehl.base.utils.app.SystemUtils
 import me.serenadehl.base.utils.sharedpre.SPUtil
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,11 +29,11 @@ import java.util.*
  */
 object InterceptorUtil {
     private val mSystemVersion by lazy { SystemUtils.getSystemVersion() }
-    private val mAppVersionName by lazy { SystemUtils.getAppVersionName() }
-    private val mIMEI by lazy { SystemUtils.getIMEI() }
+    private val mAppVersionName by lazy { SystemUtils.getAppVersionName(AppManager.currentActivity) }
+    private val mIMEI by lazy { SystemUtils.getIMEI(AppManager.currentActivity) }
     private val mMacAddress by lazy { SystemUtils.getMacAddress() }
-    private val mScreenWidth by lazy { SystemUtils.getScreenWidth().toString() }
-    private val mScreenHeight by lazy { SystemUtils.getScreenHeight().toString() }
+    private val mScreenWidth by lazy { SystemUtils.getScreenWidth(AppManager.currentActivity).toString() }
+    private val mScreenHeight by lazy { SystemUtils.getScreenHeight(AppManager.currentActivity).toString() }
     private val mDeviceBrand by lazy { SystemUtils.getDeviceBrand() }
     private val mDeviceModel by lazy { SystemUtils.getDeviceModel() }
 
@@ -96,7 +97,7 @@ object InterceptorUtil {
      * 获取网络类型
      */
     private fun getNetworkType(): String {
-        return when (NetworkUtils.getNetworkType()) {
+        return when (NetworkUtils.getNetworkType(AppManager.currentActivity)) {
             NetworkUtils.NETWORK_WIFI -> "0"
             NetworkUtils.NETWORK_2G -> "2"
             NetworkUtils.NETWORK_3G -> "3"

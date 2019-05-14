@@ -8,14 +8,12 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <!-- 震动权限 -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <!--应用安装权限-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE"/> <!-- 应用安装权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
-            android:name="com.axonomy.dapp_feed.DAppApplication"
+            android:name=".DAppApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -23,6 +21,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".ui.mvp.totalcount.revenuerules.RevenueRulesActivity">
+        </activity>
+        <activity android:name=".ui.mvp.invitationhistory.InvitationHistoryActivity">
+        </activity>
         <activity
                 android:name=".ui.mvp.splash.SplashActivity"
                 android:theme="@style/SplashTheme">
@@ -56,20 +58,16 @@
         <activity
                 android:name=".ui.mvp.totalcount.totalcoincount.TotalCoinCountActivity"
                 android:launchMode="singleTask"/>
-
         <activity
                 android:name=".ui.mvp.recharge.RechargeActivity"
                 android:launchMode="singleTask"/>
-
         <activity
                 android:name=".ui.mvp.web.DAppWebActivity"
                 android:launchMode="singleTask"
                 android:theme="@style/WebTheme"/>
-
         <activity
                 android:name=".ui.activity.CommonWebActivity"
                 android:launchMode="singleTask"/>
-
         <activity
                 android:name=".ui.mvp.transfer.transfercoin.TransferCoinActivity"
                 android:launchMode="singleTask"/>
@@ -82,18 +80,16 @@
         <activity
                 android:name=".ui.mvp.transferdetail.transfercoindetail.TransferCoinDetailActivity"
                 android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.activity.TransferSuccessActivity"
-                  android:launchMode="singleTask"/>
-
-        <activity android:name=".ui.activity.RechargeSuccessActivity"
-                  android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.activity.TransferSuccessActivity"
+                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.activity.RechargeSuccessActivity"
+                android:launchMode="singleTask"/>
 
         <meta-data
                 android:name="CHANNEL"
-                android:value="${CHANNEL_VALUE}"/>
-
-        <!--适配7.0文件系统-->
+                android:value="${CHANNEL_VALUE}"/> <!-- 适配7.0文件系统 -->
         <provider
                 android:name="android.support.v4.content.FileProvider"
                 android:authorities="com.axonomy.dapp_feed.fileProvider"

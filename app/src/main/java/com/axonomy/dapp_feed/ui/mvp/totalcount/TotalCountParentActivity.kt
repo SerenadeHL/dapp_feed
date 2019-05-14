@@ -6,15 +6,15 @@ import android.support.constraint.ConstraintSet
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.axonomy.dapp_feed.R
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.axonomy.dapp_feed.R
-import com.dong.dapp.utils.SystemUtils
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
 import kotlinx.android.synthetic.main.title_layout.*
 import me.serenadehl.base.base.mvpbase.IBasePresenter
 import me.serenadehl.base.base.mvpbase.MVPBaseActivity
 import me.serenadehl.base.extensions.*
+import me.serenadehl.base.utils.app.SystemUtils
 
 
 /**
@@ -104,7 +104,7 @@ abstract class TotalCountParentActivity<P : IBasePresenter> : MVPBaseActivity<P>
 
     private fun generateEmptyView(): View {
         val emptyView = layoutInflater.inflate(R.layout.empty_layout, getRecyclerView(), false)
-        val screenHeight = SystemUtils.getScreenHeight()
+        val screenHeight = SystemUtils.getScreenHeight(this@TotalCountParentActivity)
         val headerHeight = mHeader.measureAndGetMeasuredHeight()
         val bottomButtonHeight = dimen(R.dimen.L2)
         val bottomButtonMarginBottom = dimen(R.dimen.L6)

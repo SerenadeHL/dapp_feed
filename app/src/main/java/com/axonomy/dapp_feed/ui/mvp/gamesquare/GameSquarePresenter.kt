@@ -6,6 +6,7 @@ import com.axonomy.dapp_feed.bean.gamesquare.ResultAnnouncementBean
 import com.axonomy.dapp_feed.bean.gamesquare.ResultDAppBean
 import com.axonomy.dapp_feed.network.BaseObserver
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 
 /**
  *
@@ -19,6 +20,7 @@ class GameSquarePresenter : MVPBasePresenter<IGameSquareView, IGameSquareModel>(
 
     override fun getAnnouncement() {
         mModel.getAnnouncement()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultAnnouncementBean?>() {
                 override fun next(data: ResultAnnouncementBean?) {
                     mView.get()?.getAnnouncementSuccess(data)
@@ -32,6 +34,7 @@ class GameSquarePresenter : MVPBasePresenter<IGameSquareView, IGameSquareModel>(
 
     override fun getDAppList(page: Int, pageSize: Int) {
         mModel.getDAppList(page, pageSize)
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultDAppBean?>() {
                 override fun next(data: ResultDAppBean?) {
                     mView.get()?.getDAppListSuccess(data)
@@ -45,6 +48,7 @@ class GameSquarePresenter : MVPBasePresenter<IGameSquareView, IGameSquareModel>(
 
     override fun getDailyCoinIncome() {
         mModel.getDailyCoinIncome()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCoinBalanceBean?>() {
                 override fun next(data: ResultCoinBalanceBean?) {
                     mView.get()?.getDailyCoinIncomeSuccess(data)
@@ -58,6 +62,7 @@ class GameSquarePresenter : MVPBasePresenter<IGameSquareView, IGameSquareModel>(
 
     override fun getDailyCashIncome() {
         mModel.getDailyCashIncome()
+            .addDisposable(mCompositeDisposable)
             .subscribe(object : BaseObserver<ResultCashDailyIncomeBean?>() {
                 override fun next(data: ResultCashDailyIncomeBean?) {
                     mView.get()?.getDailyCashIncomeSuccess(data)

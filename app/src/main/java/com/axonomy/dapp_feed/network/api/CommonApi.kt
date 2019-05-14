@@ -39,4 +39,11 @@ interface CommonApi {
     @POST("public/dapp/list")
     fun getDAppList(@Body requestBean: RequestMultiPageBean): Observable<BaseResponse>
 
+    /**
+     * 获取邀请记录
+     * @param page 页数
+     * @param pageSize 每页条数
+     */
+    @POST("api/v1/invite/list")
+    fun getInvitationHistory(@Body requestBean: RequestMultiPageBean): Observable<BaseResponse>
 }

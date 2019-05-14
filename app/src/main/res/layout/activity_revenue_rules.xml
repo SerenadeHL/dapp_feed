@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/C2"
+        tools:context=".ui.mvp.totalcount.revenuerules.RevenueRulesActivity">
+
+    <include layout="@layout/title_layout"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             android:layout_height="wrap_content"
+             android:layout_width="@dimen/match_constraint"/>
+
+    <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_title"
+            android:textSize="@dimen/F4"
+            android:id="@+id/tv_html"
+            android:padding="@dimen/L1"
+            android:textColor="@color/C6"
+            android:lineSpacingMultiplier="1.8"
+            tools:text="20个金币按充值汇率1.1元提现 剩余800.85个金币按实时汇率0.85元提现 提现时，可按充值汇率累计提现等同于充值数额的金币，其他金币价格随TRX实时行情变化而变化，以发起提现时可信第三方提供的实时汇率为准。20个金币按充值汇率1.1元提现 剩余800.85个金币按实时汇率0.85元提现 提现时，可按充值汇率累计提现等同于充值数额的金币，其他金币价格随TRX实时行情变化而变化，以发起提现时可信第三方提供的实时汇率为准。20个金币按充值汇率1.1元提现 剩余800.85个金币按实时汇率0.85元提现 提现时，可按充值汇率累计提现等同于充值数额的金币，其他金币价格随TRX实时行情变化而变化，以发起提现时可信第三方提供的实时汇率为准。20个金币按充值汇率1.1元提现 剩余800.85个金币按实时汇率0.85元提现 提现时，可按充值汇率累计提现等同于充值数额的金币，其他金币价格随TRX实时行情变化而变化，以发起提现时可信第三方提供的实时汇率为准。"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/match_constraint"/>
+</android.support.constraint.ConstraintLayout>

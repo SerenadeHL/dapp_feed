@@ -10,10 +10,7 @@ import com.axonomy.dapp_feed.bean.cash.ResultCashBalanceBean
 import com.axonomy.dapp_feed.bean.cash.ResultCashDailyIncomeBean
 import com.axonomy.dapp_feed.bean.cash.ResultCashRecordDetailBean
 import com.axonomy.dapp_feed.bean.cash.ResultCashRecordsBean
-import com.axonomy.dapp_feed.bean.coin.RequestCoinBalanceBean
-import com.axonomy.dapp_feed.bean.coin.RequestCoinRecordsBean
-import com.axonomy.dapp_feed.bean.coin.ResultCoinBalanceBean
-import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsBean
+import com.axonomy.dapp_feed.bean.coin.*
 import com.axonomy.dapp_feed.bean.common.ResultCommonConfigurationBean
 import com.axonomy.dapp_feed.bean.update.ResultUpdateInfoBean
 import com.axonomy.dapp_feed.bean.gamesquare.ResultAnnouncementBean
@@ -36,6 +33,7 @@ import com.axonomy.dapp_feed.bean.dapp.RequestSignBean
 import com.axonomy.dapp_feed.bean.upload.ResultOSSUploadPermissionBean
 import com.axonomy.dapp_feed.bean.dapp.ResultSignBean
 import com.axonomy.dapp_feed.bean.dapp.ResultPublicKeyBean
+import com.axonomy.dapp_feed.bean.invitation.ResultInvitationHistoryBean
 import com.axonomy.dapp_feed.extensions.decrypt
 import com.axonomy.dapp_feed.network.api.*
 import com.axonomy.dapp_feed.utils.AssetsUtils
@@ -43,6 +41,7 @@ import com.axonomy.dapp_feed.utils.LocaleUtils
 import io.reactivex.Observable
 import me.serenadehl.base.extensions.async
 import me.serenadehl.base.extensions.fromJsonArray
+import retrofit2.http.GET
 import java.io.File
 
 /**
@@ -94,6 +93,19 @@ object RequestManager {
         return RetrofitHelper.create(CommonApi::class.java)
             .getDAppList(requestBean)
             .decrypt<ResultDAppBean?>()
+            .async()
+    }
+
+
+    /**
+     * @param page 页数
+     * @param pageSize 每页条数
+     */
+    fun getInvitationHistory(page: Int, pageSize: Int): Observable<ResultInvitationHistoryBean?> {
+        val requestBean = RequestMultiPageBean(page, pageSize)
+        return RetrofitHelper.create(CommonApi::class.java)
+            .getInvitationHistory(requestBean)
+            .decrypt<ResultInvitationHistoryBean?>()
             .async()
     }
 
@@ -260,6 +272,16 @@ object RequestManager {
         return RetrofitHelper.create(CoinApi::class.java)
             .getCoinRecords(requestBean)
             .decrypt<ResultCoinRecordsBean?>()
+            .async()
+    }
+
+    /**
+     * 获取收益规则说明
+     */
+    fun getRevenueRules(): Observable<ResultRevenueRulesBean?>{
+        return RetrofitHelper.create(CoinApi::class.java)
+            .getRevenueRules()
+            .decrypt<ResultRevenueRulesBean?>()
             .async()
     }
 

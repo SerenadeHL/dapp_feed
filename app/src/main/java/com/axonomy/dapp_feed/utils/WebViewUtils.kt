@@ -2,8 +2,8 @@ package com.axonomy.dapp_feed.utils
 
 import android.os.Build
 import android.view.View
-import com.dong.dapp.utils.NetworkUtils
 import com.tencent.smtt.sdk.WebSettings
+import me.serenadehl.base.utils.app.NetworkUtils
 import wendu.dsbridge.DWebView
 
 /**
@@ -16,7 +16,7 @@ object WebViewUtils {
     fun setSetting(webView: DWebView) {
         webView.settings.apply {
             //设置 缓存模式
-            cacheMode = if (NetworkUtils.isNetworkConnected()) {
+            cacheMode = if (NetworkUtils.isNetworkConnected(webView.context)) {
                 WebSettings.LOAD_DEFAULT
             } else {
                 WebSettings.LOAD_CACHE_ELSE_NETWORK

@@ -13,7 +13,9 @@ import com.axonomy.dapp_feed.bean.coin.ResultCoinBalanceBean
 import com.axonomy.dapp_feed.bean.coin.ResultCoinRecordsBean
 import com.axonomy.dapp_feed.ui.mvp.totalcount.TotalCountParentActivity
 import kotlinx.android.synthetic.main.activity_total_coin_count.*
+import kotlinx.android.synthetic.main.activity_transfer.view.*
 import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.*
+import kotlinx.android.synthetic.main.app_recycle_header_total_coin.view.tv_balance
 import me.serenadehl.base.extensions.log
 
 /**
@@ -35,6 +37,16 @@ class TotalCoinCountActivity : TotalCountParentActivity<ITotalCoinCountPresenter
         super.onActivityCreated(savedInstanceState)
         btn_transfer.setOnClickListener { ARouter.getInstance().build(Router.TRANSFER_COIN_ACTIVITY).navigation() }
         btn_recharge.setOnClickListener { ARouter.getInstance().build(Router.RECHARGE_ACTIVITY).navigation() }
+        mHeader.iv_transferable.setOnClickListener {
+            ARouter.getInstance()
+                .build(Router.REVENUE_RULES_ACTIVITY)
+                .navigation()
+        }
+        mHeader.iv_locked.setOnClickListener {
+            ARouter.getInstance()
+                .build(Router.REVENUE_RULES_ACTIVITY)
+                .navigation()
+        }
     }
 
     override fun getTopMarginViewId() = R.id.tv_balance

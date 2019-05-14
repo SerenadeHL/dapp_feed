@@ -2,6 +2,7 @@ package com.axonomy.dapp_feed.ui.mvp.chooseareacode
 
 import android.annotation.SuppressLint
 import me.serenadehl.base.base.mvpbase.MVPBasePresenter
+import me.serenadehl.base.extensions.addDisposable
 
 /**
  *
@@ -17,6 +18,7 @@ class ChooseAreaCodePresenter : MVPBasePresenter<IChooseAreaCodeView, IChooseAre
     @SuppressLint("CheckResult")
     override fun getAreaCode() {
         mModel.getAreaCode()
+            .addDisposable(mCompositeDisposable)
             .subscribe {
                 mView.get()?.setAreaCode(it!!)
             }

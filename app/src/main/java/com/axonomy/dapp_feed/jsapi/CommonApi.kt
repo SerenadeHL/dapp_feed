@@ -9,6 +9,7 @@ import anet.channel.util.Utils.context
 import com.axonomy.dapp_feed.ui.activity.CommonWebActivity
 import com.axonomy.dapp_feed.utils.RouterUtils
 import com.axonomy.dapp_feed.utils.ShareUtils
+import me.serenadehl.base.extensions.copyToClipboard
 import org.json.JSONObject
 
 
@@ -27,10 +28,7 @@ class CommonApi(private val commonWebActivity: CommonWebActivity) {
      */
     @JavascriptInterface
     fun copy(msg: Any) {
-        val manager =
-            commonWebActivity.applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("text", msg.toString())
-        manager.primaryClip = clip
+        msg.toString().copyToClipboard(commonWebActivity)
     }
 
     /**

@@ -19,10 +19,12 @@ object Router {
 
     const val SETTINGS_ACTIVITY = "/ui/mvp/settings/SettingsActivity"//设置页
     const val PERSONAL_INFO_ACTIVITY = "/ui/activity/PersonalInfoActivity"//个人信息页
+    const val INVITATION_HISTORY_ACTIVITY = "/ui/mvp/invitationhistory/InvitationHistoryActivity"//邀请记录页
     const val KYC_ACTIVITY = "/ui/mvp/kyc/KYCActivity"//KYC页
 
     const val TOTAL_CASH_COUNT_ACTIVITY = "/ui/mvp/totalcount/totalcashcount/TotalCashCountActivity"//现金资产页
     const val TOTAL_COIN_COUNT_ACTIVITY = "/ui/mvp/totalcount/totalcoincount/TotalCoinCountActivity"//金币资产页
+    const val REVENUE_RULES_ACTIVITY = "/ui/mvp/totalcount/revenuerules/RevenueRulesActivity"//游戏收益规则说明页
     const val TRANSFER_CASH_ACTIVITY = "/ui/mvp/transfer/transfercash/TransferCashActivity"//划转现金页
     const val TRANSFER_COIN_ACTIVITY = "/ui/mvp/transfer/transfercoin/TransferCoinActivity"//划转金币页
     const val RECHARGE_ACTIVITY = "/ui/mvp/recharge/RechargeActivity"//充值页
