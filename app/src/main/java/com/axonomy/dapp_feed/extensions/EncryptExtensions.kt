@@ -24,12 +24,12 @@ inline fun <reified T> Observable<BaseResponse>.decrypt(): Observable<T?> {
             return@flatMap Observable.error<BaseException>(
                 BaseException(
                     it.code,
-                    it.errMsg
+                    it.message
                 )
             )
         } else {
             val decode = Base64.decode(it.data, Base64.DEFAULT)
-            val decrypt = AESUtils.decrypt(decode, AESUtils.generateKey(), AESUtils.generateIv())
+            val decrypt = AESUtils.decrypt(decode)
             "解密数据---------> $decrypt".log()
             val data: T? = decrypt?.fromJson(T::class.java)
             return@flatMap Observable.just(data)

@@ -151,7 +151,7 @@ class MainActivity : MVPBaseActivity<IMainPresenter>(), IMainView {
 
     override fun getUpdateInfoSuccess(data: ResultUpdateInfoBean?) {
         "getUpdateInfoSuccess-------> $data".log()
-        if (data?.updateType == 2 || SystemUtils.getAppVersionCode(this@MainActivity) == data?.versionCode || data == null) return//不显示
+        if (data?.updateType == 2 || SystemUtils.getAppVersionCode(this@MainActivity) >= data?.versionCode ?: 0 || data == null) return//不显示
         mUpdateDialog = UpdateDialog(this, data)
         mUpdateDialog.show()
     }

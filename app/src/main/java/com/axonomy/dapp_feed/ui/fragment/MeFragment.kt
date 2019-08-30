@@ -94,7 +94,6 @@ class MeFragment : BaseFragment() {
     private fun createOptions(): List<MeBean> {
         val options = mutableListOf<MeBean>()
         RuntimeData.mResultCommonConfigurationBean?.menu?.forEach { group ->
-
             group.withIndex().forEach {
                 val showDivider = it.index != group.size - 1
                 val showRightArrow = it.value.style == 2

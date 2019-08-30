@@ -310,16 +310,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="@dimen/match_constraint"/>
 
-    <ImageView
-            android:id="@+id/iv_first_charge"
-            android:src="@mipmap/first_charge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/dp_game_square_first_charge_margin_bottom"
-            android:layout_width="@dimen/dp_game_square_first_charge_width"
-            android:layout_height="@dimen/dp_game_square_first_charge_height"/>
-
-
     <include layout="@layout/divider"
              android:id="@+id/v_divider1"
              android:layout_height="@dimen/divider_size"
@@ -341,4 +331,13 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintTop_toBottomOf="@id/cl_dapp2"/>
+
+    <ImageView
+            android:id="@+id/iv_first_charge"
+            android:src="@mipmap/first_charge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dp_game_square_first_charge_margin_bottom"
+            android:layout_width="@dimen/dp_game_square_first_charge_width"
+            android:layout_height="@dimen/dp_game_square_first_charge_height"/>
 </android.support.constraint.ConstraintLayout>

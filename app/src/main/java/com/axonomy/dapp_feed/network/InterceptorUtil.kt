@@ -189,8 +189,8 @@ object InterceptorUtil {
      * 加密参数
      */
     private fun encryptParams(params: String): String {
-        val data = AESUtils.encrypt(params, AESUtils.generateKey(), AESUtils.generateIv())
-        val encryptKey = RSAUtils.encrypt("${AESUtils.generateKey()}${AESUtils.generateIv()}")
+        val data = AESUtils.encrypt(params)
+        val encryptKey = RSAUtils.encrypt("${AESUtils.mKey}${AESUtils.mIv}")
         return "$data.$encryptKey".replace("\n", "")
     }
 
